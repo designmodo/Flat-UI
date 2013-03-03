@@ -1,0 +1,56 @@
+// Pager module
+$pager-padding: 9px 18px 10px
+
+.pager
+  background-color: $base
+  border-radius: 6px
+  color: $inverse
+  font-size: 16px
+  font-weight: 700
+  +inline-block
+
+  li
+    &:first-child
+      > a, > span
+        border-left: none
+        padding-left: 20px
+        +border-radius(6px 0 0 6px)
+
+        img
+          margin-left: 0
+          margin-right: 13px
+          margin-left: 0\9
+          margin-right: 9px\9
+
+    &.pager-center
+      padding: $pager-padding
+      padding-left: 0
+      padding-right: 0
+      +inline-block
+
+    &.previous, &.next
+      img
+        // For retina 2x image that is scaled down to 14px for all common screens
+        height: 14px
+        margin: -1px 0 0 13px
+        margin-left: 9px\9
+        vertical-align: middle
+
+
+    > a, > span
+      background: none
+      border: none
+      border-left: 2px solid scale-color($base, $lightness: -15%)
+      color: $inverse
+      padding: $pager-padding
+      padding-left: 7px
+      text-decoration: none
+      white-space: nowrap
+      +border-radius(0 6px 6px 0)
+
+      &:hover, &:focus
+        background-color: scale-color($base, $lightness: 20%)
+
+      &:active
+        background-color: scale-color($base, $lightness: -15%)
+
