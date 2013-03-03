@@ -1,0 +1,85 @@
+// Toggle
+.toggle
+  background-color: $base
+  border-radius: 60px
+  color: $inverse
+  height: 29px
+  margin: 0 12px 12px 0
+  overflow: hidden
+  +clearfix
+  +inline-block
+  +transition(.25s)
+
+  // Common style -----------------------------
+  &.toggle-off
+    background-color: scale-color(desaturate($base, 15%), $lightness: 75%)
+
+    .toggle-radio
+      background-image: url('../images/toggle/icon-off.png')
+      background-position: 0 0
+      color: $inverse
+      left: 0
+      margin-left: .5px
+      margin-right: -13px
+      z-index: 1
+      &:first-child
+        left: -120%
+
+  .toggle-radio
+    background: url('../images/toggle/icon-on.png') right top no-repeat
+    color: $firm
+    display: block
+    font-weight: 700
+    height: 21px
+    left: 120%
+    margin-left: -13px
+    padding: 5px 32px 3px
+    position: relative
+    text-align: center
+    z-index: 2
+    +transition(.25s)
+
+    &:first-child
+      margin-bottom: -29px
+      left: 0
+
+  input
+    display: none
+    position: absolute
+    outline: none !important
+    // Radios in IE should be always visible in order to work
+    display: block\9
+    +opacity(0.01)
+
+  // Iconic style -----------------------------
+  &.toggle-icon
+    border-radius: 6px 7px 7px 6px
+
+    &.toggle-off
+      border-radius: 7px 6px 6px 7px
+      .toggle-radio
+        background-image: url('../images/toggle/block-off.png')
+        background-position: 0 0
+
+    .toggle-radio
+      background-image: url('../images/toggle/block-on.png')
+      background-position: 62px 0
+      border-radius: 6px
+      min-width: 27px
+      text-align: right
+
+      &:first-child
+        text-align: left
+
+// Serving 2x images
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2)
+  .toggle
+    &.toggle-off
+      .toggle-radio
+        background-image: url('../images/toggle/icon-off-2x.png')
+        background-size: 30px 29px
+
+    .toggle-radio
+      background-image: url('../images/toggle/icon-on-2x.png')
+      background-size: 30px 29px
+

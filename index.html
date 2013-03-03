@@ -1,74 +1,768 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Flat-ui : Flat UI pack" />
+    <meta charset="utf-8">
+    <title>Flat UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!-- Loading Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-    <title>Flat-ui</title>
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="container">
+      <div class="demo-headline">
+        <h1 class="demo-logo">
+          <div class="logo"></div>
+          Flat UI
+          <small>Free Web User Interface Kit</small>
+        </h1>
+      </div> <!-- /demo-headline -->
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/designmodo/Flat-UI">View on GitHub</a>
+      <h1>Basic elements</h1>
+      <h3 class="demo-panel-title">Buttons</h3>
 
-          <h1 id="project_title">Flat-ui</h1>
-          <h2 id="project_tagline">Flat UI pack</h2>
+      <div class="row demo-row">
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block">Default Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-primary">Primary Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-info">Info Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-danger">Danger Button</a>
+        </div>
+      </div> <!-- /row -->
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/designmodo/Flat-UI/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/designmodo/Flat-UI/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+      <div class="row demo-row">
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-success">Success Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-warning">Warning Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block btn-inverse">Inverse Button</a>
+        </div>
+        <div class="span3">
+          <a href="#" class="btn btn-large btn-block disabled">Disabled Button</a>
+        </div>
+      </div> <!-- /row -->
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
+      <h3 class="demo-panel-title">Menu</h3>
+      <div class="row demo-row">
+        <div class="span9">
+          <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <div class="nav-collapse collapse">
+                  <ul class="nav">
+                    <li>
+                      <a href="#">
+                        Menu Item
+                        <span class="navbar-unread">1</span>
+                      </a>
+                    </li>
+                    <li class="active">
+                      <a href="#">
+                        Messages
+                        <span class="navbar-unread">1</span>
+                      </a>
+                      <ul>
+                        <li><a href="#">Element One</a></li>
+                        <li>
+                          <a href="#">Sub menu</a>
+                          <ul>
+                            <li><a href="#">Element One</a></li>
+                            <li><a href="#">Element Two</a></li>
+                            <li><a href="#">Element Three</a></li>
+                          </ul> <!-- /Sub menu -->
+                        </li>
+                        <li><a href="#">Element Three</a></li>
+                      </ul> <!-- /Sub menu -->
+                    </li>
+                    <li>
+                      <a href="#">
+                        About Us
+                        <span class="navbar-unread">1</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="span3">
+          <select value="X-Men" class="span3" tabindex="1" name="herolist">
+            <option value="0">Choose hero</option>
+            <option value="1">Spider Man</option>
+            <option value="2">Wolverine</option>
+            <option value="3">Captain America</option>
+            <option value="X-Men" selected="selected">X-Men</option>
+            <option value="Crocodile">Crocodile</option>
+          </select>
+        </div>
+      </div> <!-- /row -->
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+      <h3 class="demo-panel-title">Input</h3>
+      <div class="row">
+        <div class="span3">
+          <input type="text" value="" placeholder="Inactive" class="span3" />
+        </div>
+        <div class="span3">
+          <div class="control-group error">
+            <input type="text" value="Error" class="span3" />
+          </div>
+        </div>
+        <div class="span3">
+          <div class="control-group success">
+            <input type="text" value="Success" class="span3" />
+          </div>
+        </div>
+        <div class="span3">
+          <input type="text" value="Disabled" disabled="disabled" class="span3" />
+        </div>
+      </div> <!-- /row -->
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+      <div class="row">
+        <div class="span5">
+          <h3 class="demo-panel-title">Progress bars &amp; Sliders</h3>
+          <div class="progress">
+            <div class="bar" style="width: 45%;"></div>
+          </div>
+          <br/>
+          <div class="progress">
+            <div class="bar" style="width: 40%;"></div>
+            <div class="bar bar-warning" style="width: 10%;"></div>
+            <div class="bar bar-danger" style="width: 10%;"></div>
+            <div class="bar bar-success" style="width: 10%;"></div>
+            <div class="bar bar-info" style="width: 10%;"></div>
+          </div>
+          <br/>
+          <div id="slider" class="ui-slider">
+            <div class="ui-slider-segment"></div>
+            <div class="ui-slider-segment"></div>
+            <div class="ui-slider-segment"></div>
+          </div>
+        </div> <!-- /sliders -->
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        <div class="span6 offset1">
+          <h3 class="demo-panel-title">Navigation</h3>
+          <div class="row demo-navigation">
+            <div class="span3">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <a class="btn btn-primary" href="#"><i class="fui-time-16"></i></a>
+                  <a class="btn btn-primary" href="#"><i class="fui-camera-16"></i></a>
+                  <a class="btn btn-primary active" href="#"><i class="fui-heart-16"></i></a>
+                  <a class="btn btn-primary" href="#"><i class="fui-eye-16"></i></a>
+                </div>
+              </div> <!-- /toolbar -->
+            </div>
+            <div class="span3 demo-pager">
+              <ul class="pager">
+                <li class="previous">
+                  <a href="#">
+                    <img src="images/pager/previous.png" />
+                    All messages
+                  </a>
+                </li>
+                <!-- <li class="pager-center">Center</li> -->
+                <li class="next">
+                  <a href="#">
+                    <img src="images/pager/next.png" />
+                  </a>
+                </li>
+              </ul> <!-- /pager -->
+            </div>
+          </div> <!-- /demo-navigation -->
 
-<h3>Designer Templates</h3>
+          <div class="pagination">
+            <ul>
+              <li class="previous"><a href="#"><img src="images/pager/previous.png" /></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">6</a></li>
+              <li><a href="#">7</a></li>
+              <li><a href="#">8</a></li>
+              <li><a href="#">9</a></li>
+              <li class="next"><a href="#"><img src="images/pager/next.png" /></a></li>
+            </ul>
+          </div>
+        </div> <!-- /navigation -->
+      </div> <!-- /row -->
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+      <div class="row">
+        <div class="span3">
+          <h3 class="demo-panel-title">Checkboxes</h3>
+          <label class="checkbox" for="checkbox1">
+            <input type="checkbox" value="" id="checkbox1">
+            Unchecked
+          </label>
+          <label class="checkbox" for="checkbox2">
+            <input type="checkbox" checked="checked" value="" id="checkbox2">
+            Checked
+          </label>
 
-<h3>Rather Drive Stick?</h3>
+          <label class="checkbox" for="checkbox3">
+            <input type="checkbox" value="" id="checkbox3" disabled="">
+            Disabled unchecked
+          </label>
+          <label class="checkbox" for="checkbox4">
+            <input type="checkbox" checked="checked" value="" id="checkbox4" disabled="">
+            Disabled checked
+          </label>
+        </div> <!-- /checkboxes span3 -->
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+        <div class="span3">
+          <h3 class="demo-panel-title">Radio Buttons</h3>
+          <label class="radio">
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+            Radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" checked="">
+            Radio is on
+          </label>
 
-<h3>Authors and Contributors</h3>
+          <label class="radio">
+            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios3" value="option2" disabled="">
+            Disabled radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios4" value="option2" checked="" disabled="">
+            Disabled radio is on
+          </label>
+        </div> <!-- /radios span3 -->
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+        <div class="span3">
+          <h3 class="demo-panel-title">Toggles</h3>
 
-<h3>Support or Contact</h3>
+          <table width="100%">
+            <tr>
+              <td width="50%">
+                <div class="toggle">
+                  <label class="toggle-radio" for="toggleOption2">ON</label>
+                  <input type="radio" name="toggleOptions" id="toggleOption1" value="option1" checked="checked">
+                  <label class="toggle-radio" for="toggleOption1">OFF</label>
+                  <input type="radio" name="toggleOptions" id="toggleOption2" value="option2">
+                </div>
+              </td>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+              <td>
+                <div class="toggle">
+                  <label class="toggle-radio" for="toggleOption4">ON</label>
+                  <input type="radio" name="toggleOptions2" id="toggleOption3" value="option3">
+                  <label class="toggle-radio" for="toggleOption3">OFF</label>
+                  <input type="radio" name="toggleOptions2" id="toggleOption4" value="option4" checked="checked">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="toggle toggle-icon">
+                  <label class="toggle-radio fui-checkmark-16" for="toggleOption6"></label>
+                  <input type="radio" name="toggleOptions3" id="toggleOption5" value="option5" checked="checked">
+                  <label class="toggle-radio fui-cross-16" for="toggleOption5"></label>
+                  <input type="radio" name="toggleOptions3" id="toggleOption6" value="option6">
+                </div>
+              </td>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Flat-ui maintained by <a href="https://github.com/designmodo">designmodo</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+              <td>
+                <div class="toggle toggle-icon">
+                  <label class="toggle-radio fui-checkmark-16" for="toggleOption8"></label>
+                  <input type="radio" name="toggleOptions4" id="toggleOption7" value="option7">
+                  <label class="toggle-radio fui-cross-16" for="toggleOption7"></label>
+                  <input type="radio" name="toggleOptions4" id="toggleOption8" value="option8" checked="checked">
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div> <!-- /toggles span3 -->
 
-    
+        <div class="span3">
+          <h3 class="demo-panel-title">Tags</h3>
+          <input name="tagsinput" id="tagsinput" class="tagsinput" value="Clean,Fresh,Modern,Unique" />
+        </div>
+      </div> <!-- /row -->
 
+      <div class="row">
+        <div class="span3">
+          <h3 class="demo-panel-title">Share</h3>
+          <div class="share mrl">
+            <ul>
+              <li>
+                <label class="share-label" for="share-toggle2">Facebook</label>
+                <div class="toggle">
+                  <label class="toggle-radio" for="share-toggle2">ON</label>
+                  <input type="radio" name="share-toggles" id="share-toggle2" value="toggle1">
+                  <label class="toggle-radio" for="share-toggle1">OFF</label>
+                  <input type="radio" name="share-toggles" id="share-toggle1" value="toggle2" checked="checked">
+                </div>
+              </li>
+              <li>
+                <label class="share-label" for="share-toggle4">Twitter</label>
+                <div class="toggle">
+                  <label class="toggle-radio" for="share-toggle4">ON</label>
+                  <input type="radio" name="share-toggles2" id="share-toggle4" value="toggle1" checked="checked">
+                  <label class="toggle-radio" for="share-toggle3">OFF</label>
+                  <input type="radio" name="share-toggles2" id="share-toggle3" value="toggle2">
+                </div>
+              </li>
+              <li>
+                <label class="share-label" for="share-toggle6">Pinterest</label>
+                <div class="toggle">
+                  <label class="toggle-radio" for="share-toggle6">ON</label>
+                  <input type="radio" name="share-toggles3" id="share-toggle6" value="toggle1">
+                  <label class="toggle-radio" for="share-toggle5">OFF</label>
+                  <input type="radio" name="share-toggles3" id="share-toggle5" value="toggle2" checked="checked">
+                </div>
+              </li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-block btn-large">Share</a>
+          </div> <!-- /share -->
+        </div>
+
+        <div class="span3">
+          <div class="prl">
+            <h3 class="demo-panel-title">Tooltips</h3>
+            <p align="center" class="demo-tooltip-bottom" data-toggle="tooltip" data-placement="bottom" title="Tooltip under the text."></p>
+            <div class="demo-tooltips"></div>
+            <p align="center" data-toggle="tooltip" title="Here is the sample of talltooltip that contains three lines or more. More."></p>
+          </div>
+        </div> <!-- /span3 with tooltips -->
+
+        <div class="span4">
+          <div class="demo-text-box prl">
+            <h3 class="demo-panel-title">Text Box</h3>
+            <p><strong>Lato</strong> is free web-font designed by <strong>Lukasz&nbsp;Dziedzic</strong> from Warsaw.</p>
+            <p>Here you can feel the color, size, line height and margins between paragraphs. Don’t forget to underline 
+              your links, they are important <a href="#">visual marker</a> for user.</p>
+            <p>Also, to attract attention you can mark some&nbsp;important words using <strong>bold weights</strong>.</p>
+          </div>
+        </div> <!-- /text box -->
+
+        <div class="span2">
+          <h3 class="demo-panel-title demo-headings">Headings</h3>
+          <h1>Header</h1>
+          <h2>Header 2</h2>
+          <h3>Header 3</h3>
+          <h4>Header 4</h4>
+          <h5>Header 5</h5>
+          <h6>Header 6</h6>
+        </div> <!-- /headings -->
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="span10">
+          <h3 class="demo-panel-title">Color Swatches</h3>
+          <div class="row mbl">
+            <div class="span2">
+              <dl class="palette palette-firm">
+                <dt>#1abc9c</dt>
+                <dd>Turquoise</dd>
+              </dl>
+              <dl class="palette palette-firm-dark">
+                <dt>#16a085</dt>
+                <dd>Green sea</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-success">
+                <dt>#2ecc71</dt>
+                <dd>Emerland</dd>
+              </dl>
+              <dl class="palette palette-success-dark">
+                <dt>#27ae60</dt>
+                <dd>Nephritis</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-info">
+                <dt>#3498db</dt>
+                <dd>Peter river</dd>
+              </dl>
+              <dl class="palette palette-info-dark">
+                <dt>#2980b9</dt>
+                <dd>Belize hole</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-amethyst">
+                <dt>#9b59b6</dt>
+                <dd>Amethyst</dd>
+              </dl>
+              <dl class="palette palette-wisteria">
+                <dt>#8e44ad</dt>
+                <dd>Wisteria</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-night">
+                <dt>#34495e</dt>
+                <dd>Wet asphalt</dd>
+              </dl>
+              <dl class="palette palette-night-dark">
+                <dt>#2c3e50</dt>
+                <dd>Midnight blue</dd>
+              </dl>
+            </div>
+          </div> <!-- /color swatches -->
+
+          <div class="row mbl">
+            <div class="span2">
+              <dl class="palette palette-bright">
+                <dt>#1abc9c</dt>
+                <dd>Sun flower</dd>
+              </dl>
+              <dl class="palette palette-bright-dark">
+                <dt>#f39c12</dt>
+                <dd>Orange</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-carrot">
+                <dt>#2ecc71</dt>
+                <dd>Carrot</dd>
+              </dl>
+              <dl class="palette palette-pumpkin">
+                <dt>#d35400</dt>
+                <dd>Pumpkin</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-alizarin">
+                <dt>#e74c3c</dt>
+                <dd>Alizarin</dd>
+              </dl>
+              <dl class="palette palette-pomegranate">
+                <dt>#c0392b</dt>
+                <dd>Pomegranate</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-clouds">
+                <dt>#ecf0f1</dt>
+                <dd>Clouds</dd>
+              </dl>
+              <dl class="palette palette-silver">
+                <dt>#bdc3c7</dt>
+                <dd>Silver</dd>
+              </dl>
+            </div>
+
+            <div class="span2">
+              <dl class="palette palette-concrete">
+                <dt>#95a5a6</dt>
+                <dd>Concrete</dd>
+              </dl>
+              <dl class="palette palette-asbestos">
+                <dt>#7f8c8d</dt>
+                <dd>Asbestos</dd>
+              </dl>
+            </div>
+          </div> <!-- /color swatches -->
+        </div>
+
+        <div class="span2">
+          <h3 class="demo-panel-title">&nbsp;</h3>
+          <h6 class="palette-headline">SWATCHES</h6>
+          <p class="palette-paragraph">
+            Colors &mdash; is almost the most important part of the <strong>Flat UI</strong>. Better to use different shades of provided colors than new.
+          </p>
+          <p class="palette-paragraph">
+            For your conveniense we also provide <strong>Swatches Preset</strong> <span>(flat&#8209;ui&#8209;swatches.aco in the Pack folder).</span>
+          </p>
+          <p class="palette-paragraph">
+            <strong>No gradients, no shadows.</strong>
+          </p>
+        </div> <!-- /swatches desc -->
+      </div> <!-- /swatches row -->
+
+      <h3 class="demo-panel-title">Vector Icons <small>(14)</small></h3>
+      <div class="demo-illustrations">
+        <img src="images/illustrations/compass.png" class="big-illustration" src="" />
+        <img src="images/illustrations/settings.png" src="" />
+        <img src="images/illustrations/map.png" src="" />
+        <img src="images/illustrations/paper.png" src="" />
+        <img src="images/illustrations/gift.png" src="" />
+        <img src="images/illustrations/time.png" src="" />
+        <img src="images/illustrations/calendar.png" src="" />
+      </div>
+      <div class="demo-illustrations">
+        <img src="images/illustrations/clipboard.png" src="" />
+        <img src="images/illustrations/bag.png" src="" />
+        <img src="images/illustrations/share.png" class="big-illustration" src="" />
+        <img src="images/illustrations/colors.png" src="" />
+        <img src="images/illustrations/mail.png" src="" />
+        <img src="images/illustrations/book.png" src="" />
+        <img src="images/illustrations/news.png" src="" />
+      </div>
+
+      <div class="demo-icons">
+        <h3 class="demo-panel-title">Glyphs <small>(20)</small></h3>
+        <div class="demo-icons-24">
+          <span class="fui-video-24"></span>
+          <span class="fui-time-24"></span>
+          <span class="fui-settings-24"></span>
+          <span class="fui-plus-24"></span>
+          <span class="fui-new-24"></span>
+          <span class="fui-menu-24"></span>
+          <span class="fui-man-24"></span>
+          <span class="fui-mail-24"></span>
+          <span class="fui-lock-24"></span>
+          <span class="fui-location-24"></span>
+          <span class="fui-heart-24"></span>
+          <span class="fui-eye-24"></span>
+          <span class="fui-cross-24"></span>
+          <span class="fui-cmd-24"></span>
+          <span class="fui-checkround-24"></span>
+          <span class="fui-checkmark-24"></span>
+          <span class="fui-calendar-24"></span>
+          <span class="fui-bubble-24"></span>
+          <span class="fui-volume-24"></span>
+          <span class="fui-camera-24"></span>
+          <span class="demo-icons-tooltip">24 pixel grid</span>
+        </div>
+
+        <div class="demo-icons-16">
+          <span class="fui-video-16"></span>
+          <span class="fui-time-16"></span>
+          <span class="fui-settings-16"></span>
+          <span class="fui-plus-16"></span>
+          <span class="fui-new-16"></span>
+          <span class="fui-menu-16"></span>
+          <span class="fui-man-16"></span>
+          <span class="fui-mail-16"></span>
+          <span class="fui-lock-16"></span>
+          <span class="fui-location-16"></span>
+          <span class="fui-heart-16"></span>
+          <span class="fui-eye-16"></span>
+          <span class="fui-cross-16"></span>
+          <span class="fui-cmd-16"></span>
+          <span class="fui-checkround-16"></span>
+          <span class="fui-checkmark-16"></span>
+          <span class="fui-calendar-16"></span>
+          <span class="fui-bubble-16"></span>
+          <span class="fui-volume-16"></span>
+          <span class="fui-camera-16"></span>
+          <span class="demo-icons-tooltip">16 pixel grid</span>
+        </div>
+      </div> <!-- /icon font row -->
+
+      <h1 class="mbl pbl">Samples</h1>
+      <div class="row demo-samples">
+        <div class="span4">
+          <div class="todo mrm">
+            <div class="todo-search">
+              <input class="todo-search-field" type="search" value="" placeholder="Search" />
+            </div>
+            <ul>
+              <li class="todo-done">
+                <div class="todo-icon fui-man-24"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Meet <strong>Adrian</strong> at <strong>6pm</strong>
+                  </h4>
+                  Times Square
+                </div>
+              </li>
+
+              <li>
+                <div class="todo-icon fui-menu-24"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Chat with <strong>V.Kudinov</strong>
+                  </h4>
+                  Skype conference an 9 am
+                </div>
+              </li>
+
+              <li>
+                <div class="todo-icon fui-eye-24"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Watch <strong>Iron Man</strong>
+                  </h4>
+                  1998 Broadway
+                </div>
+              </li>
+
+              <li>
+                <div class="todo-icon fui-time-24"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Fix bug on a <strong>Website</strong>
+                  </h4>
+                  As soon as possible
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div> <!-- /todo list -->
+
+        <div class="span8 demo-video">
+          <!--[if !IE]> -->
+            <video class="video-js" controls
+              preload="auto" width="620" height="349" poster="images/video/poster.jpg" data-setup="{}">
+              <source src="video/big_buck_bunny.mp4" type="video/mp4">
+              <source src="video/big_buck_bunny.webm" type="video/webm">
+            </video>
+          <!-- <![endif]-->
+
+          <!--[if IE]>
+            <video class="video-js" controls
+              preload="auto" width="620" height="256" poster="http://video-js.zencoder.com/oceans-clip.jpg" data-setup="{}">
+              <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4'/>
+              <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>
+            </video>
+          <![endif]-->
+        </div> <!-- /video -->
+      </div>
+
+      <div class="row demo-tiles">
+        <div class="span3">
+          <div class="tile">
+            <img class="tile-image big-illustration" alt="" src="images/illustrations/compass.png" />
+            <h3 class="tile-title">Web Oriented</h3>
+            <p>100% convertable to HTML/CSS layout.</p>
+            <a class="btn btn-primary btn-large btn-block" href="#">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="span3">
+          <div class="tile">
+            <img class="tile-image" alt="" src="images/illustrations/settings.png" />
+            <h3 class="tile-title">Easy to Customize</h3>
+            <p>Vector-based shapes and minimum of layer styles.</p>
+            <a class="btn btn-primary btn-large btn-block" href="#">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="span3">
+          <div class="tile">
+            <img class="tile-image" alt="" src="images/illustrations/colors.png" />
+            <h3 class="tile-title">Color Swatches</h3>
+            <p>Easy to add or change elements. </p>
+            <a class="btn btn-primary btn-large btn-block" href="#">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="span3">
+          <div class="tile tile-hot">
+            <img class="tile-image big-illustration" alt="" src="images/illustrations/share.png" />
+            <h3 class="tile-title">Free for Share</h3>
+            <p>Your likes, shares and comments helps us.</p>
+            <a class="btn btn-primary btn-large btn-block" href="#">Get Pro</a>
+          </div>
+
+        </div>
+      </div> <!-- /tiles -->
+
+      <img src="images/demo/imac.png" alt="Retina iMac" class="demo-imac" />
+
+      <div class="row">
+        <div class="span9">
+          <div class="demo-browser">
+            <div class="demo-browser-side">
+              <div class="demo-browser-author"></div>
+              <div class="demo-browser-action">
+                <a class="btn btn-danger btn-large btn-block" href="http://twitter.com/monstercritic" target="_blank">
+                  Follow
+                </a>
+              </div>
+              <h5>@monstercritic</h5>
+              <h6>
+                Tourist. Designer. NYC
+                <a href="http://shmidt.in" target="_blank">shmidt.in</a>
+              </h6>
+            </div>
+            <div class="demo-browser-content">
+              <img src="images/demo/browser-pic-1.jpg" alt="" />
+              <img src="images/demo/browser-pic-2.jpg" alt="" />
+              <img src="images/demo/browser-pic-3.jpg" alt="" />
+              <img src="images/demo/browser-pic-4.jpg" alt="" />
+              <img src="images/demo/browser-pic-5.jpg" alt="" />
+              <img src="images/demo/browser-pic-6.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="span3">
+          <div class="demo-download">
+            <img src="images/demo/html-icon.png" src="Free PSD" />
+          </div>
+
+          <a href="#" class="btn btn-primary btn-large btn-block">Download</a>
+
+          <p class="demo-download-text">Your likes, shares and comments make us happy!</p>
+        </div>
+      </div> <!-- /download area -->
+
+    </div> <!-- /container -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <h3>Subscribe</h3>
+            <p>Do you like this freebie? Want to get more stuff like this?<br/>
+              Subscribe to designmodo news and updates to stay tuned on great designs.<br/>
+              Go to: <a href="http://designmodo.com/flat-free" target="_blank">designmodo.com/flat-free</a>
+            </p>
+            <h6 class="footer-copyright">Designmodo &copy; 2013</h6>
+          </div>
+
+          <div class="span4 footer-brand">
+            <a href="http://designmodo.com" target="_blank">
+              <img src="images/footer/logo.png" alt="Designmodo.com" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="js/jquery.dropkick-1.0.0.js"></script>
+    <script src="js/custom_checkbox_and_radio.js"></script>
+    <script src="js/custom_radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
+    <script src="js/application.js"></script>
+    <!--[if lt IE 8]>
+      <script src="js/icon-font-ie7.js"></script>
+      <script src="js/icon-font-ie7-24.js"></script>
+    <![endif]-->
   </body>
 </html>
