@@ -346,10 +346,10 @@ h6 {
 
 .demo-tooltips {
   height: 126px; }
-
-.demo-tooltip-bottom {
-  position: relative;
-  top: -29px; }
+  .demo-tooltips .tooltip {
+    left: -8px !important;
+    position: relative !important;
+    top: -8px !important; }
 
 .demo-headings {
   margin-bottom: 12px; }
