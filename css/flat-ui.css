@@ -1833,7 +1833,8 @@ input.todo-search-field {
 footer {
   background-color: #eceff1;
   color: #bdc1c5;
-  padding: 26px 0; }
+  font-size: 15px;
+  padding: 0; }
   footer a {
     color: #a1a4a7;
     font-weight: 700; }
@@ -1841,16 +1842,40 @@ footer {
     font-size: 15px;
     line-height: 20px; }
 
+.footer-title {
+  margin: 0 0 22px;
+  padding-top: 21px; }
+
 .footer-brand {
-  padding-top: 20px;
-  text-align: right; }
+  display: block;
+  margin-bottom: 26px;
+  width: 220px; }
   .footer-brand img {
     width: 216px; }
 
-.footer-copyright {
-  font-size: 12px;
-  font-weight: 700;
-  padding-top: 85px; }
+.footer-banner {
+  background-color: #1abc9c;
+  color: #cff3ec;
+  margin-left: 42px;
+  min-height: 286px;
+  padding: 0 30px 30px; }
+  .footer-banner .footer-title {
+    color: white; }
+  .footer-banner a {
+    color: #cff3ec;
+    text-decoration: underline; }
+    .footer-banner a:hover {
+      text-decoration: none; }
+  .footer-banner ul {
+    list-style-type: none;
+    margin: 0 0 26px; }
+    .footer-banner ul li {
+      border-top: 1px solid #1bc6a5;
+      line-height: 19px;
+      padding: 6px 0; }
+      .footer-banner ul li:first-child {
+        border-top: none;
+        padding-top: 1px; }
 
 .video-js {
   background-color: #34495e;
