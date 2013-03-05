@@ -3,6 +3,7 @@ $form-color: scale-color(desaturate($base, 15%), $lightness: 91%)
 // Login screen
 .login
   background: url('../images/login/imac.png') 0 0 no-repeat
+  background-size: 940px 778px
   color: $inverse
   margin-bottom: 77px
   padding: 38px 38px 267px
@@ -86,4 +87,9 @@ $form-color: scale-color(desaturate($base, 15%), $lightness: 91%)
   font-size: 13px
   margin-top: 15px
   text-align: center
+
+// Serving 2x images
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2)
+  .login
+    background-image: url('../images/login/imac-2x.png')
 

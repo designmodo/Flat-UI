@@ -2297,6 +2297,7 @@ body.vjs-full-window {
 
 .login {
   background: url("../images/login/imac.png") 0 0 no-repeat;
+  background-size: 940px 778px;
   color: white;
   margin-bottom: 77px;
   padding: 38px 38px 267px;
@@ -2374,6 +2375,9 @@ body.vjs-full-window {
   margin-top: 15px;
   text-align: center; }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
+  .login {
+    background-image: url("../images/login/imac-2x.png"); } }
 .ptn, .pvn, .pan {
   padding-top: 0; }
 
