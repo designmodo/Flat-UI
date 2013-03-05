@@ -17,6 +17,7 @@
     overflow: hidden
     padding: 6px 13px 6px 19px
     position: relative
+    vertical-align: middle
     +inline-block
     +transition(.14s linear)
     &:hover
@@ -41,7 +42,7 @@
     outline: 0
     margin-right: 5px
     margin-bottom: 5px
-    width: 1px
+    width: 12px
 
 .tagsinput-remove-link
   bottom: 0
@@ -64,7 +65,8 @@
     color: $inverse
 
 .tagsinput-add-container
-  display: inline
+  vertical-align: middle
+  +inline-block
 
 .tagsinput-add
   background-color: scale-color(desaturate($base, 15%), $lightness: 67%)

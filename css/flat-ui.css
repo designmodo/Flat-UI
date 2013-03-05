@@ -1246,6 +1246,7 @@ textarea,
     overflow: hidden;
     padding: 6px 13px 6px 19px;
     position: relative;
+    vertical-align: middle;
     display: inline-block;
     zoom: 1;
     *display: inline;
@@ -1273,7 +1274,7 @@ textarea,
     outline: 0;
     margin-right: 5px;
     margin-bottom: 5px;
-    width: 1px; }
+    width: 12px; }
 
 .tagsinput-remove-link {
   bottom: 0;
@@ -1294,7 +1295,10 @@ textarea,
     color: white; }
 
 .tagsinput-add-container {
-  display: inline; }
+  vertical-align: middle;
+  display: inline-block;
+  zoom: 1;
+  *display: inline; }
 
 .tagsinput-add {
   background-color: #bbc3cb;
@@ -1832,7 +1836,7 @@ input.todo-search-field {
 footer {
   background-color: #eceff1;
   color: #bdc1c5;
-  padding: 45px 0; }
+  padding: 26px 0; }
   footer a {
     color: #a1a4a7;
     font-weight: 700; }
