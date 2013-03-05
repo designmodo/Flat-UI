@@ -435,9 +435,6 @@ h6 {
 .demo-text-box a:hover {
   color: #1abc9c; }
 
-.demo-imac {
-  margin-bottom: 77px; }
-
 .demo-browser {
   background: #2c3e50 url("../images/demo/browser.png") 0 0 no-repeat;
   background-size: 659px 42px;
@@ -1619,7 +1616,7 @@ textarea,
     font-weight: 500;
     opacity: 0.8; }
   .palette dd {
-    font-weight: 100;
+    font-weight: 200;
     margin-left: 0;
     opacity: 0.8; }
 
@@ -2297,6 +2294,85 @@ body.vjs-full-window {
   -moz-animation: sharp 2s ease infinite;
   -o-animation: sharp 2s ease infinite;
   animation: sharp 2s ease infinite; }
+
+.login {
+  background: url("../images/login/imac.png") 0 0 no-repeat;
+  color: white;
+  margin-bottom: 77px;
+  padding: 38px 38px 267px;
+  position: relative; }
+
+.login-screen {
+  background-color: #1abc9c;
+  min-height: 317px;
+  padding: 123px 199px 33px 306px; }
+
+.login-icon {
+  left: 200px;
+  position: absolute;
+  top: 160px;
+  width: 96px; }
+  .login-icon > img {
+    display: block;
+    margin-bottom: 6px;
+    width: 100%; }
+  .login-icon > h4 {
+    font-size: 17px;
+    font-weight: 200;
+    line-height: 34px;
+    opacity: 0.95; }
+    .login-icon > h4 small {
+      color: inherit;
+      display: block;
+      font-size: inherit;
+      font-weight: 700; }
+
+.login-form {
+  background-color: #eceff1;
+  border-radius: 6px;
+  padding: 24px 23px 20px;
+  position: relative; }
+  .login-form:before {
+    content: "";
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+    border-color: transparent #eceff1 transparent transparent;
+    height: 0px;
+    position: absolute;
+    left: -12px;
+    top: 35px;
+    width: 0;
+    -webkit-transform: rotate(360deg); }
+  .login-form .control-group {
+    margin-bottom: 6px;
+    position: relative; }
+  .login-form .login-field {
+    border-color: transparent;
+    font-size: 17px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    text-indent: 3px;
+    width: 299px; }
+    .login-form .login-field:focus + .login-field-icon {
+      color: #1abc9c; }
+  .login-form .login-field-icon {
+    color: #bfc9ca;
+    font-size: 16px;
+    position: absolute;
+    right: 13px;
+    top: 14px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    -webkit-backface-visibility: hidden; }
+
+.login-link {
+  color: #bfc9ca;
+  display: block;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center; }
 
 .ptn, .pvn, .pan {
   padding-top: 0; }
