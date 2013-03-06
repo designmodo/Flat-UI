@@ -397,6 +397,12 @@ h6 {
     .demo-illustrations img.big-illustration {
       height: 111px;
       width: 112px; }
+    .demo-illustrations img.demo-retina-icon {
+      height: 104px;
+      margin-right: -24px;
+      width: 117px; }
+    .demo-illustrations img.pull-big-illustration {
+      margin-right: 12px; }
     .demo-illustrations img:first-child {
       margin-left: 0; }
 
