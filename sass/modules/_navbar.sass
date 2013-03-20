@@ -12,9 +12,6 @@
   .nav
     // First level nav
     > li
-      &:hover
-        > ul
-          top: 100%
 
       // Second level nav
       > ul
@@ -47,10 +44,7 @@
       &:hover
         > ul
           opacity: 1
-          z-index: 100
           -webkit-transform: scale(1, 1)
-          // Show on hover
-          display: block\9
 
     // Sub menu
     ul
@@ -58,11 +52,9 @@
       left: 15px
       list-style-type: none
       margin-left: 0
-      opacity: 0
       position: absolute
       top: 0
       width: 234px
-      z-index: -100
       // Trigger transform to hide nav completely without 'ghost' bug (when switching from :hover to initial)
       -webkit-transform: scale(1, .99)
       -webkit-transform-origin: 0 0
