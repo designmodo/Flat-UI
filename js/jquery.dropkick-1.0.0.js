@@ -10,14 +10,7 @@
  */
 (function ($, window, document) {
 
-  var ie6 = false;
-
-  // Help prevent flashes of unstyled content
-  if ($.browser.msie && $.browser.version.substr(0, 1) < 7) {
-    ie6 = true;
-  } else {
-    document.documentElement.className = document.documentElement.className + ' dk_fouc';
-  }
+  document.documentElement.className = document.documentElement.className + ' dk_fouc';
   
   var
     // Public methods exposed to $.fn.dropkick()
@@ -191,12 +184,10 @@
 
   // Expose the plugin
   $.fn.dropkick = function (method) {
-    if (!ie6) {
-      if (methods[method]) {
-        return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-      } else if (typeof method === 'object' || ! method) {
-        return methods.init.apply(this, arguments);
-      }
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || ! method) {
+      return methods.init.apply(this, arguments);
     }
   };
 
@@ -350,7 +341,7 @@
   $(function () {
 
     // Handle click events on the dropdown toggler
-    $('.dk_toggle').live('click', function (e) {
+    $(document).on('click', '.dk_toggle', function (e) {
       var $dk  = $(this).parents('.dk_container').first();
 
       _openDropdown($dk);
@@ -365,7 +356,7 @@
     });
 
     // Handle click events on individual dropdown options
-    $('.dk_options a').live(($.browser.msie ? 'mousedown' : 'click'), function (e) {
+    $(document).on('click', '.dk_options a', function (e) {
       var
         $option = $(this),
         $dk     = $option.parents('.dk_container').first(),

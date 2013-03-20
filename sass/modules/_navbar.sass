@@ -31,6 +31,7 @@
             ul
               opacity: 1
               -webkit-transform: scale(1, 1)
+              visibility: visible
               display: block\9
           ul
             left: 100%
@@ -49,6 +50,7 @@
           opacity: 1
           z-index: 100
           -webkit-transform: scale(1, 1)
+          visibility: visible
           // Show on hover
           display: block\9
 
@@ -67,6 +69,7 @@
       -webkit-transform: scale(1, .99)
       -webkit-transform-origin: 0 0
       // Don't show it at all by default since IE doesn't get modern transitions
+      visibility: hidden
       display: none\9
       +transition(.3s ease-out)
 
