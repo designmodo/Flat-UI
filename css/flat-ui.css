@@ -518,8 +518,6 @@ h6 {
     font-weight: 700;
     padding-bottom: 16px;
     padding-top: 15px; }
-  .navbar .nav > li:hover > ul {
-    top: 100%; }
   .navbar .nav > li > ul {
     padding-top: 13px;
     top: 80%;
@@ -549,19 +547,15 @@ h6 {
     position: relative; }
     .navbar .nav li:hover > ul {
       opacity: 1;
-      z-index: 100;
-      -webkit-transform: scale(1, 1);
-      display: block\9; }
+      -webkit-transform: scale(1, 1); }
   .navbar .nav ul {
     border-radius: 4px;
     left: 15px;
     list-style-type: none;
     margin-left: 0;
-    opacity: 0;
     position: absolute;
     top: 0;
     width: 234px;
-    z-index: -100;
     -webkit-transform: scale(1, 0.99);
     -webkit-transform-origin: 0 0;
     display: none\9;
