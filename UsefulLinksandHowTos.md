@@ -1,5 +1,7 @@
 # IMPORTANT PAGES!
 
+## Useful Links
+
 [How to Use UI Kits, Beginners Video Tips ](http://designmodo.com/how-to-use/)
 
 [UI Kit Benefits Create a Website using UI Packs (PSD to HTML) – Day 1](http://designmodo.com/create-website-day-1) 
@@ -16,6 +18,7 @@
 
 [UI Kits for Developers – Prototyping and Homemade Design](http://designmodo.com/ui-kits-developers) 
 
+<hr>
 
 [Our Shop](http://designmodo.com/shop/)
 
