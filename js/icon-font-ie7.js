@@ -1,36 +1,49 @@
-/* Use this script if you need to support IE 7 and IE 6. */
+/* Load this script using conditional IE comments if you need to support IE 7 and IE 6. */
 
 window.onload = function() {
 	function addIcon(el, entity) {
 		var html = el.innerHTML;
-		el.innerHTML = '<span style="font-family: \'Flat-UI-Icons-16\'">' + entity + '</span>' + html;
+		el.innerHTML = '<span style="font-family: \'Flat-UI-Icons\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'fui-volume-16' : '&#xe000;',
-			'fui-video-16' : '&#xe001;',
-			'fui-time-16' : '&#xe002;',
-			'fui-settings-16' : '&#xe003;',
-			'fui-plus-16' : '&#xe004;',
-			'fui-new-16' : '&#xe005;',
-			'fui-menu-16' : '&#xe006;',
-			'fui-man-16' : '&#xe007;',
-			'fui-mail-16' : '&#xe008;',
-			'fui-lock-16' : '&#xe009;',
-			'fui-location-16' : '&#xe00a;',
-			'fui-heart-16' : '&#xe00b;',
-			'fui-eye-16' : '&#xe00c;',
-			'fui-cross-16' : '&#xe00d;',
-			'fui-cmd-16' : '&#xe00e;',
-			'fui-checkround-16' : '&#xe00f;',
-			'fui-checkmark-16' : '&#xe010;',
-			'fui-camera-16' : '&#xe011;',
-			'fui-calendar-16' : '&#xe012;',
-			'fui-bubble-16' : '&#xe013;'
+			'fui-arrow-right' : '&#xe02c;',
+			'fui-arrow-left' : '&#xe02d;',
+			'fui-cmd' : '&#xe02f;',
+			'fui-check-inverted' : '&#xe006;',
+			'fui-heart' : '&#xe007;',
+			'fui-location' : '&#xe008;',
+			'fui-plus' : '&#xe009;',
+			'fui-check' : '&#xe00a;',
+			'fui-cross' : '&#xe00b;',
+			'fui-list' : '&#xe00c;',
+			'fui-new' : '&#xe00d;',
+			'fui-video' : '&#xe00e;',
+			'fui-photo' : '&#xe00f;',
+			'fui-volume' : '&#xe010;',
+			'fui-time' : '&#xe011;',
+			'fui-eye' : '&#xe012;',
+			'fui-chat' : '&#xe013;',
+			'fui-search' : '&#xe01c;',
+			'fui-user' : '&#xe01d;',
+			'fui-mail' : '&#xe01e;',
+			'fui-lock' : '&#xe01f;',
+			'fui-gear' : '&#xe024;',
+			'fui-radio-unchecked' : '&#xe02b;',
+			'fui-radio-checked' : '&#xe032;',
+			'fui-checkbox-unchecked' : '&#xe033;',
+			'fui-checkbox-checked' : '&#xe034;',
+			'fui-calendar-solid' : '&#xe022;',
+			'fui-pause' : '&#xe03b;',
+			'fui-play' : '&#xe03c;',
+			'fui-check-inverted-2' : '&#xe000;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;
-	for (i = 0; i < els.length; i += 1) {
+	for (i = 0; ; i += 1) {
 		el = els[i];
+		if(!el) {
+			break;
+		}
 		attr = el.getAttribute('data-icon');
 		if (attr) {
 			addIcon(el, attr);
