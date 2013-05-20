@@ -39,6 +39,11 @@ input[type="color"],
     border-color: @firm;
     .box-shadow(none);
   }
+  
+  .row-fluid & {
+    height: 41px;
+    width: 100%;
+  }
 
   // Flat (without border)
   &.flat {
@@ -158,8 +163,13 @@ textarea {
   line-height: 24px;
   padding: 5px 11px;
   text-indent: 0;
+  
+  .row-fluid & {
+    height: auto;
+    width: 100% !important;
+  }
 }
 textarea[class*="span"] {
-  width: 100%;
+  width: 100% !important;
   .box-sizing(border-box);
 }

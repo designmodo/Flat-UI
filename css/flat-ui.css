@@ -1325,6 +1325,25 @@ input[type="color"]:focus,
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.row-fluid textarea,
+.row-fluid input[type="text"],
+.row-fluid input[type="password"],
+.row-fluid input[type="datetime"],
+.row-fluid input[type="datetime-local"],
+.row-fluid input[type="date"],
+.row-fluid input[type="month"],
+.row-fluid input[type="time"],
+.row-fluid input[type="week"],
+.row-fluid input[type="number"],
+.row-fluid input[type="email"],
+.row-fluid input[type="url"],
+.row-fluid input[type="search"],
+.row-fluid input[type="tel"],
+.row-fluid input[type="color"],
+.row-fluid .uneditable-input {
+  height: 41px;
+  width: 100%;
+}
 textarea.flat,
 input[type="text"].flat,
 input[type="password"].flat,
@@ -1639,8 +1658,12 @@ textarea {
   padding: 5px 11px;
   text-indent: 0;
 }
+.row-fluid textarea {
+  height: auto;
+  width: 100% !important;
+}
 textarea[class*="span"] {
-  width: 100%;
+  width: 100% !important;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -3233,7 +3256,7 @@ body.vjs-full-window {
 .vjs-rewind-control div {
   width: 19px;
   height: 16px;
-  background: url(../images/video/video-js.png);
+  background: none transparent;
   margin: .5em auto 0;
 }
 .vjs-mute-control {

@@ -56,7 +56,7 @@ String.prototype.repeat = function(num) {
     });
 
     // Disable link clicks to prevent page scrolling
-    $('a[href="#fakelink""]').on('click', function (e) {
+    $('a[href="#fakelink"]').on('click', function (e) {
       e.preventDefault();
     });
 
