@@ -6,7 +6,7 @@
 @controls-color: mix(@base, black, 75%);
 
 .video-js {
-  background-color: @base;  
+  background-color: transparent;  
   // Otherwise you won't see controls in Fullscreen mode
   margin-top: -95px;
   position: relative;
@@ -14,6 +14,10 @@
   font-size: 10px;
   vertical-align: middle;
   .border-radius(6px 6px 0 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:hidden;
+  -ms-backface-visibility:hidden;
+  backface-visibility:hidden;
   
   .vjs-tech {
     position: absolute;
