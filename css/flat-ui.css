@@ -2748,62 +2748,41 @@ textarea[class*="span"] {
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
-.palette-firm {
+.palette-turquoise {
   background-color: #1abc9c;
 }
-.palette-firm-dark {
+.palette-green-sea {
   background-color: #16a085;
 }
-.palette-success {
+.palette-emerland {
   background-color: #2ecc71;
 }
-.palette-success-dark {
-  background-color: #27ad60;
-}
-.palette-info {
-  background-color: #3498db;
-}
-.palette-info-dark {
-  background-color: #2c81ba;
-}
-.palette-warning {
-  background-color: #f1c40f;
-}
-.palette-warning-dark {
-  background-color: #cda70d;
-}
-.palette-danger {
-  background-color: #e74c3c;
-}
-.palette-danger-dark {
-  background-color: #c44133;
-}
-.palette-night {
-  background-color: #34495e;
-}
-.palette-night-dark {
-  background-color: #2c3e50;
-}
-.palette-bright {
-  background-color: #f1c40f;
-}
-.palette-bright-dark {
-  background-color: #cda70d;
-}
-.palette-success-dark {
+.palette-nephritis {
   background-color: #27ae60;
 }
-.palette-info-dark {
-  background-color: #2980b9;
+.palette-peter-river {
+  background-color: #3498db;
 }
-.palette-bright-dark {
-  background-color: #f39c12;
+.palette-belize-hole {
+  background-color: #2980b9;
 }
 .palette-amethyst {
   background-color: #9b59b6;
 }
 .palette-wisteria {
   background-color: #8e44ad;
+}
+.palette-wet-asphalt {
+  background-color: #34495e;
+}
+.palette-midnight-blue {
+  background-color: #2c3e50;
+}
+.palette-sun-flower {
+  background-color: #f1c40f;
+}
+.palette-orange {
+  background-color: #f39c12;
 }
 .palette-carrot {
   background-color: #e67e22;
@@ -2819,7 +2798,6 @@ textarea[class*="span"] {
 }
 .palette-clouds {
   background-color: #ecf0f1;
-  color: #bdc3c7;
 }
 .palette-silver {
   background-color: #bdc3c7;

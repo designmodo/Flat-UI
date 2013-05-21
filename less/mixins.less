@@ -209,11 +209,11 @@
 }
 
 // Color swatches grid
-.calc-color(@name, @color) {
-  .palette-@{name} {
-    background-color: @color;
+.calc-color(@first-color, @second-color) {
+  .palette-@{first-color} {
+    background-color: ~"@{@{first-color}}";
   }
-  .palette-@{name}-dark {
-    background-color: mix(@color, black, 85%);
+  .palette-@{second-color} {
+    background-color: ~"@{@{second-color}}";
   }  
 }
