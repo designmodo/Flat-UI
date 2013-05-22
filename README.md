@@ -17,6 +17,7 @@ Thanks for supporting our website and enjoy!
 
 + 1.0 Fixed several small IE bugs
 + 1.1 New icons, Login screen implemented to a real HTML one. Small bug fixes and refinements.
++ 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
 
 ## Authors
 
