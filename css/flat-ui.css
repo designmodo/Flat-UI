@@ -985,7 +985,6 @@ h6 {
   color: #ffffff;
   font-size: 0;
   font-weight: 700;
-  height: 6px;
   line-height: 14px;
   position: absolute;
   right: 12px;
@@ -1003,16 +1002,18 @@ h6 {
 .navbar-inverse .navbar-new {
   top: 15px;
 }
+.navbar-unread,
 .navbar-new {
-  background-color: #e74c3c;
   font-size: 12px;
   line-height: 17px;
-  height: 18px;
   margin: -9px -1px;
   min-width: 16px;
   padding: 0 1px;
   width: auto;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+.navbar-new {
+  background-color: #e74c3c;
 }
 .navbar.navbar-inverse .nav li.dropdown.open > .dropdown-toggle {
   background-color: #1abc9c;
