@@ -2968,9 +2968,6 @@ input.todo-search-field.placeholder {
   .todo li.todo-done {
     background-image: url(../images/todo/done-2x.png);
   }
-  .todo-search {
-    background-image: url(../images/todo/search-2x.png);
-  }
 }
 footer {
   background-color: #edeff1;
