@@ -702,6 +702,11 @@ h6 {
   -o-transition: 0.25s;
   transition: 0.25s;
   -webkit-backface-visibility: hidden;
+  -webkit-transform: scale(1.001);
+  -moz-transform: scale(1.001);
+  -ms-transform: scale(1.001);
+  -o-transform: scale(1.001);
+  transform: scale(1.001);
 }
 .dropup .caret,
 .dropup .btn-large .caret,
