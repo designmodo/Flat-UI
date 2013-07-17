@@ -242,14 +242,15 @@ you can use the generic selector below, but it's slower:
 }
 .demo-icons {
   font-size: 32px;
-  margin-left: -15px;
+  margin-left: -20px;
+  padding-left: 20px;
 }
 .demo-icons .demo-content {
-  margin: 0 0 0 -36px;
+  margin: 0 0 0 -35px;
 }
 .demo-icons .demo-content > span {
   display: inline-block;
-  margin: 0 0 32px 36px;
+  margin: 0 0 32px 35px;
   width: 24px;
   font-size: 24px;
 }
@@ -262,27 +263,24 @@ you can use the generic selector below, but it's slower:
   position: absolute;
   width: 80px;
 }
-.demo-illustrations {
-  margin-top: 40px;
-  *zoom: 1;
-}
-.demo-illustrations:before,
-.demo-illustrations:after {
-  display: table;
-  content: "";
-}
-.demo-illustrations:after {
-  clear: both;
-}
 .demo-illustrations .demo-content {
   margin: 0 0 0 -40px;
   padding-top: 20px;
+  *zoom: 1;
+}
+.demo-illustrations .demo-content:before,
+.demo-illustrations .demo-content:after {
+  display: table;
+  content: "";
+}
+.demo-illustrations .demo-content:after {
+  clear: both;
 }
 .demo-illustrations .demo-content > div {
   float: left;
   width: 100px;
   height: 100px;
-  margin: 0 0 80px 40px;
+  margin: 0 0 40px 40px;
   text-align: center;
 }
 .demo-illustrations img {
