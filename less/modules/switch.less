@@ -10,7 +10,7 @@
   border-radius: @switch-border-radius;
   display: inline-block;
   cursor: pointer;
-  line-height: @base-line-height;
+  line-height: @line-height-base;
   overflow: hidden;
   position: relative;
   text-align: left;
@@ -21,7 +21,9 @@
   &.deactivate {
     .opacity(50);
     cursor: default !important;
-    label, span {
+    
+    label,
+    span {
       cursor: default !important;
     }
   }
@@ -32,7 +34,7 @@
     top: 0;
 
     &.switch-animate {
-      .transition(left 0.25s ease-out);
+      .transition(left .25s ease-out);
     }
 
     &.switch-off {
@@ -60,8 +62,8 @@
 
   span {
     cursor: pointer;
-    font-size: @base-font-size * 1.071;
-    font-weight: 700;
+    font-size: ceil(@font-size-base * 1.071);
+    font-weight: bold;
     float: left;
     height: 29px;
     line-height: 19px;
@@ -72,7 +74,6 @@
     text-align: center;
     width: 50%;
     z-index: 1;
-    .box-sizing();
     .transition(.25s ease-out);
 
     &.switch-left {
@@ -98,12 +99,12 @@
     border: 4px solid @base;
     border-radius: 50%;
     float: left;
-    height: 21px;
+    height: 29px;
     margin: 0 -15px 0 -14px;
     padding: 0;
     position: relative;
     vertical-align: middle;
-    width: 21px;
+    width: 29px;
     z-index: 100;
     .transition(.25s ease-out);
   }
@@ -112,28 +113,30 @@
 // Square Switch
 // -------------------------------
 .switch-square {
-  border-radius: 6px;
+  border-radius: @border-radius-large;
   .mask(~"url('../images/switch/mask.png') 0 0 no-repeat");
 
   > div {
     &.switch-off {
       label {
         border-color: mix(@base, white, 63%);
-        border-radius: 6px 0 0 6px;
+        border-radius: @border-radius-large 0 0 @border-radius-large;
       }
     }
   }
 
   span {
     &.switch-left {
-      border-radius: 6px 0 0 6px;
+      border-radius: @border-radius-large 0 0 @border-radius-large;
+      
       [class*="fui-"] {
         text-indent: -10px;
       }
     }
 
     &.switch-right {
-      border-radius: 0 6px 6px 0;
+      border-radius: 0 @border-radius-large @border-radius-large 0;
+      
       [class*="fui-"] {
         text-indent: 5px;
       }
@@ -141,8 +144,7 @@
   }
 
   label {
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 @border-radius-large @border-radius-large 0;
     border-color: @firm;
   }
 }
-

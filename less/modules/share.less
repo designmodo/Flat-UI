@@ -8,8 +8,8 @@
 .share {
   background-color: @share-color;
   position: relative;
-  .dropdown-arrow(@share-color, -9px, 23px);
-  .border-radius(6px);
+  border-radius: @border-radius-large;
+  .dropdown-arrow(@share-color, -9px, 23px);  
 
   ul {
     list-style-type: none;
@@ -29,7 +29,7 @@
     margin: 0;
   }
   .btn {
-    .border-radius(0 0 6px 6px);
+    border-radius: 0 0 @border-radius-large @border-radius-large;
   }  
 }    
 
