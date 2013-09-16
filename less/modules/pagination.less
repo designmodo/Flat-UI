@@ -31,6 +31,7 @@
       }
       &:last-child {
         border-radius: 0 @border-radius-large @border-radius-large 0;
+        margin-right: 0;
       }
       &.previous,
       &.next {
@@ -96,6 +97,7 @@
       // Link
       > a,
       > span {
+      	display: inline-block;
         background: @inverse;
         border: 5px solid @pagination-color;
         color: @inverse;
@@ -104,7 +106,7 @@
         min-width: 0;
         min-height: 16px;
         padding: 0 4px;
-        border-radius: 50px;
+        border-radius: 50px;        
         .transition(~"background .2s ease-out, border-color 0s ease-out, color .2s ease-out");
 
         &:hover,

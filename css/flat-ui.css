@@ -1874,6 +1874,7 @@ fieldset[disabled] .form-control + .input-icon,
 }
 .pagination ul li:last-child {
   border-radius: 0 6px 6px 0;
+  margin-right: 0;
 }
 .pagination ul li.previous > a,
 .pagination ul li.next > a,
@@ -1944,6 +1945,7 @@ fieldset[disabled] .form-control + .input-icon,
 }
 .pagination ul li > a,
 .pagination ul li > span {
+  display: inline-block;
   background: #ffffff;
   border: 5px solid #d6dbdf;
   color: #ffffff;
