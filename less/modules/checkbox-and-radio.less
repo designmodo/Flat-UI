@@ -25,16 +25,18 @@
     top: 0;
     width: 20px;
     text-align: center;
-    line-height: 20px;
+    line-height: 21px;
     font-size: 20px;
     cursor: pointer;
     .transition(color .25s linear);
 
-    .first-icon-icon,
+    .first-icon,
     .second-icon {
+    	display: inline-table;
       position: absolute;
       left: 0;
       top: 0;
+      background-color: @inverse;
       .opacity(100);
     }
     .second-icon {
@@ -47,6 +49,9 @@
 
   // Hover State
   &:hover {
+  	color: @lightgray;
+  	.transition(color .25s linear);
+  	
     .first-icon {
       .opacity(0);
     }
@@ -59,13 +64,12 @@
   &.checked {
     color: @link-color;
 
-    .icons {
-      color: @firm;
-    }
     .first-icon {
       .opacity(0);
     }
     .second-icon {
+    	color: @link-color;
+    	.transition(color .25s linear);
       .opacity(100);
     }
   }
@@ -92,6 +96,7 @@
         .opacity(0);
       }
       .second-icon {
+      	color: mix(@lightgray, white, 38%);
         .opacity(100);
       }
     }

@@ -1503,7 +1503,7 @@ fieldset[disabled] .form-control + .input-icon,
   top: 0;
   width: 20px;
   text-align: center;
-  line-height: 20px;
+  line-height: 21px;
   font-size: 20px;
   cursor: pointer;
   -webkit-transition: color 0.25s linear;
@@ -1512,13 +1512,15 @@ fieldset[disabled] .form-control + .input-icon,
   transition: color 0.25s linear;
   -webkit-backface-visibility: hidden;
 }
-.checkbox .icons .first-icon-icon,
-.radio .icons .first-icon-icon,
+.checkbox .icons .first-icon,
+.radio .icons .first-icon,
 .checkbox .icons .second-icon,
 .radio .icons .second-icon {
+  display: inline-table;
   position: absolute;
   left: 0;
   top: 0;
+  background-color: #ffffff;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -1526,6 +1528,15 @@ fieldset[disabled] .form-control + .input-icon,
 .radio .icons .second-icon {
   opacity: 0;
   filter: alpha(opacity=0);
+}
+.checkbox:hover,
+.radio:hover {
+  color: #bdc3c7;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+  -webkit-backface-visibility: hidden;
 }
 .checkbox:hover .first-icon,
 .radio:hover .first-icon {
@@ -1541,10 +1552,6 @@ fieldset[disabled] .form-control + .input-icon,
 .radio.checked {
   color: #16a085;
 }
-.checkbox.checked .icons,
-.radio.checked .icons {
-  color: #1abc9c;
-}
 .checkbox.checked .first-icon,
 .radio.checked .first-icon {
   opacity: 0;
@@ -1552,6 +1559,12 @@ fieldset[disabled] .form-control + .input-icon,
 }
 .checkbox.checked .second-icon,
 .radio.checked .second-icon {
+  color: #16a085;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+  -webkit-backface-visibility: hidden;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -1585,6 +1598,7 @@ fieldset[disabled] .form-control + .input-icon,
 }
 .checkbox.disabled.checked .second-icon,
 .radio.disabled.checked .second-icon {
+  color: #e6e8ea;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -1701,6 +1715,7 @@ fieldset[disabled] .form-control + .input-icon,
 .not_valid {
   background: #fbd8db !important;
   color: #90111a !important;
+  margin-left: 5px !important;
 }
 .progress {
   background: #ebedef;
@@ -2268,7 +2283,7 @@ fieldset[disabled] .form-control + .input-icon,
   cursor: default !important;
 }
 .has-switch > div {
-  width: 162%;
+  width: 130px;
   position: relative;
   top: 0;
 }
@@ -2280,7 +2295,7 @@ fieldset[disabled] .form-control + .input-icon,
   -webkit-backface-visibility: hidden;
 }
 .has-switch > div.switch-off {
-  left: -63%;
+  left: -50px;
 }
 .has-switch > div.switch-off label {
   background-color: #7f8c9a;
@@ -2290,7 +2305,7 @@ fieldset[disabled] .form-control + .input-icon,
   box-shadow: -1px 0 0 rgba(255, 255, 255, 0.5);
 }
 .has-switch > div.switch-on {
-  left: 0%;
+  left: 0;
 }
 .has-switch > div.switch-on label {
   background-color: #1abc9c;
