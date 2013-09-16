@@ -1,4 +1,4 @@
-Flat UI Free
+Flat UI Free 2.1
 =======
 
 Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html. 
@@ -18,6 +18,7 @@ Thanks for supporting our website and enjoy!
 + 1.0 Fixed several small IE bugs
 + 1.1 New icons, Login screen implemented to a real HTML one. Small bug fixes and refinements.
 + 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
++ 2.1 Bootstrap upgraded to 3.0, better box model, update html5 video player to version 4.1, added components documentation and sturt-up template, various small bugfixes.
 
 ## Authors
 

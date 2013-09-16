@@ -15,7 +15,6 @@
     }
     .btn {
       width: 100%; // Button should take all available space of its parent
-      .box-sizing();
     }
   }
 
@@ -25,10 +24,10 @@
     float: none;
     margin-left: 0;
     width: auto;
+    .clearfix();
 
     .btn {
       width: 100%;
-      .box-sizing();
     }
   }
   
@@ -40,19 +39,19 @@
     width: 220px; // Default select width until .span* is applied
     
     // Huge
-    &.btn-huge {
+    &.btn-hg {
       .filter-option {
         left: 20px;
         right: 40px;
         top: 16px;
       }
       .caret {
-        right: 20px;
+        right: 20px;        
       }
     }
     
     // Large
-    &.btn-large {
+    &.btn-lg {
       .filter-option {
         left: 18px;
         right: 38px;
@@ -61,7 +60,7 @@
     }
     
     // Small
-    &.btn-small {
+    &.btn-sm {
       .filter-option {
         left: 13px;
         right: 33px;
@@ -72,8 +71,8 @@
       }
     }
     
-    // Mini
-    &.btn-mini {
+    // Exstra small
+    &.btn-xs {
       .filter-option {
         left: 13px;
         right: 33px;
@@ -95,15 +94,15 @@
     .caret {
       position: absolute;
       right: 16px;
+      margin-top: 8px;
     }
     .dropdown-toggle {
-      .border-radius(6px);
+      border-radius: @border-radius-large;
     }
 
     // Dropdown menu
     .dropdown-menu {
       min-width: 100%;
-      .box-sizing;
 
       dt {
         cursor: default;
@@ -122,7 +121,7 @@
           }
         }
         small {
-          padding-left: 0.5em;
+          padding-left: .5em;
         }
         > dt small {
           font-weight: normal;
@@ -142,4 +141,3 @@
     .caret(@inverse);
   }
 }
-

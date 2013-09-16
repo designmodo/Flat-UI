@@ -2,35 +2,28 @@
 // Caret
 // --------------------------------------------------
 
-.caret(@color: @base) {
-  border-left-width: 6px;
-  border-right-width: 6px;
-  border-top-width: 8px;
-  border-bottom-color: @color;
+.caret {
+  border-width: 8px 6px;
+  border-bottom-color: @base;  
+  border-top-color: @base;
   border-style: solid;
   border-bottom-style: none;
-  border-top-color: @color;
   .transition(.25s);
-}
-
-.caret {
-  .caret();
   .transform(scale(1.001));
 }
 
+.caret(@color: @base) {
+  border-bottom-color: @color;
+  border-top-color: @color;
+}
+
 .dropup .caret,
-.dropup .btn-large .caret,
+.dropup .btn-lg .caret,
 .navbar-fixed-bottom .dropdown .caret {
   border-bottom-width: 8px;
 }
 
-.btn-mini .caret,
-.btn-small .caret,
-.btn-large .caret {
-  margin-top: 7px;
-}
-
-.btn-large .caret {
+.btn-lg .caret {
   border-top-width: 8px;
   border-right-width: 6px;
   border-left-width: 6px;
