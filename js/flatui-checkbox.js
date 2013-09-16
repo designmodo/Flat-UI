@@ -102,7 +102,7 @@
 		}
 	});
 	
-	$(window).on('load', function () {
+	$(function () {
 		$('[data-toggle="checkbox"]').each(function () {
 			var $checkbox = $(this);
 			$checkbox.checkbox();
