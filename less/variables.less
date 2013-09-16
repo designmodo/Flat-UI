@@ -85,30 +85,12 @@
 @icon-medium: 18px;
 @icon-large:  32px;
 
-// Social colors
-// -------------------------
-
-@social-pinterest:   #cb2028;
-@social-linkedin:    #0072b5;
-@social-stumbleupon: #ed4a13;
-@social-googleplus:  #2d2d2d;
-@social-facebook:    #2f4b93;
-@social-twitter:     #00bdef;
-
 // Components
 // -------------------------
 
 @border-radius-base:             4px;
 @border-radius-large:            6px;
 @border-radius-small:            3px;
-
-// Tables
-@table-bg-active: 			lighten(@base, 69.4%);
-@table-border-color:    mix(@gray, white, 16.5%);
-@table-success:   			mix(@success, white, 9%);
-@table-danger:    			mix(@danger, white, 9%);
-@table-warning:   			mix(@warning, white, 9%);
-@table-info:      			mix(@info, white, 9%);
 
 // Forms
 // -------------------------
@@ -123,10 +105,6 @@
 
 @input-border-radius: @border-radius-large;
 
-// Datepicker
-// -------------------------
-
-@datepicker-border-radius: @border-radius-large;
 
 // Pagination
 // -------------------------
@@ -154,19 +132,6 @@
 @button-inverse-hover:  overlay(@base, darken(white, 37.5%));
 @button-inverse-active: mix(@base, black, 85%);
 
-// Navs
-// -------------------------
-
-@nav-tabs-border-width:  2px;
-@nav-tabs-border-color:  mix(@base, white, 15%);
-@nav-tabs-color:         mix(@base, white, 63%);
-@nav-tabs-active-color:  mix(@base, white, 63%);
-@nav-tabs-hover-color:   @firm;
-@nav-border-radius:      6px;
-@nav-item-border-radius: @nav-border-radius - @nav-tabs-border-width;
-@nav-open-zindex:        1001;
-@nav-list-gap:           13px;
-
 // Navbar
 // -------------------------
 
@@ -188,47 +153,11 @@
 
 @progress-height: 12px;
 
-// Dialog
-// -------------------------
-
-@dialog-font-size: ceil(@font-size-base * 1.142); // ~16px
-@dialog-padding: 16px 0 20px;
-
-// Alerts
-// -------------------------
-
-@alert-bg:     mix(@base, white, 3%);
-@alert-border: mix(@base, white, 10%);
-
 // Switch
 // -------------------------
 
 @switch-border-radius: 30px;
 @switch-width: 80px;
-
-/// Resposive
-// -------------------------
-
-@rwd-container-space: 20px;
-
-// Modals
-// -------------------------
-
-@modal-backdrop-bg: 			 		mix(@base, black, 70%);
-@modal-content-bg: 						lighten(@base, 69.4%);
-@modal-content-border-radius: 7px;
-@modal-content-border-color:  mix(@base, white, 10%);
-@modal-content-box-shadow: 		-14px 14px 0 0 rgba(0,0,0,.35);
-@modal-footer-bg:   					mix(@base, white, 10%);
-@zindex-modal-background:  		1040;
-@zindex-modal:             		1050;
-
-// Carousel
-// -------------------------
-
-@carousel-background: mix(@base, black, 70%);
-@carousel-controls-background: @midnight-blue;
-
 
 // Demo variables
 // -------------------------
@@ -236,44 +165,3 @@
 @pre-border-radius: @border-radius-large;
 @pre-background:    transparent;
 @pre-border-color:  mix(@base, @inverse, 12%);
-
-
-// Labels
-// -------------------------
-@label-link-hover-color:      @inverse;
-
-@label-default-bg:            mix(@inverse, @base, 90%);
-@label-default-bg-hover: 			mix(@inverse, @base, 85%);
-@label-default-text-color: 		mix(@base, @inverse, 65%);
-
-@label-inverse-bg:            mix(@inverse, @base, 10%);
-@label-inverse-bg-hover: 			mix(@base, @inverse, 45%);
-
-@label-primary-bg: 						@firm;
-@label-primary-bg-hover: 			mix(@firm, black, 85%);
-
-@label-success-bg: 						@success;
-@label-success-bg-hover: 			mix(@success, black, 85%);
-
-@label-info-bg: 							@info;
-@label-info-bg-hover: 				mix(@info, black, 85%);
-
-@label-warning-bg: 						@warning;
-@label-warning-bg-hover: 			mix(@warning, black, 85%);
-
-@label-important-bg: 					@danger;
-@label-important-bg-hover: 		mix(@danger, black, 85%);
-
-
-// Badges
-// -------------------------
-@badge-color:                 @inverse;
-@badge-link-hover-color:      @inverse;
-@badge-bg:                    mix(@base, white, 19%);
-
-@badge-active-color:          mix(@base, white, 50%);
-@badge-active-bg:             @inverse;
-
-@badge-font-weight:           normal;
-@badge-line-height:           floor(@font-size-base * 1.429); // ~20px
-@badge-border-radius:         @border-radius-base;

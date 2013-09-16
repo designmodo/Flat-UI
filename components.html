@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Components &middot; Flat UI Free</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/prettify.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <ul class="demo-sidebar hide-on-tablets">
+      <li><a href="#fui-button">Button</a></li>
+      <li><a href="#fui-checkbox">Checkbox</a></li>
+      <li><a href="#fui-radio">Radio</a></li>
+      <li><a href="#fui-dropdown">Dropdown</a></li>
+      <li><a href="#fui-input">Input</a></li>
+      <li><a href="#fui-navbar">Navbar</a></li>
+      <li><a href="#fui-pager">Pager</a></li>
+      <li><a href="#fui-pagination">Pagination</a></li>
+      <li><a href="#fui-progress">Progress</a></li>
+      <li><a href="#fui-select">Select</a></li>
+      <li><a href="#fui-switch">Switch</a></li>
+      <li><a href="#fui-tagsinput">Tags Input</a></li>
+      <li><a href="#fui-tooltip">Tooltip</a></li>
+      <li><a href="#fui-slider">Slider</a></li>
+    </ul> <!-- /nav -->
+
+		<h1 class="demo-headline">Components</h1>		
+    <div class="container">    	
+    	<div id="fui-button" class="pbl"></div>
+    	
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Button</h3>
+        </div>
+
+        <div class="demo-content">
+          <p>
+            After restyling <a href="http://getbootstrap.com/css/#buttons">Bootstrap buttons</a> we decided to add <code>btn-hg</code> size that will be used for main call to actions on a page:
+          </p>
+          <p class="mbl">
+            <button class="btn btn-hg btn-primary">Huge Button</button>
+          </p>
+<pre class="prettyprint">
+&lt;button class="btn btn-hg btn-primary"&gt;
+  Boss Button
+&lt;/button&gt;
+</pre>
+
+          <p class="ptl">
+            In some cases buttons should become wider. Yes, we did that as well:
+          </p>
+          <p class="mbl">
+            <button class="btn btn-wide btn-primary mrm">Save</button>
+            <button class="btn btn-wide">Cancel</button>
+          </p>
+<pre class="prettyprint">
+&lt;button class="btn btn-wide"&gt;
+  Cancel
+&lt;/button&gt;
+</pre>
+
+          <p class="ptl">
+            One more new thing: <code>btn-tip</code>. Use it when need to highlight a part of the button text:
+          </p>
+          <p class="mbl">
+            <button class="btn btn-primary">
+              Save
+              <span class="btn-tip">$300</span>
+            </button>
+          </p>
+<pre class="prettyprint">
+&lt;button class="btn btn-primary"&gt;
+  Save
+  &lt;span class="btn-tip"&gt;$300&lt;/span&gt;
+&lt;/button&gt;
+</pre>
+
+          <p class="ptl">
+            As usual you can set different colors:
+          </p>
+          <p class="mbl">
+            <button class="btn btn-default mrs">Default</button>
+            <button class="btn btn-primary mrs">Primary</button>
+            <button class="btn btn-info mrs">Info</button>
+            <button class="btn btn-danger mrs">Danger</button>
+            <button class="btn btn-success mrs">Success</button>
+            <button class="btn btn-warning mrs">Warning</button>
+            <button class="btn btn-inverse mrs">Inverse</button>
+          </p>
+<pre class="prettyprint">
+&lt;button class="btn btn-default"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="btn btn-warning"&gt;Inverse&lt;/button&gt;
+</pre>
+
+          <p>
+            Button groups, toolbar, disabled state also work as expected.
+          </p>
+        </div>        
+      </div><!-- /.demo-row -->
+      
+			<div id="fui-checkbox" class="pbl"></div>
+			
+      <div class="demo-row">      	
+        <div class="demo-title">
+          <h3>Checkbox</h3>
+        </div>
+
+        <div class="demo-content">
+          <p>
+            Using flat style checkbox requires JS plugin that creates all custom markup for us. Let's take a look:
+          </p>
+          <label class="checkbox" for="checkbox1">
+            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+            Checkbox
+          </label>
+          <label class="checkbox" for="checkbox2">
+            <input type="checkbox" value="" id="checkbox2" checked="checked" data-toggle="checkbox">
+            Checkbox
+          </label>
+          <label class="checkbox" for="checkbox3">
+            <input type="checkbox" value="" id="checkbox3" data-toggle="checkbox" disabled="">
+            Checkbox
+          </label>
+          <label class="checkbox" for="checkbox4">
+            <input type="checkbox" value="" id="checkbox4" checked="checked" data-toggle="checkbox" disabled="">
+            Checkbox
+          </label>
+
+          <h6 class="ptl">Usage via data attributes:</h6>
+<pre class="prettyprint">
+&lt;label class="checkbox" for="checkbox1"&gt;
+  &lt;input type="checkbox" value="" id="checkbox1" data-toggle="checkbox"&gt;
+  Checkbox
+&lt;/label&gt;
+</pre>
+
+          <h6 class="ptl">Usage via JS:</h6>
+<pre class="prettyprint">
+$('[data-toggle="checkbox"]').each(function () {
+  $(this).checkbox();
+});
+</pre>
+
+          <div class="pvm">
+            <h6>Methods</h6>
+          </div>
+          <p class="mbl">
+            <strong>.checkbox('toggle')</strong>
+            <br/>
+            toggles checkbox state from <span class="text-info">checked</span>
+            to <span class="text-info">unchecked</span> and back.
+          </p>
+          <p class="mbl">
+            <strong>.checkbox('check')</strong>
+            <br/>
+            sets checkbox state to <span class="text-info">checked</span>.
+          </p>
+          <p class="mbl">
+            <strong>.checkbox('uncheck')</strong>
+            <br/>
+            sets checkbox state to <span class="text-info">unchecked</span>.
+          </p>
+<pre class="prettyprint">
+$(':checkbox').checkbox('check');
+</pre>
+
+          <div class="pbm ptl">
+            <h6>Events</h6>
+          </div>
+          <p class="mbl">
+            <strong>.on('toggle')</strong>
+            <br/>
+            Fired when checkbox state changed between
+            <span class="text-info">check</span> &harr;
+            <span class="text-info">uncheck</span>.
+          </p>
+          <p class="mbl">
+            <strong>.on('change')</strong>
+            <br/>
+            Same as <span class="text-info">toggle</span>.
+          </p>
+<pre class="prettyprint">
+$(':checkbox').on('toggle', function() {
+  // Do something
+});
+</pre>          
+          
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+      
+      <div id="fui-radio" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Radio</h3>
+        </div>
+
+        <div class="demo-content">
+          <p>
+            Firm radio also requires using JS plugin. We try making things easy so you won't have to spend huge amount of time playing around with custom&nbsp;components.
+          </p>
+          <label class="radio">
+            <input type="radio" name="group1" value="1" data-toggle="radio">
+            Radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="group1" value="2" data-toggle="radio" checked>
+            Radio is on
+          </label>
+          <label class="radio">
+            <input type="radio" name="group2" value="1" data-toggle="radio" disabled>
+            Radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="group2" value="2" data-toggle="radio" disabled checked>
+            Radio is on
+          </label>
+
+          <h6 class="ptl">Usage via data attributes:</h6>
+<pre class="prettyprint">
+&lt;label class="radio"&gt;
+  &lt;input type="radio" name="group1" value="1" data-toggle="radio"&gt;
+  Radio is off
+&lt;/label&gt;
+
+&lt;label class="radio"&gt;
+  &lt;input type="radio" name="group1" value="2" data-toggle="radio" checked&gt;
+  Radio is on
+&lt;/label&gt;
+</pre>
+
+          <h6 class="ptl">Usage via JS:</h6>
+<pre class="prettyprint">
+$('[data-toggle="radio"]').each(function () {
+  $(this).radio();
+});
+</pre>
+
+          <div class="pvm">
+            <h6>Methods</h6>
+          </div>
+          <p class="mbl">
+            <strong>.radio('check')</strong>
+            <br/>
+            sets radio state to <span class="text-info">checked</span>.
+          </p>
+          <p class="mbl">
+            <strong>.radio('uncheck')</strong>
+            <br/>
+            sets radio state to <span class="text-info">unchecked</span>.
+          </p>
+<pre class="prettyprint">
+$(':radio').radio('check');
+</pre>
+
+          <div class="pbm ptl">
+            <h6>Events</h6>
+          </div>
+          <p class="mbl">
+            <strong>.on('toggle')</strong>
+            <br/>
+            Fired when radio state changed between
+            <span class="text-info">check</span> &harr;
+            <span class="text-info">uncheck</span>.
+          </p>
+          <p class="mbl">
+            <strong>.on('change')</strong>
+            <br/>
+            Same as <span class="text-info">toggle</span> with just one difference &mdash; event sends for each radio which state was changed.
+          </p>
+<pre class="prettyprint">
+$(':radio').on('toggle', function() {
+  // Do something
+});
+</pre>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+    </div><!-- /.container -->
+
+		
+
+    <div class="container ptl">    	
+    	<div id="fui-dropdown" class="pbl"></div>
+    
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Dropdown</h3>
+        </div>
+
+        <div class="demo-content">
+          <p class="mbl">
+            Same <a href="http://twitter.github.io/bootstrap/components.html#dropdowns">Bootstrap dropdown</a> used as a part of the <code>select</code>, <code>btn-group</code>, <code>nav-tabs</code> and eventually other components to present information as a menu.
+          </p>
+
+          <p class="mbl">
+            Notice <code>dropdown-arrow</code> which is needed when you want to add a small triangle that visually connects clickable element with a dropdown menu.
+          </p>
+
+          <select name="info" class="mbn">
+            <optgroup label="Profile">
+              <option value="0">My Profile</option>
+              <option value="1">My Friends</option>
+            </optgroup>
+            <optgroup label="System">
+              <option value="2">Messages</option>
+              <option value="3">My Settings</option>
+              <option value="4" class="highlighted fui-lock">Logout</option>
+            </optgroup>
+          </select>
+
+          <hr/>
+
+          <div class="btn-group">
+            <i class="dropdown-arrow dropdown-arrow-inverse"></i>
+            <button class="btn btn-primary">Dropdown</button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-inverse">
+              <li><a href="#fakelink">Sub Menu Element</a></li>
+              <li><a href="#fakelink">Sub Menu Element</a></li>
+              <li><a href="#fakelink">Sub Menu Element</a></li>
+            </ul>
+          </div>
+
+          <div class="pvl">
+<pre class="prettyprint">
+&lt;!-- Default look --&gt;
+&lt;i class="dropdown-arrow"&gt;&lt;/i&gt;
+&lt;ul class="dropdown-menu"&gt;
+  &lt;li&gt;
+    &lt;a href="#"&gt;Item&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Inverse look --&gt;
+&lt;i class="dropdown-arrow dropdown-arrow-inverse"&gt;&lt;/i&gt;
+&lt;ul class="dropdown-menu dropdown-inverse"&gt;
+  &lt;li&gt;
+    &lt;a href="#"&gt;Item&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+          </div>
+
+          <p>
+            For highlighting information we added 2 additional states for the dropdown-menu items: <code>selected</code> and <code>highlighted</code>:
+          </p>
+<pre class="prettyprint">
+&lt;i class="dropdown-arrow"&gt;&lt;/i&gt;
+&lt;ul class="dropdown-menu"&gt;
+  &lt;li class="selected"&gt;
+    &lt;a href="#"&gt;Item&lt;/a&gt;
+  &lt;/li&gt;
+
+  &lt;li class="highlighted"&gt;
+    &lt;a href="#"&gt;Item&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-input" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Input</h3>
+        </div>
+
+        <div class="demo-content">
+          <p class="mbl">
+            Restyled <a href="http://twitter.github.io/bootstrap/base-css.html#forms">Bootstrap input</a>. Added <span class="text-info">flat</span> style(to remove borders completely):
+          </p>
+					
+					<div class="row">
+						<div class="col-lg-5">
+							<input type="text" value="" placeholder="Enter something" class="form-control" />
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-lg-5">
+							<input type="text" value="" placeholder="Enter something" class="form-control flat" />
+						</div>
+					</div>
+<pre class="prettyprint mtl">
+&lt;!-- Default input --&gt;
+&lt;input type="text" placeholder="Enter something" class="form-control" /&gt;
+
+&lt;!-- Without borders --&gt;
+&lt;input type="text" placeholder="Enter something" class="form-control flat" /&gt;
+</pre>
+
+          <p class="ptl">And few sizes:</p>
+          <div class="row">
+          	<div class="col-lg-5">
+	          	<input type="text" value="" placeholder="Huge" class="form-control input-hg" />
+          	</div>
+          </div>
+          <hr />
+          <div class="row">
+          	<div class="col-lg-5">
+	          	<input type="text" value="" placeholder="Large" class="form-control input-lg" />
+          	</div>
+          </div>
+          <hr />
+          <div class="row">
+          	<div class="col-lg-5">
+	          	<input type="text" value="" placeholder="Default" class="form-control" />
+          	</div>
+          </div>
+          <hr />
+          <div class="row">
+          	<div class="col-lg-5">
+	          	<input type="text" value="" placeholder="Small" class="form-control input-sm" />
+          	</div>
+          </div>
+<pre class="prettyprint mtl">
+&lt;input type="text" class="form-control input-hg" placeholder="Huge" /&gt;
+&lt;input type="text" class="form-control input-lg" placeholder="Large" /&gt;
+&lt;input type="text" class="form-control" placeholder="Default" /&gt;
+&lt;input type="text" class="form-control input-sm" placeholder="Small" /&gt;
+</pre>
+
+          <p class="ptl">With icon inside:</p>
+          <div class="row">
+          	<div class="col-lg-5">
+	          	<div class="form-group">
+	              <input type="text" value="" placeholder="With icon" class="form-control" />
+	              <span class="input-icon fui-check-inverted"></span>
+	            </div>
+          	</div>            
+          </div>
+<pre class="prettyprint mtm">
+&lt;div class="row"&gt;
+ &lt;div class="col-lg-5"&gt;
+   &lt;div class="form-group"&gt;
+     &lt;input type="text" class="form-control" placeholder="With icon" /&gt;
+     &lt;span class="input-icon fui-check-inverted"&gt;&lt;/span&gt;
+   &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+          <p class="ptl">
+            Different color styles and disabled state work as expected:
+            <div class="row">
+            	<div class="col-lg-6">
+	            	<div class="form-group has-error">
+		              <input class="form-control" type="text" placeholder="Error" />
+		            </div>
+            	</div>
+            </div>
+            <div class="row">
+            	<div class="col-lg-6">
+	            	<div class="form-group has-warning">
+		              <input class="form-control" type="text" placeholder="Warning" />
+		            </div>
+            	</div>
+            </div>
+            <div class="row">
+            	<div class="col-lg-6">
+	            	<div class="form-group has-success">
+		              <input class="form-control" type="text" placeholder="Success" />
+		            </div>
+            	</div>
+            </div>
+            <div class="row">
+            	<div class="col-lg-6">
+	            	<div class="form-group">
+		              <input class="form-control" type="text" placeholder="Disabled" disabled />
+		            </div>
+            	</div>
+            </div>
+          </p>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-navbar" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Navbar</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Restyled <a href="http://twitter.github.io/bootstrap/components.html#navbar">Bootstrap navbar</a>. Added sub-menus.
+          </p>
+
+          <div class="navbar">
+          	<div class="navbar-header">
+	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+          	</div>            
+            <div class="navbar-collapse collapse" id="nav-collapse-01">
+              <ul class="nav">
+                <li>
+                  <a href="#fakelink">
+                    Menu Item
+                    <span class="navbar-unread">1</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="#fakelink">
+                    Messages
+                    <span class="navbar-unread">1</span>
+                  </a>
+                  <ul>
+                    <li><a href="#fakelink">Element One</a></li>
+                    <li>
+                      <a href="#fakelink">Sub menu</a>
+                      <ul>
+                        <li><a href="#fakelink">Element One</a></li>
+                        <li><a href="#fakelink">Element Two</a></li>
+                        <li><a href="#fakelink">Element Three</a></li>
+                      </ul> <!-- /Sub menu -->
+                    </li>
+                    <li><a href="#fakelink">Element Three</a></li>
+                  </ul> <!-- /Sub menu -->
+                </li>
+                <li>
+                  <a href="#fakelink">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+            </div><!--/.nav -->
+          </div> <!-- /navbar -->
+<pre class="prettyprint mvl">
+&lt;div class="navbar"&gt;
+  &lt;div class="navbar-header"&gt;
+    &lt;button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"&gt;&lt;/button&gt;
+  &lt;/div&gt;    
+  &lt;div class="navbar-collapse collapse" id="nav-collapse-01"&gt;
+    &lt;div class="nav-collapse collapse in" id="nav-collapse-01"&gt;
+      &lt;ul class="nav"&gt;
+        &lt;!-- Menu items go here --&gt;
+        &lt;li&gt;
+          &lt;ul&gt;
+            &lt;!-- Sub Menu items go here --&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;      
+  &lt;/div&gt;      
+&lt;/div&gt;
+</pre>
+
+          <p class="ptl">Inverse style:</p>
+          <div class="navbar navbar-inverse">
+          	<div class="navbar-header">
+	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+          	</div>            
+            <div class="navbar-collapse collapse" id="nav-collapse-01">
+              <ul class="nav">
+                <li>
+                  <a href="#fakelink">
+                    Menu Item
+                    <span class="navbar-unread">1</span>
+                  </a>
+                </li>
+                <li class="active">
+                  <a href="#fakelink">
+                    Messages
+                    <span class="navbar-unread">1</span>
+                  </a>
+                  <ul>
+                    <li><a href="#fakelink">Element One</a></li>
+                    <li>
+                      <a href="#fakelink">Sub menu</a>
+                      <ul>
+                        <li><a href="#fakelink">Element One</a></li>
+                        <li><a href="#fakelink">Element Two</a></li>
+                        <li><a href="#fakelink">Element Three</a></li>
+                      </ul> <!-- /Sub menu -->
+                    </li>
+                    <li><a href="#fakelink">Element Three</a></li>
+                  </ul> <!-- /Sub menu -->
+                </li>
+                <li>
+                  <a href="#fakelink">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+            </div><!--/.nav -->
+          </div> <!-- /navbar -->
+
+<pre class="prettyprint mvl">
+&lt;div class="navbar navbar-inverse"&gt;
+&lt;/div&gt;
+</pre>
+
+          <p class="ptl">Unread and New indicators:</p>
+<pre class="prettyprint mvl">
+&lt;!-- ... --&gt;
+  &lt;ul class="nav"&gt;
+    &lt;li&gt;
+      &lt;a href="#"&gt;
+        Menu item
+        &lt;!-- Indicator with number --&gt;
+        &lt;span class="navbar-new"&gt;2&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;!-- ... --&gt;
+</pre>
+
+<pre class="prettyprint mvl">
+&lt;!-- ... --&gt;
+  &lt;ul class="nav"&gt;
+    &lt;li&gt;
+      &lt;a href="#"&gt;
+        Menu item
+        &lt;!-- Indicator without number --&gt;
+        &lt;span class="navbar-unread"&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;!-- ... --&gt;
+</pre>
+          <div id="fui-pager"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-pager" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Pager</h3>
+        </div>
+        <div class="demo-content">
+          <p>
+            Short pagination where links have a button look. Used for navigating to a next/prev item.
+          </p>
+          <ul class="pager">
+            <li class="previous">
+              <a href="#fakelink">
+                <i class="fui-arrow-left"></i>
+                <span>All messages</span>
+              </a>
+            </li>
+            <li class="next">
+              <a href="#fakelink">
+                <i class="fui-arrow-right"></i>
+              </a>
+            </li>
+          </ul>
+
+<pre class="prettyprint mvl">
+&lt;ul class="pager"&gt;
+  &lt;li class="previous"&gt;
+    &lt;a href="#"&gt;
+      &lt;span&gt;
+        &lt;i class="fui-arrow-left"&gt;&lt;/i&gt;
+        All messages
+      &lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+
+  &lt;li class="next"&gt;
+    &lt;a href="#"&gt;
+      &lt;i class="fui-arrow-right"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+          <div id="fui-pagination"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-pagination" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Pagination</h3>
+        </div>
+        <div class="demo-content">
+          <p>
+            <a href="http://twitter.github.io/bootstrap/components.html#pagination">Bootstrap pagination</a> restyling. Added additional dropdown navigation, minimalistic look and text-only look. Also few color schemes with alternative layout.
+          </p>
+          <div class="pagination">
+            <ul>
+              <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+              <li class="active"><a href="#fakelink">1</a></li>
+              <li><a href="#fakelink">2</a></li>
+              <li><a href="#fakelink">3</a></li>
+              <li><a href="#fakelink">4</a></li>
+              <li><a href="#fakelink">5</a></li>
+              <li><a href="#fakelink">6</a></li>
+              <li><a href="#fakelink">7</a></li>
+              <li><a href="#fakelink">8</a></li>
+              <li><a href="#fakelink">9</a></li>
+              <li><a href="#fakelink">10</a></li>
+              <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+            </ul>
+          </div>
+
+<pre class="prettyprint mvl">
+&lt;div class="pagination"&gt;
+  &lt;ul&gt;
+    &lt;li class="previous"&gt;
+      &lt;a href="#" class="fui-arrow-left"&gt;&lt;/a&gt;
+    &lt;/li&gt;
+
+    &lt;li class="active"&gt;&lt;a href="#fakelink"&gt;1&lt;/a&gt;&lt;/li&gt;
+    ...
+    &lt;li&gt;&lt;a href="#fakelink"&gt;10&lt;/a&gt;&lt;/li&gt;
+
+    &lt;li class="next"&gt;
+      &lt;a href="#" class="fui-arrow-right"&gt;&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-progress" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Progress</h3>
+        </div>
+        <div class="demo-content">
+          <p>
+            Restyled <a href="http://twitter.github.io/bootstrap/components.html#progress">Bootstrap progress</a>.
+          </p>
+          <div class="progress">
+            <div class="progress-bar" style="width: 45%;"></div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar" style="width: 40%;"></div>
+            <div class="progress-bar progress-bar-warning" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-danger" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-success" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-info" style="width: 10%;"></div>
+          </div>
+
+<pre class="prettyprint mvl">
+&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 40%;"&gt;&lt;/div&gt;
+  &lt;div class="progress-bar progress-bar-warning" style="width: 10%;"&gt;&lt;/div&gt;
+  &lt;div class="progress-bar progress-bar-danger" style="width: 10%;"&gt;&lt;/div&gt;
+  &lt;div class="progress-bar progress-bar-success" style="width: 10%;"&gt;&lt;/div&gt;
+  &lt;div class="progress-bar progress-bar-info" style="width: 10%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+          <div id="fui-select"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-select" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Select</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Custom select due to inability of styling a system one. It is based on <a href="https://github.com/silviomoreto/bootstrap-select">Selectpicker</a> plug-in with a slightly modified source to meet Bootstrap naming convention.
+          </p>
+          <p class="mbl">
+            Component inherits entire styling from button so you can use all its colors and sizes without any problems. Also we supported <span class="text-info">multiple</span> select state as well as <span class="text-info">block</span> mode where it takes all available space.
+          </p>
+          <p class="mbl pbl">
+            Grids are supported as&nbsp;well. For more technical details read <a href="https://github.com/silviomoreto/bootstrap-select#usage">original&nbsp;documentation</a>.
+          </p>
+          <select name="huge" class="select-block mbl">
+            <optgroup label="Profile">
+              <option value="0">My Profile</option>
+              <option value="1">My Friends</option>
+            </optgroup>
+            <optgroup label="System">
+              <option value="2">Messages</option>
+              <option value="3">My Settings</option>
+              <option value="4" class="highlighted">Logout</option>
+            </optgroup>
+          </select>
+
+          <select multiple="multiple" name="huge" class="select-block mbl">
+            <option value="0">1</option>
+            <option value="1" selected>2</option>
+            <option value="2" selected>3</option>
+            <option value="3" selected>4</option>
+            <option value="4">5</option>
+          </select>
+
+          <p class="mvl">
+            You can write markup as you usually do without any difference:
+          </p>
+
+<pre class="prettyprint mvl">
+&lt;select&gt;
+  &lt;option value="0"&gt;My Profile&lt;/option&gt;
+  &lt;option value="1"&gt;My Friends&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select multiple="multiple"&gt;
+  &lt;option value="0"&gt;My Profile&lt;/option&gt;
+  &lt;option value="1" selected&gt;My Friends&lt;/option&gt;
+  &lt;option value="2" selected&gt;My Books&lt;/option&gt;
+  &lt;option value="3"&gt;My CDs&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+
+          <p class="mvl ptl">
+            And then transform all system selects into a custom ones with JS:
+          </p>
+
+<pre class="prettyprint mvl">
+$("select").selectpicker({style: 'btn-hg btn-primary', menuStyle: 'dropdown-inverse'});
+
+// style: select toggle class name (which is .btn)
+// menuStyle: dropdown class name
+
+// You can always select by any other attribute, not just tag name.
+// Also you can leave selectpicker arguments blank to apply defaults.
+</pre>
+          <div id="fui-switch"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-switch" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Switch</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Custom switch can be used instead of checkbox. It has 2 styles: <span class="text-info">circle</span>(default) and <span class="text-info">square</span>. Drag is supported.
+          </p>
+          <p class="mbl pbl">
+            For more technical details read <a href="http://www.larentis.eu/switch">original documentation</a>.
+          </p>
+          <span class="mrl">
+            <input type="checkbox" checked data-toggle="switch" />
+          </span>
+          <input type="checkbox" data-toggle="switch" />
+
+          <hr/>
+
+          <div class="switch switch-square mrl"
+            data-on-label="<i class='fui-check'></i>"
+            data-off-label="<i class='fui-cross'></i>">
+            <input type="checkbox" />
+          </div>
+
+          <div class="switch switch-square"
+            data-on-label="<i class='fui-check'></i>"
+            data-off-label="<i class='fui-cross'></i>">
+            <input type="checkbox" checked />
+          </div>
+
+<pre class="prettyprint mvl">
+&lt;!-- Default switch --&gt;
+&lt;input type="checkbox" checked data-toggle="switch" /&gt;
+
+&lt;!-- Square switch --&gt;
+&lt;div class="switch switch-square"&gt;
+  &lt;input type="checkbox" checked data-toggle="switch" /&gt;
+&lt;/div&gt;
+
+&lt;!-- Switch with customized icons --&gt;
+&lt;div class="switch switch-square"
+  data-on-label="&lt;i class='fui-check'&gt;&lt;/i&gt;"
+  data-off-label="&lt;i class='fui-cross'&gt;&lt;/i&gt;"&gt;
+  &lt;input type="checkbox" /&gt;
+&lt;/div&gt;
+</pre>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-tagsinput" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Tags input</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Used for entering multiple tags with ability to remove/add new and validating already existing ones. Available 2 color schemes: grey(default) and primary.
+          </p>
+          <p class="mbl pbl">
+            Based on <a href="http://xoxco.com/projects/code/tagsinput">Tags Input Plugin</a>. For more technical details read <a href="https://github.com/xoxco/jQuery-Tags-Input#instructions">official plug-in&nbsp;documentation</a>.
+          </p>
+
+          <input name="tagsinput" class="tagsinput" value="Clean,Fresh,Modern,Unique" />
+
+          <p class="ptl">Markup:</p>
+
+<pre class="prettyprint mvl">
+&lt;input name="tagsinput" class="tagsinput" value="Clean,Fresh,Modern,Unique" /&gt;
+</pre>
+
+          <p class="ptl">JS:</p>
+
+<pre class="prettyprint mvl">
+$(".tagsinput").tagsInput();
+</pre>
+          <div id="fui-tooltip"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-tooltip" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Tooltip</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Restyled <a href="http://twitter.github.io/bootstrap/javascript.html#tooltips">Bootstrap tooltip</a>.
+          </p>
+
+          <div style="width: 40%; padding-left: 10px; height: 60px;">
+            <div class="demo-tooltips">
+              <p data-toggle="tooltip" title="Here is a sample of a long dark tooltip. Hell yeah."></p>
+            </div>
+          </div> <!-- /tooltips -->
+
+<pre class="prettyprint mvl">
+&lt;p data-toggle="tooltip" title="Tooltip copy"&gt;&lt;/p&gt;
+</pre>
+
+          <div id="fui-slider"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+			<div id="fui-slider" class="pbl"></div>
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Slider</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            Restyled <a href="http://jqueryui.com/slider">jQuery UI slider</a>. Added slider segments.
+          </p>
+
+          <div id="slider" class="ui-slider"></div>
+
+          <p class="ptl">Markup:</p>
+
+<pre class="prettyprint mvl">
+&lt;div id="slider" class="ui-slider"&gt;&lt;/div&gt;
+</pre>
+
+          <p class="ptl">JS:</p>
+
+<pre class="prettyprint mvl">
+var $slider = $("#slider");
+if ($slider.length > 0) {
+  $slider.slider({
+    min: 1,
+    max: 5,
+    value: 3,
+    orientation: "horizontal",
+    range: "min"
+  }).addSliderSegments($slider.slider("option").max);
+}
+</pre>
+
+          <p class="pvl">How <span class="text-info">addSliderSegments()</span> work?</p>
+          <p>This is an extended jQuery method placed in the <code>application.js</code>. It calculates how many segments to append by looking at a <span class="text-info">slider("option").max</span> which shows a maximum slider value.</p>
+
+<pre class="prettyprint mvl">
+// Add segments to a slider
+$.fn.addSliderSegments = function (amount) {
+  return this.each(function () {
+    var segmentGap = 100 / (amount - 1) + "%"
+      , segment = "&lt;div class='ui-slider-segment' style='margin-left: " + segmentGap + ";'&gt;&lt;/div&gt;";
+    $(this).prepend(segment.repeat(amount - 2));
+  });
+};
+</pre>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+    </div><!-- /.container -->
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+    <script src="bootstrap/js/google-code-prettify/prettify.js"></script>
+    <script src="js/application.js"></script>
+  </body>
+</html>

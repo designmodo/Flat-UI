@@ -727,6 +727,7 @@ address {
 .navbar {
   font-size: 16px;
   border-radius: 6px;
+  background: #eceef0;
   border: none;
 }
 .navbar .navbar-collapse {
@@ -3236,6 +3237,9 @@ body.vjs-full-window {
   border-color: transparent;
   font-size: 17px;
   text-indent: 3px;
+}
+.login-form .login-field:focus {
+  border-color: #1abc9c;
 }
 .login-form .login-field:focus + .login-field-icon {
   color: #1abc9c;
