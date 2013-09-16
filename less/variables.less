@@ -8,6 +8,7 @@
 //
 // Color Swatches
 // --------------------------------------------------
+
 @turquoise:     #1abc9c;
 @green-sea:     #16a085;
 
@@ -38,8 +39,10 @@
 @concrete:      #95a5a6;
 @asbestos:      #7f8c8d;
 
+//
 // Main Colors
 // -------------------------
+
 @base:             @wet-asphalt;
 @firm:             @turquoise;
 
@@ -52,38 +55,64 @@
 @warning:          @sun-flower;
 @info:             @peter-river;
 
+// Scaffolding
+// -------------------------
+
+@body-bg:               #fff;
+@text-color:            @base;
+
+// Links
+// -------------------------
+
 @link-color:       @green-sea;
 @link-hover-color: @turquoise;
 
-
 // Typography
 // -------------------------
-@base-font-family: "Lato", sans-serif;
-@base-font-size: 14px;
-@base-line-height: 1.231;
 
-@h1: @base-font-size * 4.429; /* 62px */
-@h2: @base-font-size * 3.714; /* 52px */
-@h3: @base-font-size * 2.857; /* 40px */
-@h4: @base-font-size * 2.071; /* 29px */
-@h5: @base-font-size * 2;     /* 28px */
-@h6: @base-font-size * 1.714; /* 24px */
+@font-family-base:  			'Lato', Helvetica, Arial, sans-serif;
+@font-family-demo:				"Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-size-base:    			14px;
+@line-height-base:  			1.231;
+
+@headings-font-family:    @font-family-base;
+@headings-font-weight:    700;
+@headings-line-height:    1.2;
+
 
 // Icons
 @icon-normal: 16px;
 @icon-medium: 18px;
 @icon-large:  32px;
 
-// Inputs
+// Components
 // -------------------------
-@input-border-radius: 6px;
+
+@border-radius-base:             4px;
+@border-radius-large:            6px;
+@border-radius-small:            3px;
+
+// Forms
+// -------------------------
+
+@input-bg:                       @inverse;
+@input-bg-disabled:              mix(@gray, white, 10%);
+
+@input-height-small:             34px;
+@input-height-base:              41px;
+@input-height-large:             45px;
+@input-height-huge:              53px;
+
+@input-border-radius: @border-radius-large;
+
 
 // Pagination
 // -------------------------
+
 @pagination-color: mix(@base, white, 20%);
 
+
 // Pager
-// -------------------------
 @pager-padding: 9px 15px 10px;
 
 // Buttons
@@ -105,19 +134,34 @@
 
 // Navbar
 // -------------------------
+
 @navbar-link-space:    20px;
 @navbar-sublink-space: 9px;
 
 // Dropdown Menu
 // -------------------------
+
 @dropdown-background: mix(@inverse, @base, 94%);
+
+// Iconbar
+// -------------------------
+
+@iconbar-background: mix(@base, black, 85%);
 
 // Progress/slider
 // -------------------------
+
 @progress-height: 12px;
 
 // Switch
 // -------------------------
+
 @switch-border-radius: 30px;
 @switch-width: 80px;
 
+// Demo variables
+// -------------------------
+
+@pre-border-radius: @border-radius-large;
+@pre-background:    transparent;
+@pre-border-color:  mix(@base, @inverse, 12%);

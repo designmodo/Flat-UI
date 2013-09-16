@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Getting started &middot; Flat UI Free</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1 class="demo-headline">Getting started</h1>
+    <div class="container">
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>What is Flat UI?</h3>
+        </div>
+
+        <div class="demo-content demo-content-article">
+          <p>
+            <a href="http://designmodo.com/flat" target="_blank">Flat UI</a>
+            is a beautiful theme for <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
+            We redesigned many of it's components to look flat in every pixel.
+          </p>
+          <p>
+            However, to make form and some other
+            elements look exactly how we want we ended up using JS plugins which means it requires a little more
+            efforts integrating them into your project.
+          </p>
+        </div>
+      </div><!-- /.demo-row -->
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>How to Use It?</h3>
+        </div>
+
+        <div class="demo-content demo-content-article">
+          <p>
+            Since it is built on top of Bootstrap as a theme you can use it on your project with <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a>.
+            We did not modify any line of Bootstrap so you will be safe using Flat UI in your ongoing project
+            (unless you hacked it :)
+          </p>
+          <p>
+            We provide you with CSS and <a href="http://lesscss.org/" target="_blank">Less</a> sources.
+            <br/>
+            1. Using CSS is as easy as dropping <code>css/flat-ui.css</code> to your project folder and
+            including it in your template/html page:
+            <code>&lt;link href="css/flat-ui.css" rel="stylesheet"&gt;</code>
+          </p>
+          <p>
+            2. Use Less if you want to modify/extend Flat UI in your project. We built it Bootstrap way so
+            you won't find big difference.
+          </p>
+          <p>
+            The easiest way to start is by using our
+            <a href="template.html">start-up template</a> where all files are already included
+            and ready to be used (JS plugins are included, but not initialized for no need).
+          </p>
+        </div>
+      </div><!-- /.demo-row -->
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>File Structure</h3>
+        </div>
+
+        <div class="demo-content demo-content-article">
+          <p>
+            Once purchased, unzip the compressed archive to see the structure:
+<pre class="prettyprint">
+  flat-ui/
+  <span class="muted">├──</span> bootstrap/
+  <span class="muted">├──</span> css/
+  <span class="muted">    ├──</span> demo.css
+  <span class="muted">    ├──</span> docs.css
+  <span class="muted">    └──</span> flat-ui.css
+  <span class="muted">├──</span> fonts/
+  <span class="muted">├──</span> images/
+  <span class="muted">├──</span> js/
+  <span class="muted">└──</span> less/
+  <span class="muted">    ├──</span> demo.less
+  <span class="muted">    ├──</span> docs.less
+  <span class="muted">    ├──</span> variables.less
+  <span class="muted">    ├──</span> flat-ui.less
+  <span class="muted">    ├──</span> fonts.less
+  <span class="muted">    ├──</span> icon-font.less
+  <span class="muted">    ├──</span> mixins.less
+  <span class="muted">    ├──</span> scaffolding.less
+  <span class="muted">    ├──</span> spaces.less
+  <span class="muted">    └──</span> modules/
+</pre>
+          </p>
+
+          <p>
+            Let's go from top to the bottom of this list.
+          </p>
+
+          <p>
+            <strong>bootstrap/</strong> &mdash; as you can guess this is a folder where all original
+            Bootstrap files are (untouched). Before using our theme please make sure you didn't modify
+            anything that can break compatibility: paddings, margins, etc. <br/>
+            <em class="text-info">Note</em>: you can modify <code>variables.less</code> safely.
+          </p>
+
+          <p>
+            <strong>css/</strong> &mdash; compiled Flat UI CSS. If you like everything and don't want
+            to change the look of our components it is better to use CSS version. This is an easiest
+            way to start using Flat UI.
+          </p>
+
+          <p>
+            <strong>fonts/</strong> &mdash; yes, this is an icon font. When integrating make sure you
+            copied all font files correctly. You might want to change/add glyphs. If so, open
+            <a href="http://icomoon.io/app">IcoMoon</a> and import <code>icomoon-session.json</code>
+            there to make all glyhps editable. You can also
+            <a href="http://screencast.com/t/JMs4cYHn" target="_blank">watch a video screencast</a>
+            on how to add your custom glyphs.
+          </p>
+
+          <p>
+            <img src="https://raw.github.com/designmodo/Flat-UI-Pro-Support/master/images/ico-moon.png" alt="" />
+          </p>
+
+          <p>
+            <strong>images/</strong> &mdash; unfortunately we should use them in few cases. The rest
+            is in&nbsp;the&nbsp;glyphs.
+          </p>
+
+          <p>
+            <strong>js/</strong> &mdash; we tried hard to make our components all look true Flat. To do
+            so we used JS plugins. Most of them are well known, some of them not. The most JS-ified part
+            is form components: checkboxes, radios, switches, selects since it is not currently possible
+            to style them identically in all browsers. Open <code>application.js</code> for integration
+            examples.
+          </p>
+
+          <p>
+            <strong>less/</strong> &mdash; where all our stylesheets are (not preprocessed).
+          </p>
+
+          <ul>
+            <li>
+              <code>variables.less</code> is where all variables are.
+            </li>
+            <li>
+              <code>flat-ui.less</code> links everything into one single bundle.
+            </li>
+            <li>
+              <code>demo.less</code> is where we do magic.
+            </li>
+            <li>
+              <code>docs.less</code> where all our stylesheets for documentation.
+            </li>
+            <li>
+              <code>icon-font.less</code> makes all icon glyphs work. Converted by
+              <a href="http://icomoon.io">IcoMoon</a>.
+            </li>
+            <li>
+              <code>fonts.less</code> is where all custom fonts.
+            </li>
+            <li>
+              <code>mixins.less</code> helps automating things. Feel free to add yours here.
+            </li>
+            <li>
+              <code>scaffolding.less</code> is where you can find basic styles for body, anchors and other elements.
+            </li>
+            <li>
+              <code>modules/</code> is where all components are. If you want to add yours create
+              module-name.less here. Name it as a class name if possible.
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.demo-row -->
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>New components</h3>
+        </div>
+
+        <div class="demo-content demo-content-article">
+          <ul>
+            <li>
+              <code>checkbox-and-radio.less</code> Custom checkboxes and radios.
+            </li>
+            <li>
+              <code>iconbar.less</code> Icon bar (another navigation type).
+            </li>
+            <li>
+              <code>select.less</code> Custom selects.
+            </li>
+            <li>
+              <code>switch.less</code> Custom switch.
+            </li>
+            <li>
+              <code>tagsinput.less</code> Tags input field.
+            </li>
+            <li>
+              <code>ui-datepicker.less</code> Datepicker widget.
+            </li>
+            <li>
+              <code>ui-slider.less</code> Range slider.
+            </li>
+            <li>
+              <code>ui-spinner.less</code> Text input with increment/decrement.
+            </li>
+            <li>
+	            <code>input-icons.less</code> Icons for text-based form fields.
+            </li>
+          </ul>
+        </div>
+      </div><!-- /.demo-row -->
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Components restyled</h3>
+        </div>
+
+        <div class="demo-content demo-content-article">
+          <p><a href="components.html">Components documentation</a>.</p>
+          <ul>
+            <li><code>buttons.less</code></li>
+            <li><code>caret.less</code></li>
+            <li><code>dropdown.less</code></li>
+            <li><code>forms.less.less</code></li>
+            <li><code>navbar.less</code></li>
+            <li><code>pager.less</code></li>
+            <li><code>pagination.less</code></li>
+            <li><code>progress-bars.less</code></li>
+            <li><code>tooltip.less</code></li>
+            <li><code>type.less</code></li>
+          </ul>
+        </div>
+      </div><!-- /.demo-row -->
+
+    </div><!-- /.container -->
+  </body>
+</html>

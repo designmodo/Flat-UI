@@ -2,7 +2,7 @@
 // --------------------------------------------------
 
 .tooltip {
-  font-size: @base-font-size;
+  font-size: @font-size-base;
   
   &.in {
     opacity: 1;
@@ -47,9 +47,9 @@
 
 .tooltip-inner {
   background-color: @base;
-  line-height: @base-font-size * 1.285;
+  line-height: ceil(@font-size-base * 1.285);
   padding: 12px 12px;
   text-align: center;
   width: 183px;
-  .border-radius(6px);
+  border-radius: @border-radius-large;
 }

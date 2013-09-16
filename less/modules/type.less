@@ -1,60 +1,126 @@
+//
 // Typography
 // --------------------------------------------------
 
-body {
-  color: @base;
-  font-family: @base-font-family;
-  font-size: @base-font-size;
-  line-height: @base-line-height;
+
+// Body text
+// -------------------------
+
+p {
+  font-size: 	 ceil(@font-size-base * 1.28);		// ~18px
+  line-height: @line-height-base * 1.39;				// ~31px
 }
 
-input,
-button,
-select,
-textarea {
-  font-family: @base-font-family;
-  font-size: @base-font-size;
-}
-
-a {
-  color: @link-color;
-  text-decoration: underline;
-  .transition(0.25s);
+.lead {
+  font-size: 	 @font-size-base * 2; 						// ~28px
+  line-height: @line-height-base * 1.1895; 			// ~41px
+  font-weight: 300;
   
-  &:hover {
-    color: @link-hover-color;
-    text-decoration: none;
+  @media (min-width: 768px) {
+    font-size: (@font-size-base * 1.5);
   }
 }
 
-// H1—H6 specific styling
-h1 {
-  font-size: 32px;
-  font-weight: 900;
+// Emphasis & misc
+// -------------------------
+
+small {
+  font-size: 83%; 												// ~15px
+  line-height: @line-height-base * 1.666; // ~31px
 }
-h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 2px;
+
+// Contextual emphasis
+.text-primary { .swap-text-color(@firm); }
+.text-success { .swap-text-color(@success); }
+.text-danger  { .swap-text-color(@danger); }
+.text-warning { .swap-text-color(@warning); }
+.text-info    { .swap-text-color(@info); }
+.text-inverse { .swap-text-color(@inverse); }
+.text-muted   { .swap-text-color(@lightgray); }
+
+
+// Headings
+// -------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: @headings-font-family;
+  font-weight: @headings-font-weight;
+  line-height: @headings-line-height;
+  
+  small {
+    color: mix(@base, white, 63%);
+  }
 }
+
+h1,
+h2,
 h3 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 4px;
   margin-top: 2px;
+  margin-bottom: 4px;
 }
-h4 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 4px;
-}
-h5 {
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
+h4,
+h5,
 h6 {
-  font-size: 13px;
-  font-weight: 500;
-  text-transform: uppercase;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+h6 {
+  font-weight: normal;
+}
+
+h1, .h1 { font-size: floor(@font-size-base * 4.42); } // ~62px
+h2, .h2 { font-size:  ceil(@font-size-base * 3.71); } // ~52px
+h3, .h3 { font-size:  ceil(@font-size-base * 2.85); } // ~40px
+h4, .h4 { font-size:  ceil(@font-size-base * 2.07); } // ~29px
+h5, .h5 { font-size:  @font-size-base * 2 }						// ~28px 
+h6, .h6 { font-size:  ceil(@font-size-base * 1.71); } // ~24px
+
+h1 small, .h1 small { font-size: ceil(@font-size-base * 1.71); } // ~24px
+h2 small, .h2 small { font-size: ceil(@font-size-base * 1.28); } // ~18px
+h3 small, .h3 small,
+h4 small, .h4 small { font-size: @font-size-base; }
+
+// Blockquote
+blockquote {
+  position: relative;
+  border-left: none;
+  padding: 0 0 0 19px;
+
+  &:before {
+    position: absolute;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    background-color: #ebedee;
+    content: "";
+    border-radius: 2px;
+  }
+
+  p {
+    font-size: ceil(@font-size-base * 1.429);
+    line-height: ceil(@line-height-base * 1.259);
+    font-weight: normal;
+    margin-bottom: .4em;
+  }
+
+  small {
+    font-size: ceil(@font-size-base * 1.286);
+    line-height: ceil(@line-height-base * 1.399);
+    font-style: italic;
+    color: @base;
+
+    &:before {
+      content: "";
+    }
+  }
+}
+
+// Addresses
+address {
+  margin-bottom: @line-height-base;
+  line-height: @line-height-base;
 }

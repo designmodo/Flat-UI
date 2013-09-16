@@ -4,26 +4,21 @@
 
 .pager {
   background-color: @base;
-  border-radius: 6px;
+  border-radius: @border-radius-large;
   color: @inverse;
   font-size: 16px;
   font-weight: 700;
   .inline-block();
-  
+
   li {
     &:first-child {
       > a,
       > span {
         border-left: none;
-        .border-radius(6px 0 0 6px);
+        border-radius: @border-radius-large 0 0 @border-radius-large;
       }
     }
-    &.pager-center {
-      padding: @pager-padding;
-      padding-left: 0;
-      padding-right: 0;
-      .inline-block();
-    }
+
     > a,
     > span {
       background: none;
@@ -33,8 +28,8 @@
       padding: @pager-padding;
       text-decoration: none;
       white-space: nowrap;
-      .border-radius(0 6px 6px 0);
-      
+      border-radius: 0 @border-radius-large @border-radius-large 0;
+
       &:hover, &:focus {
         background-color: mix(@base, black, 85%);
       }
