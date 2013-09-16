@@ -8,8 +8,12 @@
 .btn-group > .btn,
 .btn-group > .dropdown-menu,
 .btn-group > .popover {
-  font-size: @base-font-size * 1.071; /* 15px */
-  font-weight: 500;
+  font-size: ceil(@font-size-base * 1.071); // ~15px
+  font-weight: 400;
+}
+
+.btn-block {
+	white-space: normal;
 }
 
 .btn {
@@ -19,10 +23,9 @@
   padding: 9px 12px 10px;
   line-height: 22px;
   text-decoration: none;
-  text-shadow: none;
-  .border-radius(6px);
-  .box-shadow(none);
-  .transition(0.25s);
+  border-radius: @border-radius-large;
+  .transition(.25s linear);
+  .user-select(none);
 
   // Alternate states
   // --------------------------------------------------
@@ -32,7 +35,7 @@
     background-color: @button-hover;
     color: @button-text;
     outline: none;
-    .transition(0.25s);
+    .transition(.25s);
   }
 
   // Active State
@@ -49,16 +52,32 @@
   &[disabled] {
     background-color: @lightgray;
     color: fade(@button-text, 75%);
-    .box-shadow(none);
     .opacity(70);
   }
 
   // Button sizes
   // --------------------------------------------------
 
+  // Huge
+  &.btn-hg,
+  .input-group-hg & {
+    font-size: ceil(@font-size-base * 1.57); // ~22px
+    line-height: 22px;
+    padding: 15px 20px 16px;
+
+    > [class^="fui-"] {
+      top: 1px;
+
+      &.pull-right {
+        margin-right: -2px;
+      }
+    }
+  }
+
   // Large
-  &.btn-large {
-    font-size: @base-font-size * 1.214; /* 17px */
+  &.btn-lg,
+  .input-group-lg & {
+    font-size: ceil(@font-size-base * 1.214); // ~17px
     line-height: 20px;
     padding: 12px 18px 13px;
 
@@ -68,6 +87,30 @@
       &.pull-right {
         margin-right: -2px;
       }
+    }
+  }
+
+  // Small
+  &.btn-sm,
+  .input-group-sm & {
+    font-size: ceil(@font-size-base * 0.928); // ~13px
+    line-height: 20px;
+    padding: 6px 13px 8px;
+
+    > [class^="fui-"] {
+      top: 0;
+    }
+  }
+
+  // Extra small
+  &.btn-xs,
+  .input-group-xs & {
+    font-size: ceil(@font-size-base * 0.857); // ~12px
+    padding: 8px 13px 9px;
+    line-height: 1.2;
+
+    > [class^="fui-"] {
+      top: 0;
     }
   }
 
@@ -91,18 +134,21 @@
   &.btn-inverse {
     .swap-button-color(@base, @button-inverse-hover, @button-inverse-active);    
   }
+  &.btn-default {
+	  .swap-button-color(@lightgray, @button-hover, @button-active);
+	}
 
   // Button icon
   // --------------------------------------------------
   > [class^="fui-"] {
-    margin: 0 4px;
+    margin: 0 1px;
     position: relative;
     top: 1px;
     vertical-align: top;
     .inline-block();
 
     &.pull-right {
-      margin-right: 0px;
+      margin-right: 0;
     }
   }
 }
@@ -114,14 +160,15 @@
     color: @button-text;
   }
   &:first-child {
-    .border-radius(6px 0 0 6px);
+    border-radius: @border-radius-large 0 0 @border-radius-large;
   }
   &:last-child {
-    .border-radius(0 6px 6px 0);
+    border-radius: 0 @border-radius-large @border-radius-large 0;
   }
   > [class^="fui-"] {
     font-size: @icon-normal;
     top: 0;
+    margin: 0 4px;
   }
 }
 
@@ -144,13 +191,15 @@
         border-left-color: transparent;
       }
     }
-    &:first-of-type {
-      border-top-left-radius: 6px;
-      border-bottom-left-radius: 6px;
+    &:first-of-type,
+    &:first-of-type:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+      border-top-left-radius: @border-radius-large;
+      border-bottom-left-radius: @border-radius-large;
     }
-    &:last-of-type {
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
+    &:last-of-type,
+    &:last-of-type:not(:first-child):not(:last-child):not(.dropdown-toggle)   {
+      border-top-right-radius: @border-radius-large;
+      border-bottom-right-radius: @border-radius-large;
     }
     & + .btn {
       margin-left: 0;
@@ -166,13 +215,13 @@
         margin-right: 3px;
       }
     }
-    &.btn-huge + .dropdown-toggle {
+    &.btn-gh + .dropdown-toggle {
       .caret {
         margin-left: 7px;
         margin-right: 7px;
       }
     }
-    &.btn-small + .dropdown-toggle {
+    &.btn-sm + .dropdown-toggle {
       .caret {
         margin-left: 0;
         margin-right: 0;

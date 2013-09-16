@@ -16,7 +16,7 @@
 
 .login-screen {
   background-color: @firm;
-  min-height: 317px;
+  min-height: 473px;
   padding: 123px 199px 33px 306px;
 }
 
@@ -52,7 +52,7 @@
   background-color: @form-color;
   padding: 24px 23px 20px;
   position: relative;
-  .border-radius(6px);  
+  border-radius: @border-radius-large;  
 
   // Ear
   &:before {
@@ -74,13 +74,11 @@
   .login-field {
     border-color: transparent;
     font-size: 17px;
-    padding-bottom: 11px;
-    padding-top: 11px;
     text-indent: 3px;
-    width: 299px;
-    margin-bottom: 10px !important; 
     
     &:focus {
+    	border-color: @firm;
+    	
       & + .login-field-icon {
         color: @firm;
       }  
@@ -91,7 +89,7 @@
     font-size: 16px;
     position: absolute;
     right: 13px;
-    top: 14px;
+    top: 9px;
     .transition(.25s);
   }  
 }

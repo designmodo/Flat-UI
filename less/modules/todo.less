@@ -2,22 +2,24 @@
 // Todo list
 // --------------------------------------------------
 
-.todo {
-  background-color: mix(@base, black, 85%);  
+.todo {  
   color: mix(@base, @inverse, 66%);
   margin-bottom: 20px;
-  .border-radius(8px 8px 6px 6px);
+  border-radius: @border-radius-large;
 
   ul {
+  	background-color: mix(@base, black, 85%);
     margin: 0;
+    padding: 0;
     list-style-type: none;
+    border-radius: 0 0 @border-radius-large @border-radius-large;
   }
   li {
     background: @base url(../images/todo/todo.png) 92% center no-repeat;
     background-size: 20px 20px;
     cursor: pointer;
     margin-top: 2px;
-    padding: 18px 42px 17px 25px;
+    padding: 18px 42px 19px 25px;
     position: relative;
     .transition(.25s);
     
@@ -25,8 +27,8 @@
       margin-top: 0;
     }  
     &:last-child {
-      .border-radius(0 0 6px 6px);
-      padding-bottom: 18px;
+      border-radius: 0 0 @border-radius-large @border-radius-large;
+      padding-bottom: 20px;
     }
     &.todo-done {
       background: transparent url(../images/todo/done.png) 92% center no-repeat;
@@ -44,7 +46,7 @@
   position: relative;
   background: @firm;
   background-size: 16px 16px;
-  border-radius: 6px 6px 0 0;
+  border-radius: @border-radius-large @border-radius-large 0 0;
   color: @base;
   padding: 19px 25px 20px;
   

@@ -1,5 +1,5 @@
 /* =============================================================
- * flatui-radio.js v0.0.2
+ * flatui-radio.js v0.0.3
  * ============================================================ */
 
 !function ($) {
@@ -46,7 +46,7 @@
 						, $parent = $(this).closest('.radio');
 						
 						if ($el.prop(d) == false) {
-							$parent.removeClass(ch) && $el.attr(ch, false).trigger('change');
+							$parent.removeClass(ch) && $el.removeAttr(ch).trigger('change');
 						} 
 				});
 			
@@ -77,7 +77,7 @@
 					$parent.removeClass(ch) && $el.removeAttr(ch);
 			});
 						
-			$parent[checkAction ? 'addClass' : 'removeClass'](ch) && checkAction ? $el.attr(ch, true) : $el.removeAttr(ch);
+			$parent[checkAction ? 'addClass' : 'removeClass'](ch) && checkAction ? $el.prop(ch, ch) : $el.removeAttr(ch);
 			$el.trigger(e);	 
 					
 			if (checked !== $el.prop(ch)) {
@@ -131,7 +131,7 @@
 		}
 	});
 	
-	$(window).on('load', function () {
+	$(function () {
 		$('[data-toggle="radio"]').each(function () {
 			var $radio = $(this);
 			$radio.radio();
