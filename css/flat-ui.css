@@ -781,6 +781,12 @@ address {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+.navbar .nav > li:first-child {
+  border-radius: 6px 6px 0 0;
+}
+.navbar .nav > li:last-child {
+  border-radius: 0 0 6px 6px;
+}
 .navbar .nav > li > ul {
   padding-top: 13px;
   top: 80%;
