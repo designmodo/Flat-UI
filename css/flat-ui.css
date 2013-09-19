@@ -1544,16 +1544,6 @@ fieldset[disabled] .form-control + .input-icon,
   transition: color 0.25s linear;
   -webkit-backface-visibility: hidden;
 }
-.checkbox:hover .first-icon,
-.radio:hover .first-icon {
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-.checkbox:hover .second-icon,
-.radio:hover .second-icon {
-  opacity: 1;
-  filter: alpha(opacity=100);
-}
 .checkbox.checked,
 .radio.checked {
   color: #16a085;
