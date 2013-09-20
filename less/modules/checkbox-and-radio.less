@@ -49,15 +49,8 @@
 
   // Hover State
   &:hover {
-  	color: @lightgray;
-  	.transition(color .25s linear);
-  	
-    .first-icon {
-      .opacity(0);
-    }
-    .second-icon {
-      .opacity(1);
-    }
+    color: @lightgray;
+    .transition(color .25s linear);
   }
 
   // Checked State
@@ -68,8 +61,8 @@
       .opacity(0);
     }
     .second-icon {
-    	color: @link-color;
-    	.transition(color .25s linear);
+        color: @link-color;
+        .transition(color .25s linear);
       .opacity(1);
     }
   }
@@ -96,7 +89,7 @@
         .opacity(0);
       }
       .second-icon {
-      	color: mix(@lightgray, white, 38%);
+        color: mix(@lightgray, white, 38%);
         .opacity(1);
       }
     }
