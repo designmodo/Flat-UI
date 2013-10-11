@@ -86,6 +86,12 @@ label {
   }
 }
 
+select {
+  &.form-control {
+    -webkit-appearance: menulist;
+  }
+}
+
 // Form control sizing
 .input-sm {
   .input-size(@input-height-small; 8px; 10px; floor(@font-size-base * 0.929); @line-height-base);
