@@ -203,7 +203,7 @@ body.vjs-full-window {
       .opacity(0);
     }
     &:before {
-      .opacity(100);
+      .opacity(1);
     }
   }  
 }
@@ -216,7 +216,7 @@ body.vjs-full-window {
   }  
   div {
     &:after {
-      .opacity(100);
+      .opacity(1);
     }
     &:before {
       .opacity(0);
@@ -237,7 +237,7 @@ body.vjs-full-window {
 }
 
 .vjs-mute-control {
-  background: url(../images/video/volume-full.png) center -48px no-repeat;
+  background: ~"url(../images/video/volume-full.png) center -48px no-repeat";
   background-size: 16px 64px;
   cursor: pointer !important;
   position: absolute;
@@ -255,11 +255,11 @@ body.vjs-full-window {
   &.vjs-vol-0 {
     &,
     div {
-      background-image: url(../images/video/volume-off.png);
+      background-image: ~"url(../images/video/volume-off.png)";
     }  
   }
   div {
-    background: @controls-color url(../images/video/volume-full.png) no-repeat center 2px;
+    background: @controls-color ~"url(../images/video/volume-full.png) no-repeat center 2px";
     background-size: 16px 64px;
     height: 18px;
     .transition(opacity .25s);
@@ -382,7 +382,7 @@ body.vjs-full-window {
 }
 
 .vjs-fullscreen-control {
-  background-image: url(../images/video/fullscreen.png);
+  background-image: ~"url(../images/video/fullscreen.png)";
   background-position: center -47px;
   background-size: 15px 64px;
   cursor: pointer !important;
@@ -398,7 +398,7 @@ body.vjs-full-window {
   }
   div {
     height: 18px;
-    background: url(../images/video/fullscreen.png) no-repeat center 2px;
+    background: ~"url(../images/video/fullscreen.png) no-repeat center 2px";
     background-size: 15px 64px;
     .transition(opacity .25s);
   }  

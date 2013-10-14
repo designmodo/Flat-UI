@@ -57,9 +57,12 @@
   *display: inline;
 }
 
-.opacity(@value) {
-  opacity: @value / 100;
-  filter: ~"alpha(opacity=@{value})";
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
 }
 
 // User select
