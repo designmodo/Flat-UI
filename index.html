@@ -40,7 +40,7 @@
           <a href="#fakelink" class="btn btn-block btn-lg btn-warning">Warning Button</a>
         </div>
         <div class="col-md-3">
-          <a href="#fakelink" class="btn btn-block btn-lg">Default Button</a>
+          <a href="#fakelink" class="btn btn-block btn-lg btn-default">Default Button</a>
         </div>
         <div class="col-md-3">
           <a href="#fakelink" class="btn btn-block btn-lg btn-danger">Danger Button</a>
@@ -58,7 +58,7 @@
           <a href="#fakelink" class="btn btn-block btn-lg btn-info">Info Button</a>
         </div>
         <div class="col-md-3">
-          <a href="#fakelink" class="btn btn-block btn-lg disabled">Disabled Button</a>
+          <a href="#fakelink" class="btn btn-block btn-lg btn-default disabled">Disabled Button</a>
         </div>
       </div> <!-- /row -->
 
@@ -67,10 +67,10 @@
         <div class="col-md-9">
           <div class="navbar navbar-inverse">
           	<div class="navbar-header">
-	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
           	</div>            
-            <div class="navbar-collapse collapse" id="nav-collapse-01">
-              <ul class="nav">
+            <div class="navbar-collapse collapse navbar-collapse-01">
+              <ul class="nav navbar-nav navbar-left">
                 <li>
                   <a href="#fakelink">
                     Menu Item
@@ -119,7 +119,9 @@
       <h3 class="demo-panel-title">Input</h3>
       <div class="row">
         <div class="col-md-3">
-          <input type="text" value="" placeholder="Inactive" class="form-control" />
+        	<div class="form-group">
+	        	<input type="text" value="" placeholder="Inactive" class="form-control" />
+        	</div>          
         </div>
         <div class="col-md-3">
           <div class="form-group has-error">
@@ -129,11 +131,13 @@
         <div class="col-md-3">
           <div class="form-group has-success">
             <input type="text" value="Success" class="form-control" />
-            <i class="input-icon fui-check-inverted"></i>
+            <span class="input-icon fui-check-inverted"></span>
           </div>
         </div>
         <div class="col-md-3">
-          <input type="text" value="Disabled" disabled="disabled" class="form-control" />
+        	<div class="form-group">
+	        	<input type="text" value="Disabled" disabled="disabled" class="form-control" />
+        	</div>          
         </div>
       </div> <!-- /row -->
 
@@ -165,10 +169,10 @@
             <div class="col-md-6">
               <div class="btn-toolbar">
                 <div class="btn-group">
-                  <a class="btn btn-primary" href="#fakelink"><i class="fui-time"></i></a>
-                  <a class="btn btn-primary" href="#fakelink"><i class="fui-photo"></i></a>
-                  <a class="btn btn-primary active" href="#fakelink"><i class="fui-heart"></i></a>
-                  <a class="btn btn-primary" href="#fakelink"><i class="fui-eye"></i></a>
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-time"></span></a>
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-photo"></span></a>
+                  <a class="btn btn-primary active" href="#fakelink"><span class="fui-heart"></span></a>
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-eye"></span></a>
                 </div>
               </div> <!-- /toolbar -->
             </div>
@@ -176,13 +180,13 @@
               <ul class="pager">
                 <li class="previous">
                   <a href="#fakelink">
-                    <i class="fui-arrow-left"></i>
+                    <span class="fui-arrow-left"></span>
                     <span>All messages</span>
                   </a>
                 </li>
                 <li class="next">
                   <a href="#fakelink">
-                    <i class="fui-arrow-right"></i>
+                    <span class="fui-arrow-right"></span>
                   </a>
                 </li>
               </ul> <!-- /pager -->
@@ -263,19 +267,15 @@
             </tr>
             <tr>
               <td class="pbm">
-                <div class="switch switch-square"
-                  data-on-label="<i class='fui-check'></i>"
-                  data-off-label="<i class='fui-cross'></i>">
-                  <input type="checkbox" />
-                </div>
+                <div class="switch switch-square" data-on-label="<i class='fui-check'></i>" data-off-label="<i class='fui-cross'></i>">
+		              <input type="checkbox" />
+		            </div>
               </td>
 
               <td class="pbm">
-                <div class="switch switch-square"
-                  data-on-label="<i class='fui-check'></i>"
-                  data-off-label="<i class='fui-cross'></i>">
-                  <input type="checkbox" checked="" />
-                </div>
+                <div class="switch switch-square" data-on-label="<i class='fui-check'></i>" data-off-label="<i class='fui-cross'></i>">
+		              <input type="checkbox" checked />
+		            </div>
               </td>
             </tr>
             <tr>
@@ -602,16 +602,14 @@
 
         <div class="col-md-8 demo-video">
           <!--[if !IE]> -->
-            <video class="video-js" controls
-              preload="auto" width="620" height="349" poster="images/video/poster.jpg" data-setup="{}">
+            <video class="video-js" controls preload="auto" width="620" height="349" poster="images/video/poster.jpg" data-setup="{}">
               <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4">
               <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">
             </video>
           <!-- <![endif]-->
 
           <!--[if IE]>
-            <video class="video-js" controls
-              preload="auto" width="620" height="256" poster="http://video-js.zencoder.com/oceans-clip.jpg" data-setup="{}">
+            <video class="video-js" controls preload="auto" width="620" height="256" poster="http://video-js.zencoder.com/oceans-clip.jpg" data-setup="{}">
               <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4'/>
               <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm'/>
             </video>

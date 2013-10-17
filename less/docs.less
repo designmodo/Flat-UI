@@ -8,13 +8,7 @@
 @import "mixins";
 
 .prettyprint {
-  background-color: @pre-background;
-  border-color: @pre-border-color;
-  border-radius: @pre-border-radius;
-  border-width: 2px;
   overflow: auto;
-  word-wrap: normal;
-  white-space: pre;
   
   &.linenums {
     overflow: visible;
@@ -26,9 +20,10 @@
 
 // For demo purposes only
 .demo-headline {
-  color: @firm;
+  color: @brand-secondary;
   font: 700 118px/1.1 @font-family-demo !important;
   margin-bottom: 50px;
+  margin-top: 2px;
   padding: 40px 0;
   text-align: center;
   word-wrap: break-word;
@@ -50,7 +45,7 @@
     left: 0;
     font-size: 13px;
     line-height: 13px;
-    color: mix(desaturate(@base, 25%), white, 34%);
+    color: mix(desaturate(@brand-primary, 25%), white, 34%);
     font-weight: 400;
   }
   .demo-text-note {
@@ -64,7 +59,7 @@
 	  .demo-content {
       float: none;
       margin-left: 20px;
-      padding-top: 30px;
+      padding-top: 0;
       width: auto;    
       clear: both; 
     }
@@ -126,7 +121,7 @@
     font-size: 24.5px !important;
   }
   small {
-    color: mix(desaturate(@base, 25%), white, 34%);
+    color: mix(desaturate(@brand-primary, 25%), white, 34%);
     font-size: 13px;
     font-weight: 400;
   }
@@ -209,7 +204,7 @@
 
 .demo-icons-tooltip {
   bottom: 0;
-  color: mix(@base, white, 30%);
+  color: mix(@brand-primary, white, 30%);
   font-size: 12px;
   left: 100%;
   margin-left: 0 !important;
@@ -274,7 +269,7 @@
 
 // Static Modal
 .static-modal-backdrop {
-  background-color: mix(@base, black, 70%);
+  background-color: mix(@brand-primary, black, 70%);
   padding: 62px 14px;
   margin-bottom: 50px;
   width: 100%;
@@ -317,6 +312,8 @@
 
 // Sidebar for Components navigation
 .demo-sidebar {
+  font-size: floor(@font-size-base * 0.778); // ~14px
+	line-height: 1.214; // ~17px
   height: 100%;
   left: 0;
   margin: 0;
@@ -327,7 +324,7 @@
   padding: 0;
   width: 150px;
   z-index: 10000;
-  background-color: mix(@base, white, 6%);
+  background-color: mix(@brand-primary, white, 6%);
   -webkit-backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
 
@@ -349,11 +346,6 @@
 // Responsive: Landscape phone to desktop/tablet
 // --------------------------------------------------
 @media (max-width: 767px) {
-
-  .hide-on-tablets {
-    display: none;
-  }
-
   .demo-row {
     margin-bottom: 0;
     margin-left: 0;
@@ -371,7 +363,7 @@
     width: auto;
   }
   .demo-headline {
-    font-size: ceil(@font-size-base * 4.643) !important;
+    font-size: ceil(@font-size-base * 3.611) !important;
     text-align: left;
     padding-left: 15px;
     padding-right: 15px;

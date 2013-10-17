@@ -1,34 +1,9 @@
-.inline-block {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-}
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-.clearfix:after {
-  clear: both;
-}
-.drop-ie-gradient {
-  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
-}
 .dropdown-arrow-inverse {
   border-bottom-color: #34495e !important;
   border-top-color: #34495e !important;
 }
 .prettyprint {
-  background-color: transparent;
-  border-color: #e7e9ec;
-  border-radius: 6px;
-  border-width: 2px;
   overflow: auto;
-  word-wrap: normal;
-  white-space: pre;
 }
 .prettyprint.linenums {
   overflow: visible;
@@ -40,6 +15,7 @@
   color: #1abc9c;
   font: 700 118px/1.1 "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   margin-bottom: 50px;
+  margin-top: 2px;
   padding: 40px 0;
   text-align: center;
   word-wrap: break-word;
@@ -48,12 +24,15 @@
   margin: 0 auto;
   padding: 0 20px 50px;
   width: 940px;
-  *zoom: 1;
 }
 .demo-row:before,
 .demo-row:after {
+  content: " ";
+  /* 1 */
+
   display: table;
-  content: "";
+  /* 2 */
+
 }
 .demo-row:after {
   clear: both;
@@ -80,7 +59,7 @@
 .demo-row.typography-row .demo-content {
   float: none;
   margin-left: 20px;
-  padding-top: 30px;
+  padding-top: 0;
   width: auto;
   clear: both;
 }
@@ -100,7 +79,7 @@
   width: 580px;
 }
 .demo-content.demo-content-article {
-  font-size: 18px;
+  font-size: 24px;
 }
 .demo-content.demo-content-article p {
   margin-bottom: 20px;
@@ -110,18 +89,21 @@
   margin-left: 0;
 }
 .demo-content.demo-content-article li {
-  line-height: 27px;
+  line-height: 35px;
   padding: 0 0 5px;
 }
 .demo-content-wide {
   clear: both;
   margin: 0 20px;
-  *zoom: 1;
 }
 .demo-content-wide:before,
 .demo-content-wide:after {
+  content: " ";
+  /* 1 */
+
   display: table;
-  content: "";
+  /* 2 */
+
 }
 .demo-content-wide:after {
   clear: both;
@@ -219,7 +201,7 @@
   display: inline-block;
 }
 .demo-labels {
-  font-size: 19px;
+  font-size: 25px;
 }
 .demo-labels .visible-lg {
   display: inline !important;
@@ -295,6 +277,8 @@
   padding: 0;
 }
 .demo-sidebar {
+  font-size: 14px;
+  line-height: 1.214;
   height: 100%;
   left: 0;
   margin: 0;
@@ -317,9 +301,6 @@
   padding: 7px 20px;
 }
 @media (max-width: 767px) {
-  .hide-on-tablets {
-    display: none;
-  }
   .demo-row {
     margin-bottom: 0;
     margin-left: 0;
@@ -337,7 +318,7 @@
     width: auto;
   }
   .demo-headline {
-    font-size: 66px !important;
+    font-size: 65px !important;
     text-align: left;
     padding-left: 15px;
     padding-right: 15px;

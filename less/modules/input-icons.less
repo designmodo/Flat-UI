@@ -13,8 +13,8 @@
 	  right: 2px;
 	  line-height: 37px;
 	  vertical-align: middle;
-	  font-size: ceil(@font-size-base * 1.428); // ~20px
-	  color: desaturate(lighten(@base, 45%), 15%);
+	  font-size: @input-icon-font-size;
+	  color: desaturate(lighten(@brand-primary, 45%), 15%);
 	  background-color: @inverse;
 	  padding: 0 12px 0 0;
 	  border-radius: @input-border-radius;
@@ -49,17 +49,17 @@
 
 .has-success {
   .input-icon {
-	  color: @success;
+	  color: @brand-success;
   }
 }
 .has-warning {
 	.input-icon {
-		color: @warning;
+		color: @brand-warning;
 	}  
 }
 .has-error {
 	.input-icon {
-		color: @danger;
+		color: @brand-danger;
 	}  
 }
 .form-control[disabled] + .input-icon,

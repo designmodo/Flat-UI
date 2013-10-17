@@ -4,19 +4,21 @@
 
 .tagsinput {
   background: white;
-  border: 2px solid @firm;
-  border-radius: 6px;
+  border: 2px solid @brand-secondary;
+  border-radius: @border-radius-large;
   height: 100px;
   margin-bottom: 18px;
   padding: 6px 1px 1px 6px;
   overflow-y: auto;
   text-align: left;
 
-  .tag {
-    border-radius: 4px;
-    background-color: @firm;
+  .tag {  	
+    border-radius: @border-radius-base;
+    background-color: @brand-secondary;
     color: @inverse;
+    font-size: ceil(@component-font-size-base * 0.933); // ~14px
     cursor: pointer;
+    display: inline-block;
     margin-right: 5px;
     margin-bottom: 5px;
     overflow: hidden;
@@ -24,11 +26,10 @@
     padding: 6px 13px 8px 19px;
     position: relative;
     vertical-align: middle;
-    .inline-block();
-    .transition(.14s linear);
+    .transition(.25s linear);
 
     &:hover {
-      background-color: mix(@firm, black, 85%);
+      background-color: mix(@brand-secondary, black, 85%);
       color: @inverse;
       padding-left: 12px;
       padding-right: 20px;
@@ -45,14 +46,14 @@
   input {
     background: transparent;
     border: none;
-    color: @base;
+    color: @brand-primary;
     font-family: @font-family-base;
-    font-size: @font-size-base;
+    font-size: ceil(@component-font-size-base * 0.933); // ~14px
     margin: 0px;
     padding: 0 0 0 5px;
-    outline: 0;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    outline: none !important;
+    margin: 6px 5px 0 0;
+    vertical-align: top;
     width: 12px;
   }
 }
@@ -83,21 +84,24 @@
 
 .tagsinput-add-container {
   vertical-align: middle;
-  .inline-block();
+  display: inline-block;
 }
 
-.tagsinput-add {
-  background-color: mix(@inverse, @base, 80%);
-  border-radius: 3px;
+.tagsinput-add {	
+  background-color: mix(@inverse, @brand-primary, 80%);
+  border-radius: @border-radius-small;
   color: @inverse;
   cursor: pointer;
+  display: inline-block;
+  font-size: ceil(@component-font-size-base * 0.933); // ~14px
+  line-height: 1;
   margin-bottom: 5px;
-  padding: 6px 9px;
-  .inline-block();
-  .transition(0.25s);
+  padding: 7px 9px;
+  vertical-align: top;
+  .transition(.25s linear);
   
   &:hover {
-    background-color: @firm;
+    background-color: @brand-secondary;
   }
   &:before {
     content: "\e009";
