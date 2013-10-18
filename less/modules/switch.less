@@ -41,8 +41,8 @@
       left: -50px;
 
       label {
-        background-color: mix(@base, white, 63%);
-        border-color: @lightgray;
+        background-color: mix(@brand-primary, white, 63%);
+        border-color: @gray-light;
         .box-shadow(-1px 0 0 fade(@inverse, 50%));
       }
     }
@@ -51,7 +51,7 @@
       left: 0;
 
       label {
-        background-color: @firm;
+        background-color: @brand-secondary;
       }
     }
   }
@@ -62,8 +62,8 @@
 
   span {
     cursor: pointer;
-    font-size: ceil(@font-size-base * 1.071);
-    font-weight: bold;
+    font-size: @component-font-size-base; // 15px
+    font-weight: 700;
     float: left;
     height: 29px;
     line-height: 19px;
@@ -78,14 +78,14 @@
 
     &.switch-left {
       border-radius: @switch-border-radius 0 0 @switch-border-radius;
-      background-color: @base;
-      color: @firm;
+      background-color: @brand-primary;
+      color: @brand-secondary;
       border-left: 1px solid transparent;
     }
 
     &.switch-right {
       border-radius: 0 @switch-border-radius @switch-border-radius 0;
-      background-color: @lightgray;
+      background-color: @gray-light;
       color: @inverse;
       text-indent: 7px;
 
@@ -96,11 +96,11 @@
   }
 
   label {
-    border: 4px solid @base;
+    border: 4px solid @brand-primary;
     border-radius: 50%;
     float: left;
     height: 29px;
-    margin: 0 -15px 0 -14px;
+    margin: 0 -15px;
     padding: 0;
     position: relative;
     vertical-align: middle;
@@ -119,7 +119,7 @@
   > div {
     &.switch-off {
       label {
-        border-color: mix(@base, white, 63%);
+        border-color: mix(@brand-primary, white, 63%);
         border-radius: @border-radius-large 0 0 @border-radius-large;
       }
     }
@@ -145,6 +145,6 @@
 
   label {
     border-radius: 0 @border-radius-large @border-radius-large 0;
-    border-color: @firm;
+    border-color: @brand-secondary;
   }
 }

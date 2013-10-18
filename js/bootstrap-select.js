@@ -74,7 +74,7 @@
             if (this.options.size == 'auto') {
                 function getSize() {
                     var selectOffset_top_scroll = selectOffset_top - $(window).scrollTop();
-                    var windowHeight = window.innerHeight;
+                    var windowHeight = $(window).innerHeight;
                     var menuExtras = menuPadding + parseInt(menu.css('margin-top')) + parseInt(menu.css('margin-bottom')) + 2;
                     var selectOffset_bot = windowHeight - selectOffset_top_scroll - selectHeight - menuExtras;
                     menuHeight = selectOffset_bot;
@@ -102,12 +102,12 @@
 
         createDropdown: function() {
             var drop =
-                "<div class='btn-group select'>" +
-                    "<i class='dropdown-arrow'></i>" +
+                "<div class='btn-group select'>" +                    
                     "<button class='btn dropdown-toggle clearfix' data-toggle='dropdown'>" +
                         "<span class='filter-option pull-left'></span>&nbsp;" +
                         "<span class='caret'></span>" +
                     "</button>" +
+                    "<span class='dropdown-arrow'></span>" +
                     "<ul class='dropdown-menu' role='menu'>" +
                     "</ul>" +
                 "</div>";

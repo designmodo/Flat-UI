@@ -4,228 +4,142 @@
 
 // Base styles
 // --------------------------------------------------
-.btn,
-.btn-group > .btn,
-.btn-group > .dropdown-menu,
-.btn-group > .popover {
-  font-size: ceil(@font-size-base * 1.071); // ~15px
-  font-weight: 400;
-}
-
-.btn-block {
-	white-space: normal;
-}
-
 .btn {
   border: none;
-  background: @lightgray;
-  color: @button-text;
-  padding: 9px 12px 10px;
-  line-height: 22px;
-  text-decoration: none;
-  border-radius: @border-radius-large;
+  font-size: @btn-font-size-base;
+  font-weight: @btn-font-weight;
+  line-height: @btn-line-height-base;
+  border-radius: @border-radius-base;
+  padding: 10px 15px;
+  -webkit-font-smoothing: subpixel-antialiased;
   .transition(.25s linear);
-  .user-select(none);
 
-  // Alternate states
-  // --------------------------------------------------
   &:hover,
-  &:focus,
-  .btn-group:focus &.dropdown-toggle {
-    background-color: @button-hover;
-    color: @button-text;
-    outline: none;
-    .transition(.25s);
+  &:focus {
+    color: @btn-default-color;    
   }
 
-  // Active State
   &:active,
-  .btn-group.open &.dropdown-toggle,
   &.active {
-    background-color: @button-active;
-    color: fade(@button-text, 75%);
+  	outline: none;
     .box-shadow(none);
   }
 
-  // Disabled state
   &.disabled,
-  &[disabled] {
-    background-color: @lightgray;
-    color: fade(@button-text, 75%);
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: @btn-link-disabled-color;
+    color: fade(@btn-default-color, 75%);
     .opacity(.7);
   }
 
-  // Button sizes
-  // --------------------------------------------------
-
-  // Huge
-  &.btn-hg,
-  .input-group-hg & {
-    font-size: ceil(@font-size-base * 1.57); // ~22px
-    line-height: 22px;
-    padding: 15px 20px 16px;
-
-    > [class^="fui-"] {
-      top: 1px;
-
-      &.pull-right {
-        margin-right: -2px;
-      }
-    }
-  }
-
-  // Large
-  &.btn-lg,
-  .input-group-lg & {
-    font-size: ceil(@font-size-base * 1.214); // ~17px
-    line-height: 20px;
-    padding: 12px 18px 13px;
-
-    > [class^="fui-"] {
-      top: 0;
-
-      &.pull-right {
-        margin-right: -2px;
-      }
-    }
-  }
-
-  // Small
-  &.btn-sm,
-  .input-group-sm & {
-    font-size: ceil(@font-size-base * 0.928); // ~13px
-    line-height: 20px;
-    padding: 6px 13px 8px;
-
-    > [class^="fui-"] {
-      top: 0;
-    }
-  }
-
-  // Extra small
-  &.btn-xs,
-  .input-group-xs & {
-    font-size: ceil(@font-size-base * 0.857); // ~12px
-    padding: 8px 13px 9px;
-    line-height: 1.2;
-
-    > [class^="fui-"] {
-      top: 0;
-    }
-  }
-
-  // Set the backgrounds
-  // -------------------------
-  &.btn-primary {
-    .swap-button-color(@firm, @button-primary-hover, @button-primary-active);
-  }
-  &.btn-info    {
-    .swap-button-color(@info, @button-info-hover, @button-info-active);
-  }
-  &.btn-danger  {
-    .swap-button-color(@danger, @button-danger-hover, @button-danger-active);
-  }
-  &.btn-success {
-    .swap-button-color(@success, @button-success-hover, @button-success-active);
-  }
-  &.btn-warning {
-    .swap-button-color(@warning, @button-warning-hover, @button-warning-active);
-  }
-  &.btn-inverse {
-    .swap-button-color(@base, @button-inverse-hover, @button-inverse-active);    
-  }
-  &.btn-default {
-	  .swap-button-color(@lightgray, @button-hover, @button-active);
-	}
-
-  // Button icon
+  // Button icons
   // --------------------------------------------------
   > [class^="fui-"] {
     margin: 0 1px;
     position: relative;
+    line-height: 1;
     top: 1px;
-    vertical-align: top;
-    .inline-block();
+    
+    .btn-xs& {
+			font-size: 11px;
+			top: 0;
+		}
+		.btn-hg& {
+			top: 2px;
+		} 
+  }  
+}
 
-    &.pull-right {
-      margin-right: 0;
+// Alternate buttons
+// --------------------------------------------------
+.btn-default {
+  .button-variant(@btn-default-color, @gray-light, @btn-hover-bg, @btn-active-bg);
+}
+.btn-primary {
+  .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
+}
+.btn-info    {
+  .button-variant(@btn-default-color, @brand-info, @btn-info-hover-bg, @btn-info-active-bg);
+}
+.btn-danger  {
+  .button-variant(@btn-default-color, @brand-danger, @btn-danger-hover-bg, @btn-danger-active-bg);
+}
+.btn-success {
+  .button-variant(@btn-default-color, @brand-success, @btn-success-hover-bg, @btn-success-active-bg);
+}
+.btn-warning {
+  .button-variant(@btn-default-color, @brand-warning, @btn-warning-hover-bg, @btn-warning-active-bg);
+}
+.btn-inverse {
+  .button-variant(@btn-default-color, @brand-primary, @btn-inverse-hover-bg, @btn-inverse-active-bg);    
+}
+.btn-embossed {
+  .box-shadow(inset 0 -2px 0 fade(black, 15%));
+  
+  &.active,
+  &:active {
+    .box-shadow(inset 0 2px 0 fade(black, 15%));
+  }
+}
+.btn-wide {
+  min-width: 140px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+  
+ 
+// Link buttons
+// -------------------------
+
+// Make a button look and behave like a link
+.btn-link {
+  color: @link-color;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: underline;
+    background-color: transparent;
+  }
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      color: @btn-link-disabled-color;
+      text-decoration: none;
     }
   }
-}
+} 
+  
 
-// Other button locations
-// Button with icon inside
-.btn-toolbar .btn {
-  &.active {
-    color: @button-text;
-  }
-  &:first-child {
-    border-radius: @border-radius-large 0 0 @border-radius-large;
-  }
-  &:last-child {
-    border-radius: 0 @border-radius-large @border-radius-large 0;
-  }
-  > [class^="fui-"] {
-    font-size: @icon-normal;
-    top: 0;
-    margin: 0 4px;
-  }
+// Button sizes
+// --------------------------------------------------
+
+.btn-hg {
+	.button-size(13px, 20px, @btn-font-size-hg, @btn-line-height-hg, @border-radius-large);
 }
+.btn-lg {
+	.button-size(10px, 19px, @btn-font-size-lg, @btn-line-height-lg, @border-radius-large);
+}
+.btn-sm {
+	.button-size(9px, 13px, @btn-font-size-sm, @btn-line-height-sm, @border-radius-base);
+}
+.btn-xs {
+	.button-size(6px, 9px, @btn-font-size-xs, @btn-line-height-xs, @border-radius-small);
+}  
+  
 
 // Button tip
 .btn-tip {
   font-weight: 300;
   padding-left: 10px;
+  font-size: 92%;
 }
 
-// BUTTON GROUP
-// ----------------------
-.btn-group {
-  > .btn {
-    border-radius: 0;
-    text-align: center;
+// Block button
+// --------------------------------------------------
 
-    &:active,
-    &.active {
-      & + .btn {
-        border-left-color: transparent;
-      }
-    }
-    &:first-of-type,
-    &:first-of-type:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-      border-top-left-radius: @border-radius-large;
-      border-bottom-left-radius: @border-radius-large;
-    }
-    &:last-of-type,
-    &:last-of-type:not(:first-child):not(:last-child):not(.dropdown-toggle)   {
-      border-top-right-radius: @border-radius-large;
-      border-bottom-right-radius: @border-radius-large;
-    }
-    & + .btn {
-      margin-left: 0;
-    }
-    & + .dropdown-toggle {
-      border-left: 2px solid fade(@base, 15%);
-      padding-left: 13px;
-      padding-right: 13px;
-      .box-shadow(none);
-
-      .caret {
-        margin-left: 3px;
-        margin-right: 3px;
-      }
-    }
-    &.btn-gh + .dropdown-toggle {
-      .caret {
-        margin-left: 7px;
-        margin-right: 7px;
-      }
-    }
-    &.btn-sm + .dropdown-toggle {
-      .caret {
-        margin-left: 0;
-        margin-right: 0;
-      }
-    }
-  }
+.btn-block {
+	white-space: normal;
 }

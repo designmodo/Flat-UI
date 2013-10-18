@@ -65,10 +65,10 @@
           </p>
           <p class="mbl">
             <button class="btn btn-wide btn-primary mrm">Save</button>
-            <button class="btn btn-wide">Cancel</button>
+            <button class="btn btn-wide btn-default">Cancel</button>
           </p>
 <pre class="prettyprint">
-&lt;button class="btn btn-wide"&gt;
+&lt;button class="btn btn-default btn-wide"&gt;
   Cancel
 &lt;/button&gt;
 </pre>
@@ -92,11 +92,13 @@
           <p class="ptl">
             As usual you can set different colors:
           </p>
-          <p class="mbl">
-            <button class="btn btn-default mrs">Default</button>
+          <p>
+	          <button class="btn btn-default mrs">Default</button>
             <button class="btn btn-primary mrs">Primary</button>
             <button class="btn btn-info mrs">Info</button>
             <button class="btn btn-danger mrs">Danger</button>
+          </p>
+          <p class="mbl">            
             <button class="btn btn-success mrs">Success</button>
             <button class="btn btn-warning mrs">Warning</button>
             <button class="btn btn-inverse mrs">Inverse</button>
@@ -155,9 +157,7 @@
 
           <h6 class="ptl">Usage via JS:</h6>
 <pre class="prettyprint">
-$('[data-toggle="checkbox"]').each(function () {
-  $(this).checkbox();
-});
+$(':checkbox').checkbox();
 </pre>
 
           <div class="pvm">
@@ -250,9 +250,7 @@ $(':checkbox').on('toggle', function() {
 
           <h6 class="ptl">Usage via JS:</h6>
 <pre class="prettyprint">
-$('[data-toggle="radio"]').each(function () {
-  $(this).radio();
-});
+$(':radio').radio();
 </pre>
 
           <div class="pvm">
@@ -323,42 +321,50 @@ $(':radio').on('toggle', function() {
             <optgroup label="System">
               <option value="2">Messages</option>
               <option value="3">My Settings</option>
-              <option value="4" class="highlighted fui-lock">Logout</option>
+              <option value="4" class="highlighted">Logout</option>
             </optgroup>
           </select>
 
           <hr/>
-
-          <div class="btn-group">
-            <i class="dropdown-arrow dropdown-arrow-inverse"></i>
-            <button class="btn btn-primary">Dropdown</button>
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-inverse">
-              <li><a href="#fakelink">Sub Menu Element</a></li>
-              <li><a href="#fakelink">Sub Menu Element</a></li>
-              <li><a href="#fakelink">Sub Menu Element</a></li>
-            </ul>
+          
+          <div class="row">
+          	<div class="col-md-3">
+	          	<div class="dropdown">
+		          	<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown<span class="caret"></span></button>
+							  <span class="dropdown-arrow dropdown-arrow-inverse"></span>
+		            <ul class="dropdown-menu dropdown-inverse">
+		              <li><a href="#fakelink">Sub Menu Element</a></li>
+		              <li><a href="#fakelink">Sub Menu Element</a></li>
+		              <li><a href="#fakelink">Sub Menu Element</a></li>
+		            </ul>
+							</div>
+          	</div>
           </div>
+          
 
           <div class="pvl">
 <pre class="prettyprint">
 &lt;!-- Default look --&gt;
-&lt;i class="dropdown-arrow"&gt;&lt;/i&gt;
-&lt;ul class="dropdown-menu"&gt;
-  &lt;li&gt;
-    &lt;a href="#"&gt;Item&lt;/a&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown&lt;span class="caret"&gt;&lt;/span&gt;&lt;/button&gt;
+  &lt;span class="dropdown-arrow"&gt;&lt;/span&gt;
+  &lt;ul class="dropdown-menu"&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+  &lt;/u&gt;
+&lt;/div&gt;
 
 &lt;!-- Inverse look --&gt;
-&lt;i class="dropdown-arrow dropdown-arrow-inverse"&gt;&lt;/i&gt;
-&lt;ul class="dropdown-menu dropdown-inverse"&gt;
-  &lt;li&gt;
-    &lt;a href="#"&gt;Item&lt;/a&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class="dropdown"&gt;
+  &lt;button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Dropdown&lt;span class="caret"&gt;&lt;/span&gt;&lt;/button&gt;
+  &lt;span class="dropdown-arrow dropdown-arrow-inverse"&gt;&lt;/span&gt;
+  &lt;ul class="dropdown-menu dropdown-inverse"&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#fakelink">Sub Menu Element&lt;/a&gt;&lt;/li&gt;
+  &lt;/u&gt;
+&lt;/div&gt;
 </pre>
           </div>
 
@@ -366,7 +372,6 @@ $(':radio').on('toggle', function() {
             For highlighting information we added 2 additional states for the dropdown-menu items: <code>selected</code> and <code>highlighted</code>:
           </p>
 <pre class="prettyprint">
-&lt;i class="dropdown-arrow"&gt;&lt;/i&gt;
 &lt;ul class="dropdown-menu"&gt;
   &lt;li class="selected"&gt;
     &lt;a href="#"&gt;Item&lt;/a&gt;
@@ -452,13 +457,9 @@ $(':radio').on('toggle', function() {
           	</div>            
           </div>
 <pre class="prettyprint mtm">
-&lt;div class="row"&gt;
- &lt;div class="col-lg-5"&gt;
-   &lt;div class="form-group"&gt;
-     &lt;input type="text" class="form-control" placeholder="With icon" /&gt;
-     &lt;span class="input-icon fui-check-inverted"&gt;&lt;/span&gt;
-   &lt;/div&gt;
- &lt;/div&gt;
+&lt;div class="form-group"&gt;
+  &lt;input type="text" class="form-control" placeholder="With icon" /&gt;
+  &lt;span class="input-icon fui-check-inverted"&gt;&lt;/span&gt;
 &lt;/div&gt;
 </pre>
 
@@ -507,12 +508,12 @@ $(':radio').on('toggle', function() {
             Restyled <a href="http://getbootstrap.com/components/#navbar">Bootstrap navbar</a>. Added sub-menus.
           </p>
 
-          <div class="navbar">
+          <div class="navbar navbar-default">
           	<div class="navbar-header">
-	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
           	</div>            
-            <div class="navbar-collapse collapse" id="nav-collapse-01">
-              <ul class="nav">
+            <div class="navbar-collapse collapse navbar-collapse-01">
+              <ul class="nav navbar-nav navbar-left">
                 <li>
                   <a href="#fakelink">
                     Menu Item
@@ -546,12 +547,12 @@ $(':radio').on('toggle', function() {
             </div><!--/.nav -->
           </div> <!-- /navbar -->
 <pre class="prettyprint mvl">
-&lt;div class="navbar"&gt;
+&lt;div class="navbar navbar-default"&gt;
   &lt;div class="navbar-header"&gt;
-    &lt;button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"&gt;&lt;/button&gt;
+    &lt;button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"&gt;&lt;/button&gt;
   &lt;/div&gt;    
-  &lt;div class="navbar-collapse collapse" id="nav-collapse-01"&gt;
-    &lt;ul class="nav"&gt;
+  &lt;div class="navbar-collapse collapse navbar-collapse-01"&gt;
+    &lt;ul class="nav navbar-nav navbar-right"&gt;
       &lt;!-- Menu items go here --&gt;
       &lt;li&gt;
         &lt;ul&gt;
@@ -566,10 +567,10 @@ $(':radio').on('toggle', function() {
           <p class="ptl">Inverse style:</p>
           <div class="navbar navbar-inverse">
           	<div class="navbar-header">
-	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
+	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-02"></button>
           	</div>            
-            <div class="navbar-collapse collapse" id="nav-collapse-01">
-              <ul class="nav">
+            <div class="navbar-collapse collapse navbar-collapse-02">
+              <ul class="nav navbar-nav navbar-left">
                 <li>
                   <a href="#fakelink">
                     Menu Item
@@ -605,13 +606,14 @@ $(':radio').on('toggle', function() {
 
 <pre class="prettyprint mvl">
 &lt;div class="navbar navbar-inverse"&gt;
+&lt;!-- navbar content --&gt;
 &lt;/div&gt;
 </pre>
 
           <p class="ptl">Unread and New indicators:</p>
 <pre class="prettyprint mvl">
 &lt;!-- ... --&gt;
-  &lt;ul class="nav"&gt;
+  &lt;ul class="nav navbar-nav"&gt;
     &lt;li&gt;
       &lt;a href="#"&gt;
         Menu item
@@ -625,7 +627,7 @@ $(':radio').on('toggle', function() {
 
 <pre class="prettyprint mvl">
 &lt;!-- ... --&gt;
-  &lt;ul class="nav"&gt;
+  &lt;ul class="nav navbar-nav"&gt;
     &lt;li&gt;
       &lt;a href="#"&gt;
         Menu item

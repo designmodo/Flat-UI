@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 // Module color variable
-@form-color: mix(@base, @inverse, 9%);
+@form-color: mix(@brand-primary, @inverse, 9%);
 
 .login {
   background: ~"url(../images/login/imac.png) 0 0 no-repeat";
@@ -15,7 +15,7 @@
 }
 
 .login-screen {
-  background-color: @firm;
+  background-color: @brand-secondary;
   min-height: 473px;
   padding: 123px 199px 33px 306px;
 }
@@ -33,7 +33,7 @@
   }
   > h4 {
     font-size: 17px;
-    font-weight: 200;
+    font-weight: 300;
     line-height: 34px;
     .opacity(.95);
   
@@ -77,10 +77,10 @@
     text-indent: 3px;
     
     &:focus {
-    	border-color: @firm;
+    	border-color: @brand-secondary;
     	
       & + .login-field-icon {
-        color: @firm;
+        color: @brand-secondary;
       }  
     }    
   }

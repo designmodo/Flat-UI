@@ -4,15 +4,15 @@
 
 .caret {
   border-width: 8px 6px;
-  border-bottom-color: @base;  
-  border-top-color: @base;
+  border-bottom-color: @brand-primary;  
+  border-top-color: @brand-primary;
   border-style: solid;
   border-bottom-style: none;
   .transition(.25s);
-  .transform(scale(1.001));
+  .scale(1.001);
 }
 
-.caret(@color: @base) {
+.caret(@color: @brand-primary) {
   border-bottom-color: @color;
   border-top-color: @color;
 }

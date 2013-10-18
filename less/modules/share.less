@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 // Module color variable
-@share-color: mix(@base, @inverse, 8%);
+@share-color: mix(@brand-primary, @inverse, 8%);
 
 .share {
   background-color: @share-color;
@@ -17,6 +17,8 @@
     padding: 15px;
   }
   li {
+  	font-size: @component-font-size-base;
+  	line-height: 1.4;
     padding-top: 11px;
     .clearfix();
     
@@ -36,6 +38,7 @@
 .share-label {
   float: left;
   font-size: 15px;
+  line-height: 1.4;
   padding-top: 5px;
   width: 50%;
 }

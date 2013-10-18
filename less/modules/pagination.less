@@ -40,7 +40,7 @@
           background: transparent;
           border: none;
           border-right: 2px solid mix(@pagination-color, white, 66%);
-          font-size: ceil(@font-size-base * 1.142); // ~16px
+          font-size: floor(@component-font-size-base * 1.067); // ~16px
           margin: 0 9px 0 0;
           padding: 12px 17px;
           border-radius: @border-radius-large 0 0 @border-radius-large;
@@ -101,6 +101,7 @@
         background: @inverse;
         border: 5px solid @pagination-color;
         color: @inverse;
+        font-size: ceil(@component-font-size-base * 0.889);
         line-height: 16px;
         margin: 7px 2px 6px;
         min-width: 0;
@@ -111,14 +112,14 @@
 
         &:hover,
         &:focus {
-          background-color: @firm;
-          border-color: @firm;
+          background-color: @brand-secondary;
+          border-color: @brand-secondary;
           color: @inverse;
           .transition(~"background .2s ease-out, border-color .2s ease-out, color .2s ease-out");
         }
         &:active {
-          background-color: mix(@firm, black, 85%);
-          border-color: mix(@firm, black, 85%);
+          background-color: mix(@brand-secondary, black, 85%);
+          border-color: mix(@brand-secondary, black, 85%);
         }
       }
     }
@@ -129,7 +130,8 @@
     &.previous,
     &.next {
       margin-right: 8px;
-      font-size: @font-size-base;
+      font-size: ceil(@component-font-size-base * 0.933); // ~14px
+      line-height: 1.429; // ~20px
       padding-left: 23px;
       padding-right: 23px;
       
