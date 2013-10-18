@@ -1,0 +1,110 @@
+//
+// Button groups
+// --------------------------------------------------
+
+// Button carets
+//
+// Match the button text color to the arrow/caret for indicating dropdown-ness.
+
+.caret {
+  .btn-default & {
+    border-top-color: @btn-default-color;
+  }
+  .btn-primary &,
+  .btn-success &,
+  .btn-warning &,
+  .btn-danger &,
+  .btn-info & {
+    border-top-color: @inverse;
+  }
+}
+.dropup {
+  & .btn-default .caret {
+    border-bottom-color: @btn-default-color;
+  }
+  .btn-primary,
+  .btn-success,
+  .btn-warning,
+  .btn-danger,
+  .btn-info {
+   .caret {
+      border-bottom-color: @inverse;
+    }
+  }
+}
+
+// Sizing
+//
+// Remix the default button sizing classes into new ones for easier manipulation.
+
+.btn-group-xs > .btn { .btn-xs(); }
+.btn-group-sm > .btn { .btn-sm(); }
+.btn-group-lg > .btn { .btn-lg(); }
+.btn-group-gh > .btn { .btn-hg(); }
+
+
+.btn-group {
+  > .btn {
+    & + .btn {
+      margin-left: 0;
+    }
+    & + .dropdown-toggle {
+      border-left: 2px solid fade(@brand-primary, 15%);
+      padding-left: 12px;
+      padding-right: 12px;
+
+      .caret {
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+    &.btn-gh + .dropdown-toggle {
+      .caret {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    }
+    &.btn-sm + .dropdown-toggle {
+      .caret {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.dropdown-toggle {
+	.caret {
+		margin-left: 8px;
+	}
+}
+
+.btn-group > .btn,
+.btn-group > .dropdown-menu,
+.btn-group > .popover {
+  font-weight: 400;
+}
+
+.btn-group:focus .dropdown-toggle {
+  outline: none;
+  .transition(.25s);
+}
+
+// The clickable button for toggling the menu
+// Remove the gradient and set the same inset shadow as the :active state
+.btn-group.open .dropdown-toggle {
+  color: fade(@btn-default-color, 75%);
+  .box-shadow(none);
+}
+
+// Other button locations
+// Button with icon inside
+.btn-toolbar .btn {
+  &.active {
+    color: @btn-default-color;
+  }
+  > [class^="fui-"] {
+    font-size: @icon-normal;
+    margin: 0 1px;
+  }
+}

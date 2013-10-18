@@ -39,27 +39,28 @@
 @concrete:      #95a5a6;
 @asbestos:      #7f8c8d;
 
-//
-// Main Colors
+// Grays
 // -------------------------
 
-@base:             @wet-asphalt;
-@firm:             @turquoise;
+@gray:            			@concrete;
+@gray-light:     			  @silver;
+@inverse:          			white;
 
-@gray:             @concrete;
-@lightgray:        @silver;
-@inverse:          white;
+// Brand colors
+// -------------------------
 
-@success:          @emerald;
-@danger:           @alizarin;
-@warning:          @sun-flower;
-@info:             @peter-river;
+@brand-primary:         @wet-asphalt;
+@brand-secondary:       @turquoise;
+@brand-success:         @emerald;
+@brand-warning:         @sun-flower;
+@brand-danger:          @alizarin;
+@brand-info:            @peter-river;
 
 // Scaffolding
 // -------------------------
 
 @body-bg:               #fff;
-@text-color:            @base;
+@text-color:            @brand-primary;
 
 // Links
 // -------------------------
@@ -70,14 +71,25 @@
 // Typography
 // -------------------------
 
-@font-family-base:  			'Lato', Helvetica, Arial, sans-serif;
-@font-family-demo:				"Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-size-base:    			14px;
-@line-height-base:  			1.231;
+@font-family-base:  		"Lato", Helvetica, Arial, sans-serif;
+@font-family-demo:			"Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-monospace: Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-size-base:    		18px;
 
-@headings-font-family:    @font-family-base;
-@headings-font-weight:    700;
-@headings-line-height:    1.2;
+@font-size-h1:          floor(@font-size-base * 3.444); // ~62px
+@font-size-h2:          ceil(@font-size-base * 2.889); // ~52px
+@font-size-h3:          ceil(@font-size-base * 2.222); // ~40px
+@font-size-h4:          ceil(@font-size-base * 1.611); // ~29px
+@font-size-h5:          ceil(@font-size-base * 1.556); // ~28px
+@font-size-h6:          ceil(@font-size-base * 1.333); // ~24px
+
+@line-height-base:  		1.72222; // 31/18
+@line-height-computed:  floor(@font-size-base * @line-height-base); // ~31px
+
+@headings-font-family:  @font-family-base;
+@headings-font-weight:  700;
+@headings-line-height:  1.1;
+@headings-color:        inherit;
 
 
 // Icons
@@ -92,13 +104,25 @@
 @border-radius-large:            6px;
 @border-radius-small:            3px;
 
-// Forms
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+@component-font-size-base: ceil(@font-size-base * 0.833); // ~15px
+
+// Form controls
 // -------------------------
+@input-font-size-base:		 @component-font-size-base;
+@input-font-size-sm:	     floor(@component-font-size-base * 0.867); // ~13px
+@input-font-size-lg:	     ceil(@component-font-size-base * 1.133); // ~17px
+@input-font-size-hg:	     floor(@component-font-size-base * 1.467); // ~22px
+
+@input-icon-font-size:		 ceil(@component-font-size-base * 1.333);  // ~20px			 
 
 @input-bg:                       @inverse;
 @input-bg-disabled:              mix(@gray, white, 10%);
 
-@input-height-small:             34px;
+@input-height-small:             35px;
 @input-height-base:              41px;
 @input-height-large:             45px;
 @input-height-huge:              53px;
@@ -109,28 +133,56 @@
 // Pagination
 // -------------------------
 
-@pagination-color: mix(@base, white, 20%);
+@pagination-color: mix(@brand-primary, white, 20%);
 
 
 // Pager
 @pager-padding: 9px 15px 10px;
 
 // Buttons
-@button-text:           @inverse;
-@button-hover:          mix(@lightgray, white, 80%);
-@button-active:         mix(@lightgray, black, 85%);
-@button-primary-hover:  mix(@firm, white, 80%);
-@button-primary-active: mix(@firm, black, 85%);
-@button-info-hover:     mix(@info, white, 80%);
-@button-info-active:    mix(@info, black, 85%);
-@button-success-hover:  mix(@success, white, 80%);
-@button-success-active: mix(@success, black, 85%);
-@button-danger-hover:   mix(@danger, white, 80%);
-@button-danger-active:  mix(@danger, black, 85%);
-@button-warning-hover:  overlay(@warning, darken(white, 37.5%));
-@button-warning-active: mix(@warning, black, 85%);
-@button-inverse-hover:  overlay(@base, darken(white, 37.5%));
-@button-inverse-active: mix(@base, black, 85%);
+// -------------------------
+
+@btn-font-size-base: 			 		@component-font-size-base;
+@btn-font-size-xs:	       		ceil(@component-font-size-base * 0.80);   // ~12px
+@btn-font-size-sm:	       		floor(@component-font-size-base * 0.867); // ~13px
+@btn-font-size-lg:	       		ceil(@component-font-size-base * 1.133);  // ~17px
+@btn-font-size-hg:	       		floor(@component-font-size-base * 1.467); // ~22px
+
+@btn-line-height-base:				1.4; 	// ~21px
+@btn-line-height-hg:					1.227; // ~27px
+@btn-line-height-lg:					1.471; // ~25px
+@btn-line-height-sm:					1.385; // ~16px
+@btn-line-height-xs:					1.083; // ~13px
+
+@btn-social-font-size-base:   floor(@component-font-size-base * 0.867); // ~13px
+@btn-social-line-height-base:	1.077; 	// ~14px
+
+@btn-font-weight:							normal;
+
+@btn-default-color:						@inverse;
+@btn-default-bg:							@gray-light;
+@btn-hover-bg:								mix(@gray-light, white, 80%);
+@btn-active-bg:								mix(@gray-light, black, 85%);
+
+@btn-primary-hover-bg:				mix(@brand-secondary, white, 80%);
+@btn-primary-active-bg:				mix(@brand-secondary, black, 85%);
+
+@btn-info-hover-bg:						mix(@brand-info, white, 80%);
+@btn-info-active-bg:					mix(@brand-info, black, 85%);
+
+@btn-success-hover-bg:				mix(@brand-success, white, 80%);
+@btn-success-active-bg:				mix(@brand-success, black, 85%);
+
+@btn-danger-hover-bg:					mix(@brand-danger, white, 80%);
+@btn-danger-active-bg:				mix(@brand-danger, black, 85%);
+
+@btn-warning-hover-bg:				overlay(@brand-warning, darken(white, 37.5%));
+@btn-warning-active-bg:				mix(@brand-warning, black, 85%);
+
+@btn-inverse-hover-bg:				overlay(@brand-primary, darken(white, 37.5%));
+@btn-inverse-active-bg:				mix(@brand-primary, black, 85%);
+
+@btn-link-disabled-color:			@gray-light;
 
 // Navbar
 // -------------------------
@@ -141,12 +193,12 @@
 // Dropdown Menu
 // -------------------------
 
-@dropdown-background: mix(@inverse, @base, 94%);
+@dropdown-background: mix(@inverse, @brand-primary, 94%);
 
 // Iconbar
 // -------------------------
 
-@iconbar-background: mix(@base, black, 85%);
+@iconbar-background: mix(@brand-primary, black, 85%);
 
 // Progress/slider
 // -------------------------
@@ -159,9 +211,84 @@
 @switch-border-radius: 30px;
 @switch-width: 80px;
 
-// Demo variables
+// Media queries breakpoints
+// --------------------------------------------------
+
+// Extra small screen / phone
+@screen-xs-min:              480px;
+
+// Small screen / tablet
+@screen-sm-min:              768px;
+
+// Medium screen / desktop
+@screen-md-min:              992px;
+
+// Large screen / wide desktop
+@screen-lg-min:              1200px;
+
+// So media queries don't overlap when required, provide a maximum
+@screen-xs-max:              (@screen-sm-min - 1);
+@screen-sm-max:              (@screen-md-min - 1);
+@screen-md-max:              (@screen-lg-min - 1);
+
+// Grid system
+// --------------------------------------------------
+
+// Number of columns in the grid system
+@grid-columns:              12;
+// Padding, to be divided by two and applied to the left and right of all columns
+@grid-gutter-width:         30px;
+// Point at which the navbar stops collapsing
+@grid-float-breakpoint:     @screen-sm-min;
+
+
+// Form states and alerts
 // -------------------------
 
-@pre-border-radius: @border-radius-large;
-@pre-background:    transparent;
-@pre-border-color:  mix(@base, @inverse, 12%);
+@state-success-text:             @brand-success;
+@state-success-bg:               #dff0d8;
+@state-success-border:           darken(spin(@state-success-bg, -10), 5%);
+
+@state-info-text:                @brand-info;
+@state-info-bg:                  #d9edf7;
+@state-info-border:              darken(spin(@state-info-bg, -10), 7%);
+
+@state-warning-text:             @brand-warning;
+@state-warning-bg:               #fcf8e3;
+@state-warning-border:           darken(spin(@state-warning-bg, -10), 5%);
+
+@state-danger-text:              @brand-danger;
+@state-danger-bg:                #f2dede;
+@state-danger-border:            darken(spin(@state-danger-bg, -10), 5%);
+
+// Code
+// ------------------------
+
+@code-color:                  #c7254e;
+@code-bg:                     #f9f2f4;
+
+@pre-bg:                      @inverse;
+@pre-color:                   inherit;
+@pre-border-color:            mix(@brand-primary, @inverse, 12%);
+@pre-scrollable-max-height:   340px;
+@pre-border-radius:						@border-radius-large;
+
+
+// Type
+// ------------------------
+
+@text-muted:                  @gray-light;
+@abbr-border-color:           @gray-light;
+@headings-small-color:        mix(@brand-primary, @inverse, 12%);
+@blockquote-small-color:      inherit;
+@blockquote-border-color:     mix(@brand-primary, @inverse, 12%);
+@page-header-border-color:    mix(@brand-primary, @inverse, 12%);
+
+// Miscellaneous
+// -------------------------
+
+// Hr border color
+@hr-border:                   mix(@brand-primary, @inverse, 63%);
+
+// Horizontal forms & lists
+@component-offset-horizontal: 180px;

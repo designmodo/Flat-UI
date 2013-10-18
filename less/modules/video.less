@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 // Module color variable
-@controls-color: mix(@base, black, 75%);
+@controls-color: mix(@brand-primary, black, 75%);
 
 .video-js {
   background-color: transparent;  
@@ -176,7 +176,7 @@ body.vjs-full-window {
     &:after {
       position: absolute;
       font-family: "Flat-UI-Icons";
-      color: @firm;
+      color: @brand-secondary;
       font-size: 16px;
       top: 50%;
       left: 50%;
@@ -195,7 +195,7 @@ body.vjs-full-window {
 .vjs-paused .vjs-play-control {  
   &:hover {
     div:before {
-      color: mix(@firm, black, 85%);
+      color: mix(@brand-secondary, black, 85%);
     } 
   }  
   div {
@@ -211,7 +211,7 @@ body.vjs-full-window {
 .vjs-playing .vjs-play-control {  
   &:hover {
     div:after {
-      color: mix(@firm, black, 85%);
+      color: mix(@brand-secondary, black, 85%);
     } 
   }  
   div {
@@ -280,8 +280,8 @@ body.vjs-full-window {
   height: 12px;
   width: auto;
   top: 18px;
-  background: mix(@base, @inverse, 93%);
-  .border-radius(32px);
+  background: mix(@brand-primary, @inverse, 93%);
+  border-radius: 32px;
 }
 
 .vjs-progress-holder {
@@ -301,26 +301,26 @@ body.vjs-full-window {
   padding: 0;
   left: 0;
   top: 0;
-  .border-radius(32px);
+  border-radius: 32px;
 }
 
 .vjs-play-progress {
-  background: @firm;
+  background: @brand-secondary;
   left: -1px;
 }
 
 .vjs-load-progress {
-  background: mix(@base, @inverse, 20%);
+  background: mix(@brand-primary, @inverse, 20%);
   border-radius: 32px 0 0 32px;
   
   &[style*='100%'],
   &[style*='99%'] {
-    .border-radius(32px);
+    border-radius: 32px;
   }  
 }
 
 .vjs-seek-handle {
-  background-color: mix(@firm, black, 85%);
+  background-color: mix(@brand-secondary, black, 85%);
   position: absolute;
   width: 18px;
   height: 18px;
@@ -338,10 +338,10 @@ body.vjs-full-window {
   }
   &:hover,
   &:focus {
-    background-color: mix(@firm, black, 75%);
+    background-color: mix(@brand-secondary, black, 75%);
   }  
   &:active {
-    background-color: mix(@firm, black, 65%)
+    background-color: mix(@brand-secondary, black, 65%)
   }  
 }
 
@@ -360,7 +360,7 @@ body.vjs-full-window {
 }
 
 .vjs-duration {
-  color: mix(@base, @inverse, 80%);
+  color: mix(@brand-primary, @inverse, 80%);
   right: 69px;
   text-align: left;
 }
@@ -370,7 +370,7 @@ body.vjs-full-window {
 }
 
 .vjs-time-divider {
-  color: mix(@base, @inverse, 80%);
+  color: mix(@brand-primary, @inverse, 80%);
   font-size: 14px;
   position: absolute;
   right: 121px;
@@ -414,17 +414,17 @@ body.vjs-full-window {
   0% {
     background: #e74c3c;  
     border-radius: 10px;  
-    .transform(rotate(0deg));    
+    .rotate(0deg);    
   }
   50% {
     background: #ebedee;
     border-radius: 0;
-    .transform(rotate(180deg));
+    .rotate(180deg);
   }
   100% {
     background: #e74c3c;
     border-radius: 10px;
-    .transform(rotate(360deg));
+    .rotate(360deg);
   }  
 }    
 

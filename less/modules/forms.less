@@ -20,7 +20,7 @@ label {
 // Placeholder text gets special styles because when browsers invalidate entire
 // lines if it doesn't understand a selector/
 .form-control {
-  .placeholder-color(desaturate(lighten(@base, 45%), 15%));
+  .placeholder(desaturate(lighten(@brand-primary, 45%), 15%));
 }
 
 // Common form controls
@@ -46,12 +46,12 @@ label {
 // input[type="color"]
 
 .form-control {
-  border: 2px solid @lightgray;
-  color: @base;
+  border: 2px solid @gray-light;
+  color: @brand-primary;
   font-family: @font-family-base;
-  font-size: ceil(@font-size-base * 1.071); // ~15px
+  font-size: @input-font-size-base;
   padding: 8px 12px;
-  height: 41px;
+  height: 42px;
   -webkit-appearance: none;
   border-radius: @input-border-radius;
   .box-shadow(none);
@@ -78,31 +78,25 @@ label {
     border-color: transparent;
     
     &:hover {
-      border-color: @lightgray;
+      border-color: @gray-light;
     }
     &:focus {
-      border-color: @firm;
+      border-color: @brand-secondary;
     }
-  }
-}
-
-select {
-  &.form-control {
-    -webkit-appearance: menulist;
   }
 }
 
 // Form control sizing
 .input-sm {
-  .input-size(@input-height-small; 8px; 10px; floor(@font-size-base * 0.929); @line-height-base);
+  .input-size(@input-height-small; 6px; 10px; @input-font-size-sm; @line-height-base);
 }
 
 .input-lg {
-  .input-size(@input-height-large; 10px; 15px; ceil(@font-size-base * 1.214); @line-height-base);
+  .input-size(@input-height-large; 10px; 15px; @input-font-size-lg; @line-height-base);
 }
 
 .input-hg {
-	.input-size(@input-height-huge; 10px; 16px; ceil(@font-size-base * 1.571); @line-height-base);
+	.input-size(@input-height-huge; 10px; 16px; @input-font-size-hg; @line-height-base);
 }
 
 // Form control feedback states
@@ -111,15 +105,15 @@ select {
 
 // Warning
 .has-warning {
-  .form-control-validation(@warning; @warning);
+  .form-control-validation(@brand-warning; @brand-warning);
 }
 // Error
 .has-error {
-  .form-control-validation(@danger; @danger);
+  .form-control-validation(@brand-danger; @brand-danger);
 }
 // Success
 .has-success {
-  .form-control-validation(@success; @success);
+  .form-control-validation(@brand-success; @brand-success);
 }
 
 // Form groups

@@ -31,7 +31,7 @@
     width: 236px;
   }
   small {
-    color: fadeout(@base, 70%);
+    color: fadeout(@brand-primary, 70%);
     display: block;
     font-size: 22px;
     font-weight: 700;
@@ -52,7 +52,7 @@
     left: 0;
     font-size: 13px;
     line-height: 13px;
-    color: mix(desaturate(@base, 25%), white, 34%);
+    color: mix(desaturate(@brand-primary, 25%), white, 34%);
     font-weight: 400;
   }
   .demo-text-note {
@@ -83,7 +83,7 @@
   font: bold 23px/40px @font-family-demo;
 
   small {
-    color: mix(@base, @inverse, 66%);
+    color: mix(@brand-primary, @inverse, 66%);
     font-size: inherit;
     font-weight: 400;
   }  
@@ -132,7 +132,7 @@
 
 .demo-icons-tooltip {
   bottom: 0;
-  color: mix(@base, @inverse, 30%);
+  color: mix(@brand-primary, @inverse, 30%);
   font-size: 12px;
   left: 100%;
   margin-left: 0 !important;
@@ -184,7 +184,7 @@
   }  
 }
 .demo-download {
-  background-color: mix(@base, @inverse, 10%);  
+  background-color: mix(@brand-primary, @inverse, 10%);  
   height: 190px;
   margin: 0 auto 32px;
   padding: 40px 28px 30px 32px;
@@ -204,11 +204,11 @@
 }
 .demo-text-box {
   a:hover {
-    color: @firm;
+    color: @brand-secondary;
   }  
 }
 .demo-browser {
-  background: mix(@base, black, 85%) url(../images/demo/browser.png) 0 0 no-repeat;
+  background: mix(@brand-primary, black, 85%) url(../images/demo/browser.png) 0 0 no-repeat;
   background-size: 659px 42px;  
   color: @inverse;
   margin: 0 41px 140px 0;
@@ -222,6 +222,7 @@
 
   > h5 {
   	font-size: 16px;
+  	margin-top: 4px;
     margin-bottom: 3px;
     text-transform: none;
     font-weight: 400;
@@ -232,6 +233,7 @@
     line-height: 18px;
     margin-top: 3px;
     text-transform: none;
+    -webkit-font-smoothing: subpixel-antialiased;
   }  
 }
 .demo-browser-author {
@@ -247,7 +249,7 @@
   padding: 30px 0 12px;
 
   > .btn {
-    padding: 9px 0 10px 11px !important;
+    padding: 7px 0 8px 11px !important;
     text-align: left;
     border-radius: @border-radius-small;
 
@@ -265,7 +267,7 @@
   }    
 }
 .demo-browser-content {
-  background-color: @base;  
+  background-color: @brand-primary;  
   overflow: hidden;
   padding: 21px 0 0 20px;
   border-radius: 0 0 @border-radius-large;

@@ -3,30 +3,23 @@
 // --------------------------------------------------
 
 .navbar {
-  font-size: ceil(@font-size-base * 1.142); // ~16px
+  font-size: floor(@component-font-size-base * 1.067); // ~16px
   border-radius: @border-radius-large;
-  background: mix(@base, white, 9.5%);
   border: none;
-
-	.navbar-collapse {
-		padding-left: 0;
-		padding-right: 0;
-	}
 
   .navbar-brand {
     border-radius: @border-radius-large 0 0 @border-radius-large;
-    color: mix(@base, white, 85%);
-    font-size: ceil(@font-size-base * 1.714); // ~24px
+    color: mix(@brand-primary, white, 85%);
+    font-size: floor(@component-font-size-base * 1.60); // ~24px
     line-height: 29.55px;
     font-weight: 700;
-    margin-left: -15px;
     padding: 23px 28px 24px 17px;
     text-shadow: none;
     display: inline-block;
     
     &:hover,
     &:focus {
-      color: @firm;
+      color: @brand-secondary;
     }
     &[class*="fui-"] {
       font-weight: normal;
@@ -60,7 +53,7 @@
         > a:hover,
         > a:focus {
           background: none;
-          color: @firm;
+          color: @brand-secondary;
           .box-shadow(none);
         }
       }
@@ -76,7 +69,7 @@
         padding-top: 13px;
         top: 80%;
         padding-left: 0;
-        .dropdown-arrow(@base);
+        .dropdown-arrow(@brand-primary);
 
         // Third level nav
         li {
@@ -96,10 +89,10 @@
 
       // First level link
       > a {
-        color: mix(@base, white, 85%);
+        color: mix(@brand-primary, white, 85%);
         display: inline-block;
         font-weight: 700;
-        font-size: ceil(@font-size-base * 1.071); // ~15px
+        font-size: @component-font-size-base; // ~15px
         line-height: 28px;
         padding: 22px @navbar-link-space;
         text-shadow: none;
@@ -107,7 +100,7 @@
 
         &:hover,
         &:focus {
-          color: @firm;
+          color: @brand-secondary;
           background-color: transparent;
         }
         &[class*="fui-"] {
@@ -127,12 +120,6 @@
         }
       }
     }
-    
-    > li:first-child {        
-      > a {
-        border-radius: 0 0 0 @border-radius-large;
-      }
-    }
 
     // Sub menu
     ul {
@@ -149,7 +136,7 @@
       -webkit-transform-origin: 0 0;
       // Don't show it at all by default since IE doesn't get modern transitions
       visibility: hidden;
-      .transition(.3s ease-out);
+      .transition(.25s ease-out);
 
       // Deep level sub menu
       ul {
@@ -159,7 +146,7 @@
 
       // Sub menu item
       li {
-        background-color: @base;
+        background-color: @brand-primary;
         padding: 0 3px 3px;
         position: relative;
 
@@ -174,7 +161,7 @@
           > a,
           > a:hover,
           > a:focus {
-            background-color: @firm;
+            background-color: @brand-secondary;
             color: @inverse;
             padding-left: @navbar-sublink-space;
             padding-right: @navbar-sublink-space;
@@ -193,14 +180,23 @@
         border-radius: 2px;
         color: @inverse;
         display: block;
-        font-size: @font-size-base;
+        font-size: ceil(@component-font-size-base * 0.933);
         padding: 6px @navbar-sublink-space;
         text-decoration: none;
 
         &:hover {
-          background-color: @firm;
+          background-color: @brand-secondary;
         }
       }
+    }
+    
+    &.navbar-left {
+	    li:first-child {
+		    a {
+			    border-radius: @border-radius-large 0 0 @border-radius-large;
+			    border-left: none;
+		    }
+	    }
     }
   }
 
@@ -208,20 +204,21 @@
   .btn-navbar {
     background: none;
     border: none;
-    color: @base;
-    margin: 18px 15px 14px;
+    color: @brand-primary;
+    margin: 18px 15px;
+    padding: 3px 15px;
     text-shadow: none;
     display: none;
 
     &:hover,
     &:focus {
       background: none;
-      color: @firm;
+      color: @brand-secondary;
     }
     &:before {
       content: "\e00c";
       font-family: "Flat-UI-Icons";
-      font-size: ceil(@font-size-base * 1.571);
+      font-size: ceil(@component-font-size-base * 1.467); // ~22px
       font-style: normal;
       font-weight: normal;
       -webkit-font-smoothing: antialiased;
@@ -232,8 +229,8 @@
   }
 }
 
-.navbar-inner {
-  background: mix(@base, white, 9.5%);
+.navbar-default {
+  background: mix(@brand-primary, white, 9.5%);
   border: none;
   padding-left: 0;
   padding-right: 0;
@@ -243,12 +240,12 @@
 // Alternate Color
 // --------------------------------------------------
 .navbar-inverse {
-  font-size: ceil(@font-size-base * 1.214); // ~17px
-  background-color: @base;
+	background: @brand-primary;
+  font-size: ceil(@component-font-size-base * 1.133); // ~17px
   
   .navbar-brand {
-    border-bottom: 2px solid mix(@base, black, 85%);
-    border-right: 2px solid mix(@base, black, 85%);
+    border-bottom: 2px solid mix(@brand-primary, black, 85%);
+    border-right: 2px solid mix(@brand-primary, black, 85%);
     color: @inverse;
     padding: 10px 28px 11px 32px;
   }
@@ -278,8 +275,8 @@
           &,
           &:hover,
           &:focus {
-            background-color: @firm;
-            border-bottom-color: mix(@firm, black, 85%);
+            background-color: @brand-secondary;
+            border-bottom-color: mix(@brand-secondary, black, 85%);
             border-left: none;
             color: @inverse;
             padding-left: @navbar-link-space;
@@ -295,21 +292,27 @@
 
       // Link styling
       > a {
-        font-size: floor(@font-size-base * 1.143); // ~16px
-        border-bottom: 2px solid mix(@base, black, 85%);
-        border-left: 2px solid mix(@base, black, 85%);
+        font-size: floor(@component-font-size-base * 1.067); // ~16px
+        border-bottom: 2px solid mix(@brand-primary, black, 85%);
+        border-left: 2px solid mix(@brand-primary, black, 85%) !important;
         color: @inverse;
         padding: 16px @navbar-link-space 15px;
         line-height: 20px;
       }
     }
   }
-  .nav.pull-right {
-	  margin-right: -15px;
-  }
 
+	.nav.navbar-right {
+		.dropdown-menu {
+			left: -100%;
+			margin-left: 17px;
+		}
+		.open > .dropdown-menu:before {
+			display: block !important;
+		}
+	}
   // Round corders of the pull-right dropdown
-  .nav.pull-right > li {
+  .nav.navbar-right > li {
     > a {
       border-radius: 0 @border-radius-large @border-radius-large 0;
     }
@@ -320,13 +323,13 @@
 .navbar-unread,
 .navbar-new {
   font-family: @font-family-base;
-  background-color: @firm;
+  background-color: @brand-secondary;
   border-radius: 50%;
   color: @inverse;
   font-size: 0;
   font-weight: 700;
   height: 6px;
-  line-height: @font-size-base;
+  line-height: 14px;
   position: absolute;
   right: 12px;
   text-align: center;
@@ -344,7 +347,7 @@
 }
 
 .navbar-new {
-  background-color: @danger;
+  background-color: @brand-danger;
   font-size: 12px;
   line-height: 17px;
   height: 18px;
@@ -363,8 +366,8 @@
     .nav li.dropdown {
       &.open {
         > .dropdown-toggle {
-          background-color: @firm;
-          border-bottom-color: mix(@firm, black, 85%);
+          background-color: @brand-secondary;
+          border-bottom-color: mix(@brand-secondary, black, 85%);
           color: @inverse;
 
           .caret {
@@ -381,11 +384,11 @@
     &.open {
       > .dropdown-toggle {
         background: none;
-        color: @firm;
+        color: @brand-secondary;
 
         .caret {
-          border-bottom-color: @firm !important;
-          border-top-color: @firm !important;
+          border-bottom-color: @brand-secondary !important;
+          border-top-color: @brand-secondary !important;
         }
       }
       .dropdown-menu {
@@ -402,21 +405,21 @@
       &:hover,
       &:focus {
         .caret {
-          border-bottom-color: @firm;
-          border-top-color: @firm;
+          border-bottom-color: @brand-secondary;
+          border-top-color: @brand-secondary;
         }
       }
       .caret {
         border-left-width: 6px;
         border-right-width: 6px;
         border-top-width: 8px;
-        border-bottom-color: lighten(@base, 13%);
-        border-top-color: lighten(@base, 13%);
+        border-bottom-color: lighten(@brand-primary, 13%);
+        border-top-color: lighten(@brand-primary, 13%);
         margin-left: 10px;
       }
     }
     .dropdown-menu {
-      background-color: @base;
+      background-color: @brand-primary;
       opacity: 0;
       padding: 0;
       visibility: hidden;
@@ -425,7 +428,7 @@
         display: none;
       }
       &:after {
-        border-bottom-color: @base;
+        border-bottom-color: @brand-primary;
       }
       > li {
         > a {
@@ -435,7 +438,7 @@
         }
       }
       .divider {
-        background-color: mix(@base, black, 85%);
+        background-color: mix(@brand-primary, black, 85%);
         border-bottom: none;
         margin: 2px 0 5px;
         padding: 0;
@@ -445,11 +448,72 @@
   }
 }
 
+// SEARCH BOX
+// -----------
+.navbar {
+  // Inverse navbar search box styling
+  &.navbar-inverse {
+    .navbar-form {
+      border-left: 2px solid mix(@brand-primary, black, 85%);
+      border-bottom: 2px solid mix(@brand-primary, black, 85%);
+      padding: 8px 5px 8px @navbar-link-space + 3;
+
+      .input-group-btn {
+	      .btn {
+		      background-color: mix(@brand-primary, black, 85%);
+	        color: lighten(@brand-primary, 13%) !important;
+	      }
+      }      
+      .form-control {
+        background-color: mix(@brand-primary, black, 85%);
+        color: @inverse;
+        .placeholder(lighten(@brand-primary, 33%));
+      }
+      .form-control:focus {
+        border-color: @brand-secondary;
+      }
+      &.focus {
+	      .input-group-btn {
+		      .btn {
+			      background-color: mix(@brand-primary, black, 85%) !important;
+		      }
+				}  
+      }
+    }
+  }
+
+  // Default navbar search box styling
+  .navbar-form {
+    margin: 0;
+    padding: 20px (@navbar-link-space - 15) 19px @navbar-link-space;
+    max-width: 229px;
+
+		.form-group {
+			margin-bottom: 0;
+		}
+    .form-control {
+      background-color: @inverse;
+      border: 2px solid transparent;
+      color: mix(@brand-primary, white, 85%);
+      .placeholder(mix(@brand-primary, white, 66%));
+      font-size: @component-font-size-base; // ~15px
+    }
+    .form-control:focus {
+      border-color: @brand-secondary;
+    }
+    .input-group-btn .btn {
+	    border-color: transparent;
+	    color: mix(@brand-primary, white, 50%);
+	    font-size: floor(@component-font-size-base * 1.067); // ~16px
+    }
+  }
+}
+
 // Fixed top/bottom
 .navbar.navbar-fixed-bottom,
 .navbar.navbar-fixed-top {
   .navbar-inner {
-    .navbar-search {
+    .navbar-form {
       .form-control {
         border-radius: 50px 0 0 50px !important;
       }
