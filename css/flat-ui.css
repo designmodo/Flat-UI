@@ -1750,7 +1750,7 @@ fieldset[disabled] .form-control + .input-icon,
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #ffffff;
+  background-color: inherit;
   margin: 0;
   opacity: 1;
   filter: alpha(opacity=100);
