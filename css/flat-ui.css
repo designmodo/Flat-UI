@@ -897,6 +897,12 @@ fieldset[disabled] .btn-link:focus {
   border-right-width: 6px;
   border-left-width: 6px;
 }
+.navbar-static-top,
+.navbar-static-bottom,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  border-radius: 0;
+}
 .navbar {
   font-size: 16px;
   border-radius: 6px;
