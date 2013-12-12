@@ -9,17 +9,21 @@ Thanks for supporting our website and enjoy!
 
 ## Links:
 
-+ [Demo page](http://designmodo.github.com/Flat-UI/)
-+ [Official page](http://designmodo.com/flat-free)
-+ [Premium Version of Flat UI](http://designmodo.com/flat/)
++ [Download HTML Pack](https://github.com/designmodo/Flat-UI/archive/master.zip)
++ [Download PSD Pack](http://designmodo.github.com/Flat-UI/)
++ [Flat UI Pro](http://designmodo.com/flat/)
 
 ## Changelog
 
+
++ 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
++ + 2.1 Bootstrap upgraded to 3.0, better box model, update html5 video player to version 4.1, added components documentation and sturt-up template, various small bugfixes.
++ + 2.1.1 Typography improved (new global variables, padding and margins changed for basic elements, global default font-size now is 18px, with a line-height of 1.722, added support for <abbr>, <address>, <code>, <pre>, right-aligned <blockquote>), Buttons module completely rewritten (new global variables, buttons now require a .btn-default for the standard version, added support for .btn-link), fixed some bugs in .navbar, mixins updated (added standard mixins from Bootstrap 3), layout updated for stylized select and dropdown menu, various small bugfixes.
+
 + 1.0 Fixed several small IE bugs
 + 1.1 New icons, Login screen implemented to a real HTML one. Small bug fixes and refinements.
-+ 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
-+ 2.1 Bootstrap upgraded to 3.0, better box model, update html5 video player to version 4.1, added components documentation and sturt-up template, various small bugfixes.
-+ 2.1.1 Typography improved (new global variables, padding and margins changed for basic elements, global default font-size now is 18px, with a line-height of 1.722, added support for <abbr>, <address>, <code>, <pre>, right-aligned <blockquote>), Buttons module completely rewritten (new global variables, buttons now require a .btn-default for the standard version, added support for .btn-link), fixed some bugs in .navbar, mixins updated (added standard mixins from Bootstrap 3), layout updated for stylized select and dropdown menu, various small bugfixes.
+
+
 
 ## Authors
 
@@ -59,7 +63,7 @@ How Companies can Save Time and Money Using UI Kits:		  [http://designmodo.com/s
 UI Kits for Developers – Prototyping and Homemade Design:	[http://designmodo.com/ui-kits-developers](http://designmodo.com/ui-kits-developers)
 
  
-Our Shop:
+More productsfrom Designmodo:
 
 [http://designmodo.com/shop/](http://designmodo.com/shop/)
 
