@@ -9,7 +9,7 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
-+ [Download PSD](http://designmodo.github.com/Flat-UI/) (for designers)
++ [Download PSD](http://designmodo.com/flat-free/) (for designers)
 + [Flat UI Pro 1.2.2](http://designmodo.com/flat/) (from $39)
 
 ## Changelog
