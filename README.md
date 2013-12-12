@@ -3,16 +3,14 @@ Flat UI Free 2.1.1
 
 Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html. 
 
-You are allowed to use these elements anywhere you want, however we’ll highly appreciate if you will link to our website when you share them - http://designmodo.com
-
-Thanks for supporting our website and enjoy!
+You are allowed to use these elements anywhere you want, however we’ll highly appreciate if you will link to our [website](http://designmodo.com).
 
 ## Links:
 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
 + [Download PSD](http://designmodo.github.com/Flat-UI/) (for designers)
-+ [Flat UI Pro](http://designmodo.com/flat/) (from $39)
++ [Flat UI Pro 1.2.2](http://designmodo.com/flat/) (from $39)
 
 ## Changelog
 
