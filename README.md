@@ -9,8 +9,9 @@ Thanks for supporting our website and enjoy!
 
 ## Links:
 
-+ [Download HTML Pack](https://github.com/designmodo/Flat-UI/archive/master.zip)
-+ [Download PSD Pack](http://designmodo.github.com/Flat-UI/)
++ [Demo Page](http://designmodo.github.io/Flat-UI/)
++ [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
++ [Download PSD](http://designmodo.github.com/Flat-UI/) (for designers)
 + [Flat UI Pro](http://designmodo.com/flat/)
 
 ## Changelog
