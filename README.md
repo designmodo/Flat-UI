@@ -12,7 +12,7 @@ Thanks for supporting our website and enjoy!
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
 + [Download PSD](http://designmodo.github.com/Flat-UI/) (for designers)
-+ [Flat UI Pro](http://designmodo.com/flat/)
++ [Flat UI Pro](http://designmodo.com/flat/) (from $39)
 
 ## Changelog
 
