@@ -65,11 +65,16 @@
       <h3 class="demo-panel-title">Menu</h3>
       <div class="row demo-row">
         <div class="col-md-9">
-          <div class="navbar navbar-inverse">
-          	<div class="navbar-header">
-	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-          	</div>            
-            <div class="navbar-collapse collapse navbar-collapse-01">
+          <nav class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-01">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
                 <li>
                   <a href="#fakelink">
@@ -77,12 +82,12 @@
                     <span class="navbar-unread">1</span>
                   </a>
                 </li>
-                <li class="active">
-                  <a href="#fakelink">
+                <li class="active dropdown">
+                  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
                     Messages
-                    <span class="navbar-unread">1</span>
+                    <span class="caret"></span>
                   </a>
-                  <ul>
+                  <ul class="dropdown-menu">
                     <li><a href="#fakelink">Element One</a></li>
                     <li>
                       <a href="#fakelink">Sub menu</a>
@@ -102,7 +107,7 @@
                 </li>
               </ul>
             </div><!--/.nav -->
-          </div>
+          </nav>
         </div>
         <div class="col-md-3">
           <select name="herolist" value="X-Men" class="select-block">
