@@ -17,6 +17,7 @@
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -31,12 +32,10 @@
           <p>
             <a href="http://designmodo.com/flat" target="_blank">Flat UI</a>
             is a beautiful theme for <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
-            We redesigned many of it's components to look flat in every pixel.
+            We have redesigned many of its components to look flat in every pixel.
           </p>
           <p>
-            However, to make form and some other
-            elements look exactly how we want we ended up using JS plugins which means it requires a little more
-            efforts integrating them into your project.
+            For the most part, it is very simple to use, however, to be able to make some form elements and others look exactly how we want, we ended up using some JS plugins, which means it takes a little bit more effort to integrate them into your project.
           </p>
         </div>
       </div><!-- /.demo-row -->
@@ -48,25 +47,25 @@
 
         <div class="demo-content demo-content-article">
           <p>
-            Since it is built on top of Bootstrap as a theme you can use it on your project with <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a>.
-            We did not modify any line of Bootstrap so you will be safe using Flat UI in your ongoing project
-            (unless you hacked it :)
+            Since Flat UI is built on top of Bootstrap as a theme, you can use it in your <a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a> project.
+            We did not modify any line of Bootstrap, so you will be safe using Flat UI in your ongoing project
+            (unless you hacked it yourself :)
           </p>
           <p>
-            We provide you with CSS and <a href="http://lesscss.org/" target="_blank">Less</a> sources.
+            We provide you with the CSS and the <a href="http://lesscss.org/" target="_blank">Less</a> sources.
             <br/>
-            1. Using CSS is as easy as dropping <code>css/flat-ui.css</code> to your project folder and
+            1. Using CSS is as easy as dropping <code>css/flat-ui.css</code> into your project folder and
             including it in your template/html page:
             <code>&lt;link href="css/flat-ui.css" rel="stylesheet"&gt;</code>
           </p>
           <p>
-            2. Use Less if you want to modify/extend Flat UI in your project. We built it Bootstrap way so
-            you won't find big difference.
+            2. Use Less if you want to modify/extend Flat UI in your project. It is built just like Bootstrap so
+            you won't find a big difference.
           </p>
           <p>
-            The easiest way to start is by using our
-            <a href="template.html">start-up template</a> where all files are already included
-            and ready to be used (JS plugins are included, but not initialized for no need).
+            The easiest way to start is to use our
+            <a href="template.html">start-up template</a> where all the files are already included
+            and ready to use. (The JS plugins are included, but not initialized. You will have to initialize them as needed.)
           </p>
         </div>
       </div><!-- /.demo-row -->
@@ -78,7 +77,7 @@
 
         <div class="demo-content demo-content-article">
           <p>
-            Once purchased, unzip the compressed archive to see the structure:
+            Once purchased, unzip the compressed archive to see the following structure:
 <pre class="prettyprint">
   flat-ui/
   <span class="muted">├──</span> bootstrap/
@@ -104,28 +103,28 @@
           </p>
 
           <p>
-            Let's go from top to the bottom of this list.
+            Let's go through this list:
           </p>
 
           <p>
-            <strong>bootstrap/</strong> &mdash; as you can guess this is a folder where all original
-            Bootstrap files are (untouched). Before using our theme please make sure you didn't modify
-            anything that can break compatibility: paddings, margins, etc. <br/>
-            <em class="text-info">Note</em>: you can modify <code>variables.less</code> safely.
+            <strong>bootstrap/</strong> &mdash; as you can guess this is the folder where all the original
+            Bootstrap files are located (untouched). Before using our theme, please make sure you didn't modify
+            anything in Bootstrap that can cause compatibility issues: paddings, margins, etc. <br/>
+            <em class="text-info">Note</em>: you can safely modify <code>variables.less</code>.
           </p>
 
           <p>
-            <strong>css/</strong> &mdash; compiled Flat UI CSS. If you like everything and don't want
-            to change the look of our components it is better to use CSS version. This is an easiest
+            <strong>css/</strong> &mdash; the compiled Flat UI CSS. If you like everything and you don't want
+            to change the look of our components, it is better to use the CSS version. This is the easiest
             way to start using Flat UI.
           </p>
 
           <p>
-            <strong>fonts/</strong> &mdash; yes, this is an icon font. When integrating make sure you
-            copied all font files correctly. You might want to change/add glyphs. If so, open
+            <strong>fonts/</strong> &mdash; yes, this is an icon font. When integrating this into your project, make sure you
+            copy all the font files correctly. You might want to change/add some glyphs. If so, open
             <a href="http://icomoon.io/app">IcoMoon</a> and import <code>icomoon-session.json</code>
             there to make all glyhps editable. You can also
-            <a href="http://screencast.com/t/JMs4cYHn" target="_blank">watch a video screencast</a>
+            <a href="http://screencast.com/t/JMs4cYHn" target="_blank">watch this video screencast</a>
             on how to add your custom glyphs.
           </p>
 
@@ -134,31 +133,30 @@
           </p>
 
           <p>
-            <strong>images/</strong> &mdash; unfortunately we should use them in few cases. The rest
-            is in&nbsp;the&nbsp;glyphs.
+            <strong>images/</strong> &mdash; unfortunately we have to use them in few cases, where we cannot just use glyphs.
           </p>
 
           <p>
-            <strong>js/</strong> &mdash; we tried hard to make our components all look true Flat. To do
-            so we used JS plugins. Most of them are well known, some of them not. The most JS-ified part
-            is form components: checkboxes, radios, switches, selects since it is not currently possible
-            to style them identically in all browsers. Open <code>application.js</code> for integration
+            <strong>js/</strong> &mdash; we have tried hard to make all our components look true Flat. In order to do
+            that we have used some JS plugins. Most of them are well known, while some of them are not. The most JS-ified components are the form components: checkboxes, radios, switches, selects, since it is not currently possible
+            to style them identically in all browsers. Look at <code>application.js</code> for integration
             examples.
           </p>
 
           <p>
-            <strong>less/</strong> &mdash; where all our stylesheets are (not preprocessed).
+            <strong>less/</strong> &mdash; is where all our stylesheets are located (not preprocessed).
           </p>
 
           <ul>
             <li>
-              <code>variables.less</code> is where all variables are.
+              <code>variables.less</code> is where all the variables are.
             </li>
             <li>
               <code>flat-ui.less</code> links everything into one single bundle.
             </li>
             <li>
-              <code>demo.less</code> is where we do magic.
+              <code>icon-font.less</code> makes all the icon glyphs work. Converted with
+              <a href="http://icomoon.io">IcoMoon</a>.
             </li>
             <li>
               <code>docs.less</code> where all our stylesheets for documentation.
@@ -168,17 +166,17 @@
               <a href="http://icomoon.io">IcoMoon</a>.
             </li>
             <li>
-              <code>fonts.less</code> is where all custom fonts.
+              <code>fonts.less</code> is where all custom fonts are.
             </li>
             <li>
-              <code>mixins.less</code> helps automating things. Feel free to add yours here.
+              <code>mixins.less</code> helps automate things. Feel free to add your own here.
             </li>
             <li>
-              <code>scaffolding.less</code> is where you can find basic styles for body, anchors and other elements.
+              <code>scaffolding.less</code> is where you can find some basic styles for the body, the anchors and other elements.
             </li>
             <li>
-              <code>modules/</code> is where all components are. If you want to add yours create
-              module-name.less here. Name it as a class name if possible.
+              <code>modules/</code> is where all the components are. If you want to add your own, create
+              module-name.less files here. Name them as a class name if possible.
             </li>
           </ul>
         </div>
@@ -207,13 +205,13 @@
               <code>tagsinput.less</code> Tags input field.
             </li>
             <li>
-              <code>ui-datepicker.less</code> Datepicker widget.
+              <code>datepicker.less</code> Datepicker widget.
             </li>
             <li>
-              <code>ui-slider.less</code> Range slider.
+              <code>slider.less</code> Range slider.
             </li>
             <li>
-              <code>ui-spinner.less</code> Text input with increment/decrement.
+              <code>spinner.less</code> Text input with increment/decrement.
             </li>
             <li>
 	            <code>input-icons.less</code> Icons for text-based form fields.

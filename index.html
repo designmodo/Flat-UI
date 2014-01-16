@@ -18,6 +18,7 @@
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -66,44 +67,30 @@
       <h3 class="demo-panel-title">Menu</h3>
       <div class="row demo-row">
         <div class="col-md-9">
-          <div class="navbar navbar-inverse">
-          	<div class="navbar-header">
-	          	<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-collapse-01"></button>
-          	</div>            
-            <div class="navbar-collapse collapse navbar-collapse-01">
-              <ul class="nav navbar-nav navbar-left">
-                <li>
-                  <a href="#fakelink">
-                    Menu Item
-                    <span class="navbar-unread">1</span>
-                  </a>
+          <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+              <ul class="nav navbar-nav navbar-left">           
+                <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages <b class="caret"></b></a>
+                  <span class="dropdown-arrow"></span>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
                 </li>
-                <li class="active">
-                  <a href="#fakelink">
-                    Messages
-                    <span class="navbar-unread">1</span>
-                  </a>
-                  <ul>
-                    <li><a href="#fakelink">Element One</a></li>
-                    <li>
-                      <a href="#fakelink">Sub menu</a>
-                      <ul>
-                        <li><a href="#fakelink">Element One</a></li>
-                        <li><a href="#fakelink">Element Two</a></li>
-                        <li><a href="#fakelink">Element Three</a></li>
-                      </ul> <!-- /Sub menu -->
-                    </li>
-                    <li><a href="#fakelink">Element Three</a></li>
-                  </ul> <!-- /Sub menu -->
-                </li>
-                <li>
-                  <a href="#fakelink">
-                    About Us
-                  </a>
-                </li>
-              </ul>
-            </div><!--/.nav -->
-          </div>
+                <li><a href="#fakelink">About Us</a></li>
+               </ul>
+            </div><!-- /.navbar-collapse -->
+          </nav><!-- /navbar -->
         </div>
         <div class="col-md-3">
           <select name="herolist" value="X-Men" class="select-block">
@@ -773,7 +760,7 @@
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/jquery.stacktable.js"></script>
-    <script src="http://vjs.zencdn.net/4.1/video.js"></script>
+    <script src="http://vjs.zencdn.net/4.3/video.js"></script>
     <script src="js/application.js"></script>
   </body>
 </html>

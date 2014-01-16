@@ -27,6 +27,9 @@ a {
     color: @link-hover-color;
     text-decoration: none;
   }
+  &:focus {
+	  outline: none;
+  }
 }
 
 // Images
@@ -39,8 +42,8 @@ a {
 
 // Description text under image
 .img-comment {
-  font-size: ceil(@font-size-base * 1.071); // ~15px
-  line-height: @line-height-base;
+  font-size: ceil(@font-size-base * 0.8333); // ~15px
+  line-height: 1.2;
   font-style: italic;
   margin: 24px 0;
 }
