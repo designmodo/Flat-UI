@@ -476,6 +476,47 @@ $(':radio').on('toggle', function() {
 &lt;/div&gt;
 </pre>
 
+        <p class="ptl">You can have the input with append/prepend options:</p>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  <input class="form-control" type="text" placeholder="Prepend" />
+                </div>
+              </div>              
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <div class="input-group">                 
+                  <input class="form-control" type="text" placeholder="Append" />
+                  <span class="input-group-addon">@</span>
+                </div>
+              </div>              
+            </div>
+          </div>
+
+<pre class="prettyprint mtm">
+&lt;!-- Prepend --&gt;
+&lt;div class="form-group"&gt;
+  &lt;div class="input-group"&gt;
+    &lt;span class="input-group-addon"&gt;@&lt;/span&gt;
+    &lt;input type="text" class="form-control" placeholder="Prepend" /&gt;
+  &lt;/div&gt;  
+&lt;/div&gt;
+
+&lt;!-- Append --&gt;
+&lt;div class="form-group"&gt;
+  &lt;div class="input-group"&gt;
+    &lt;input type="text" class="form-control" placeholder="Append" /&gt;
+    &lt;span class="input-group-addon"&gt;@&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
           <p class="ptl">
             The different color styles and the disabled state work as expected:
             <div class="row">
@@ -507,6 +548,36 @@ $(':radio').on('toggle', function() {
             	</div>
             </div>
           </p>
+
+          <p class="ptl mtl">
+            The search form doesn't have any background color set to append/prepend:
+          </p>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <div class="input-group input-group-hg input-group-rounded">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn"><span class="fui-search"></span></button>
+                  </span>              
+                  <input type="text" class="form-control" placeholder="Search" id="search-query-2">
+                </div>
+              </div>
+            </div>
+          </div>          
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <div class="input-group">                               
+                  <input type="text" class="form-control" placeholder="Search" id="search-query-3">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn"><span class="fui-search"></span></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
 
@@ -526,14 +597,14 @@ $(':radio').on('toggle', function() {
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                 <span class="sr-only">Toggle navigation</span>
               </button>
-              <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+              <a class="navbar-brand" href="#">Flat UI</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav">           
                 <li class="active"><a href="#fakelink">Products</a></li>
                 <li><a href="#fakelink">Features</a></li>
                </ul>          
-              <form class="navbar-form navbar-right" action="#" role="search">
+              <form class="navbar-form navbar-right" action="#" role="search" style="width: 250px">
                 <div class="form-group">
                   <div class="input-group">
                     <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
@@ -552,7 +623,7 @@ $(':radio').on('toggle', function() {
     &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"&gt;
       &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
     &lt;/button&gt;
-    &lt;a class="navbar-brand" href="#"&gt;&lt;span class="fui-flat"&gt;&lt;/span&gt;&lt;/a&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Flat UI&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class="collapse navbar-collapse" id="navbar-collapse-01"&gt;
     &lt;ul class="nav navbar-nav"&gt;           
@@ -579,14 +650,14 @@ $(':radio').on('toggle', function() {
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
               <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+            <a class="navbar-brand" href="#">Flat UI</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar-collapse-02">
             <ul class="nav navbar-nav">           
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>          
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form navbar-right" action="#" role="search" style="width: 250px">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
@@ -612,14 +683,14 @@ $(':radio').on('toggle', function() {
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
               <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+            <a class="navbar-brand" href="#">Flat UI</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar-collapse-02">
             <ul class="nav navbar-nav">           
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>          
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form navbar-right" action="#" role="search" style="width: 250px">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
@@ -644,14 +715,14 @@ $(':radio').on('toggle', function() {
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-03">
               <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+            <a class="navbar-brand" href="#">Flat UI</a>
           </div>
           <div class="collapse navbar-collapse" id="navbar-collapse-03">
             <ul class="nav navbar-nav">           
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>          
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form navbar-right" action="#" role="search" style="width: 250px">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
@@ -676,7 +747,7 @@ $(':radio').on('toggle', function() {
             <button data-target="#navbar-collapse-04" data-toggle="collapse" class="navbar-toggle" type="button">
               <span class="sr-only">Toggle navigation</span>
             </button>
-            <a href="#" class="navbar-brand"><span class="fui-flat"></span></a>
+            <a href="#" class="navbar-brand">Flat UI</a>
           </div>
           <div id="navbar-collapse-04" class="collapse navbar-collapse">
             <form role="search" class="navbar-form navbar-left">
@@ -702,7 +773,7 @@ $(':radio').on('toggle', function() {
           <div class="navbar-header">
             <button data-target="#navbar-collapse-05" data-toggle="collapse" class="navbar-toggle" type="button">
             </button>
-            <a href="#" class="navbar-brand"><span class="fui-flat"></span></a>
+            <a href="#" class="navbar-brand">Flat UI</a>
           </div>
           <div id="navbar-collapse-05" class="collapse navbar-collapse">
             <button class="btn btn-default navbar-btn" type="button">Sign in</button>
@@ -725,7 +796,7 @@ $(':radio').on('toggle', function() {
           <div class="navbar-header">
             <button data-target="#navbar-collapse-06" data-toggle="collapse" class="navbar-toggle" type="button">
             </button>
-            <a href="#" class="navbar-brand"><span class="fui-flat"></span></a>
+            <a href="#" class="navbar-brand">Flat UI</a>
           </div>
           <div id="navbar-collapse-06" class="collapse navbar-collapse">
             <p class="navbar-text">Signed in as Mark Otto</p>
@@ -741,7 +812,7 @@ $(':radio').on('toggle', function() {
           <div class="navbar-header">
             <button data-target="#navbar-collapse-07" data-toggle="collapse" class="navbar-toggle" type="button">
             </button>
-            <a href="#" class="navbar-brand"><span class="fui-flat"></span></a>
+            <a href="#" class="navbar-brand">Flat UI</a>
           </div>
           <div id="navbar-collapse-07" class="collapse navbar-collapse">
             <p class="navbar-text navbar-right">Signed in as <a class="navbar-link" href="#">Mark Otto</a></p>
@@ -758,7 +829,7 @@ $(':radio').on('toggle', function() {
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
                 <span class="sr-only">Toggle navigation</span>
               </button>
-              <a class="navbar-brand" href="#"><span class="fui-flat"></span></a>
+              <a class="navbar-brand" href="#">Flat UI</a>
             </div>
           
             <div class="collapse navbar-collapse" id="#navbar-collapse-02">

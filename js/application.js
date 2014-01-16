@@ -68,6 +68,13 @@ String.prototype.repeat = function(num) {
     // Placeholders for input/textarea
     $(":text, textarea").placeholder();
 
+    // Focus state for append/prepend inputs
+    $('.input-group').on('focus', '.form-control', function () {
+      $(this).closest('.input-group, .form-group').addClass('focus');
+    }).on('blur', '.form-control', function () {
+      $(this).closest('.input-group, .form-group').removeClass('focus');
+    });
+
     // Make pagination demo work
     $(".pagination").on('click', "a", function() {
       $(this).parent().siblings("li").removeClass("active").end().addClass("active");
