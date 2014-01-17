@@ -88,6 +88,17 @@
         &.previous,
         &.next {
           border-color: mix(@pagination-color, white, 66%);
+
+          > a, > span {
+            margin: 0;
+
+            &,
+            &:hover,
+            &:focus {
+              background-color: @brand-secondary;
+              color: @inverse;
+            }
+          }
         }
         &.previous {
           margin-right: 6px;

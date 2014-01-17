@@ -2901,6 +2901,27 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 .pagination ul li.active.next {
   border-color: #e4e7ea;
 }
+.pagination ul li.active.previous > a,
+.pagination ul li.active.next > a,
+.pagination ul li.active.previous > span,
+.pagination ul li.active.next > span {
+  margin: 0;
+}
+.pagination ul li.active.previous > a,
+.pagination ul li.active.next > a,
+.pagination ul li.active.previous > span,
+.pagination ul li.active.next > span,
+.pagination ul li.active.previous > a:hover,
+.pagination ul li.active.next > a:hover,
+.pagination ul li.active.previous > span:hover,
+.pagination ul li.active.next > span:hover,
+.pagination ul li.active.previous > a:focus,
+.pagination ul li.active.next > a:focus,
+.pagination ul li.active.previous > span:focus,
+.pagination ul li.active.next > span:focus {
+  background-color: #1abc9c;
+  color: #ffffff;
+}
 .pagination ul li.active.previous {
   margin-right: 6px;
 }
