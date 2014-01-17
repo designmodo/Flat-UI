@@ -15,24 +15,24 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 ## Changelog
 
 + 2.1.2 
-+ + Bootstrap upgraded to 3.0.3;
-+ + Navbar completely rewriten, added new states (default, inverse, embossed, large, fixed-top, fixed-bottom, static-top), now you can use basic navbar elements: ```.navbar-form```, ```.navbar-btn```, ```.navbar-text```, ```.navbar-link```;
-+ + Forms: added support for ```legend```, ```.help-block```, fixed rounded serch form on iOS, fixed desabled input background and opacity, added support for input-groups;
-+ + Slider: added vertical orientation;
-+ + Various small bugfixes and improvements.
+  + Bootstrap upgraded to 3.0.3;
+  + Navbar completely rewriten, added new states (default, inverse, embossed, large, fixed-top, fixed-bottom, static-top), now you can use basic navbar elements: ```.navbar-form```, ```.navbar-btn```, ```.navbar-text```, ```.navbar-link```;
+  + Forms: added support for ```legend```, ```.help-block```, fixed rounded serch form on iOS, fixed desabled input background and opacity, added support for input-groups;
+  + Slider: added vertical orientation;
+  + Various small bugfixes and improvements.
 + 2.1.1 
-+ + Typography improved (new global variables, padding and margins changed for basic elements, global default font-size now is 18px, with a line-height of 1.722, added support for ```<abbr>```, ```<address>```, ```<code>```, ```<pre>```, right-aligned ```<blockquote>```);
-+ + Buttons module completely rewritten (new global variables, buttons now require a .btn-default for the standard version, added support for .btn-link);
-+ + Fixed some bugs in ```.navbar```;
-+ + Mixins updated (added standard mixins from Bootstrap 3);
-+ + Layout updated for stylized select and dropdown menu;
-+ + Various small bugfixes and improvements.
+  + Typography improved (new global variables, padding and margins changed for basic elements, global default font-size now is 18px, with a line-height of 1.722, added support for ```<abbr>```, ```<address>```, ```<code>```, ```<pre>```, right-aligned ```<blockquote>```);
+  + Buttons module completely rewritten (new global variables, buttons now require a .btn-default for the standard version, added support for .btn-link);
+  + Fixed some bugs in ```.navbar```;
+  + Mixins updated (added standard mixins from Bootstrap 3);
+  + Layout updated for stylized select and dropdown menu;
+  + Various small bugfixes and improvements.
 + 2.1
-+ + Bootstrap upgraded to 3.0;
-+ + Added support for better box model;
-+ + Update html5 video player to version 4.1; 
-+ + Added components documentation and sturt-up template;
-+ + Various small bugfixes and improvements.
+  + Bootstrap upgraded to 3.0;
+  + Added support for better box model;
+  + Update html5 video player to version 4.1; 
+  + Added components documentation and sturt-up template;
+  + Various small bugfixes and improvements.
 + 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
 + 1.1 New icons, Login screen implemented to a real HTML one. Small bug fixes and refinements.
 + 1.0 Fixed several small IE bugs
