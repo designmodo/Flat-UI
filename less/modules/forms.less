@@ -2,6 +2,24 @@
 // Forms
 // --------------------------------------------------
 
+
+// Normalize non-controls
+//
+// Restyle and baseline non-control form elements.
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: @line-height-computed / 2;
+  font-size: (@component-font-size-base * 1.6); // ~24px
+  line-height: inherit;
+  color: @legend-color;
+  border-bottom: none;
+}
+
+// Normalize form controls
+
 // Textarea
 textarea {
   font-size: ceil(@font-size-base * 1.071); // ~15px
@@ -9,10 +27,17 @@ textarea {
   padding: 5px 11px;
 }
 
+// Search
+input[type="search"] {
+	-webkit-appearance: none !important; // removes rounded corners for searchfields on iOS
+}
+
+
 // Label
 label {
 	font-weight: normal;
-	line-height: @line-height-base * 1.1605em; // ~20px
+	font-size: @component-font-size-base;
+	line-height: 2.4; // ~36px
 }
 
 // Placeholder
@@ -50,6 +75,7 @@ label {
   color: @brand-primary;
   font-family: @font-family-base;
   font-size: @input-font-size-base;
+  line-height: @input-line-height-base;
   padding: 8px 12px;
   height: 42px;
   -webkit-appearance: none;
@@ -71,6 +97,7 @@ label {
 	  border-color: mix(@gray, white, 40%);
 	  color: mix(@gray, white, 40%);
 	  cursor: default;
+	  .opacity(.7);
   }  
   
   // Flat (without border)
@@ -88,15 +115,15 @@ label {
 
 // Form control sizing
 .input-sm {
-  .input-size(@input-height-small; 6px; 10px; @input-font-size-sm; @line-height-base);
+  .input-size(@input-height-small; 6px; 10px; @input-font-size-sm; @input-line-height-sm);
 }
 
 .input-lg {
-  .input-size(@input-height-large; 10px; 15px; @input-font-size-lg; @line-height-base);
+  .input-size(@input-height-large; 10px; 15px; @input-font-size-lg; @input-line-height-lg);
 }
 
 .input-hg {
-	.input-size(@input-height-huge; 10px; 16px; @input-font-size-hg; @line-height-base);
+	.input-size(@input-height-huge; 10px; 16px; @input-font-size-hg; @input-line-height-hg);
 }
 
 // Form control feedback states
@@ -116,6 +143,17 @@ label {
   .form-control-validation(@brand-success; @brand-success);
 }
 
+// Help text
+//
+// Apply to any element you wish to create light text for placement immediately
+// below a form control. Use for general help, formatting, or instructional text.
+
+.help-block {
+	font-size: @component-font-size-base;
+  margin-bottom: 5px;
+  color: inherit;
+}
+
 // Form groups
 //
 // Designed to help with the organization and spacing of vertical forms. For
@@ -124,4 +162,32 @@ label {
 .form-group {
 	position: relative;
   margin-bottom: 20px;
+}
+
+// Horizontal forms
+//
+// Horizontal forms are built on grid classes and allow you to create forms with
+// labels on the left and inputs on the right.
+
+.form-horizontal {
+
+  // Consistent vertical alignment of labels, radios, and checkboxes
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 6px;
+  }
+
+  // Make form groups behave like rows
+  .form-group {
+    .make-row();
+  }
+
+  .form-control-static {
+    padding-top: 6px;
+  }
 }
