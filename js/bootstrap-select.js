@@ -74,7 +74,7 @@
             if (this.options.size == 'auto') {
                 function getSize() {
                     var selectOffset_top_scroll = selectOffset_top - $(window).scrollTop();
-                    var windowHeight = $(window).innerHeight;
+                    var windowHeight = $(window).innerHeight();
                     var menuExtras = menuPadding + parseInt(menu.css('margin-top')) + parseInt(menu.css('margin-bottom')) + 2;
                     var selectOffset_bot = windowHeight - selectOffset_top_scroll - selectHeight - menuExtras;
                     menuHeight = selectOffset_bot;
