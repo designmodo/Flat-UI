@@ -51,7 +51,7 @@
         });
       
         if ($el.prop(d) == false) {
-          if (checked == false) $parent.addClass(ch) && $el.attr(ch, true);
+          if (checked == false) $parent.addClass(ch) && $el.prop(ch, true);
           $el.trigger(e);
           
           if (checked !== $el.prop(ch)) {
