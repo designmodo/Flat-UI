@@ -3,7 +3,7 @@
   border-top-color: #34495e !important;
 }
 .container {
-  max-width: 970px !important;
+  width: 970px !important;
 }
 .demo-headline {
   padding: 73px 0 110px;
