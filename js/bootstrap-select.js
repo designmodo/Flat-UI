@@ -86,7 +86,13 @@
                 getSize();
                 $(window).resize(getSize);
                 $(window).scroll(getSize);
-                this.$element.bind('DOMNodeInserted', getSize);
+                if (window.MutationObserver) {
+                    new MutationObserver(getSize).observe(this.$element.get(0), {
+                        childList: true
+                    });
+                } else {
+                    this.$element.bind('DOMNodeInserted', getSize);
+                }
             } else if (this.options.size && this.options.size != 'auto' && menu.find('li').length > this.options.size) {
                 var optIndex = menu.find("li > *").filter(':not(.divider)').slice(0,this.options.size).last().parent().index();
                 var divLength = menu.find("li").slice(0,optIndex + 1).find('.divider').length;
@@ -94,8 +100,14 @@
                 menu.css({'max-height' : menuHeight + 'px', 'overflow-y' : 'scroll'});
             }
 
-            //Listen for updates to the DOM and re render...
-            this.$element.bind('DOMNodeInserted', $.proxy(this.reloadLi, this));
+            // Listen for updates to the DOM and re render... (Use Mutation Observer when availiable)
+            if (window.MutationObserver) {
+                new MutationObserver($.proxy(this.reloadLi, this)).observe(this.$element.get(0), {
+                    childList: true
+                });
+            } else {
+                this.$element.bind('DOMNodeInserted', $.proxy(this.reloadLi, this));
+            }
 
             this.render();
         },
