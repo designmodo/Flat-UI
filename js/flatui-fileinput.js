@@ -200,7 +200,7 @@
     var $target = $(e.target).closest('[data-dismiss="fileinput"], [data-trigger="fileinput"]');
     if ($target.length > 0) {
       e.preventDefault()
-      $target.trigger('click.bs.fileinput')
+      //$target.trigger('click.bs.fileinput')
     }
   });
   
