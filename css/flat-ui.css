@@ -2849,6 +2849,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
 }
 .progress-bar {
   background: #1abc9c;
+  line-height: 12px;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
