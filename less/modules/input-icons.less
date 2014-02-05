@@ -7,18 +7,18 @@
 }
 
 .form-control {
-	& + .input-icon {
-		position: absolute;
-	  top: 2px;
-	  right: 2px;
-	  line-height: 37px;
-	  vertical-align: middle;
-	  font-size: @input-icon-font-size;
-	  color: desaturate(lighten(@brand-primary, 45%), 15%);
-	  background-color: @inverse;
-	  padding: 0 12px 0 0;
-	  border-radius: @input-border-radius;
-	}
+  & + .input-icon {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    line-height: 37px;
+    vertical-align: middle;
+    font-size: @input-icon-font-size;
+    color: desaturate(lighten(@brand-primary, 45%), 15%);
+    background-color: @inverse;
+    padding: 0 12px 0 0;
+    border-radius: @input-border-radius;
+  }
 }
 
 // Icons sizing
@@ -49,24 +49,24 @@
 
 .has-success {
   .input-icon {
-	  color: @brand-success;
+    color: @brand-success;
   }
 }
 .has-warning {
-	.input-icon {
-		color: @brand-warning;
-	}  
+  .input-icon {
+    color: @brand-warning;
+  }  
 }
 .has-error {
-	.input-icon {
-		color: @brand-danger;
-	}  
+  .input-icon {
+    color: @brand-danger;
+  }  
 }
 .form-control[disabled] + .input-icon,
 .form-control[readonly] + .input-icon,
 fieldset[disabled] .form-control + .input-icon,
 .form-control.disabled + .input-icon {
-	color: mix(@gray, white, 40%);
-	background-color: transparent;
-	.opacity(.7);
+  color: mix(@gray, white, 40%);
+  background-color: transparent;
+  .opacity(.7);
 }

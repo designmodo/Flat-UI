@@ -57,7 +57,7 @@
   &::-moz-placeholder           { color: @color; opacity: 1; } // Firefox 19+
   &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
   &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
-  &.placeholder       					{ color: @color; } // Fallback
+  &.placeholder                 { color: @color; } // Fallback
 }
 
 .placeholder-height(@height) {
@@ -598,7 +598,7 @@
 // Social button variants
 // -------------------------
 .social-button-variant(@color; @background) {
-	color: @color;
+  color: @color;
   background-color: @background;
 
   &:hover,
@@ -714,7 +714,7 @@
   }
   // Set the border and box shadow on specific inputs to match
   .form-control {
-  	color: @text-color;
+    color: @text-color;
     border-color: @border-color;
     .box-shadow(none);
     .placeholder(@text-color);
@@ -746,7 +746,7 @@
 // contrast against a dark gray background.
 
 .form-control-focus(@color: @brand-secondary) {
-	.form-group.focus &,
+  .form-group.focus &,
   &:focus {
     border-color: @color;
     outline: 0;
@@ -780,20 +780,20 @@
 // Reset rounded corners for form controls
 //
 .form-controls-corners-reset() {
-	.input-group .form-control:first-child,
-	.input-group-addon:first-child,
-	.input-group-btn:first-child > .btn,
-	.input-group-btn:first-child > .dropdown-toggle,
-	.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
-	  .border-right-radius(0);
-	}
-	.input-group .form-control:last-child,
-	.input-group-addon:last-child,
-	.input-group-btn:last-child > .btn,
-	.input-group-btn:last-child > .dropdown-toggle,
-	.input-group-btn:first-child > .btn:not(:first-child) {
-	  .border-left-radius(0);
-	}
+  .input-group .form-control:first-child,
+  .input-group-addon:first-child,
+  .input-group-btn:first-child > .btn,
+  .input-group-btn:first-child > .dropdown-toggle,
+  .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+    .border-right-radius(0);
+  }
+  .input-group .form-control:last-child,
+  .input-group-addon:last-child,
+  .input-group-btn:last-child > .btn,
+  .input-group-btn:last-child > .dropdown-toggle,
+  .input-group-btn:first-child > .btn:not(:first-child) {
+    .border-left-radius(0);
+  }
 }
 
 // Spinner variants
