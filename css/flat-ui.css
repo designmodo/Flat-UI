@@ -3294,7 +3294,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   margin-top: 12px;
   padding: 0 15px;
 }
-@media (max-width: 480px) {
+@media (max-width: 991px) {
   .dropdown-menu {
     border-radius: 0 0 6px 6px !important;
   }

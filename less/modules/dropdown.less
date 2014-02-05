@@ -91,10 +91,8 @@
       padding: 0 15px;
     }
   }
-  @media (max-width: 480px) {
-    & {
-      border-radius: 0 0 @border-radius-large @border-radius-large !important;
-    }
+  @media (max-width: @screen-sm-max) {
+    border-radius: 0 0 @border-radius-large @border-radius-large !important;
   }
   .divider {
     margin-top: 3px;
