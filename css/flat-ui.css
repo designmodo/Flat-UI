@@ -406,13 +406,15 @@ blockquote p {
   font-weight: normal;
   margin-bottom: .4em;
 }
-blockquote small {
+blockquote small,
+blockquote .small {
   font-size: 18px;
   line-height: 1.72222;
   font-style: italic;
   color: inherit;
 }
-blockquote small:before {
+blockquote small:before,
+blockquote .small:before {
   content: "";
 }
 blockquote.pull-right {
