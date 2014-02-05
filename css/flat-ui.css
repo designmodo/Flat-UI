@@ -1106,7 +1106,6 @@ label {
 }
 .form-control:-moz-placeholder {
   color: #b2bcc5;
-  opacity: 1;
 }
 .form-control::-moz-placeholder {
   color: #b2bcc5;
@@ -1220,7 +1219,6 @@ textarea.input-hg {
 }
 .has-warning .form-control:-moz-placeholder {
   color: #f1c40f;
-  opacity: 1;
 }
 .has-warning .form-control::-moz-placeholder {
   color: #f1c40f;
@@ -1261,7 +1259,6 @@ textarea.input-hg {
 }
 .has-error .form-control:-moz-placeholder {
   color: #e74c3c;
-  opacity: 1;
 }
 .has-error .form-control::-moz-placeholder {
   color: #e74c3c;
@@ -1302,7 +1299,6 @@ textarea.input-hg {
 }
 .has-success .form-control:-moz-placeholder {
   color: #2ecc71;
-  opacity: 1;
 }
 .has-success .form-control::-moz-placeholder {
   color: #2ecc71;
@@ -2302,7 +2298,6 @@ textarea.navbar-form .btn {
 }
 .navbar-default .navbar-form .form-control:-moz-placeholder {
   color: #aeb6bf;
-  opacity: 1;
 }
 .navbar-default .navbar-form .form-control::-moz-placeholder {
   color: #aeb6bf;
@@ -2467,7 +2462,6 @@ textarea.navbar-form .btn {
 }
 .navbar-inverse .navbar-form .form-control:-moz-placeholder {
   color: #536a81;
-  opacity: 1;
 }
 .navbar-inverse .navbar-form .form-control::-moz-placeholder {
   color: #536a81;
@@ -2773,7 +2767,6 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 .twitter-typeahead .tt-query:-moz-placeholder,
 .twitter-typeahead .tt-hint:-moz-placeholder {
   color: #b2bcc5;
-  opacity: 1;
 }
 .twitter-typeahead .tt-query::-moz-placeholder,
 .twitter-typeahead .tt-hint::-moz-placeholder {
@@ -3832,7 +3825,6 @@ input.todo-search-field {
 }
 input.todo-search-field:-moz-placeholder {
   color: #34495e;
-  opacity: 1;
 }
 input.todo-search-field::-moz-placeholder {
   color: #34495e;
@@ -4317,8 +4309,6 @@ body.vjs-full-window {
   width: 16px;
   border-radius: 10px;
   -webkit-animation: sharp 2s ease infinite;
-  -moz-animation: sharp 2s ease infinite;
-  -o-animation: sharp 2s ease infinite;
   animation: sharp 2s ease infinite;
 }
 .login {

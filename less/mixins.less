@@ -53,8 +53,9 @@
 
 // Placeholder text
 .placeholder(@color: @input-color-placeholder) {
-  &:-moz-placeholder            { color: @color; opacity: 1; } // Firefox 4-18
-  &::-moz-placeholder           { color: @color; opacity: 1; } // Firefox 19+
+  &:-moz-placeholder            { color: @color; } // Firefox 4-18
+  &::-moz-placeholder           { color: @color;   // Firefox 19+
+                                  opacity: 1; } // See https://github.com/twbs/bootstrap/pull/11526
   &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
   &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
   &.placeholder                 { color: @color; } // Fallback
@@ -119,13 +120,6 @@
 .box-shadow(@shadow) {
   -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
           box-shadow: @shadow;
-}
-
-.animation(@properties) {
-  -webkit-animation: @properties;
-     -moz-animation: @properties;
-       -o-animation: @properties;
-          animation: @properties;
 }
 
 // Transitions
@@ -198,10 +192,41 @@
      -moz-perspective-origin: @perspective;
           perspective-origin: @perspective;
 }
-.transform-origin(@origin){
+.transform-origin(@origin) {
   -webkit-transform-origin: @origin;
      -moz-transform-origin: @origin;
+      -ms-transform-origin: @origin; // IE9 only
           transform-origin: @origin;
+}
+
+// Animations
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+.animation-name(@name) {
+  -webkit-animation-name: @name;
+          animation-name: @name;
+}
+.animation-duration(@duration) {
+  -webkit-animation-duration: @duration;
+          animation-duration: @duration;
+}
+.animation-timing-function(@timing-function) {
+  -webkit-animation-timing-function: @timing-function;
+          animation-timing-function: @timing-function;
+}
+.animation-delay(@delay) {
+  -webkit-animation-delay: @delay;
+          animation-delay: @delay;
+}
+.animation-iteration-count(@iteration-count) {
+  -webkit-animation-iteration-count: @iteration-count;
+          animation-iteration-count: @iteration-count;
+}
+.animation-direction(@direction) {
+  -webkit-animation-direction: @direction;
+          animation-direction: @direction;
 }
 
 
