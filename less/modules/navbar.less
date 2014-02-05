@@ -224,7 +224,7 @@
 // our navbars.
 
 .navbar-input {
-	.input-size(@input-height-small; 5px; 10px; @input-font-size-sm; @navbar-input-line-height);
+  .input-size(@input-height-small; 5px; 10px; @input-font-size-small; @navbar-input-line-height);
 }
 
 .navbar-form {
@@ -787,7 +787,7 @@
 
 // Large navbar
 .navbar-lg {
-	min-height: @navbar-height-lg;
+	min-height: @navbar-height-large;
 	
 	.navbar-brand {
 		line-height: 1;
@@ -813,8 +813,8 @@
 	}
 	
 	.navbar-toggle {
-		height: @navbar-height-lg;
-		line-height: @navbar-height-lg;
+		height: @navbar-height-large;
+		line-height: @navbar-height-large;
 	}
 	
 	.navbar-unread,
@@ -823,11 +823,11 @@
 	}
 	
 	.navbar-form {
-		.navbar-vertical-align(@input-height-small; @navbar-height-lg);
+		.navbar-vertical-align(@input-height-small; @navbar-height-large);
 	}
 	
 	.navbar-text {
-		.navbar-vertical-align(23px; @navbar-height-lg);
+		.navbar-vertical-align(23px; @navbar-height-large);
 	}
 	
 	.navbar-btn {
