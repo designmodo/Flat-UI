@@ -3,23 +3,63 @@
 // --------------------------------------------------
 
 
+// Headings
+// -------------------------
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: @headings-font-family;
+  font-weight: @headings-font-weight;
+  line-height: @headings-line-height;
+  color: @headings-color;
+  
+  small {
+    color: @headings-small-color;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin-top: @line-height-computed;
+  margin-bottom: (@line-height-computed / 2);
+}
+h4,
+h5,
+h6 {
+  margin-top: (@line-height-computed / 2);
+  margin-bottom: (@line-height-computed / 2);
+}
+
+h6 {
+  font-weight: normal;
+}
+
+h1, .h1 { font-size: @font-size-h1; } // ~62px
+h2, .h2 { font-size: @font-size-h2; } // ~52px
+h3, .h3 { font-size: @font-size-h3; } // ~40px
+h4, .h4 { font-size: @font-size-h4; } // ~29px
+h5, .h5 { font-size: @font-size-h5; } // ~28px 
+h6, .h6 { font-size: @font-size-h6; } // ~24px
+
+
 // Body text
 // -------------------------
 
 p {
-  font-size: 	 @font-size-base;
+  font-size:   @font-size-base;
   line-height: @line-height-base;
   margin: 0 0 (@line-height-computed / 2);
 }
 
 .lead {
-	margin-bottom: @line-height-computed;
-  font-size: 	 floor(@font-size-base * 1.556); 	// ~28px
-  line-height: 1.46428571; 											// ~41px
+  margin-bottom: @line-height-computed;
+  font-size:   floor(@font-size-base * 1.556);  // ~28px
+  line-height: 1.46428571;                      // ~41px
   font-weight: 300;
   
   @media (min-width: @screen-sm-min) {
-    font-size: (@font-size-base * 1.667);				// ~30px
+    font-size: (@font-size-base * 1.667);       // ~30px
   }
 }
 
@@ -70,46 +110,6 @@ small,
     color: mix(@state-info-text, black, 80%);
   }
 }
-
-
-// Headings
-// -------------------------
-
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: @headings-font-family;
-  font-weight: @headings-font-weight;
-  line-height: @headings-line-height;
-  color: @headings-color;
-  
-  small {
-    color: @headings-small-color;
-  }
-}
-
-h1,
-h2,
-h3 {
-  margin-top: @line-height-computed;
-  margin-bottom: (@line-height-computed / 2);
-}
-h4,
-h5,
-h6 {
-  margin-top: (@line-height-computed / 2);
-  margin-bottom: (@line-height-computed / 2);
-}
-
-h6 {
-  font-weight: normal;
-}
-
-h1, .h1 { font-size: @font-size-h1; } // ~62px
-h2, .h2 { font-size: @font-size-h2; } // ~52px
-h3, .h3 { font-size: @font-size-h3; } // ~40px
-h4, .h4 { font-size: @font-size-h4; } // ~29px
-h5, .h5 { font-size: @font-size-h5; }	// ~28px 
-h6, .h6 { font-size: @font-size-h6; } // ~24px
 
 
 // Page header
