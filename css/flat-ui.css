@@ -1658,19 +1658,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   line-height: 19px;
 }
 .input-group-btn:first-child > .btn {
-  margin-right: -2px;
   border-right-width: 0;
+  margin-right: -2px;
 }
 .input-group-btn:last-child > .btn {
-  margin-left: -4px;
   border-left-width: 0;
+  margin-left: -2px;
 }
 .input-group-btn > .btn-default + .btn-default {
   border-left: 2px solid #bdc3c7;
-  margin-left: -4px;
-}
-.input-group-btn > .btn-default:first-child + btn-default {
-  margin-left: -1px;
 }
 .input-group-btn > .btn:first-child + .btn .caret {
   margin-left: 0;
