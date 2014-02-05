@@ -222,6 +222,18 @@ a:focus {
 .img-rounded {
   border-radius: 6px;
 }
+.img-thumbnail {
+  padding: 4px;
+  line-height: 1.72222;
+  background-color: #ffffff;
+  border: 2px solid #bdc3c7;
+  border-radius: 6px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
 .img-comment {
   font-size: 15px;
   line-height: 1.2;
@@ -441,6 +453,34 @@ pre {
 }
 .pre-scrollable {
   max-height: 340px;
+}
+.thumbnail {
+  display: block;
+  padding: 4px;
+  margin-bottom: 5px;
+  line-height: 1.72222;
+  background-color: #ffffff;
+  border: 2px solid #bdc3c7;
+  border-radius: 6px;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+.thumbnail > img,
+.thumbnail a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #16a085;
+}
+.thumbnail .caption {
+  padding: 9px;
+  color: #34495e;
 }
 .btn {
   border: none;

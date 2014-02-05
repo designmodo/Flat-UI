@@ -28,7 +28,7 @@ a {
     text-decoration: none;
   }
   &:focus {
-	  outline: none;
+    outline: none;
   }
 }
 
@@ -38,6 +38,21 @@ a {
 // Rounded corners
 .img-rounded {
   border-radius: @border-radius-large;
+}
+
+// Image thumbnails
+//
+// Heads up! This is mixin-ed into thumbnails.less for `.thumbnail`.
+.img-thumbnail {
+  padding: @thumbnail-padding;
+  line-height: @line-height-base;
+  background-color: @thumbnail-bg;
+  border: 2px solid @thumbnail-border;
+  border-radius: @thumbnail-border-radius;
+  .transition(all .25s ease-in-out);
+
+  // Keep them at most 100% wide
+  .img-responsive(inline-block);
 }
 
 // Description text under image
