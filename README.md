@@ -1,4 +1,4 @@
-Flat UI Free 2.1.2
+Flat UI Free 2.1.3
 =======
 
 Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html. 
@@ -10,10 +10,11 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
 + [Download PSD](http://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.2.4](http://designmodo.com/flat/) (from $39)
++ [Flat UI Pro 1.2.5](http://designmodo.com/flat/) (from $39)
 
 ## Changelog
 
++ 2.1.3
 + 2.1.2 
   * Bootstrap upgraded to 3.0.3;
   * Navbar completely rewriten, added new states (default, inverse, embossed, large, fixed-top, fixed-bottom, static-top), now you can use basic navbar elements: ```.navbar-form```, ```.navbar-btn```, ```.navbar-text```, ```.navbar-link```;
@@ -50,6 +51,11 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 
 + [http://twitter.com/iurevych](http://twitter.com/iurevych)
 + [http://github.com/iurevych](http://github.com/iurevych)
+
+**Dmitry Pytkin**
+
++ [http://twitter.com/pytkin](http://twitter.com/pytkin)
++ [http://github.com/pytkin](http://github.com/pytkin)
 
 ## Typeface
 Flat UI Free is made using the Lato typeface, which can be downloaded for free here: http://www.google.com/webfonts/specimen/Lato
