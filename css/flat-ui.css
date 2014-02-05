@@ -1203,7 +1203,8 @@ select.input-sm {
   height: 35px;
   line-height: 35px;
 }
-textarea.input-sm {
+textarea.input-sm,
+select[multiple].input-sm {
   height: auto;
 }
 .input-lg {
@@ -1217,7 +1218,8 @@ select.input-lg {
   height: 45px;
   line-height: 45px;
 }
-textarea.input-lg {
+textarea.input-lg,
+select[multiple].input-lg {
   height: auto;
 }
 .input-hg {
@@ -1231,7 +1233,8 @@ select.input-hg {
   height: 53px;
   line-height: 53px;
 }
-textarea.input-hg {
+textarea.input-hg,
+select[multiple].input-hg {
   height: auto;
 }
 .has-warning .help-block,
@@ -1454,7 +1457,10 @@ select.input-group-hg > .input-group-btn > .btn {
 }
 textarea.input-group-hg > .form-control,
 textarea.input-group-hg > .input-group-addon,
-textarea.input-group-hg > .input-group-btn > .btn {
+textarea.input-group-hg > .input-group-btn > .btn,
+select[multiple].input-group-hg > .form-control,
+select[multiple].input-group-hg > .input-group-addon,
+select[multiple].input-group-hg > .input-group-btn > .btn {
   height: auto;
 }
 .input-group-lg > .form-control,
@@ -1474,7 +1480,10 @@ select.input-group-lg > .input-group-btn > .btn {
 }
 textarea.input-group-lg > .form-control,
 textarea.input-group-lg > .input-group-addon,
-textarea.input-group-lg > .input-group-btn > .btn {
+textarea.input-group-lg > .input-group-btn > .btn,
+select[multiple].input-group-lg > .form-control,
+select[multiple].input-group-lg > .input-group-addon,
+select[multiple].input-group-lg > .input-group-btn > .btn {
   height: auto;
 }
 .input-group-sm > .form-control,
@@ -1494,7 +1503,10 @@ select.input-group-sm > .input-group-btn > .btn {
 }
 textarea.input-group-sm > .form-control,
 textarea.input-group-sm > .input-group-addon,
-textarea.input-group-sm > .input-group-btn > .btn {
+textarea.input-group-sm > .input-group-btn > .btn,
+select[multiple].input-group-sm > .form-control,
+select[multiple].input-group-sm > .input-group-addon,
+select[multiple].input-group-sm > .input-group-btn > .btn {
   height: auto;
 }
 .input-group-addon {
@@ -2044,7 +2056,8 @@ select.navbar-input {
   height: 35px;
   line-height: 35px;
 }
-textarea.navbar-input {
+textarea.navbar-input,
+select[multiple].navbar-input {
   height: auto;
 }
 .navbar-form {
@@ -2091,7 +2104,10 @@ select.navbar-form .btn {
 }
 textarea.navbar-form .form-control,
 textarea.navbar-form .input-group-addon,
-textarea.navbar-form .btn {
+textarea.navbar-form .btn,
+select[multiple].navbar-form .form-control,
+select[multiple].navbar-form .input-group-addon,
+select[multiple].navbar-form .btn {
   height: auto;
 }
 .navbar-form .input-group .form-control:first-child,
