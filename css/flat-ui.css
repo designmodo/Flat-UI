@@ -1769,6 +1769,11 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   border: none;
   border-radius: 6px;
 }
+@media (min-width: 768px) {
+  .navbar-header {
+    float: left;
+  }
+}
 .navbar-collapse {
   box-shadow: none;
   padding-right: 21px;
@@ -1799,9 +1804,25 @@ fieldset[disabled] .input-group-btn .btn-default.active {
     margin-right: 0;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-collapse .navbar-nav.navbar-right:last-child {
     margin-bottom: 3px;
+  }
+}
+.container > .navbar-header,
+.container-fluid > .navbar-header,
+.container > .navbar-collapse,
+.container-fluid > .navbar-collapse {
+  margin-right: -21px;
+  margin-left: -21px;
+}
+@media (min-width: 768px) {
+  .container > .navbar-header,
+  .container-fluid > .navbar-header,
+  .container > .navbar-collapse,
+  .container-fluid > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
   }
 }
 .navbar-static-top {
@@ -1833,7 +1854,8 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   vertical-align: top;
 }
 @media (min-width: 768px) {
-  .navbar > .container .navbar-brand {
+  .navbar > .container .navbar-brand,
+  .navbar > .container-fluid .navbar-brand {
     margin-left: -21px;
   }
 }
@@ -1909,7 +1931,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .navbar-nav .visible-xs > [class^="fui-"] {
   margin-left: 12px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-nav {
     margin: 0 -21px;
   }
@@ -1950,14 +1972,21 @@ textarea.navbar-input {
   padding-bottom: 9px;
 }
 @media (max-width: 767px) {
+  .navbar-form .form-group {
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 767px) {
   .navbar-form {
     margin: 3px -21px;
     width: auto;
   }
 }
-.navbar-nav + .navbar-form.navbar-left,
-.navbar-form.navbar-right:last-child {
-  width: 260px;
+@media (min-width: 768px) {
+  .navbar-nav + .navbar-form.navbar-left,
+  .navbar-form.navbar-right:last-child {
+    width: 260px;
+  }
 }
 .navbar-form .form-control,
 .navbar-form .input-group-addon,
@@ -2018,14 +2047,14 @@ textarea.navbar-form .btn {
   min-width: 100%;
   border-radius: 4px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-nav > li > .dropdown-menu {
     -webkit-transition: all 0s;
     transition: all 0s;
     display: none;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .navbar-nav > li.open > .dropdown-menu {
     margin-top: 0 !important;
     display: block;
@@ -2051,7 +2080,6 @@ textarea.navbar-form .btn {
 }
 @media (min-width: 768px) {
   .navbar-text {
-    float: left;
     margin-left: 21px;
     margin-right: 21px;
   }
@@ -2084,7 +2112,7 @@ textarea.navbar-form .btn {
   position: absolute;
   right: 12px;
   text-align: center;
-  top: 15px;
+  top: 35%;
   width: 6px;
   z-index: 10;
 }
@@ -2512,7 +2540,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 }
 .navbar-lg .navbar-brand {
   line-height: 1;
-  padding-top: 25px;
+  padding-top: 26px;
   padding-bottom: 26px;
 }
 .navbar-lg .navbar-brand > [class*="fui-"] {
@@ -2533,10 +2561,6 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   height: 76px;
   line-height: 76px;
 }
-.navbar-lg .navbar-unread,
-.navbar-lg .navbar-new {
-  top: 28px;
-}
 .navbar-lg .navbar-form {
   padding-top: 20.5px;
   padding-bottom: 20.5px;
@@ -2546,16 +2570,16 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   padding-bottom: 26.5px;
 }
 .navbar-lg .navbar-btn {
-  margin-top: 18px;
-  margin-bottom: 17px;
+  margin-top: 17.5px;
+  margin-bottom: 17.5px;
 }
 .navbar-lg .navbar-btn.btn-sm {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 20.5px;
+  margin-bottom: 20.5px;
 }
 .navbar-lg .navbar-btn.btn-xs {
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 25.5px;
+  margin-bottom: 25.5px;
 }
 .tagsinput {
   background: white;
