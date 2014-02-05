@@ -431,16 +431,25 @@ address {
   line-height: 1.72222;
 }
 code,
-kdb,
+kbd,
 pre,
 samp {
   font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
 }
 code {
-  font-size: 75%;
+  padding: 2px 6px;
+  font-size: 85%;
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
+}
+kbd {
+  padding: 2px 6px;
+  font-size: 85%;
+  color: #ffffff;
+  background-color: #34495e;
+  border-radius: 4px;
+  box-shadow: none;
 }
 pre {
   padding: 8px;
