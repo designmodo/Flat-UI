@@ -42,14 +42,13 @@
 @gray-light:                @silver;
 @inverse:                   white;
 
-
-// Social colors
-@social-pinterest:          #cb2028;
-@social-linkedin:           #0072b5;
-@social-stumbleupon:        #ed4a13;
-@social-googleplus:         #2d2d2d;
-@social-facebook:           #2f4b93;
-@social-twitter:            #00bdef;
+// Brand colors
+@brand-primary:             @wet-asphalt;
+@brand-secondary:           @turquoise;
+@brand-success:             @emerald;
+@brand-warning:             @sun-flower;
+@brand-danger:              @alizarin;
+@brand-info:                @peter-river;
 
 
 //== Scaffolding
@@ -73,6 +72,19 @@
 @font-family-monospace:     Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-size-base:            18px;
 
+@local-font-path:               "../fonts/lato/";
+@local-font-name:               "lato-regular";
+@local-font-svg-id:             "latoregular";
+@local-font-name-light:         "lato-light";
+@local-font-svg-id-light:       "latolight";
+@local-font-name-black:         "lato-black";
+@local-font-svg-id-black:       "latoblack";
+@local-font-name-bold:          "lato-bold";
+@local-font-svg-id-bold:        "latobold";
+@local-font-name-italic:        "lato-italic";
+@local-font-svg-id-italic:      "latoitalic";
+@local-font-name-bold-italic:   "lato-bolditalic";
+@local-font-svg-id-bold-italic: "latobold-italic";
 
 @font-size-h1:              floor(@font-size-base * 3.444); // ~62px
 @font-size-h2:              ceil(@font-size-base * 2.889); // ~52px
@@ -92,7 +104,11 @@
 
 //== Iconography
 //
-//## 
+//## Specify custom locations of the include Glyphicons icon font.
+
+@icon-font-path:            "../fonts/";
+@icon-font-name:            "flat-ui-icons-regular";
+@icon-font-svg-id:          "flat-ui-icons-regular";
 
 //** Icon sizes for use in components
 @icon-normal:               16px;
