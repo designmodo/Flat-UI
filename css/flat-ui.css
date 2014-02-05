@@ -340,31 +340,31 @@ small,
 .text-primary {
   color: #1abc9c;
 }
-.text-primary:hover {
+a.text-primary:hover {
   color: #15967d;
 }
 .text-warning {
   color: #f1c40f;
 }
-.text-warning:hover {
+a.text-warning:hover {
   color: #c19d0c;
 }
 .text-danger {
   color: #e74c3c;
 }
-.text-danger:hover {
+a.text-danger:hover {
   color: #b93d30;
 }
 .text-success {
   color: #2ecc71;
 }
-.text-success:hover {
+a.text-success:hover {
   color: #25a35a;
 }
 .text-info {
   color: #3498db;
 }
-.text-info:hover {
+a.text-info:hover {
   color: #2a7aaf;
 }
 .bg-primary {
