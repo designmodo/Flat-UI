@@ -2885,6 +2885,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   box-shadow: none;
   margin-bottom: 20px;
   position: relative;
+  cursor: pointer;
 }
 .ui-slider-handle {
   background-color: #16a085;
