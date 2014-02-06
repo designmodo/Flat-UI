@@ -15,6 +15,17 @@
   border-radius: @navbar-border-radius;
 }
 
+// Navbar heading
+//
+// Groups `.navbar-brand` and `.navbar-toggle` into a single component for easy
+// styling of responsive aspects.
+
+.navbar-header {
+  @media (min-width: @grid-float-breakpoint) {
+    float: left;
+  }
+}
+
 // Navbar collapse (body)
 //
 // Group your navbar content into this for easy collapsing and expanding across
@@ -28,29 +39,29 @@
 .navbar-collapse {
   box-shadow: none;
   padding-right: 21px;
-  padding-left: 21px;
-  
+  padding-left: 21px;  
+
   @media (min-width: @grid-float-breakpoint) {
-	  // Account for first and last children spacing
+    // Account for first and last children spacing
     .navbar-nav.navbar-left:first-child {
       margin-left: -21px;
       
       > li:first-child a {
-	      .border-left-radius(@navbar-border-radius);
+        .border-left-radius(@navbar-border-radius);
       }
     }
     .navbar-nav.navbar-right:last-child {
       margin-right: -21px;
       
       .navbar > .container & {
-	      margin-right: -36px;
+        margin-right: -36px;
       }
       > .dropdown:last-child > a {
-	      border-radius: 0 @navbar-border-radius @navbar-border-radius 0;
+        border-radius: 0 @navbar-border-radius @navbar-border-radius 0;
       }      
     }  
     .navbar-form.navbar-right:last-child {
-	    margin-right: -17px;
+      margin-right: -17px;
 
       .navbar-fixed-top &,
       .navbar-fixed-bottom & {
@@ -58,12 +69,30 @@
       }
     }     
   }
-  @media (max-width: @grid-float-breakpoint) {
-	  .navbar-nav.navbar-right:last-child {
-		  margin-bottom: 3px;
-	  }
-  }  
+  @media (max-width: @grid-float-breakpoint-max) {
+    .navbar-nav.navbar-right:last-child {
+      margin-bottom: 3px;
+    }
+  }
 }  
+
+// Both navbar header and collapse
+//
+// When a container is present, change the behavior of the header and collapse.
+
+.container,
+.container-fluid {
+  > .navbar-header,
+  > .navbar-collapse {
+    margin-right: -21px;
+    margin-left:  -21px;
+
+    @media (min-width: @grid-float-breakpoint) {
+      margin-right: 0;
+      margin-left:  0;
+    }
+  }
+}
 
 //
 // Navbar alignment options
@@ -98,16 +127,17 @@
   font-size: floor(@component-font-size-base * 1.6); // ~24px
   line-height: 1.042;  // ~25px
   font-weight: 700;
-  padding: 14px 21px;
+  padding: ((@navbar-height-base - 25px) / 2) 21px;
   
   > [class*="fui-"] {
-	  font-size: floor(@component-font-size-base * 1.267); // ~19px
-	  line-height: 1.263; // ~24px
-	  vertical-align: top;
+    font-size: floor(@component-font-size-base * 1.267); // ~19px
+    line-height: 1.263; // ~24px
+    vertical-align: top;
   }
   
   @media (min-width: @grid-float-breakpoint) {
-    .navbar > .container & {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
       margin-left: -21px;
     }
   }
@@ -127,7 +157,7 @@
   line-height: @navbar-height-base;
 
   &:before {
-  	color: @link-color;
+    color: @link-color;
     content: "\e00c";
     font-family: "Flat-UI-Icons";
     font-size: floor(@component-font-size-base * 1.467); // ~22px
@@ -138,10 +168,10 @@
   }
   &:hover,
   &:focus {
-  	outline: none;
+    outline: none;
   
     &:before {
-	    color: @link-hover-color;
+      color: @link-hover-color;
     }
   }
   .icon-bar {
@@ -159,49 +189,49 @@
 // the nav the full height of the horizontal nav (above 768px).
 
 .navbar-nav {
-	margin: 0;
-	
+  margin: 0;
+  
   > li > a {
-  	font-size: floor(@component-font-size-base * 1.067); // ~16px
-  	padding: 15px 21px;
-  	line-height: 23px;
-	  font-weight: 700;
+    font-size: floor(@component-font-size-base * 1.067); // ~16px
+    padding: ((@navbar-height-base - 23px) / 2) 21px;
+    line-height: 23px;
+    font-weight: 700;
   }
   
   .dropdown-toggle .caret {
-	  border-top-color: @link-color;
-	  border-bottom-color: @link-color;
-	  border-width: 8px 6px 0;
-	  margin-left: 12px;
+    border-top-color: @link-color;
+    border-bottom-color: @link-color;
+    border-width: 8px 6px 0;
+    margin-left: 12px;
   }
   > li > a:hover,
   > li > a:focus,
   .open > a:focus,
   .open > a:hover {
-  	background-color: transparent;
-  	
-	  .caret {
-		  border-top-color: @link-hover-color;
-			border-bottom-color: @link-hover-color;
-	  }
+    background-color: transparent;
+    
+    .caret {
+      border-top-color: @link-hover-color;
+      border-bottom-color: @link-hover-color;
+    }
   }
   
   [class^="fui-"] {
-	  line-height: 20px;
-	  position: relative;
-	  top: 1px;
+    line-height: 20px;
+    position: relative;
+    top: 1px;
   }
   .visible-sm,
   .visible-xs {
-	  > [class^="fui-"] {
-		  margin-left: 12px;
-	  }
+    > [class^="fui-"] {
+      margin-left: 12px;
+    }
   }
   
-  @media (max-width: @grid-float-breakpoint) {
-  	margin: 0 -21px;
-  	
-  	// Dropdowns get custom display when collapsed
+  @media (max-width: @grid-float-breakpoint-max) {
+    margin: 0 -21px;
+    
+    // Dropdowns get custom display when collapsed
     .open .dropdown-menu {      
       > li > a,
       .dropdown-header {
@@ -224,7 +254,7 @@
 // our navbars.
 
 .navbar-input {
-	.input-size(@input-height-small; 5px; 10px; @input-font-size-sm; @navbar-input-line-height);
+  .input-size(@input-height-small; 5px; 10px; @input-font-size-small; @navbar-input-line-height);
 }
 
 .navbar-form {
@@ -236,45 +266,53 @@
 
   // Vertically center in expanded, horizontal navbar
   .navbar-vertical-align(@input-height-small);
+
+  .form-group {
+    @media (max-width: @grid-float-breakpoint-max) {
+      margin-bottom: 5px;
+    }
+  }
   
-  @media (max-width: @screen-xs-max) {
-	  margin: 3px -21px;
-	  width: auto;
+  @media (max-width: @grid-float-breakpoint-max) {
+    margin: 3px -21px;
+    width: auto;
   }
   
   .navbar-nav + &.navbar-left,
   &.navbar-right:last-child { // Width fix for Webkit and IE11
-	  width: 260px; 
+    @media (min-width: @grid-float-breakpoint) {
+      width: 260px; 
+    }
   }
   
   // Controls sizing
   .form-control,
-	.input-group-addon,
-	.btn { .navbar-input(); }
-	
-	// Reset rounded corners
-	.form-controls-corners-reset();
-	
-	.form-control {
-	  font-size: @component-font-size-base;
-	  border-radius: 5px;
-	  display: table-cell;
+  .input-group-addon,
+  .btn { .navbar-input(); }
+  
+  // Reset rounded corners
+  .form-controls-corners-reset();
+  
+  .form-control {
+    font-size: @component-font-size-base;
+    border-radius: 5px;
+    display: table-cell;
   }
   .form-group + .btn {
-	  font-size: @component-font-size-base;
-	  border-radius: 5px;
-	  margin-left: 4px;
+    font-size: @component-font-size-base;
+    border-radius: 5px;
+    margin-left: 4px;
   }
 
-	@media (max-width: @screen-xs-max) {
-	  .form-group {
-	    margin-bottom: 0;
-	    
-	    & + .btn {
-		    margin-top: 9px;
-		    margin-left: 0;
-	    }
-	  }
+  @media (max-width: @grid-float-breakpoint-max) {
+    .form-group {
+      margin-bottom: 0;
+      
+      & + .btn {
+        margin-top: 9px;
+        margin-left: 0;
+      }
+    }
   }
 }
 
@@ -282,21 +320,21 @@
 
 // Menu position and menu carets
 .navbar-nav > li {
-	> .dropdown-menu {
-		min-width: 100%;
-		border-radius: @border-radius-base;		
-		
-		@media (max-width: @grid-float-breakpoint) {
-			.transition(all 0s);
-			display: none;
-		}
-	}
-	&.open > .dropdown-menu {
-		@media (max-width: @grid-float-breakpoint) {
-			margin-top: 0 !important;
-			display: block;
-		}		
-	}
+  > .dropdown-menu {
+    min-width: 100%;
+    border-radius: @border-radius-base;   
+    
+    @media (max-width: @grid-float-breakpoint-max) {
+      .transition(all 0s);
+      display: none;
+    }
+  }
+  &.open > .dropdown-menu {
+    @media (max-width: @grid-float-breakpoint-max) {
+      margin-top: 0 !important;
+      display: block;
+    }   
+  }
 } 
 
 // Menu position and menu caret support for dropups via extra dropup class
@@ -315,16 +353,15 @@
 // Add a class to make any element properly align itself vertically within the navbars.
 
 .navbar-text {
-	font-size: floor(@component-font-size-base * 1.067); // ~16px
-	line-height: 1.438; // ~23px
-	color: @brand-primary;
-	margin-top: 0;
+  font-size: floor(@component-font-size-base * 1.067); // ~16px
+  line-height: 1.438; // ~23px
+  color: @brand-primary;
+  margin-top: 0;
   margin-bottom: 0;
-	
+  
   .navbar-vertical-align(23px, @navbar-height-base);
 
   @media (min-width: @grid-float-breakpoint) {
-    float: left;
     margin-left: 21px;
     margin-right: 21px;
 
@@ -340,16 +377,16 @@
 // Vertically center a button within a navbar (when *not* in a form).
 
 .navbar-btn {
-  margin-top: 6px;
-  margin-bottom: 6px;
+  margin-top: ((@navbar-height-base - @input-height-base) / 2);
+  margin-bottom: ((@navbar-height-base - @input-height-base) / 2);
 
   &.btn-sm {
-    margin-top: 9px;
-    margin-bottom: 8px;
+    margin-top: ((@navbar-height-base - @input-height-small) / 2);
+    margin-bottom: ((@navbar-height-base - @input-height-small) / 2) - 1;
   }
   &.btn-xs {
-    margin-top: 14px;
-    margin-bottom: 14px;
+    margin-top: ((@navbar-height-base - 25) / 2);
+    margin-bottom: ((@navbar-height-base - 25) / 2);
   }
 }
 
@@ -368,14 +405,14 @@
   position: absolute;
   right: 12px;
   text-align: center;
-  top: 15px; // top: 28px;
+  top: 35%;
   width: 6px;
   z-index: 10;
   
   @media (max-width: @grid-float-breakpoint) {
-	  position: static;
-	  float: right;
-	  margin: 0 0 0 10px;
+    position: static;
+    float: right;
+    margin: 0 0 0 10px;
   }
 
   .active & {
@@ -401,38 +438,38 @@
 
 // Default navbar
 .navbar-default {
-	background-color: @navbar-default-bg;
-	
-	.navbar-brand {
-	  color: @navbar-default-brand-color;
-	  &:hover,
-	  &:focus {
-	    color: @navbar-default-brand-hover-color;
-	    background-color: @navbar-default-brand-hover-bg;
-	  }
-	}
-	
-	.navbar-toggle {
-		&:before {
-	    color: @navbar-default-toggle-color;
-    }		
+  background-color: @navbar-default-bg;
+  
+  .navbar-brand {
+    color: @navbar-default-brand-color;
+    &:hover,
+    &:focus {
+      color: @navbar-default-brand-hover-color;
+      background-color: @navbar-default-brand-hover-bg;
+    }
+  }
+  
+  .navbar-toggle {
+    &:before {
+      color: @navbar-default-toggle-color;
+    }   
     &:hover,
     &:focus {
       background-color: transparent;
       
       &:before {
-		    color: @navbar-default-toggle-hover-color;
-	    }
+        color: @navbar-default-toggle-hover-color;
+      }
     }
   }
-	
-	.navbar-collapse,
+  
+  .navbar-collapse,
   .navbar-form {
     border-color: @navbar-default-form-border;
     border-width: 2px;
   }
-	
-	.navbar-nav {
+  
+  .navbar-nav {
     > li > a {
       color: @navbar-default-link-color;
 
@@ -459,26 +496,26 @@
       }
     }
   }
-	
-	// Dropdown menu items and carets
+  
+  // Dropdown menu items and carets
   .navbar-nav {
-  	// Caret text color
+    // Caret text color
     > .dropdown > a .caret {
       border-top-color: @navbar-default-caret-color;
       border-bottom-color: @navbar-default-caret-color;
     }
     // Caret should match text color on active
-		> .active > a .caret {
-			border-top-color: @navbar-default-caret-active-color;
+    > .active > a .caret {
+      border-top-color: @navbar-default-caret-active-color;
       border-bottom-color: @navbar-default-caret-active-color;
-		}
+    }
     // Caret should match text color on hover
     > .dropdown > a:hover .caret,
     > .dropdown > a:focus .caret {
       border-top-color: @navbar-default-caret-hover-color;
       border-bottom-color: @navbar-default-caret-hover-color;
     }    
-		
+    
     // Remove background color from open dropdown
     > .open > a {
       &,
@@ -494,7 +531,7 @@
     } 
 
 
-    @media (max-width: @screen-xs-max) {
+    @media (max-width: @grid-float-breakpoint-max) {
       // Dropdowns get custom display when collapsed
       .open .dropdown-menu {
         > li > a {
@@ -527,74 +564,74 @@
   
   .navbar-form {
     .form-control {
-	    border-color: transparent;
-	    .placeholder(@navbar-default-form-placeholder);
-	    
-	    &:focus {
-		    border-color: @brand-secondary;
-	    	 color: @brand-secondary;
-	    }
+      border-color: transparent;
+      .placeholder(@navbar-default-form-placeholder);
+      
+      &:focus {
+        border-color: @brand-secondary;
+         color: @brand-secondary;
+      }
     }
     .input-group-btn .btn {
-	    border-color: transparent;
-	    color: @navbar-default-form-icon;
+      border-color: transparent;
+      color: @navbar-default-form-icon;
     }
     .input-group.focus {
-    	.form-control,
-    	.input-group-btn .btn {
-	    	 border-color: @brand-secondary;
-	    	 color: @brand-secondary;
-    	}	    
+      .form-control,
+      .input-group-btn .btn {
+         border-color: @brand-secondary;
+         color: @brand-secondary;
+      }     
     }
   }
   
   .navbar-text {
-	  color: @brand-primary;
-	  
-	  a {
-		  color: @navbar-default-link-color;
-		  
-		  &:hover,
-		  &:focus {
-			  color: @navbar-default-link-hover-color;
-		  }
-	  }
+    color: @brand-primary;
+    
+    a {
+      color: @navbar-default-link-color;
+      
+      &:hover,
+      &:focus {
+        color: @navbar-default-link-hover-color;
+      }
+    }
   }
 }
 
 // Inverse navbar
 .navbar-inverse {
-	background-color: @navbar-inverse-bg;
-	
-	.navbar-brand {
-	  color: @navbar-inverse-brand-color;	  
-	  &:hover,
-	  &:focus {
-	    color: @navbar-inverse-brand-hover-color;
-	    background-color: @navbar-inverse-brand-hover-bg;
-	  }
-	}
-	
-	.navbar-toggle {
-		&:before {
-	    color: @navbar-inverse-toggle-color;
-    }		
+  background-color: @navbar-inverse-bg;
+  
+  .navbar-brand {
+    color: @navbar-inverse-brand-color;   
+    &:hover,
+    &:focus {
+      color: @navbar-inverse-brand-hover-color;
+      background-color: @navbar-inverse-brand-hover-bg;
+    }
+  }
+  
+  .navbar-toggle {
+    &:before {
+      color: @navbar-inverse-toggle-color;
+    }   
     &:hover,
     &:focus {
       background-color: transparent;
       
       &:before {
-		    color: @navbar-inverse-toggle-hover-color;
-	    }
+        color: @navbar-inverse-toggle-hover-color;
+      }
     }
   }
-	
-	.navbar-collapse {
+  
+  .navbar-collapse {
     border-color: @navbar-inverse-form-border;
     border-width: 2px;
   }
-	
-	.navbar-nav {
+  
+  .navbar-nav {
     > li > a {
       color: @navbar-inverse-link-color;
 
@@ -650,39 +687,39 @@
       border-bottom-color: @navbar-inverse-caret-color;
     }    
     
-		> .open {
-			> .dropdown-arrow {
-				border-top-color: @navbar-inverse-dropdown-arrow;
-				border-bottom-color: @navbar-inverse-dropdown-arrow;
-			}
-			> .dropdown-menu {
-				background-color: @navbar-inverse-dropdown-bg;
-				padding: 3px 4px;
-				
-				> li > a {
-					color: @navbar-inverse-dropdown-link-color;
-					border-radius: @border-radius-base;
-					padding: 6px 9px;
-					
-					&:hover,
-		      &:focus {
-			      color: @navbar-inverse-dropdown-link-hover-color;
-			      background-color: @navbar-inverse-dropdown-link-hover-bg;
-		      }
-				}		
-				> .divider {
-					background-color: @navbar-inverse-divider;
-					height: 2px;
-					margin-left: -4px;
-					margin-right: -4px;
-				}
-			}
-		}
+    > .open {
+      > .dropdown-arrow {
+        border-top-color: @navbar-inverse-dropdown-arrow;
+        border-bottom-color: @navbar-inverse-dropdown-arrow;
+      }
+      > .dropdown-menu {
+        background-color: @navbar-inverse-dropdown-bg;
+        padding: 3px 4px;
+        
+        > li > a {
+          color: @navbar-inverse-dropdown-link-color;
+          border-radius: @border-radius-base;
+          padding: 6px 9px;
+          
+          &:hover,
+          &:focus {
+            color: @navbar-inverse-dropdown-link-hover-color;
+            background-color: @navbar-inverse-dropdown-link-hover-bg;
+          }
+        }   
+        > .divider {
+          background-color: @navbar-inverse-divider;
+          height: 2px;
+          margin-left: -4px;
+          margin-right: -4px;
+        }
+      }
+    }
 
-    @media (max-width: @screen-xs-max) {
-    	 > li > a {
-	    	 border-left-width: 0;
-    	 }
+    @media (max-width: @grid-float-breakpoint-max) {
+       > li > a {
+         border-left-width: 0;
+       }
       // Dropdowns get custom display when collapsed
       .open .dropdown-menu {
         > li > a {
@@ -712,135 +749,130 @@
       }
       // Custom background for dividers when collapsed
       .dropdown-menu .divider {
-		    background-color: @navbar-inverse-divider;
-	    }
+        background-color: @navbar-inverse-divider;
+      }
     }
   }
   
-  .navbar-form {  	
+  .navbar-form {    
     .form-control {
-    	color: @navbar-inverse-form-placeholder;
-	    border-color: transparent;
-	    background-color: @navbar-inverse-form-bg;
-	    .placeholder(@navbar-inverse-form-placeholder);
-	    
-	    &:focus {
-		    border-color: @brand-secondary;
-	    	 color: @brand-secondary;
-	    }
+      color: @navbar-inverse-form-placeholder;
+      border-color: transparent;
+      background-color: @navbar-inverse-form-bg;
+      .placeholder(@navbar-inverse-form-placeholder);
+      
+      &:focus {
+        border-color: @brand-secondary;
+         color: @brand-secondary;
+      }
     }
     .btn {
-	    .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
+      .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
     }
     .input-group-btn .btn {
-	    border-color: transparent;
-	    background-color: @navbar-inverse-form-bg;
-	    color: @navbar-inverse-form-icon;
+      border-color: transparent;
+      background-color: @navbar-inverse-form-bg;
+      color: @navbar-inverse-form-icon;
     }
     .input-group.focus {
-    	.form-control,
-    	.input-group-btn .btn {
-	    	 border-color: @brand-secondary;
-	    	 color: @brand-secondary;
-    	}	    
+      .form-control,
+      .input-group-btn .btn {
+         border-color: @brand-secondary;
+         color: @brand-secondary;
+      }     
     }
     
-    @media (max-width: @screen-xs-max) {
-    	border-color: @navbar-inverse-form-border;
-    	border-width: 2px 0;
-	  }
+    @media (max-width: @grid-float-breakpoint-max) {
+      border-color: @navbar-inverse-form-border;
+      border-width: 2px 0;
+    }
   }
   
   .navbar-text {
-	  color: @inverse;
-	  
-	  a {
-		  color: @navbar-inverse-link-color;
-		  
-		  &:hover,
-		  &:focus {
-			  color: @navbar-inverse-link-hover-color;
-		  }
-	  }
+    color: @inverse;
+    
+    a {
+      color: @navbar-inverse-link-color;
+      
+      &:hover,
+      &:focus {
+        color: @navbar-inverse-link-hover-color;
+      }
+    }
   }
   
   .navbar-btn {
-	  .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
+    .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
   }
 }
 
 // Embossed navbar
 .navbar-embossed {
-	@media (min-width: @grid-float-breakpoint) {
-		> .navbar-collapse {
-			border-radius: @navbar-border-radius;
-			.box-shadow(inset 0 -2px 0 fade(black, 15%));
-		}
-		&.navbar-inverse .navbar-nav {
-			.active > a,
-			.open > a {
-				.box-shadow(inset 0 -2px 0 fade(black, 15%));
-			}
-		}
-	}
+  @media (min-width: @grid-float-breakpoint) {
+    > .navbar-collapse {
+      border-radius: @navbar-border-radius;
+      .box-shadow(inset 0 -2px 0 fade(black, 15%));
+    }
+    &.navbar-inverse .navbar-nav {
+      .active > a,
+      .open > a {
+        .box-shadow(inset 0 -2px 0 fade(black, 15%));
+      }
+    }
+  }
 }
 
 // Large navbar
 .navbar-lg {
-	min-height: @navbar-height-lg;
-	
-	.navbar-brand {
-		line-height: 1;
-		padding-top: 25px;
-		padding-bottom: 26px;
-	
-		> [class*="fui-"] {
-			font-size: floor(@component-font-size-base * 1.6); // ~24px
-			line-height: 1; 
-		}
-	}
-	
-	.navbar-nav {
-		> li > a {
-			font-size: @component-font-size-base;
-			line-height: 1.6;
-			
-			@media (min-width: @grid-float-breakpoint) {
-				padding-top: 26px;
-				padding-bottom: 26px;
-			}
-		}		
-	}
-	
-	.navbar-toggle {
-		height: @navbar-height-lg;
-		line-height: @navbar-height-lg;
-	}
-	
-	.navbar-unread,
-	.navbar-new {
-		top: 28px;
-	}
-	
-	.navbar-form {
-		.navbar-vertical-align(@input-height-small; @navbar-height-lg);
-	}
-	
-	.navbar-text {
-		.navbar-vertical-align(23px; @navbar-height-lg);
-	}
-	
-	.navbar-btn {
-	  margin-top: 18px;
-	  margin-bottom: 17px;
-		
-		&.btn-sm {
-		  margin-top: 20px;
-		  margin-bottom: 20px;
-		}
-		&.btn-xs {
-		  margin-top: 25px;
-		  margin-bottom: 25px;
-		}
-	}
+  min-height: @navbar-height-large;
+  
+  .navbar-brand {
+    line-height: 1;
+    padding-top: ((@navbar-height-large - 24px) / 2);
+    padding-bottom: ((@navbar-height-large - 24px) / 2);
+  
+    > [class*="fui-"] {
+      font-size: floor(@component-font-size-base * 1.6); // ~24px
+      line-height: 1; 
+    }
+  }
+  
+  .navbar-nav {
+    > li > a {
+      font-size: @component-font-size-base;
+      line-height: 1.6;
+      
+      @media (min-width: @grid-float-breakpoint) {
+        padding-top: ((@navbar-height-large - 24px) / 2);
+        padding-bottom: ((@navbar-height-large - 24px) / 2);
+      }
+    }   
+  }
+  
+  .navbar-toggle {
+    height: @navbar-height-large;
+    line-height: @navbar-height-large;
+  }
+  
+  .navbar-form {
+    .navbar-vertical-align(@input-height-small; @navbar-height-large);
+  }
+  
+  .navbar-text {
+    .navbar-vertical-align(23px; @navbar-height-large);
+  }
+  
+  .navbar-btn {
+    margin-top: ((@navbar-height-large - @input-height-base) / 2);
+    margin-bottom: ((@navbar-height-large - @input-height-base) / 2);
+    
+    &.btn-sm {
+      margin-top: ((@navbar-height-large - @input-height-small) / 2);
+      margin-bottom: ((@navbar-height-large - @input-height-small) / 2);
+    }
+    &.btn-xs {
+      margin-top: ((@navbar-height-large - 25px) / 2);
+      margin-bottom: ((@navbar-height-large - 25px) / 2);
+    }
+  }
 }

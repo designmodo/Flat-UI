@@ -33,7 +33,7 @@
   .input-group-hg &,
   .input-group-lg &,
   .input-group-sm &, {
-	  line-height: 1;
+    line-height: 1;
   }
 }
 
@@ -55,60 +55,52 @@
       border-left-color: mix(@brand-secondary, black, 85%);
     }
     .btn {
-	    border-color: @brand-secondary;
-	    background-color: @inverse;
-	    color: @brand-secondary;
+      border-color: @brand-secondary;
+      background-color: @inverse;
+      color: @brand-secondary;
     }
     .btn-default {
-    	.button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
+      .button-variant(@btn-default-color, @brand-secondary, @btn-primary-hover-bg, @btn-primary-active-bg);
     }
   }
 }
 
 // Button input groups
 // -------------------------
-.input-group-btn {		
-	.btn {
-		background-color: @inverse;
-		border: 2px solid @gray-light;		
-		color: @gray-light;
-		line-height: 18px;
-	}	
-	.btn-default {
-		.button-variant(@btn-default-color, @gray-light, @btn-hover-bg, @btn-active-bg);
-	}
-	.input-group-hg & .btn {
-		line-height: 31px;
-	}
-	.input-group-lg & .btn {
-		line-height: 21px;
-	}
-	.input-group-sm & .btn {
-		line-height: 19px;
-	}
-  // Negative margin to only have a 2px border between the two
+.input-group-btn {    
+  .btn {
+    background-color: @inverse;
+    border: 2px solid @gray-light;    
+    color: @gray-light;
+    line-height: 18px;
+  } 
+  .btn-default {
+    .button-variant(@btn-default-color, @gray-light, @btn-hover-bg, @btn-active-bg);
+  }
+  .input-group-hg & .btn {
+    line-height: 31px;
+  }
+  .input-group-lg & .btn {
+    line-height: 21px;
+  }
+  .input-group-sm & .btn {
+    line-height: 19px;
+  }
   &:first-child > .btn {
-    margin-right: -2px;
     border-right-width: 0;
+    margin-right: -2px;
   }
   &:last-child > .btn {
-    margin-left: -4px;
     border-left-width: 0;
+    margin-left: -2px;
   }
-  & > .btn-default {
-	  // Jankily prevent input button groups from wrapping
-	  + .btn-default {
-	    border-left: 2px solid @gray-light;
-	    margin-left: -4px;
-	  }
-	  &:first-child + btn-default {
-		  margin-left: -1px;
-	  }
+  & > .btn-default + .btn-default {
+    border-left: 2px solid @gray-light;
   }
   & > .btn:first-child + .btn {
-		.caret {
-			margin-left: 0;
-		}
+    .caret {
+      margin-left: 0;
+    }
   }
 }
 
@@ -116,30 +108,30 @@
 // Rounded input groups
 // -------------------------
 .input-group-rounded {
-	.input-group-btn + .form-control,
-	.input-group-btn:last-child .btn {
-		.border-right-radius(20px);
-		
-		.input-group-hg& {
-			.border-right-radius(27px);
-		}
-		.input-group-lg& {
-			.border-right-radius(25px);
-		}
-	}	
-	.form-control:first-child,
-	.input-group-btn:first-child .btn {
-		.border-left-radius(20px);
-		
-		.input-group-hg& {
-			.border-left-radius(27px);
-		}
-		.input-group-lg& {
-			.border-left-radius(25px);
-		}
-	}	
-	// Remove left padding for .form-control after button
-	.input-group-btn + .form-control {
-		padding-left: 0;
-	}
+  .input-group-btn + .form-control,
+  .input-group-btn:last-child .btn {
+    .border-right-radius(20px);
+    
+    .input-group-hg& {
+      .border-right-radius(27px);
+    }
+    .input-group-lg& {
+      .border-right-radius(25px);
+    }
+  } 
+  .form-control:first-child,
+  .input-group-btn:first-child .btn {
+    .border-left-radius(20px);
+    
+    .input-group-hg& {
+      .border-left-radius(27px);
+    }
+    .input-group-lg& {
+      .border-left-radius(25px);
+    }
+  } 
+  // Remove left padding for .form-control after button
+  .input-group-btn + .form-control {
+    padding-left: 0;
+  }
 }

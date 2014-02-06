@@ -13,33 +13,6 @@
   .box-shadow(none);
   .transition(.25s);
 
-  // Typeahead
-  // ---------
-  &.typeahead {
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    width: auto;
-    margin-top: 5px;    
-    border: 2px solid @brand-secondary;
-    padding: 5px 0;
-    background-color: @inverse;
-    border-radius: @border-radius-large;
-
-    li {
-      a {
-        padding: 6px 14px;
-      }
-      &:first-child,
-      &:last-child {
-        a {
-          padding: 6px 14px;
-          border-radius: 0;
-        }
-      }
-    }
-  }
-
   // Opened state
   .open > & {
     margin-top: 18px !important;
@@ -118,14 +91,12 @@
       padding: 0 15px;
     }
   }
-  @media (max-width: 480px) {
-    & {
-      border-radius: 0 0 @border-radius-large @border-radius-large !important;
-    }
+  @media (max-width: @screen-sm-max) {
+    border-radius: 0 0 @border-radius-large @border-radius-large !important;
   }
   .divider {
-	  margin-top: 3px;
-	  margin-bottom: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
   }
 }
 

@@ -2,8 +2,8 @@
 
 // Loading custom fonts
 //@import url("https://fonts.googleapis.com/css?family=Lato:400,700,700italic,900,400italic,300");
-@import "fonts";
-@import "icon-font";
+@import "modules/local-fonts";
+@import "modules/glyphicons";
 
 // Loading config with variables (changing them leads to changing a color scheme)
 @import "variables";
@@ -11,11 +11,12 @@
 // Utility mixins for greater good
 @import "mixins";
 
-@import "scaffolding";
+@import "modules/scaffolding";
 
 // Modules
 @import "modules/type";
 @import "modules/code";
+@import "modules/thumbnails";
 @import "modules/buttons";
 @import "modules/button-groups";
 @import "modules/caret";
@@ -26,6 +27,7 @@
 @import "modules/checkbox-and-radio";
 @import "modules/navbar";
 @import "modules/tagsinput";
+@import "modules/typeahead";
 @import "modules/progress-bars";
 @import "modules/slider";
 @import "modules/pager";

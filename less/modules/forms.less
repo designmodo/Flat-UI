@@ -29,15 +29,15 @@ textarea {
 
 // Search
 input[type="search"] {
-	-webkit-appearance: none !important; // removes rounded corners for searchfields on iOS
+  -webkit-appearance: none !important; // removes rounded corners for searchfields on iOS
 }
 
 
 // Label
 label {
-	font-weight: normal;
-	font-size: @component-font-size-base;
-	line-height: 2.4; // ~36px
+  font-weight: normal;
+  font-size: @component-font-size-base;
+  line-height: 2.4; // ~36px
 }
 
 // Placeholder
@@ -86,7 +86,7 @@ label {
   // Customize the `:focus` state
   .form-control-focus();
 
-	// Disabled and read-only inputs
+  // Disabled and read-only inputs
   // Note: HTML5 says that controls under a fieldset > legend:first-child won't
   // be disabled if the fieldset is disabled. Due to implementation difficulty,
   // we don't honor that edge case; we style them as disabled anyway.
@@ -94,10 +94,10 @@ label {
   &[readonly],
   fieldset[disabled] & {
     background-color: @input-bg-disabled;
-	  border-color: mix(@gray, white, 40%);
-	  color: mix(@gray, white, 40%);
-	  cursor: default;
-	  .opacity(.7);
+    border-color: mix(@gray, white, 40%);
+    color: mix(@gray, white, 40%);
+    cursor: default;
+    .opacity(.7);
   }  
   
   // Flat (without border)
@@ -115,15 +115,15 @@ label {
 
 // Form control sizing
 .input-sm {
-  .input-size(@input-height-small; 6px; 10px; @input-font-size-sm; @input-line-height-sm);
+  .input-size(@input-height-small; 6px; 10px; @input-font-size-small; @input-line-height-small);
 }
 
 .input-lg {
-  .input-size(@input-height-large; 10px; 15px; @input-font-size-lg; @input-line-height-lg);
+  .input-size(@input-height-large; 10px; 15px; @input-font-size-large; @input-line-height-large);
 }
 
 .input-hg {
-	.input-size(@input-height-huge; 10px; 16px; @input-font-size-hg; @input-line-height-hg);
+  .input-size(@input-height-huge; 10px; 16px; @input-font-size-huge; @input-line-height-huge);
 }
 
 // Form control feedback states
@@ -149,7 +149,7 @@ label {
 // below a form control. Use for general help, formatting, or instructional text.
 
 .help-block {
-	font-size: @component-font-size-base;
+  font-size: @component-font-size-base;
   margin-bottom: 5px;
   color: inherit;
 }
@@ -160,7 +160,7 @@ label {
 // horizontal forms, use the predefined grid classes.
 
 .form-group {
-	position: relative;
+  position: relative;
   margin-bottom: 20px;
 }
 
