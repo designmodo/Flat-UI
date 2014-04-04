@@ -985,9 +985,9 @@ fieldset[disabled] .btn-link:focus {
   border-bottom-style: none;
   -webkit-transition: 0.25s;
   transition: 0.25s;
-  -webkit-transform: scale(1.001, );
-  -ms-transform: scale(1.001, );
-  transform: scale(1.001, );
+  -webkit-transform: scale(1.001);
+  -ms-transform: scale(1.001);
+  transform: scale(1.001);
 }
 .dropup .caret,
 .dropup .btn-lg .caret,
