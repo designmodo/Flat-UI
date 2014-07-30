@@ -93,10 +93,7 @@
   <span class="muted">    ├──</span> docs.less
   <span class="muted">    ├──</span> variables.less
   <span class="muted">    ├──</span> flat-ui.less
-  <span class="muted">    ├──</span> fonts.less
-  <span class="muted">    ├──</span> icon-font.less
   <span class="muted">    ├──</span> mixins.less
-  <span class="muted">    ├──</span> scaffolding.less
   <span class="muted">    ├──</span> spaces.less
   <span class="muted">    └──</span> modules/
 </pre>
@@ -149,35 +146,31 @@
 
           <ul>
             <li>
+              <code>docs.less</code> where all our stylesheets for documentation.
+            </li>
+            <li>
               <code>variables.less</code> is where all the variables are.
             </li>
             <li>
               <code>flat-ui.less</code> links everything into one single bundle.
-            </li>
-            <li>
-              <code>icon-font.less</code> makes all the icon glyphs work. Converted with
-              <a href="http://icomoon.io">IcoMoon</a>.
-            </li>
-            <li>
-              <code>docs.less</code> where all our stylesheets for documentation.
-            </li>
-            <li>
-              <code>icon-font.less</code> makes all icon glyphs work. Converted by
-              <a href="http://icomoon.io">IcoMoon</a>.
-            </li>
-            <li>
-              <code>fonts.less</code> is where all custom fonts are.
-            </li>
+            </li>            
             <li>
               <code>mixins.less</code> helps automate things. Feel free to add your own here.
-            </li>
-            <li>
-              <code>scaffolding.less</code> is where you can find some basic styles for the body, the anchors and other elements.
-            </li>
+            </li>            
             <li>
               <code>modules/</code> is where all the components are. If you want to add your own, create
               module-name.less files here. Name them as a class name if possible.
             </li>
+            <li>
+              <code>modules/glypicons.less</code> makes all icon glyphs work. Converted by
+              <a href="http://icomoon.io">IcoMoon</a>.
+            </li>
+            <li>
+              <code>modules/local-fonts.less</code> is where all custom fonts are.
+            </li>
+            <li>
+              <code>modules/scaffolding.less</code> is where you can find some basic styles for the body, the anchors and other elements.
+            </li>            
           </ul>
         </div>
       </div><!-- /.demo-row -->
@@ -193,9 +186,6 @@
               <code>checkbox-and-radio.less</code> Custom checkboxes and radios.
             </li>
             <li>
-              <code>iconbar.less</code> Icon bar (another navigation type).
-            </li>
-            <li>
               <code>select.less</code> Custom selects.
             </li>
             <li>
@@ -205,13 +195,7 @@
               <code>tagsinput.less</code> Tags input field.
             </li>
             <li>
-              <code>datepicker.less</code> Datepicker widget.
-            </li>
-            <li>
               <code>slider.less</code> Range slider.
-            </li>
-            <li>
-              <code>spinner.less</code> Text input with increment/decrement.
             </li>
             <li>
 	            <code>input-icons.less</code> Icons for text-based form fields.
