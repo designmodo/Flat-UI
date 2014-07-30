@@ -41,6 +41,7 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
   * Drop the abbr element from the ```.initialism``` selector (https://github.com/twbs/bootstrap/issues/11277);
   * Add ```.small``` support to blockquote citations (https://github.com/twbs/bootstrap/issues/11414);
   * Various small bugfixes and improvements.
+  * Select2 JS Support Added in CSS and LESS.
 
 + 2.1.2 
   * Bootstrap upgraded to 3.0.3;
