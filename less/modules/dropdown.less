@@ -5,19 +5,16 @@
 .dropdown-menu {
   background-color: @dropdown-background;
   border: none;
-  display: block;
+  display: none;
   margin-top: 8px;
-  opacity: 0;
   padding: 0;
-  visibility: hidden;
   .box-shadow(none);
   .transition(.25s);
 
   // Opened state
   .open > & {
     margin-top: 18px !important;
-    opacity: 1;
-    visibility: visible;
+    display: block;
   }
   li {
     &:first-child {
