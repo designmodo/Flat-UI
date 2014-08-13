@@ -229,6 +229,11 @@
 			
 			$(markup).insertAfter(this);
 
+			// Copy the data-* attributes from original input to the fake one
+			$.each([].filter.call(this.attributes, function(at) { return /^data-/.test(at.name); }), function(idx,attr){
+				$(data.fake_input).attr(attr.name, attr.value);
+			});
+
 			$(data.holder).css('width',settings.width);
 			$(data.holder).css('min-height',settings.height);
 			$(data.holder).css('height','100%');
@@ -252,8 +257,8 @@
 					$(event.data.fake_input).css('color','#000000');		
 				});
 						
-				if (settings.autocomplete_url != undefined) {
-					autocomplete_options = {source: settings.autocomplete_url};
+				if (settings.autocomplete_url !== undefined || settings.autocomplete !== undefined) {
+					autocomplete_options = (settings.autocomplete_url !== undefined) ? {source: settings.autocomplete_url} : {};
 					for (attrname in settings.autocomplete) { 
 						autocomplete_options[attrname] = settings.autocomplete[attrname]; 
 					}
@@ -271,6 +276,13 @@
 							$(event.data.real_input).addTag(ui.item.value,{focus:true,unique:(settings.unique)});
 							return false;
 						});
+					} else if (jQuery.fn.typeahead !== undefined) {
+						$(data.fake_input).typeahead(autocomplete_options);
+						$(data.fake_input).bind('typeahead:selected',data,function(event, datum, name){
+							$(data.fake_input).typeahead('setQuery', '');
+							$(event.data.real_input).addTag(datum.value, {focus:true,unique:(settings.unique)});
+							return false;
+               	});
 					}
 				
 					
