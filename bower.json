@@ -1,0 +1,34 @@
+{
+  "name": "flat-ui",
+  "version": "2.2.0",
+  "main": [
+    "less/flat-ui-pro.less",
+    "dist/css/flat-ui-pro.css",
+    "dist/js/flat-ui-pro.js",
+    "dist/fonts/flat-ui-pro-icons-regular.eot",
+    "dist/fonts/flat-ui-pro-icons-regular.svg",
+    "dist/fonts/flat-ui-pro-icons-regular.ttf",
+    "dist/fonts/flat-ui-pro-icons-regular.woff"
+  ],
+  "ignore": [
+    ".*",
+    "docs"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "jquery-ui": "~1.10.4",
+    "bootstrap": "~3.2.0",
+    "bootstrap-switch": "~3.0.2",
+    "html5shiv": "~3.7.2",
+    "jquery-ui-touch-punch": "*",
+    "respond": "~1.4.2",
+    "typeahead.js": "~0.10.5",
+    "google-code-prettify": "~1.0.3",
+    "bootstrap-tagsinput": "~0.4.2",
+    "videojs": "~4.7.2",
+    "select2": "~3.5.1"
+  },
+  "resolutions": {
+    "jquery": "~1.11.1"
+  }
+}

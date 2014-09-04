@@ -1,7 +1,7 @@
-Flat UI Free 2.1.3
+Flat UI Free 2.2.0
 =======
 
-Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html. 
+Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html.
 
 You are allowed to use these elements anywhere you want, however we’ll highly appreciate if you will link to our [website](http://designmodo.com).
 
@@ -10,9 +10,11 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download HTML](https://github.com/designmodo/Flat-UI/archive/master.zip) (for developers)
 + [Download PSD](http://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.2.5](http://designmodo.com/flat/) (from $39)
++ [Flat UI Pro 1.3.0](http://designmodo.com/flat/) (from $39)
 
 ## Changelog
+
++ 2.2.0
 
 + 2.1.3
   * Bootstrap upgraded to stable 3.1.0;
@@ -42,13 +44,13 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
   * Add ```.small``` support to blockquote citations (https://github.com/twbs/bootstrap/issues/11414);
   * Various small bugfixes and improvements.
 
-+ 2.1.2 
++ 2.1.2
   * Bootstrap upgraded to 3.0.3;
   * Navbar completely rewriten, added new states (default, inverse, embossed, large, fixed-top, fixed-bottom, static-top), now you can use basic navbar elements: ```.navbar-form```, ```.navbar-btn```, ```.navbar-text```, ```.navbar-link```;
   * Forms: added support for ```legend```, ```.help-block```, fixed rounded serch form on iOS, fixed desabled input background and opacity, added support for input-groups;
   * Slider: added vertical orientation;
   * Various small bugfixes and improvements.
-+ 2.1.1 
++ 2.1.1
   * Typography improved (new global variables, padding and margins changed for basic elements, global default font-size now is 18px, with a line-height of 1.722, added support for ```<abbr>```, ```<address>```, ```<code>```, ```<pre>```, right-aligned ```<blockquote>```);
   * Buttons module completely rewritten (new global variables, buttons now require a .btn-default for the standard version, added support for .btn-link);
   * Fixed some bugs in ```.navbar```;
@@ -58,7 +60,7 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 + 2.1
   * Bootstrap upgraded to 3.0;
   * Added support for better box model;
-  * Update html5 video player to version 4.1; 
+  * Update html5 video player to version 4.1;
   * Added components documentation and sturt-up template;
   * Various small bugfixes and improvements.
 + 2.0 Compatibility with Flat UI Pro (Less instead of Sass), Bootstrap upgraded to 2.3.1, grids refinements, various Less compiler bugfixes, Video module bugfix, various small bugfixes.
@@ -109,7 +111,7 @@ How Companies can Save Time and Money Using UI Kits:	[http://designmodo.com/save
 
 UI Kits for Developers – Prototyping and Homemade Design:	[http://designmodo.com/ui-kits-developers](http://designmodo.com/ui-kits-developers)
 
- 
+
 More productsfrom Designmodo:
 
 [http://designmodo.com/shop/](http://designmodo.com/shop/)
@@ -125,7 +127,7 @@ Freebies:
 [http://designmodo.com/freebies/](http://designmodo.com/freebies/)
 
 
-Affiliate Program (earn money): 
+Affiliate Program (earn money):
 
 [http://designmodo.com/affiliates/](http://designmodo.com/affiliates/)
 
