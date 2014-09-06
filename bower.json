@@ -2,19 +2,19 @@
   "name": "flat-ui",
   "version": "2.2.0",
   "main": [
-    "less/flat-ui-pro.less",
-    "dist/css/flat-ui-pro.css",
-    "dist/js/flat-ui-pro.js",
-    "dist/fonts/flat-ui-pro-icons-regular.eot",
-    "dist/fonts/flat-ui-pro-icons-regular.svg",
-    "dist/fonts/flat-ui-pro-icons-regular.ttf",
-    "dist/fonts/flat-ui-pro-icons-regular.woff"
+    "less/flat-ui.less",
+    "dist/css/flat-ui.css",
+    "dist/js/flat-ui.js",
+    "dist/fonts/flat-ui-icons-regular.eot",
+    "dist/fonts/flat-ui-icons-regular.svg",
+    "dist/fonts/flat-ui-icons-regular.ttf",
+    "dist/fonts/flat-ui-icons-regular.woff"
   ],
   "ignore": [
     ".*",
     "docs"
   ],
-  "dependencies": {
+  "devDependencies": {
     "jquery": "~1.11.1",
     "jquery-ui": "~1.10.4",
     "bootstrap": "~3.2.0",

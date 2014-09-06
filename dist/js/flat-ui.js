@@ -1,5 +1,5 @@
 /*!
- * Flat UI Free v2.2.0 ()
+ * Flat UI Free v2.2.0 (http://designmodo.github.io/Flat-UI/)
  * Copyright 2013-2014 Designmodo, Inc.
  */
 /*!

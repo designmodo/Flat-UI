@@ -156,11 +156,8 @@ module.exports = function (grunt) {
         },
         src: 'dist/css/<%= pkg.name %>.css'
       },
-      docs: {
-        src: 'docs/assets/css/docs.css'
-      },
-      demo: {
-        src: 'docs/assets/css/demo.css'
+      assets: {
+        src: ['docs/assets/css/docs.css', 'docs/assets/css/demo.css']
       }
     },
 
