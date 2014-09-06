@@ -20,8 +20,8 @@ body {
 a {
   color: @link-color;
   text-decoration: none;
-  .transition(.25s);
-    
+  transition: .25s;
+
   &:hover,
   &:focus {
     color: @link-hover-color;
@@ -49,7 +49,7 @@ a {
   background-color: @thumbnail-bg;
   border: 2px solid @thumbnail-border;
   border-radius: @thumbnail-border-radius;
-  .transition(all .25s ease-in-out);
+  transition: all .25s ease-in-out;
 
   // Keep them at most 100% wide
   .img-responsive(inline-block);
@@ -57,7 +57,7 @@ a {
 
 // Description text under image
 .img-comment {
-  font-size: ceil(@font-size-base * 0.8333); // ~15px
+  font-size: ceil((@font-size-base * 0.8333)); // ~15px
   line-height: 1.2;
   font-style: italic;
   margin: 24px 0;

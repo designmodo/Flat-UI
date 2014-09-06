@@ -9,7 +9,6 @@
   background-color: @share-color;
   position: relative;
   border-radius: @border-radius-large;
-  .dropdown-arrow(@share-color, -9px, 23px);  
 
   ul {
     list-style-type: none;
@@ -21,19 +20,19 @@
     line-height: 1.4;
     padding-top: 11px;
     .clearfix();
-    
+
     &:first-child {
       padding-top: 0;
-    }  
+    }
   }
   .toggle {
     float: right;
     margin: 0;
   }
   .btn {
-    border-radius: 0 0 @border-radius-large @border-radius-large;
-  }  
-}    
+    .border-top-radius(0);
+  }
+}
 
 .share-label {
   float: left;

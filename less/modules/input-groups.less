@@ -3,6 +3,14 @@
 // --------------------------------------------------
 
 
+// Base styles
+// -------------------------
+.input-group {
+   .form-control {
+    position: static;
+  }
+}
+
 // Sizing options
 //
 // Remix the default form control sizing classes into new ones for easier
@@ -26,10 +34,10 @@
   color: @inverse;
   text-align: center;
   background-color: @gray-light;
-  border: 1px solid @gray-light;
+  border: 2px solid @gray-light;
   border-radius: @border-radius-large;
-  .transition(~"border .25s linear, color .25s linear, background-color .25s linear");
-  
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+
   .input-group-hg &,
   .input-group-lg &,
   .input-group-sm &, {
@@ -67,13 +75,14 @@
 
 // Button input groups
 // -------------------------
-.input-group-btn {    
+.input-group-btn {
   .btn {
     background-color: @inverse;
-    border: 2px solid @gray-light;    
+    border: 2px solid @gray-light;
     color: @gray-light;
     line-height: 18px;
-  } 
+    height: 42px;
+  }
   .btn-default {
     .button-variant(@btn-default-color, @gray-light, @btn-hover-bg, @btn-active-bg);
   }
@@ -88,11 +97,11 @@
   }
   &:first-child > .btn {
     border-right-width: 0;
-    margin-right: -2px;
+    margin-right: -3px;
   }
   &:last-child > .btn {
     border-left-width: 0;
-    margin-left: -2px;
+    margin-left: -3px;
   }
   & > .btn-default + .btn-default {
     border-left: 2px solid @gray-light;
@@ -111,25 +120,25 @@
   .input-group-btn + .form-control,
   .input-group-btn:last-child .btn {
     .border-right-radius(20px);
-    
+
     .input-group-hg& {
       .border-right-radius(27px);
     }
     .input-group-lg& {
       .border-right-radius(25px);
     }
-  } 
+  }
   .form-control:first-child,
   .input-group-btn:first-child .btn {
     .border-left-radius(20px);
-    
+
     .input-group-hg& {
       .border-left-radius(27px);
     }
     .input-group-lg& {
       .border-left-radius(25px);
     }
-  } 
+  }
   // Remove left padding for .form-control after button
   .input-group-btn + .form-control {
     padding-left: 0;

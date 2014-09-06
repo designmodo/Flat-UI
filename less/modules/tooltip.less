@@ -1,56 +1,50 @@
-// Tooltip
+//
+// Tooltips
 // --------------------------------------------------
 
+// Base class
 .tooltip {
-  font-size: ceil(@component-font-size-base * 0.933); // ~14px
+  font-size: ceil((@component-font-size-base * 0.933)); // ~14px
   line-height: 1.286; // 18px
-  
-  &.in {
-    opacity: 1;
-  }
-  &.top {
-    padding-bottom: 9px;
-    
-    .tooltip-arrow {
-      border-top-color: @brand-primary;
-      border-width: 9px 9px 0;
-      bottom: 0;
-      margin-left: -9px;
-    }
-  }
-  &.right {
-    .tooltip-arrow {
-      border-right-color: @brand-primary;
-      border-width: 9px 9px 9px 0;
-      margin-top: -9px;
-      left: -3px;
-    }
-  }
-  &.bottom {
-    padding-top: 8px;
-    
-    .tooltip-arrow {
-      border-bottom-color: @brand-primary;
-      border-width: 0 9px 9px;
-      margin-left: -9px;
-      top: -1px;
-    }
-  }
-  &.left {
-    .tooltip-arrow {
-      border-left-color: @brand-primary;
-      border-width: 9px 0 9px 9px;
-      margin-top: -9px;
-      right: -3px;
-    }
-  }
+  z-index: @zindex-tooltip;
+
+  &.in     { .opacity(@tooltip-opacity); }
+  &.top    { margin-top:  -5px; padding: @tooltip-arrow-width 0; }
+  &.right  { margin-left:  5px; padding: 0 @tooltip-arrow-width; }
+  &.bottom { margin-top:   5px; padding: @tooltip-arrow-width 0; }
+  &.left   { margin-left: -5px; padding: 0 @tooltip-arrow-width; }
 }
 
+// Wrapper for the tooltip content
 .tooltip-inner {
-  background-color: @brand-primary;
+  max-width: @tooltip-max-width;
   line-height: 1.286; // 18px
   padding: 12px 12px;
-  text-align: center;
-  width: 183px;
+  color: @tooltip-color;
+  background-color: @tooltip-bg;
   border-radius: @border-radius-large;
+}
+
+// Arrows
+.tooltip {
+  &.top .tooltip-arrow {
+    margin-left: -@tooltip-arrow-width;
+    border-width: @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-top-color: @tooltip-arrow-color;
+  }
+  &.right .tooltip-arrow {
+    margin-top: -@tooltip-arrow-width;
+    border-width: @tooltip-arrow-width @tooltip-arrow-width @tooltip-arrow-width 0;
+    border-right-color: @tooltip-arrow-color;
+  }
+  &.left .tooltip-arrow {
+    margin-top: -@tooltip-arrow-width;
+    border-width: @tooltip-arrow-width 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-left-color: @tooltip-arrow-color;
+  }
+  &.bottom .tooltip-arrow {
+    margin-left: -@tooltip-arrow-width;
+    border-width: 0 @tooltip-arrow-width @tooltip-arrow-width;
+    border-bottom-color: @tooltip-arrow-color;
+  }
 }

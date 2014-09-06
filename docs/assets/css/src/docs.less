@@ -1,19 +1,23 @@
 //
-// Flat UI's docs styles
+// Docs Flat UI Pro
 // --------------------------------------------------
 
 // Variables and utilityes
 @import "../../../../less/variables";
 @import "../../../../less/mixins";
+@import "prettyprint";
 
-.prettyprint {
-  overflow: auto;
+.docs-example-popovers {
+  position: relative;
+  margin: -20px -20px 0;
+  .clearfix();
 
-  &.linenums {
-    overflow: visible;
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  .popover {
+    display: block;
+    float: left;
+    margin: 20px;
+    position: relative;
+    width: 260px;
   }
 }
 
@@ -22,10 +26,10 @@
   color: @brand-secondary;
   font: 700 118px/1.1 @font-family-demo !important;
   margin-bottom: 50px;
-  margin-top: 2px;
   padding: 40px 0;
   text-align: center;
   word-wrap: break-word;
+  margin-top: 2px;
 }
 
 // Panels delimiter
@@ -82,7 +86,6 @@
   width: 580px;
 
   &.demo-content-article {
-    font-size: ceil(@font-size-base * 1.285);
     p { margin-bottom: 20px; }
 
     ul {
@@ -91,7 +94,7 @@
     }
 
     li {
-      line-height: ceil(@font-size-base * 1.285 * 1.5);
+      line-height: ceil((@font-size-base * 1.285 * 1.5));
       padding: 0 0 5px;
     }
   }
@@ -142,7 +145,8 @@
 }
 
 .demo-tooltips {
-  height: 100px;
+  width: 40%;
+  padding-left: 10px;
   // Needed just for the demo. Don't use it in producion ;)
 
   .tooltip {
@@ -192,18 +196,16 @@
   }
 
   @media (max-width: 480px) {
-    & {
-      > span {
-        margin-left: 16px;
-        margin-right: 16px;
-      }
+    > span {
+      margin-left: 16px;
+      margin-right: 16px;
     }
   }
 }
 
 .demo-icons-tooltip {
   bottom: 0;
-  color: mix(@brand-primary, white, 30%);
+  color: mix(@brand-primary, @inverse, 30%);
   font-size: 12px;
   left: 100%;
   margin-left: 0 !important;
@@ -216,15 +218,13 @@
 }
 
 .demo-labels {
-  font-size: ceil(@font-size-base * 1.357);
+  font-size: floor((@font-size-base * 1.056)); // ~19px
 
   .visible-lg {
     display: inline !important;
 
     @media (max-width: 767px) {
-      & {
-        display: none !important;
-      }
+      display: none !important;
     }
   }
 }
@@ -264,6 +264,11 @@
   .flat {
     width: 300px;
   }
+  @media (max-width: 767px) {
+    .flat {
+      width: 100%;
+    }
+  }
 }
 
 // Static Modal
@@ -276,9 +281,7 @@
   .modal {
     bottom: auto;
     display: block;
-    left: auto;
     position: relative;
-    right: auto;
     top: auto;
     z-index: 1;
     overflow: hidden;
@@ -295,7 +298,6 @@
     display: block;
     left: auto;
     position: relative;
-    right: auto;
     top: auto;
     z-index: 1;
     overflow: visible;
@@ -311,7 +313,7 @@
 
 // Sidebar for Components navigation
 .demo-sidebar {
-  font-size: floor(@font-size-base * 0.778); // ~14px
+  font-size: floor((@font-size-base * 0.778)); // ~14px
   line-height: 1.214; // ~17px
   height: 100%;
   left: 0;
@@ -324,7 +326,6 @@
   width: 150px;
   z-index: 10000;
   background-color: mix(@brand-primary, white, 6%);
-  -webkit-backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
 
   li {
@@ -338,6 +339,18 @@
   a {
     display: block;
     padding: 7px 20px;
+  }
+}
+
+
+// File Input
+.demo-col {
+  .fileinput {
+    .input-group {          // Inline fileinput
+      .uneditable-input {
+        max-width: 370px;
+      }
+    }
   }
 }
 
@@ -362,7 +375,7 @@
     width: auto;
   }
   .demo-headline {
-    font-size: ceil(@font-size-base * 3.611) !important;
+    font-size: ceil((@font-size-base * 3.611)) !important;
     text-align: left;
     padding-left: 15px;
     padding-right: 15px;
@@ -394,6 +407,11 @@
   .demo-illustrations .demo-content-wide > div {
     margin-left: 67px;
   }
+}
+
+/* Demo video */
+.demo-video {
+  margin-top: 40px;
 }
 
 @media (max-width: 480px) {

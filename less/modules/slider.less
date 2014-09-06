@@ -15,12 +15,12 @@
   background-color: @slider-handle-bg;
   border-radius: 50%;
   cursor: pointer;
-  height: 18px;  
-  position: absolute;  
+  height: 18px;
+  position: absolute;
   width: 18px;
   z-index: 2;
-  .transition(background .25s);
-  
+  transition: background .25s;
+
   &:hover,
   &:focus {
     background-color: @slider-handle-hover-bg;
@@ -32,7 +32,7 @@
 }
 
 .ui-slider-range {
-  background-color: @slider-range-bg;  
+  background-color: @slider-range-bg;
   display: block;
   height: 100%;
   position: absolute;
@@ -43,8 +43,8 @@
 // -------------------------
 .ui-slider-segment {
   background-color: @slider-segment-bg;
-  border-radius: 50%;  
-  height: 6px;  
+  border-radius: 50%;
+  height: 6px;
   width: 6px;
 }
 
@@ -54,7 +54,7 @@
   float: right;
   font-size: @slider-value-font-size;
   margin-top: @slider-height;
-  
+
   &.first {
     clear: left;
     float: left;

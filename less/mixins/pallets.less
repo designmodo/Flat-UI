@@ -1,0 +1,11 @@
+// Pallet color variants
+//
+
+.pallet-variant(@first-color, @second-color) {
+  .palette-@{first-color} {
+    background-color: ~"@{@{first-color}}";
+  }
+  .palette-@{second-color} {
+    background-color: ~"@{@{second-color}}";
+  }
+}

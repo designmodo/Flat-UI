@@ -8,7 +8,7 @@
   margin: 0 0 20px 20px;
 }
 .palette {
-  font-size: ceil(@component-font-size-base * 0.933); // ~14px
+  font-size: ceil((@component-font-size-base * 0.933)); // ~14px
   line-height: 1.214; // ~17px
   color: @inverse;
   margin: 0;
@@ -22,30 +22,30 @@
   dt {
     display: block;
     font-weight: bold;
-    .opacity(.8);
+    opacity: .8;
   }
   dd {
     font-weight: 300;
-    margin-left: 0;    
-    .opacity(.8);
+    margin-left: 0;
+    opacity: .8;
     -webkit-font-smoothing: subpixel-antialiased;
-  }  
+  }
 }
 
 //
 // Pallet grid
 // --------------------------------------------------
-.calc-color(~"turquoise", ~"green-sea");
-.calc-color(~"emerald", ~"nephritis");
-.calc-color(~"peter-river", ~"belize-hole");
-.calc-color(~"amethyst", ~"wisteria");
-.calc-color(~"wet-asphalt", ~"midnight-blue");
+.pallet-variant(~"turquoise", ~"green-sea");
+.pallet-variant(~"emerald", ~"nephritis");
+.pallet-variant(~"peter-river", ~"belize-hole");
+.pallet-variant(~"amethyst", ~"wisteria");
+.pallet-variant(~"wet-asphalt", ~"midnight-blue");
 
-.calc-color(~"sun-flower", ~"orange");
-.calc-color(~"carrot", ~"pumpkin");
-.calc-color(~"alizarin", ~"pomegranate");
-.calc-color(~"clouds", ~"silver");
-.calc-color(~"concrete", ~"asbestos");
+.pallet-variant(~"sun-flower", ~"orange");
+.pallet-variant(~"carrot", ~"pumpkin");
+.pallet-variant(~"alizarin", ~"pomegranate");
+.pallet-variant(~"clouds", ~"silver");
+.pallet-variant(~"concrete", ~"asbestos");
 
 .palette-clouds {
   color: #bdc3c7;
@@ -59,7 +59,7 @@
 
   span {
     color: #bdc3c7;
-  }  
+  }
 }
 
 // Headline

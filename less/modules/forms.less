@@ -22,7 +22,7 @@ legend {
 
 // Textarea
 textarea {
-  font-size: ceil(@font-size-base * 1.071); // ~15px
+  font-size: ceil((@font-size-base * 1.071)); // ~15px
   line-height: 24px;
   padding: 5px 11px;
 }
@@ -78,10 +78,9 @@ label {
   line-height: @input-line-height-base;
   padding: 8px 12px;
   height: 42px;
-  -webkit-appearance: none;
   border-radius: @input-border-radius;
-  .box-shadow(none);
-  .transition(~"border .25s linear, color .25s linear, background-color .25s linear");
+  box-shadow: none;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
 
   // Customize the `:focus` state
   .form-control-focus();
@@ -97,13 +96,13 @@ label {
     border-color: mix(@gray, white, 40%);
     color: mix(@gray, white, 40%);
     cursor: default;
-    .opacity(.7);
-  }  
-  
+    opacity: .7;
+  }
+
   // Flat (without border)
   &.flat {
     border-color: transparent;
-    
+
     &:hover {
       border-color: @gray-light;
     }
@@ -115,33 +114,75 @@ label {
 
 // Form control sizing
 .input-sm {
-  .input-size(@input-height-small; 6px; 10px; @input-font-size-small; @input-line-height-small);
+  .input-size(@input-height-sm; 6px; 10px; @input-font-size-sm; @input-line-height-sm);
 }
 
 .input-lg {
-  .input-size(@input-height-large; 10px; 15px; @input-font-size-large; @input-line-height-large);
+  .input-size(@input-height-lg; 10px; 15px; @input-font-size-lg; @input-line-height-lg);
 }
 
 .input-hg {
-  .input-size(@input-height-huge; 10px; 16px; @input-font-size-huge; @input-line-height-huge);
+  .input-size(@input-height-hg; 10px; 16px; @input-font-size-hg; @input-line-height-hg);
 }
 
 // Form control feedback states
 //
 // Apply contextual and semantic states to individual form controls.
 
-// Warning
-.has-warning {
-  .form-control-validation(@brand-warning; @brand-warning);
+.form-control-feedback {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  margin-top: 1px;
+  line-height: 36px;
+  font-size: @input-icon-font-size;
+  color: desaturate(lighten(@brand-primary, 45%), 15%);
+  background-color: transparent;
+  padding: 0 12px 0 0;
+  border-radius: @input-border-radius;
 }
-// Error
-.has-error {
-  .form-control-validation(@brand-danger; @brand-danger);
+
+.input-hg + .form-control-feedback {
+  font-size: @input-icon-font-size-hg;
+  line-height: 48px;
+  padding-right: 16px;
+  width: auto;
+  height: 48px;
 }
-// Success
+.input-lg + .form-control-feedback {
+  font-size: @input-icon-font-size-lg;
+  line-height: 40px;
+  width: auto;
+  height: 40px;
+  padding-right: 15px;
+}
+.input-sm + .form-control-feedback {
+  line-height: 29px;
+  height: 29px;
+  width: auto;
+  padding-right: 10px;
+}
+
+// Feedback states
 .has-success {
   .form-control-validation(@brand-success; @brand-success);
 }
+.has-warning {
+  .form-control-validation(@brand-warning; @brand-warning);
+}
+.has-error {
+  .form-control-validation(@brand-danger; @brand-danger);
+}
+
+.form-control[disabled] + .form-control-feedback,
+.form-control[readonly] + .form-control-feedback,
+fieldset[disabled] .form-control + .form-control-feedback,
+.form-control.disabled + .form-control-feedback {
+  color: mix(@gray, white, 40%);
+  background-color: transparent;
+  opacity: .7;
+}
+
 
 // Help text
 //
@@ -149,9 +190,9 @@ label {
 // below a form control. Use for general help, formatting, or instructional text.
 
 .help-block {
-  font-size: @component-font-size-base;
+  font-size: ceil((@component-font-size-base * 0.933));
   margin-bottom: 5px;
-  color: inherit;
+  color: mix(@brand-primary, @gray-light, 60%);
 }
 
 // Form groups
@@ -171,15 +212,25 @@ label {
 
 .form-horizontal {
 
-  // Consistent vertical alignment of labels, radios, and checkboxes
-  .control-label,
+  // Consistent vertical alignment of radios and checkboxes
+  //
+  // Labels also get some reset styles, but that is scope to a media query below.
   .radio,
   .checkbox,
   .radio-inline,
   .checkbox-inline {
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 6px;
+    padding-top: 0;
+  }
+
+  // Reset spacing and right align labels, but scope to media queries so that
+  // labels on narrow viewports stack the same as a default form example.
+  @media (min-width: @screen-sm-min) {
+    .control-label {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
   }
 
   // Make form groups behave like rows
@@ -189,5 +240,47 @@ label {
 
   .form-control-static {
     padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  // Form group sizes
+  //
+  // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
+  // inputs and labels within a `.form-group`.
+  .form-group-hg {
+    @media (min-width: @screen-sm-min) {
+      .control-label {
+        font-size: @input-font-size-hg;
+        padding-top: 2px;
+        padding-bottom: 0;
+      }
+    }
+    .form-control {
+      &:extend(.input-hg);
+    }
+  }
+  .form-group-lg {
+    @media (min-width: @screen-sm-min) {
+      .control-label {
+        font-size: @input-font-size-lg;
+        padding-top: 3px;
+        padding-bottom: 2px;
+      }
+    }
+    .form-control {
+      &:extend(.input-lg);
+    }
+  }
+  .form-group-sm {
+    @media (min-width: @screen-sm-min) {
+      .control-label {
+        font-size: @input-font-size-sm;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+    }
+    .form-control {
+      &:extend(.input-sm);
+    }
   }
 }

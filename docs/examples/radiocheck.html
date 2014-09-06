@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flat UI Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../../dist/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../../dist/img/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../../dist/js/vendor/html5shiv.js"></script>
+      <script src="../../dist/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      body {
+        padding-bottom: 200px;
+      }
+      ul {
+        list-style: none;
+        padding-left: 33px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row no-svg-elements mbl">
+
+        <div class="col-md-12">
+          <h4>Checkboxes &amp; Radio-buttons</h4>
+        </div>
+
+        <div class="col-md-6">
+          <form role="form">
+            <div class="form-group">
+              <label class="checkbox" for="checkbox1">
+                <input type="checkbox" data-toggle="checkbox" value="" id="checkbox1" required>
+                Unchecked
+              </label>
+              <label class="checkbox" for="checkbox2">
+                <input type="checkbox" data-toggle="checkbox" checked="checked" value="" id="checkbox2" checked="">
+                Checked
+              </label>
+              <label class="checkbox" for="checkbox3">
+                <input type="checkbox" data-toggle="checkbox" value="" id="checkbox3" disabled="">
+                Disabled unchecked
+              </label>
+              <label class="checkbox" for="checkbox4">
+                <input type="checkbox" data-toggle="checkbox" checked="checked" value="" id="checkbox4" disabled="" checked="">
+                Disabled checked
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+         <form role="form">
+           <div class="form-group">
+             <label class="radio">
+                <input type="radio" data-toggle="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-radiocheck-toggle="radio" required>
+                Radio is off
+              </label>
+              <label class="radio">
+                <input type="radio" data-toggle="radio" name="optionsRadios" id="optionsRadios2" value="option1" data-radiocheck-toggle="radio" checked="">
+                Radio is on
+              </label>
+
+              <label class="radio">
+                <input type="radio" data-toggle="radio" name="optionsRadiosDisabled" id="optionsRadios3" value="option2" data-radiocheck-toggle="radio" disabled="">
+                Disabled radio is off
+              </label>
+              <label class="radio">
+                <input type="radio" data-toggle="radio" name="optionsRadiosDisabled" id="optionsRadios4" value="option2" data-radiocheck-toggle="radio" checked="" disabled="">
+                Disabled radio is on
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+        </div>
+      </div><!-- /.row -->
+      <div class="row mbl">
+
+        <div class="col-md-12">
+          <h4>Custom colour</h4>
+        </div>
+        <div class="col-md-6">
+          <form role="form">
+            <div class="form-group">
+              <label class="checkbox primary" for="checkbox1c">
+                <input type="checkbox" data-toggle="radio" value="" id="checkbox1c" required>
+                Unchecked
+              </label>
+              <label class="checkbox primary" for="checkbox2c">
+                <input type="checkbox" data-toggle="radio" checked="checked" value="" id="checkbox2c" checked="">
+                Checked
+              </label>
+              <label class="checkbox primary" for="checkbox3c">
+                <input type="checkbox" data-toggle="radio" value="" id="checkbox3c" disabled="">
+                Disabled unchecked
+              </label>
+              <label class="checkbox primary" for="checkbox4c">
+                <input type="checkbox" data-toggle="radio" checked="checked" value="" id="checkbox4c" disabled="" checked="">
+                Disabled checked
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+         <form role="form">
+           <div class="form-group">
+             <label class="radio primary">
+                <input type="radio" data-toggle="radio" name="optionsRadios" id="optionsRadios1c" value="option1" data-radiocheck-toggle="radio" required>
+                Radio is off
+              </label>
+              <label class="radio primary">
+                <input type="radio" data-toggle="radio" name="optionsRadios" id="optionsRadios2c" value="option1" data-radiocheck-toggle="radio">
+                Radio is on
+              </label>
+
+              <label class="radio primary">
+                <input type="radio" data-toggle="radio" name="optionsRadiosDisabled" id="optionsRadios3c" value="option2" data-radiocheck-toggle="radio" disabled="">
+                Disabled radio is off
+              </label>
+              <label class="radio primary">
+                <input type="radio" data-toggle="radio" name="optionsRadiosDisabled" id="optionsRadios4c" value="option2" data-radiocheck-toggle="radio" checked="" disabled="">
+                Disabled radio is on
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+          </form>
+        </div>
+
+      </div><!-- /.row -->
+      <div class="row mbl">
+        <div class="col-md-12">
+          <h4>Plugin methods</h4>
+        </div>
+        <div class="col-md-12">
+          <form role="form">
+            <div class="form-group">
+              <label class="checkbox" for="checkbox100">
+                <input type="checkbox" data-toggle="radio" value="" id="checkbox100" required>
+                Checkbox
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-check="#checkbox100">Check</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-uncheck="#checkbox100">Uncheck</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-toggle="#checkbox100">Toggle</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-indeterminate="#checkbox100">Indeterminate</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-determinate="#checkbox100">Determinate</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-disable="#checkbox100">Disable</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-enable="#checkbox100">Enable</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-destroy="#checkbox100">Destroy</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-init="#checkbox100">Init</button><br><br>
+          </form>
+        </div>
+      </div><!-- /.row -->
+
+      <div class="row mbl">
+        <div class="col-md-12">
+          <form role="form">
+            <div class="form-group">
+              <label class="radio" for="radio100">
+                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio100" required>
+                Radio
+              </label>
+              <label class="radio" for="radio101">
+                <input name="optionsRadios2" type="radio" data-toggle="radio" value="" id="radio101" required checked>
+                Radio
+              </label>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-check="#radio100">Check</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-uncheck="#radio100">Uncheck</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-toggle="#radio100">Toggle</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-disable="#radio100">Disable</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-enable="#radio100">Enable</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" data-radiocheck-destroy="#radio100">Destroy</button>
+            <button class="btn btn-sm btn-default" data-radiocheck-init="#radio100">Init</button><br><br>
+          </form>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../../dist/js/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../../dist/js/flat-ui.min.js"></script>
+
+    <script src="../assets/js/application.js"></script>
+    <script>
+      $('button:not([type="submit"])').on('click', function (e) {
+        var $this = $(this);
+
+        if (!!$this.attr('data-radiocheck-check')) {
+          var el = $this.attr('data-radiocheck-check');
+          $(el).radiocheck('check');
+        } else if (!!$this.attr('data-radiocheck-uncheck')) {
+          var el = $this.attr('data-radiocheck-uncheck');
+          $(el).radiocheck('uncheck');
+        } else if (!!$this.attr('data-radiocheck-toggle')) {
+          var el = $this.attr('data-radiocheck-toggle');
+          $(el).radiocheck('toggle');
+        } else if (!!$this.attr('data-radiocheck-indeterminate')) {
+          var el = $this.attr('data-radiocheck-indeterminate');
+          $(el).radiocheck('indeterminate');
+        } else if (!!$this.attr('data-radiocheck-determinate')) {
+          var el = $this.attr('data-radiocheck-determinate');
+          $(el).radiocheck('determinate');
+        } else if (!!$this.attr('data-radiocheck-disable')) {
+          var el = $this.attr('data-radiocheck-disable');
+          $(el).radiocheck('disable');
+        } else if (!!$this.attr('data-radiocheck-enable')) {
+          var el = $this.attr('data-radiocheck-enable');
+          $(el).radiocheck('enable');
+        } else if (!!$this.attr('data-radiocheck-destroy')) {
+          var el = $this.attr('data-radiocheck-destroy');
+          $(el).radiocheck('destroy');
+        } else if (!!$this.attr('data-radiocheck-init')) {
+          var el = $this.attr('data-radiocheck-init');
+          $(el).radiocheck();
+        }
+
+        e.preventDefault();
+      });
+
+    </script>
+
+  </body>
+</html>

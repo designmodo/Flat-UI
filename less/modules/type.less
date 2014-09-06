@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5, h6,
   font-weight: @headings-font-weight;
   line-height: @headings-line-height;
   color: @headings-color;
-  
+
   small {
     color: @headings-small-color;
   }
@@ -39,7 +39,7 @@ h1, .h1 { font-size: @font-size-h1; } // ~62px
 h2, .h2 { font-size: @font-size-h2; } // ~52px
 h3, .h3 { font-size: @font-size-h3; } // ~40px
 h4, .h4 { font-size: @font-size-h4; } // ~29px
-h5, .h5 { font-size: @font-size-h5; } // ~28px 
+h5, .h5 { font-size: @font-size-h5; } // ~28px
 h6, .h6 { font-size: @font-size-h6; } // ~24px
 
 
@@ -54,10 +54,10 @@ p {
 
 .lead {
   margin-bottom: @line-height-computed;
-  font-size:   floor(@font-size-base * 1.556);  // ~28px
+  font-size:   floor((@font-size-base * 1.556));  // ~28px
   line-height: 1.46428571;                      // ~41px
   font-weight: 300;
-  
+
   @media (min-width: @screen-sm-min) {
     font-size: (@font-size-base * 1.667);       // ~30px
   }
@@ -123,7 +123,7 @@ small,
 .page-header {
   padding-bottom: ((@line-height-computed / 2) - 1);
   margin: (@line-height-computed * 2) 0 @line-height-computed;
-  border-bottom: 1px solid @page-header-border-color;
+  border-bottom: 2px solid @page-header-border-color;
 }
 
 
@@ -153,10 +153,10 @@ dd {
 @media (min-width: @grid-float-breakpoint) {
   .dl-horizontal {
     dt {
-      width: (@component-offset-horizontal - 20);
+      width: (@dl-horizontal-offset - 20);
     }
     dd {
-      margin-left: @component-offset-horizontal;
+      margin-left: @dl-horizontal-offset;
     }
   }
 }
@@ -175,9 +175,9 @@ blockquote {
   border-left: 3px solid @blockquote-border-color;
   padding: 0 0 0 16px;
   margin: 0 0 @line-height-computed;
-  
+
   p {
-    font-size: ceil(@font-size-base * 1.111); // ~20px
+    font-size: ceil((@font-size-base * 1.111)); // ~20px
     line-height: 1.55;                        // ~31px
     font-weight: normal;
     margin-bottom: .4em;
@@ -193,7 +193,7 @@ blockquote {
       content: "";
     }
   }
-  
+
   // Float right with text-align: right
   &.pull-right {
     padding-right: 16px;
@@ -201,10 +201,8 @@ blockquote {
     border-right: 3px solid @blockquote-border-color;
     border-left: 0;
 
-    small {
-      &:after {
-        content: "";
-      }
+    small:after {
+      content: "";
     }
   }
 }
@@ -213,4 +211,10 @@ blockquote {
 address {
   margin-bottom: @line-height-computed;
   line-height: @line-height-base;
+}
+
+// Sup and Sub
+sub,
+sup {
+  font-size: 70%;
 }

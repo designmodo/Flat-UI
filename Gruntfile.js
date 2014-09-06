@@ -123,6 +123,18 @@ module.exports = function (grunt) {
         files: {
           'docs/assets/css/docs.css': 'docs/assets/css/src/docs.less'
         }
+      },
+      compileDemo: {
+        options: {
+          strictMath: true,
+          sourceMap: true,
+          outputSourceFiles: true,
+          sourceMapURL: 'demo.css.map',
+          sourceMapFilename: 'docs/assets/css/demo.css.map'
+        },
+        files: {
+          'docs/assets/css/demo.css': 'docs/assets/css/src/demo.less'
+        }
       }
     },
 
@@ -146,6 +158,9 @@ module.exports = function (grunt) {
       },
       docs: {
         src: 'docs/assets/css/docs.css'
+      },
+      demo: {
+        src: 'docs/assets/css/demo.css'
       }
     },
 
@@ -156,12 +171,12 @@ module.exports = function (grunt) {
       src: [
         'dist/css/<%= pkg.name %>.css'
       ],
-      docs: {
+      assets: {
         options: {
           ids: false,
           'overqualified-elements': false
         },
-        src: 'docs/assets/css/docs.css'
+        src: ['docs/assets/css/docs.css', 'docs/assets/css/demo.css']
       }
     },
 
@@ -188,7 +203,7 @@ module.exports = function (grunt) {
             'dist/css/<%= pkg.name %>.css',
             'dist/css/<%= pkg.name %>.min.css',
             'docs/assets/css/docs.css',
-            'docs/assets/css/docs.min.css'
+            'docs/assets/css/demo.css'
           ]
         }
       }
@@ -203,9 +218,10 @@ module.exports = function (grunt) {
           'dist/css/<%= pkg.name %>.css': 'dist/css/<%= pkg.name %>.css'
         }
       },
-      docs: {
+      assets: {
         files: {
-          'docs/assets/css/docs.css': 'docs/assets/css/docs.css'
+          'docs/assets/css/docs.css': 'docs/assets/css/docs.css',
+          'docs/assets/css/demo.css': 'docs/assets/css/demo.css'
         }
       }
     },
