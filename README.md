@@ -17,12 +17,14 @@ To get started, check out [getting started page](http://designmodo.github.io/Fla
 Three quick start options are available:
 
 - [Download the latest release](https://github.com/designmodo/Flat-UI/archive/2.2.0.zip).
-- Clone the repo: `git clone https://github.com/designmodo/Flat-UI.git` (run `npm install` and `bower install` to install dependencies).
+- Clone the repo: `git clone https://github.com/designmodo/Flat-UI.git`.
 - Install with [Bower](http://bower.io): `bower install flat-ui`.
+
+Run `npm install` and `bower install` to install dependencies.
 
 Read the [getting started page](http://designmodo.github.io/Flat-UI/docs/getting-started.html) for information on the framework contents.
 
-Examples: <https://github.com/designmodo/Flat-UI/docs/examples/>.
+Examples: <https://github.com/designmodo/Flat-UI/tree/master/docs/examples>.
 
 
 ### What's included
