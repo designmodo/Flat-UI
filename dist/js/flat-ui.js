@@ -1,7 +1,4045 @@
 /*!
- * Flat UI Free v2.2.0 (http://designmodo.github.io/Flat-UI/)
+ * Flat UI Free v2.2.1 (http://designmodo.github.io/Flat-UI/)
  * Copyright 2013-2014 Designmodo, Inc.
  */
+/*!
+ * jQuery UI Core 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/ui-core/
+ */
+(function( $, undefined ) {
+
+var uuid = 0,
+	runiqueId = /^ui-id-\d+$/;
+
+// $.ui might exist from components with no dependencies, e.g., $.ui.position
+$.ui = $.ui || {};
+
+$.extend( $.ui, {
+	version: "1.10.4",
+
+	keyCode: {
+		BACKSPACE: 8,
+		COMMA: 188,
+		DELETE: 46,
+		DOWN: 40,
+		END: 35,
+		ENTER: 13,
+		ESCAPE: 27,
+		HOME: 36,
+		LEFT: 37,
+		NUMPAD_ADD: 107,
+		NUMPAD_DECIMAL: 110,
+		NUMPAD_DIVIDE: 111,
+		NUMPAD_ENTER: 108,
+		NUMPAD_MULTIPLY: 106,
+		NUMPAD_SUBTRACT: 109,
+		PAGE_DOWN: 34,
+		PAGE_UP: 33,
+		PERIOD: 190,
+		RIGHT: 39,
+		SPACE: 32,
+		TAB: 9,
+		UP: 38
+	}
+});
+
+// plugins
+$.fn.extend({
+	focus: (function( orig ) {
+		return function( delay, fn ) {
+			return typeof delay === "number" ?
+				this.each(function() {
+					var elem = this;
+					setTimeout(function() {
+						$( elem ).focus();
+						if ( fn ) {
+							fn.call( elem );
+						}
+					}, delay );
+				}) :
+				orig.apply( this, arguments );
+		};
+	})( $.fn.focus ),
+
+	scrollParent: function() {
+		var scrollParent;
+		if (($.ui.ie && (/(static|relative)/).test(this.css("position"))) || (/absolute/).test(this.css("position"))) {
+			scrollParent = this.parents().filter(function() {
+				return (/(relative|absolute|fixed)/).test($.css(this,"position")) && (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
+			}).eq(0);
+		} else {
+			scrollParent = this.parents().filter(function() {
+				return (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
+			}).eq(0);
+		}
+
+		return (/fixed/).test(this.css("position")) || !scrollParent.length ? $(document) : scrollParent;
+	},
+
+	zIndex: function( zIndex ) {
+		if ( zIndex !== undefined ) {
+			return this.css( "zIndex", zIndex );
+		}
+
+		if ( this.length ) {
+			var elem = $( this[ 0 ] ), position, value;
+			while ( elem.length && elem[ 0 ] !== document ) {
+				// Ignore z-index if position is set to a value where z-index is ignored by the browser
+				// This makes behavior of this function consistent across browsers
+				// WebKit always returns auto if the element is positioned
+				position = elem.css( "position" );
+				if ( position === "absolute" || position === "relative" || position === "fixed" ) {
+					// IE returns 0 when zIndex is not specified
+					// other browsers return a string
+					// we ignore the case of nested elements with an explicit value of 0
+					// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
+					value = parseInt( elem.css( "zIndex" ), 10 );
+					if ( !isNaN( value ) && value !== 0 ) {
+						return value;
+					}
+				}
+				elem = elem.parent();
+			}
+		}
+
+		return 0;
+	},
+
+	uniqueId: function() {
+		return this.each(function() {
+			if ( !this.id ) {
+				this.id = "ui-id-" + (++uuid);
+			}
+		});
+	},
+
+	removeUniqueId: function() {
+		return this.each(function() {
+			if ( runiqueId.test( this.id ) ) {
+				$( this ).removeAttr( "id" );
+			}
+		});
+	}
+});
+
+// selectors
+function focusable( element, isTabIndexNotNaN ) {
+	var map, mapName, img,
+		nodeName = element.nodeName.toLowerCase();
+	if ( "area" === nodeName ) {
+		map = element.parentNode;
+		mapName = map.name;
+		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
+			return false;
+		}
+		img = $( "img[usemap=#" + mapName + "]" )[0];
+		return !!img && visible( img );
+	}
+	return ( /input|select|textarea|button|object/.test( nodeName ) ?
+		!element.disabled :
+		"a" === nodeName ?
+			element.href || isTabIndexNotNaN :
+			isTabIndexNotNaN) &&
+		// the element and all of its ancestors must be visible
+		visible( element );
+}
+
+function visible( element ) {
+	return $.expr.filters.visible( element ) &&
+		!$( element ).parents().addBack().filter(function() {
+			return $.css( this, "visibility" ) === "hidden";
+		}).length;
+}
+
+$.extend( $.expr[ ":" ], {
+	data: $.expr.createPseudo ?
+		$.expr.createPseudo(function( dataName ) {
+			return function( elem ) {
+				return !!$.data( elem, dataName );
+			};
+		}) :
+		// support: jQuery <1.8
+		function( elem, i, match ) {
+			return !!$.data( elem, match[ 3 ] );
+		},
+
+	focusable: function( element ) {
+		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
+	},
+
+	tabbable: function( element ) {
+		var tabIndex = $.attr( element, "tabindex" ),
+			isTabIndexNaN = isNaN( tabIndex );
+		return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
+	}
+});
+
+// support: jQuery <1.8
+if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
+	$.each( [ "Width", "Height" ], function( i, name ) {
+		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+			type = name.toLowerCase(),
+			orig = {
+				innerWidth: $.fn.innerWidth,
+				innerHeight: $.fn.innerHeight,
+				outerWidth: $.fn.outerWidth,
+				outerHeight: $.fn.outerHeight
+			};
+
+		function reduce( elem, size, border, margin ) {
+			$.each( side, function() {
+				size -= parseFloat( $.css( elem, "padding" + this ) ) || 0;
+				if ( border ) {
+					size -= parseFloat( $.css( elem, "border" + this + "Width" ) ) || 0;
+				}
+				if ( margin ) {
+					size -= parseFloat( $.css( elem, "margin" + this ) ) || 0;
+				}
+			});
+			return size;
+		}
+
+		$.fn[ "inner" + name ] = function( size ) {
+			if ( size === undefined ) {
+				return orig[ "inner" + name ].call( this );
+			}
+
+			return this.each(function() {
+				$( this ).css( type, reduce( this, size ) + "px" );
+			});
+		};
+
+		$.fn[ "outer" + name] = function( size, margin ) {
+			if ( typeof size !== "number" ) {
+				return orig[ "outer" + name ].call( this, size );
+			}
+
+			return this.each(function() {
+				$( this).css( type, reduce( this, size, true, margin ) + "px" );
+			});
+		};
+	});
+}
+
+// support: jQuery <1.8
+if ( !$.fn.addBack ) {
+	$.fn.addBack = function( selector ) {
+		return this.add( selector == null ?
+			this.prevObject : this.prevObject.filter( selector )
+		);
+	};
+}
+
+// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
+if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
+	$.fn.removeData = (function( removeData ) {
+		return function( key ) {
+			if ( arguments.length ) {
+				return removeData.call( this, $.camelCase( key ) );
+			} else {
+				return removeData.call( this );
+			}
+		};
+	})( $.fn.removeData );
+}
+
+
+
+
+
+// deprecated
+$.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
+
+$.support.selectstart = "onselectstart" in document.createElement( "div" );
+$.fn.extend({
+	disableSelection: function() {
+		return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
+			".ui-disableSelection", function( event ) {
+				event.preventDefault();
+			});
+	},
+
+	enableSelection: function() {
+		return this.unbind( ".ui-disableSelection" );
+	}
+});
+
+$.extend( $.ui, {
+	// $.ui.plugin is deprecated. Use $.widget() extensions instead.
+	plugin: {
+		add: function( module, option, set ) {
+			var i,
+				proto = $.ui[ module ].prototype;
+			for ( i in set ) {
+				proto.plugins[ i ] = proto.plugins[ i ] || [];
+				proto.plugins[ i ].push( [ option, set[ i ] ] );
+			}
+		},
+		call: function( instance, name, args ) {
+			var i,
+				set = instance.plugins[ name ];
+			if ( !set || !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11 ) {
+				return;
+			}
+
+			for ( i = 0; i < set.length; i++ ) {
+				if ( instance.options[ set[ i ][ 0 ] ] ) {
+					set[ i ][ 1 ].apply( instance.element, args );
+				}
+			}
+		}
+	},
+
+	// only used by resizable
+	hasScroll: function( el, a ) {
+
+		//If overflow is hidden, the element might have extra content, but the user wants to hide it
+		if ( $( el ).css( "overflow" ) === "hidden") {
+			return false;
+		}
+
+		var scroll = ( a && a === "left" ) ? "scrollLeft" : "scrollTop",
+			has = false;
+
+		if ( el[ scroll ] > 0 ) {
+			return true;
+		}
+
+		// TODO: determine which cases actually cause this to happen
+		// if the element doesn't have the scroll set, see if it's possible to
+		// set the scroll
+		el[ scroll ] = 1;
+		has = ( el[ scroll ] > 0 );
+		el[ scroll ] = 0;
+		return has;
+	}
+});
+
+})( jQuery );
+
+/*!
+ * jQuery UI Widget 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/jQuery.widget/
+ */
+(function( $, undefined ) {
+
+var uuid = 0,
+	slice = Array.prototype.slice,
+	_cleanData = $.cleanData;
+$.cleanData = function( elems ) {
+	for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+		try {
+			$( elem ).triggerHandler( "remove" );
+		// http://bugs.jquery.com/ticket/8235
+		} catch( e ) {}
+	}
+	_cleanData( elems );
+};
+
+$.widget = function( name, base, prototype ) {
+	var fullName, existingConstructor, constructor, basePrototype,
+		// proxiedPrototype allows the provided prototype to remain unmodified
+		// so that it can be used as a mixin for multiple widgets (#8876)
+		proxiedPrototype = {},
+		namespace = name.split( "." )[ 0 ];
+
+	name = name.split( "." )[ 1 ];
+	fullName = namespace + "-" + name;
+
+	if ( !prototype ) {
+		prototype = base;
+		base = $.Widget;
+	}
+
+	// create selector for plugin
+	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
+		return !!$.data( elem, fullName );
+	};
+
+	$[ namespace ] = $[ namespace ] || {};
+	existingConstructor = $[ namespace ][ name ];
+	constructor = $[ namespace ][ name ] = function( options, element ) {
+		// allow instantiation without "new" keyword
+		if ( !this._createWidget ) {
+			return new constructor( options, element );
+		}
+
+		// allow instantiation without initializing for simple inheritance
+		// must use "new" keyword (the code above always passes args)
+		if ( arguments.length ) {
+			this._createWidget( options, element );
+		}
+	};
+	// extend with the existing constructor to carry over any static properties
+	$.extend( constructor, existingConstructor, {
+		version: prototype.version,
+		// copy the object used to create the prototype in case we need to
+		// redefine the widget later
+		_proto: $.extend( {}, prototype ),
+		// track widgets that inherit from this widget in case this widget is
+		// redefined after a widget inherits from it
+		_childConstructors: []
+	});
+
+	basePrototype = new base();
+	// we need to make the options hash a property directly on the new instance
+	// otherwise we'll modify the options hash on the prototype that we're
+	// inheriting from
+	basePrototype.options = $.widget.extend( {}, basePrototype.options );
+	$.each( prototype, function( prop, value ) {
+		if ( !$.isFunction( value ) ) {
+			proxiedPrototype[ prop ] = value;
+			return;
+		}
+		proxiedPrototype[ prop ] = (function() {
+			var _super = function() {
+					return base.prototype[ prop ].apply( this, arguments );
+				},
+				_superApply = function( args ) {
+					return base.prototype[ prop ].apply( this, args );
+				};
+			return function() {
+				var __super = this._super,
+					__superApply = this._superApply,
+					returnValue;
+
+				this._super = _super;
+				this._superApply = _superApply;
+
+				returnValue = value.apply( this, arguments );
+
+				this._super = __super;
+				this._superApply = __superApply;
+
+				return returnValue;
+			};
+		})();
+	});
+	constructor.prototype = $.widget.extend( basePrototype, {
+		// TODO: remove support for widgetEventPrefix
+		// always use the name + a colon as the prefix, e.g., draggable:start
+		// don't prefix for widgets that aren't DOM-based
+		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
+	}, proxiedPrototype, {
+		constructor: constructor,
+		namespace: namespace,
+		widgetName: name,
+		widgetFullName: fullName
+	});
+
+	// If this widget is being redefined then we need to find all widgets that
+	// are inheriting from it and redefine all of them so that they inherit from
+	// the new version of this widget. We're essentially trying to replace one
+	// level in the prototype chain.
+	if ( existingConstructor ) {
+		$.each( existingConstructor._childConstructors, function( i, child ) {
+			var childPrototype = child.prototype;
+
+			// redefine the child widget using the same prototype that was
+			// originally used, but inherit from the new version of the base
+			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
+		});
+		// remove the list of existing child constructors from the old constructor
+		// so the old child constructors can be garbage collected
+		delete existingConstructor._childConstructors;
+	} else {
+		base._childConstructors.push( constructor );
+	}
+
+	$.widget.bridge( name, constructor );
+};
+
+$.widget.extend = function( target ) {
+	var input = slice.call( arguments, 1 ),
+		inputIndex = 0,
+		inputLength = input.length,
+		key,
+		value;
+	for ( ; inputIndex < inputLength; inputIndex++ ) {
+		for ( key in input[ inputIndex ] ) {
+			value = input[ inputIndex ][ key ];
+			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
+				// Clone objects
+				if ( $.isPlainObject( value ) ) {
+					target[ key ] = $.isPlainObject( target[ key ] ) ?
+						$.widget.extend( {}, target[ key ], value ) :
+						// Don't extend strings, arrays, etc. with objects
+						$.widget.extend( {}, value );
+				// Copy everything else by reference
+				} else {
+					target[ key ] = value;
+				}
+			}
+		}
+	}
+	return target;
+};
+
+$.widget.bridge = function( name, object ) {
+	var fullName = object.prototype.widgetFullName || name;
+	$.fn[ name ] = function( options ) {
+		var isMethodCall = typeof options === "string",
+			args = slice.call( arguments, 1 ),
+			returnValue = this;
+
+		// allow multiple hashes to be passed on init
+		options = !isMethodCall && args.length ?
+			$.widget.extend.apply( null, [ options ].concat(args) ) :
+			options;
+
+		if ( isMethodCall ) {
+			this.each(function() {
+				var methodValue,
+					instance = $.data( this, fullName );
+				if ( !instance ) {
+					return $.error( "cannot call methods on " + name + " prior to initialization; " +
+						"attempted to call method '" + options + "'" );
+				}
+				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
+					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+				}
+				methodValue = instance[ options ].apply( instance, args );
+				if ( methodValue !== instance && methodValue !== undefined ) {
+					returnValue = methodValue && methodValue.jquery ?
+						returnValue.pushStack( methodValue.get() ) :
+						methodValue;
+					return false;
+				}
+			});
+		} else {
+			this.each(function() {
+				var instance = $.data( this, fullName );
+				if ( instance ) {
+					instance.option( options || {} )._init();
+				} else {
+					$.data( this, fullName, new object( options, this ) );
+				}
+			});
+		}
+
+		return returnValue;
+	};
+};
+
+$.Widget = function( /* options, element */ ) {};
+$.Widget._childConstructors = [];
+
+$.Widget.prototype = {
+	widgetName: "widget",
+	widgetEventPrefix: "",
+	defaultElement: "<div>",
+	options: {
+		disabled: false,
+
+		// callbacks
+		create: null
+	},
+	_createWidget: function( options, element ) {
+		element = $( element || this.defaultElement || this )[ 0 ];
+		this.element = $( element );
+		this.uuid = uuid++;
+		this.eventNamespace = "." + this.widgetName + this.uuid;
+		this.options = $.widget.extend( {},
+			this.options,
+			this._getCreateOptions(),
+			options );
+
+		this.bindings = $();
+		this.hoverable = $();
+		this.focusable = $();
+
+		if ( element !== this ) {
+			$.data( element, this.widgetFullName, this );
+			this._on( true, this.element, {
+				remove: function( event ) {
+					if ( event.target === element ) {
+						this.destroy();
+					}
+				}
+			});
+			this.document = $( element.style ?
+				// element within the document
+				element.ownerDocument :
+				// element is window or document
+				element.document || element );
+			this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
+		}
+
+		this._create();
+		this._trigger( "create", null, this._getCreateEventData() );
+		this._init();
+	},
+	_getCreateOptions: $.noop,
+	_getCreateEventData: $.noop,
+	_create: $.noop,
+	_init: $.noop,
+
+	destroy: function() {
+		this._destroy();
+		// we can probably remove the unbind calls in 2.0
+		// all event bindings should go through this._on()
+		this.element
+			.unbind( this.eventNamespace )
+			// 1.9 BC for #7810
+			// TODO remove dual storage
+			.removeData( this.widgetName )
+			.removeData( this.widgetFullName )
+			// support: jquery <1.6.3
+			// http://bugs.jquery.com/ticket/9413
+			.removeData( $.camelCase( this.widgetFullName ) );
+		this.widget()
+			.unbind( this.eventNamespace )
+			.removeAttr( "aria-disabled" )
+			.removeClass(
+				this.widgetFullName + "-disabled " +
+				"ui-state-disabled" );
+
+		// clean up events and states
+		this.bindings.unbind( this.eventNamespace );
+		this.hoverable.removeClass( "ui-state-hover" );
+		this.focusable.removeClass( "ui-state-focus" );
+	},
+	_destroy: $.noop,
+
+	widget: function() {
+		return this.element;
+	},
+
+	option: function( key, value ) {
+		var options = key,
+			parts,
+			curOption,
+			i;
+
+		if ( arguments.length === 0 ) {
+			// don't return a reference to the internal hash
+			return $.widget.extend( {}, this.options );
+		}
+
+		if ( typeof key === "string" ) {
+			// handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
+			options = {};
+			parts = key.split( "." );
+			key = parts.shift();
+			if ( parts.length ) {
+				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
+				for ( i = 0; i < parts.length - 1; i++ ) {
+					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
+					curOption = curOption[ parts[ i ] ];
+				}
+				key = parts.pop();
+				if ( arguments.length === 1 ) {
+					return curOption[ key ] === undefined ? null : curOption[ key ];
+				}
+				curOption[ key ] = value;
+			} else {
+				if ( arguments.length === 1 ) {
+					return this.options[ key ] === undefined ? null : this.options[ key ];
+				}
+				options[ key ] = value;
+			}
+		}
+
+		this._setOptions( options );
+
+		return this;
+	},
+	_setOptions: function( options ) {
+		var key;
+
+		for ( key in options ) {
+			this._setOption( key, options[ key ] );
+		}
+
+		return this;
+	},
+	_setOption: function( key, value ) {
+		this.options[ key ] = value;
+
+		if ( key === "disabled" ) {
+			this.widget()
+				.toggleClass( this.widgetFullName + "-disabled ui-state-disabled", !!value )
+				.attr( "aria-disabled", value );
+			this.hoverable.removeClass( "ui-state-hover" );
+			this.focusable.removeClass( "ui-state-focus" );
+		}
+
+		return this;
+	},
+
+	enable: function() {
+		return this._setOption( "disabled", false );
+	},
+	disable: function() {
+		return this._setOption( "disabled", true );
+	},
+
+	_on: function( suppressDisabledCheck, element, handlers ) {
+		var delegateElement,
+			instance = this;
+
+		// no suppressDisabledCheck flag, shuffle arguments
+		if ( typeof suppressDisabledCheck !== "boolean" ) {
+			handlers = element;
+			element = suppressDisabledCheck;
+			suppressDisabledCheck = false;
+		}
+
+		// no element argument, shuffle and use this.element
+		if ( !handlers ) {
+			handlers = element;
+			element = this.element;
+			delegateElement = this.widget();
+		} else {
+			// accept selectors, DOM elements
+			element = delegateElement = $( element );
+			this.bindings = this.bindings.add( element );
+		}
+
+		$.each( handlers, function( event, handler ) {
+			function handlerProxy() {
+				// allow widgets to customize the disabled handling
+				// - disabled as an array instead of boolean
+				// - disabled class as method for disabling individual parts
+				if ( !suppressDisabledCheck &&
+						( instance.options.disabled === true ||
+							$( this ).hasClass( "ui-state-disabled" ) ) ) {
+					return;
+				}
+				return ( typeof handler === "string" ? instance[ handler ] : handler )
+					.apply( instance, arguments );
+			}
+
+			// copy the guid so direct unbinding works
+			if ( typeof handler !== "string" ) {
+				handlerProxy.guid = handler.guid =
+					handler.guid || handlerProxy.guid || $.guid++;
+			}
+
+			var match = event.match( /^(\w+)\s*(.*)$/ ),
+				eventName = match[1] + instance.eventNamespace,
+				selector = match[2];
+			if ( selector ) {
+				delegateElement.delegate( selector, eventName, handlerProxy );
+			} else {
+				element.bind( eventName, handlerProxy );
+			}
+		});
+	},
+
+	_off: function( element, eventName ) {
+		eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) + this.eventNamespace;
+		element.unbind( eventName ).undelegate( eventName );
+	},
+
+	_delay: function( handler, delay ) {
+		function handlerProxy() {
+			return ( typeof handler === "string" ? instance[ handler ] : handler )
+				.apply( instance, arguments );
+		}
+		var instance = this;
+		return setTimeout( handlerProxy, delay || 0 );
+	},
+
+	_hoverable: function( element ) {
+		this.hoverable = this.hoverable.add( element );
+		this._on( element, {
+			mouseenter: function( event ) {
+				$( event.currentTarget ).addClass( "ui-state-hover" );
+			},
+			mouseleave: function( event ) {
+				$( event.currentTarget ).removeClass( "ui-state-hover" );
+			}
+		});
+	},
+
+	_focusable: function( element ) {
+		this.focusable = this.focusable.add( element );
+		this._on( element, {
+			focusin: function( event ) {
+				$( event.currentTarget ).addClass( "ui-state-focus" );
+			},
+			focusout: function( event ) {
+				$( event.currentTarget ).removeClass( "ui-state-focus" );
+			}
+		});
+	},
+
+	_trigger: function( type, event, data ) {
+		var prop, orig,
+			callback = this.options[ type ];
+
+		data = data || {};
+		event = $.Event( event );
+		event.type = ( type === this.widgetEventPrefix ?
+			type :
+			this.widgetEventPrefix + type ).toLowerCase();
+		// the original event may come from any element
+		// so we need to reset the target on the new event
+		event.target = this.element[ 0 ];
+
+		// copy original event properties over to the new event
+		orig = event.originalEvent;
+		if ( orig ) {
+			for ( prop in orig ) {
+				if ( !( prop in event ) ) {
+					event[ prop ] = orig[ prop ];
+				}
+			}
+		}
+
+		this.element.trigger( event, data );
+		return !( $.isFunction( callback ) &&
+			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
+			event.isDefaultPrevented() );
+	}
+};
+
+$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
+	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
+		if ( typeof options === "string" ) {
+			options = { effect: options };
+		}
+		var hasOptions,
+			effectName = !options ?
+				method :
+				options === true || typeof options === "number" ?
+					defaultEffect :
+					options.effect || defaultEffect;
+		options = options || {};
+		if ( typeof options === "number" ) {
+			options = { duration: options };
+		}
+		hasOptions = !$.isEmptyObject( options );
+		options.complete = callback;
+		if ( options.delay ) {
+			element.delay( options.delay );
+		}
+		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
+			element[ method ]( options );
+		} else if ( effectName !== method && element[ effectName ] ) {
+			element[ effectName ]( options.duration, options.easing, callback );
+		} else {
+			element.queue(function( next ) {
+				$( this )[ method ]();
+				if ( callback ) {
+					callback.call( element[ 0 ] );
+				}
+				next();
+			});
+		}
+	};
+});
+
+})( jQuery );
+
+/*!
+ * jQuery UI Mouse 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/mouse/
+ *
+ * Depends:
+ *	jquery.ui.widget.js
+ */
+(function( $, undefined ) {
+
+var mouseHandled = false;
+$( document ).mouseup( function() {
+	mouseHandled = false;
+});
+
+$.widget("ui.mouse", {
+	version: "1.10.4",
+	options: {
+		cancel: "input,textarea,button,select,option",
+		distance: 1,
+		delay: 0
+	},
+	_mouseInit: function() {
+		var that = this;
+
+		this.element
+			.bind("mousedown."+this.widgetName, function(event) {
+				return that._mouseDown(event);
+			})
+			.bind("click."+this.widgetName, function(event) {
+				if (true === $.data(event.target, that.widgetName + ".preventClickEvent")) {
+					$.removeData(event.target, that.widgetName + ".preventClickEvent");
+					event.stopImmediatePropagation();
+					return false;
+				}
+			});
+
+		this.started = false;
+	},
+
+	// TODO: make sure destroying one instance of mouse doesn't mess with
+	// other instances of mouse
+	_mouseDestroy: function() {
+		this.element.unbind("."+this.widgetName);
+		if ( this._mouseMoveDelegate ) {
+			$(document)
+				.unbind("mousemove."+this.widgetName, this._mouseMoveDelegate)
+				.unbind("mouseup."+this.widgetName, this._mouseUpDelegate);
+		}
+	},
+
+	_mouseDown: function(event) {
+		// don't let more than one widget handle mouseStart
+		if( mouseHandled ) { return; }
+
+		// we may have missed mouseup (out of window)
+		(this._mouseStarted && this._mouseUp(event));
+
+		this._mouseDownEvent = event;
+
+		var that = this,
+			btnIsLeft = (event.which === 1),
+			// event.target.nodeName works around a bug in IE 8 with
+			// disabled inputs (#7620)
+			elIsCancel = (typeof this.options.cancel === "string" && event.target.nodeName ? $(event.target).closest(this.options.cancel).length : false);
+		if (!btnIsLeft || elIsCancel || !this._mouseCapture(event)) {
+			return true;
+		}
+
+		this.mouseDelayMet = !this.options.delay;
+		if (!this.mouseDelayMet) {
+			this._mouseDelayTimer = setTimeout(function() {
+				that.mouseDelayMet = true;
+			}, this.options.delay);
+		}
+
+		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
+			this._mouseStarted = (this._mouseStart(event) !== false);
+			if (!this._mouseStarted) {
+				event.preventDefault();
+				return true;
+			}
+		}
+
+		// Click event may never have fired (Gecko & Opera)
+		if (true === $.data(event.target, this.widgetName + ".preventClickEvent")) {
+			$.removeData(event.target, this.widgetName + ".preventClickEvent");
+		}
+
+		// these delegates are required to keep context
+		this._mouseMoveDelegate = function(event) {
+			return that._mouseMove(event);
+		};
+		this._mouseUpDelegate = function(event) {
+			return that._mouseUp(event);
+		};
+		$(document)
+			.bind("mousemove."+this.widgetName, this._mouseMoveDelegate)
+			.bind("mouseup."+this.widgetName, this._mouseUpDelegate);
+
+		event.preventDefault();
+
+		mouseHandled = true;
+		return true;
+	},
+
+	_mouseMove: function(event) {
+		// IE mouseup check - mouseup happened when mouse was out of window
+		if ($.ui.ie && ( !document.documentMode || document.documentMode < 9 ) && !event.button) {
+			return this._mouseUp(event);
+		}
+
+		if (this._mouseStarted) {
+			this._mouseDrag(event);
+			return event.preventDefault();
+		}
+
+		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
+			this._mouseStarted =
+				(this._mouseStart(this._mouseDownEvent, event) !== false);
+			(this._mouseStarted ? this._mouseDrag(event) : this._mouseUp(event));
+		}
+
+		return !this._mouseStarted;
+	},
+
+	_mouseUp: function(event) {
+		$(document)
+			.unbind("mousemove."+this.widgetName, this._mouseMoveDelegate)
+			.unbind("mouseup."+this.widgetName, this._mouseUpDelegate);
+
+		if (this._mouseStarted) {
+			this._mouseStarted = false;
+
+			if (event.target === this._mouseDownEvent.target) {
+				$.data(event.target, this.widgetName + ".preventClickEvent", true);
+			}
+
+			this._mouseStop(event);
+		}
+
+		return false;
+	},
+
+	_mouseDistanceMet: function(event) {
+		return (Math.max(
+				Math.abs(this._mouseDownEvent.pageX - event.pageX),
+				Math.abs(this._mouseDownEvent.pageY - event.pageY)
+			) >= this.options.distance
+		);
+	},
+
+	_mouseDelayMet: function(/* event */) {
+		return this.mouseDelayMet;
+	},
+
+	// These are placeholder methods, to be overriden by extending plugin
+	_mouseStart: function(/* event */) {},
+	_mouseDrag: function(/* event */) {},
+	_mouseStop: function(/* event */) {},
+	_mouseCapture: function(/* event */) { return true; }
+});
+
+})(jQuery);
+
+/*!
+ * jQuery UI Position 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/position/
+ */
+(function( $, undefined ) {
+
+$.ui = $.ui || {};
+
+var cachedScrollbarWidth,
+	max = Math.max,
+	abs = Math.abs,
+	round = Math.round,
+	rhorizontal = /left|center|right/,
+	rvertical = /top|center|bottom/,
+	roffset = /[\+\-]\d+(\.[\d]+)?%?/,
+	rposition = /^\w+/,
+	rpercent = /%$/,
+	_position = $.fn.position;
+
+function getOffsets( offsets, width, height ) {
+	return [
+		parseFloat( offsets[ 0 ] ) * ( rpercent.test( offsets[ 0 ] ) ? width / 100 : 1 ),
+		parseFloat( offsets[ 1 ] ) * ( rpercent.test( offsets[ 1 ] ) ? height / 100 : 1 )
+	];
+}
+
+function parseCss( element, property ) {
+	return parseInt( $.css( element, property ), 10 ) || 0;
+}
+
+function getDimensions( elem ) {
+	var raw = elem[0];
+	if ( raw.nodeType === 9 ) {
+		return {
+			width: elem.width(),
+			height: elem.height(),
+			offset: { top: 0, left: 0 }
+		};
+	}
+	if ( $.isWindow( raw ) ) {
+		return {
+			width: elem.width(),
+			height: elem.height(),
+			offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
+		};
+	}
+	if ( raw.preventDefault ) {
+		return {
+			width: 0,
+			height: 0,
+			offset: { top: raw.pageY, left: raw.pageX }
+		};
+	}
+	return {
+		width: elem.outerWidth(),
+		height: elem.outerHeight(),
+		offset: elem.offset()
+	};
+}
+
+$.position = {
+	scrollbarWidth: function() {
+		if ( cachedScrollbarWidth !== undefined ) {
+			return cachedScrollbarWidth;
+		}
+		var w1, w2,
+			div = $( "<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>" ),
+			innerDiv = div.children()[0];
+
+		$( "body" ).append( div );
+		w1 = innerDiv.offsetWidth;
+		div.css( "overflow", "scroll" );
+
+		w2 = innerDiv.offsetWidth;
+
+		if ( w1 === w2 ) {
+			w2 = div[0].clientWidth;
+		}
+
+		div.remove();
+
+		return (cachedScrollbarWidth = w1 - w2);
+	},
+	getScrollInfo: function( within ) {
+		var overflowX = within.isWindow || within.isDocument ? "" :
+				within.element.css( "overflow-x" ),
+			overflowY = within.isWindow || within.isDocument ? "" :
+				within.element.css( "overflow-y" ),
+			hasOverflowX = overflowX === "scroll" ||
+				( overflowX === "auto" && within.width < within.element[0].scrollWidth ),
+			hasOverflowY = overflowY === "scroll" ||
+				( overflowY === "auto" && within.height < within.element[0].scrollHeight );
+		return {
+			width: hasOverflowY ? $.position.scrollbarWidth() : 0,
+			height: hasOverflowX ? $.position.scrollbarWidth() : 0
+		};
+	},
+	getWithinInfo: function( element ) {
+		var withinElement = $( element || window ),
+			isWindow = $.isWindow( withinElement[0] ),
+			isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
+		return {
+			element: withinElement,
+			isWindow: isWindow,
+			isDocument: isDocument,
+			offset: withinElement.offset() || { left: 0, top: 0 },
+			scrollLeft: withinElement.scrollLeft(),
+			scrollTop: withinElement.scrollTop(),
+			width: isWindow ? withinElement.width() : withinElement.outerWidth(),
+			height: isWindow ? withinElement.height() : withinElement.outerHeight()
+		};
+	}
+};
+
+$.fn.position = function( options ) {
+	if ( !options || !options.of ) {
+		return _position.apply( this, arguments );
+	}
+
+	// make a copy, we don't want to modify arguments
+	options = $.extend( {}, options );
+
+	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
+		target = $( options.of ),
+		within = $.position.getWithinInfo( options.within ),
+		scrollInfo = $.position.getScrollInfo( within ),
+		collision = ( options.collision || "flip" ).split( " " ),
+		offsets = {};
+
+	dimensions = getDimensions( target );
+	if ( target[0].preventDefault ) {
+		// force left top to allow flipping
+		options.at = "left top";
+	}
+	targetWidth = dimensions.width;
+	targetHeight = dimensions.height;
+	targetOffset = dimensions.offset;
+	// clone to reuse original targetOffset later
+	basePosition = $.extend( {}, targetOffset );
+
+	// force my and at to have valid horizontal and vertical positions
+	// if a value is missing or invalid, it will be converted to center
+	$.each( [ "my", "at" ], function() {
+		var pos = ( options[ this ] || "" ).split( " " ),
+			horizontalOffset,
+			verticalOffset;
+
+		if ( pos.length === 1) {
+			pos = rhorizontal.test( pos[ 0 ] ) ?
+				pos.concat( [ "center" ] ) :
+				rvertical.test( pos[ 0 ] ) ?
+					[ "center" ].concat( pos ) :
+					[ "center", "center" ];
+		}
+		pos[ 0 ] = rhorizontal.test( pos[ 0 ] ) ? pos[ 0 ] : "center";
+		pos[ 1 ] = rvertical.test( pos[ 1 ] ) ? pos[ 1 ] : "center";
+
+		// calculate offsets
+		horizontalOffset = roffset.exec( pos[ 0 ] );
+		verticalOffset = roffset.exec( pos[ 1 ] );
+		offsets[ this ] = [
+			horizontalOffset ? horizontalOffset[ 0 ] : 0,
+			verticalOffset ? verticalOffset[ 0 ] : 0
+		];
+
+		// reduce to just the positions without the offsets
+		options[ this ] = [
+			rposition.exec( pos[ 0 ] )[ 0 ],
+			rposition.exec( pos[ 1 ] )[ 0 ]
+		];
+	});
+
+	// normalize collision option
+	if ( collision.length === 1 ) {
+		collision[ 1 ] = collision[ 0 ];
+	}
+
+	if ( options.at[ 0 ] === "right" ) {
+		basePosition.left += targetWidth;
+	} else if ( options.at[ 0 ] === "center" ) {
+		basePosition.left += targetWidth / 2;
+	}
+
+	if ( options.at[ 1 ] === "bottom" ) {
+		basePosition.top += targetHeight;
+	} else if ( options.at[ 1 ] === "center" ) {
+		basePosition.top += targetHeight / 2;
+	}
+
+	atOffset = getOffsets( offsets.at, targetWidth, targetHeight );
+	basePosition.left += atOffset[ 0 ];
+	basePosition.top += atOffset[ 1 ];
+
+	return this.each(function() {
+		var collisionPosition, using,
+			elem = $( this ),
+			elemWidth = elem.outerWidth(),
+			elemHeight = elem.outerHeight(),
+			marginLeft = parseCss( this, "marginLeft" ),
+			marginTop = parseCss( this, "marginTop" ),
+			collisionWidth = elemWidth + marginLeft + parseCss( this, "marginRight" ) + scrollInfo.width,
+			collisionHeight = elemHeight + marginTop + parseCss( this, "marginBottom" ) + scrollInfo.height,
+			position = $.extend( {}, basePosition ),
+			myOffset = getOffsets( offsets.my, elem.outerWidth(), elem.outerHeight() );
+
+		if ( options.my[ 0 ] === "right" ) {
+			position.left -= elemWidth;
+		} else if ( options.my[ 0 ] === "center" ) {
+			position.left -= elemWidth / 2;
+		}
+
+		if ( options.my[ 1 ] === "bottom" ) {
+			position.top -= elemHeight;
+		} else if ( options.my[ 1 ] === "center" ) {
+			position.top -= elemHeight / 2;
+		}
+
+		position.left += myOffset[ 0 ];
+		position.top += myOffset[ 1 ];
+
+		// if the browser doesn't support fractions, then round for consistent results
+		if ( !$.support.offsetFractions ) {
+			position.left = round( position.left );
+			position.top = round( position.top );
+		}
+
+		collisionPosition = {
+			marginLeft: marginLeft,
+			marginTop: marginTop
+		};
+
+		$.each( [ "left", "top" ], function( i, dir ) {
+			if ( $.ui.position[ collision[ i ] ] ) {
+				$.ui.position[ collision[ i ] ][ dir ]( position, {
+					targetWidth: targetWidth,
+					targetHeight: targetHeight,
+					elemWidth: elemWidth,
+					elemHeight: elemHeight,
+					collisionPosition: collisionPosition,
+					collisionWidth: collisionWidth,
+					collisionHeight: collisionHeight,
+					offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
+					my: options.my,
+					at: options.at,
+					within: within,
+					elem : elem
+				});
+			}
+		});
+
+		if ( options.using ) {
+			// adds feedback as second argument to using callback, if present
+			using = function( props ) {
+				var left = targetOffset.left - position.left,
+					right = left + targetWidth - elemWidth,
+					top = targetOffset.top - position.top,
+					bottom = top + targetHeight - elemHeight,
+					feedback = {
+						target: {
+							element: target,
+							left: targetOffset.left,
+							top: targetOffset.top,
+							width: targetWidth,
+							height: targetHeight
+						},
+						element: {
+							element: elem,
+							left: position.left,
+							top: position.top,
+							width: elemWidth,
+							height: elemHeight
+						},
+						horizontal: right < 0 ? "left" : left > 0 ? "right" : "center",
+						vertical: bottom < 0 ? "top" : top > 0 ? "bottom" : "middle"
+					};
+				if ( targetWidth < elemWidth && abs( left + right ) < targetWidth ) {
+					feedback.horizontal = "center";
+				}
+				if ( targetHeight < elemHeight && abs( top + bottom ) < targetHeight ) {
+					feedback.vertical = "middle";
+				}
+				if ( max( abs( left ), abs( right ) ) > max( abs( top ), abs( bottom ) ) ) {
+					feedback.important = "horizontal";
+				} else {
+					feedback.important = "vertical";
+				}
+				options.using.call( this, props, feedback );
+			};
+		}
+
+		elem.offset( $.extend( position, { using: using } ) );
+	});
+};
+
+$.ui.position = {
+	fit: {
+		left: function( position, data ) {
+			var within = data.within,
+				withinOffset = within.isWindow ? within.scrollLeft : within.offset.left,
+				outerWidth = within.width,
+				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
+				overLeft = withinOffset - collisionPosLeft,
+				overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset,
+				newOverRight;
+
+			// element is wider than within
+			if ( data.collisionWidth > outerWidth ) {
+				// element is initially over the left side of within
+				if ( overLeft > 0 && overRight <= 0 ) {
+					newOverRight = position.left + overLeft + data.collisionWidth - outerWidth - withinOffset;
+					position.left += overLeft - newOverRight;
+				// element is initially over right side of within
+				} else if ( overRight > 0 && overLeft <= 0 ) {
+					position.left = withinOffset;
+				// element is initially over both left and right sides of within
+				} else {
+					if ( overLeft > overRight ) {
+						position.left = withinOffset + outerWidth - data.collisionWidth;
+					} else {
+						position.left = withinOffset;
+					}
+				}
+			// too far left -> align with left edge
+			} else if ( overLeft > 0 ) {
+				position.left += overLeft;
+			// too far right -> align with right edge
+			} else if ( overRight > 0 ) {
+				position.left -= overRight;
+			// adjust based on position and margin
+			} else {
+				position.left = max( position.left - collisionPosLeft, position.left );
+			}
+		},
+		top: function( position, data ) {
+			var within = data.within,
+				withinOffset = within.isWindow ? within.scrollTop : within.offset.top,
+				outerHeight = data.within.height,
+				collisionPosTop = position.top - data.collisionPosition.marginTop,
+				overTop = withinOffset - collisionPosTop,
+				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
+				newOverBottom;
+
+			// element is taller than within
+			if ( data.collisionHeight > outerHeight ) {
+				// element is initially over the top of within
+				if ( overTop > 0 && overBottom <= 0 ) {
+					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight - withinOffset;
+					position.top += overTop - newOverBottom;
+				// element is initially over bottom of within
+				} else if ( overBottom > 0 && overTop <= 0 ) {
+					position.top = withinOffset;
+				// element is initially over both top and bottom of within
+				} else {
+					if ( overTop > overBottom ) {
+						position.top = withinOffset + outerHeight - data.collisionHeight;
+					} else {
+						position.top = withinOffset;
+					}
+				}
+			// too far up -> align with top
+			} else if ( overTop > 0 ) {
+				position.top += overTop;
+			// too far down -> align with bottom edge
+			} else if ( overBottom > 0 ) {
+				position.top -= overBottom;
+			// adjust based on position and margin
+			} else {
+				position.top = max( position.top - collisionPosTop, position.top );
+			}
+		}
+	},
+	flip: {
+		left: function( position, data ) {
+			var within = data.within,
+				withinOffset = within.offset.left + within.scrollLeft,
+				outerWidth = within.width,
+				offsetLeft = within.isWindow ? within.scrollLeft : within.offset.left,
+				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
+				overLeft = collisionPosLeft - offsetLeft,
+				overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft,
+				myOffset = data.my[ 0 ] === "left" ?
+					-data.elemWidth :
+					data.my[ 0 ] === "right" ?
+						data.elemWidth :
+						0,
+				atOffset = data.at[ 0 ] === "left" ?
+					data.targetWidth :
+					data.at[ 0 ] === "right" ?
+						-data.targetWidth :
+						0,
+				offset = -2 * data.offset[ 0 ],
+				newOverRight,
+				newOverLeft;
+
+			if ( overLeft < 0 ) {
+				newOverRight = position.left + myOffset + atOffset + offset + data.collisionWidth - outerWidth - withinOffset;
+				if ( newOverRight < 0 || newOverRight < abs( overLeft ) ) {
+					position.left += myOffset + atOffset + offset;
+				}
+			}
+			else if ( overRight > 0 ) {
+				newOverLeft = position.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
+				if ( newOverLeft > 0 || abs( newOverLeft ) < overRight ) {
+					position.left += myOffset + atOffset + offset;
+				}
+			}
+		},
+		top: function( position, data ) {
+			var within = data.within,
+				withinOffset = within.offset.top + within.scrollTop,
+				outerHeight = within.height,
+				offsetTop = within.isWindow ? within.scrollTop : within.offset.top,
+				collisionPosTop = position.top - data.collisionPosition.marginTop,
+				overTop = collisionPosTop - offsetTop,
+				overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
+				top = data.my[ 1 ] === "top",
+				myOffset = top ?
+					-data.elemHeight :
+					data.my[ 1 ] === "bottom" ?
+						data.elemHeight :
+						0,
+				atOffset = data.at[ 1 ] === "top" ?
+					data.targetHeight :
+					data.at[ 1 ] === "bottom" ?
+						-data.targetHeight :
+						0,
+				offset = -2 * data.offset[ 1 ],
+				newOverTop,
+				newOverBottom;
+			if ( overTop < 0 ) {
+				newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight - outerHeight - withinOffset;
+				if ( ( position.top + myOffset + atOffset + offset) > overTop && ( newOverBottom < 0 || newOverBottom < abs( overTop ) ) ) {
+					position.top += myOffset + atOffset + offset;
+				}
+			}
+			else if ( overBottom > 0 ) {
+				newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
+				if ( ( position.top + myOffset + atOffset + offset) > overBottom && ( newOverTop > 0 || abs( newOverTop ) < overBottom ) ) {
+					position.top += myOffset + atOffset + offset;
+				}
+			}
+		}
+	},
+	flipfit: {
+		left: function() {
+			$.ui.position.flip.left.apply( this, arguments );
+			$.ui.position.fit.left.apply( this, arguments );
+		},
+		top: function() {
+			$.ui.position.flip.top.apply( this, arguments );
+			$.ui.position.fit.top.apply( this, arguments );
+		}
+	}
+};
+
+// fraction support test
+(function () {
+	var testElement, testElementParent, testElementStyle, offsetLeft, i,
+		body = document.getElementsByTagName( "body" )[ 0 ],
+		div = document.createElement( "div" );
+
+	//Create a "fake body" for testing based on method used in jQuery.support
+	testElement = document.createElement( body ? "div" : "body" );
+	testElementStyle = {
+		visibility: "hidden",
+		width: 0,
+		height: 0,
+		border: 0,
+		margin: 0,
+		background: "none"
+	};
+	if ( body ) {
+		$.extend( testElementStyle, {
+			position: "absolute",
+			left: "-1000px",
+			top: "-1000px"
+		});
+	}
+	for ( i in testElementStyle ) {
+		testElement.style[ i ] = testElementStyle[ i ];
+	}
+	testElement.appendChild( div );
+	testElementParent = body || document.documentElement;
+	testElementParent.insertBefore( testElement, testElementParent.firstChild );
+
+	div.style.cssText = "position: absolute; left: 10.7432222px;";
+
+	offsetLeft = $( div ).offset().left;
+	$.support.offsetFractions = offsetLeft > 10 && offsetLeft < 11;
+
+	testElement.innerHTML = "";
+	testElementParent.removeChild( testElement );
+})();
+
+}( jQuery ) );
+
+/*!
+ * jQuery UI Button 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/button/
+ *
+ * Depends:
+ *	jquery.ui.core.js
+ *	jquery.ui.widget.js
+ */
+(function( $, undefined ) {
+
+var lastActive,
+	baseClasses = "ui-button ui-widget ui-state-default ui-corner-all",
+	typeClasses = "ui-button-icons-only ui-button-icon-only ui-button-text-icons ui-button-text-icon-primary ui-button-text-icon-secondary ui-button-text-only",
+	formResetHandler = function() {
+		var form = $( this );
+		setTimeout(function() {
+			form.find( ":ui-button" ).button( "refresh" );
+		}, 1 );
+	},
+	radioGroup = function( radio ) {
+		var name = radio.name,
+			form = radio.form,
+			radios = $( [] );
+		if ( name ) {
+			name = name.replace( /'/g, "\\'" );
+			if ( form ) {
+				radios = $( form ).find( "[name='" + name + "']" );
+			} else {
+				radios = $( "[name='" + name + "']", radio.ownerDocument )
+					.filter(function() {
+						return !this.form;
+					});
+			}
+		}
+		return radios;
+	};
+
+$.widget( "ui.button", {
+	version: "1.10.4",
+	defaultElement: "<button>",
+	options: {
+		disabled: null,
+		text: true,
+		label: null,
+		icons: {
+			primary: null,
+			secondary: null
+		}
+	},
+	_create: function() {
+		this.element.closest( "form" )
+			.unbind( "reset" + this.eventNamespace )
+			.bind( "reset" + this.eventNamespace, formResetHandler );
+
+		if ( typeof this.options.disabled !== "boolean" ) {
+			this.options.disabled = !!this.element.prop( "disabled" );
+		} else {
+			this.element.prop( "disabled", this.options.disabled );
+		}
+
+		this._determineButtonType();
+		this.hasTitle = !!this.buttonElement.attr( "title" );
+
+		var that = this,
+			options = this.options,
+			toggleButton = this.type === "checkbox" || this.type === "radio",
+			activeClass = !toggleButton ? "ui-state-active" : "";
+
+		if ( options.label === null ) {
+			options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.html());
+		}
+
+		this._hoverable( this.buttonElement );
+
+		this.buttonElement
+			.addClass( baseClasses )
+			.attr( "role", "button" )
+			.bind( "mouseenter" + this.eventNamespace, function() {
+				if ( options.disabled ) {
+					return;
+				}
+				if ( this === lastActive ) {
+					$( this ).addClass( "ui-state-active" );
+				}
+			})
+			.bind( "mouseleave" + this.eventNamespace, function() {
+				if ( options.disabled ) {
+					return;
+				}
+				$( this ).removeClass( activeClass );
+			})
+			.bind( "click" + this.eventNamespace, function( event ) {
+				if ( options.disabled ) {
+					event.preventDefault();
+					event.stopImmediatePropagation();
+				}
+			});
+
+		// Can't use _focusable() because the element that receives focus
+		// and the element that gets the ui-state-focus class are different
+		this._on({
+			focus: function() {
+				this.buttonElement.addClass( "ui-state-focus" );
+			},
+			blur: function() {
+				this.buttonElement.removeClass( "ui-state-focus" );
+			}
+		});
+
+		if ( toggleButton ) {
+			this.element.bind( "change" + this.eventNamespace, function() {
+				that.refresh();
+			});
+		}
+
+		if ( this.type === "checkbox" ) {
+			this.buttonElement.bind( "click" + this.eventNamespace, function() {
+				if ( options.disabled ) {
+					return false;
+				}
+			});
+		} else if ( this.type === "radio" ) {
+			this.buttonElement.bind( "click" + this.eventNamespace, function() {
+				if ( options.disabled ) {
+					return false;
+				}
+				$( this ).addClass( "ui-state-active" );
+				that.buttonElement.attr( "aria-pressed", "true" );
+
+				var radio = that.element[ 0 ];
+				radioGroup( radio )
+					.not( radio )
+					.map(function() {
+						return $( this ).button( "widget" )[ 0 ];
+					})
+					.removeClass( "ui-state-active" )
+					.attr( "aria-pressed", "false" );
+			});
+		} else {
+			this.buttonElement
+				.bind( "mousedown" + this.eventNamespace, function() {
+					if ( options.disabled ) {
+						return false;
+					}
+					$( this ).addClass( "ui-state-active" );
+					lastActive = this;
+					that.document.one( "mouseup", function() {
+						lastActive = null;
+					});
+				})
+				.bind( "mouseup" + this.eventNamespace, function() {
+					if ( options.disabled ) {
+						return false;
+					}
+					$( this ).removeClass( "ui-state-active" );
+				})
+				.bind( "keydown" + this.eventNamespace, function(event) {
+					if ( options.disabled ) {
+						return false;
+					}
+					if ( event.keyCode === $.ui.keyCode.SPACE || event.keyCode === $.ui.keyCode.ENTER ) {
+						$( this ).addClass( "ui-state-active" );
+					}
+				})
+				// see #8559, we bind to blur here in case the button element loses
+				// focus between keydown and keyup, it would be left in an "active" state
+				.bind( "keyup" + this.eventNamespace + " blur" + this.eventNamespace, function() {
+					$( this ).removeClass( "ui-state-active" );
+				});
+
+			if ( this.buttonElement.is("a") ) {
+				this.buttonElement.keyup(function(event) {
+					if ( event.keyCode === $.ui.keyCode.SPACE ) {
+						// TODO pass through original event correctly (just as 2nd argument doesn't work)
+						$( this ).click();
+					}
+				});
+			}
+		}
+
+		// TODO: pull out $.Widget's handling for the disabled option into
+		// $.Widget.prototype._setOptionDisabled so it's easy to proxy and can
+		// be overridden by individual plugins
+		this._setOption( "disabled", options.disabled );
+		this._resetButton();
+	},
+
+	_determineButtonType: function() {
+		var ancestor, labelSelector, checked;
+
+		if ( this.element.is("[type=checkbox]") ) {
+			this.type = "checkbox";
+		} else if ( this.element.is("[type=radio]") ) {
+			this.type = "radio";
+		} else if ( this.element.is("input") ) {
+			this.type = "input";
+		} else {
+			this.type = "button";
+		}
+
+		if ( this.type === "checkbox" || this.type === "radio" ) {
+			// we don't search against the document in case the element
+			// is disconnected from the DOM
+			ancestor = this.element.parents().last();
+			labelSelector = "label[for='" + this.element.attr("id") + "']";
+			this.buttonElement = ancestor.find( labelSelector );
+			if ( !this.buttonElement.length ) {
+				ancestor = ancestor.length ? ancestor.siblings() : this.element.siblings();
+				this.buttonElement = ancestor.filter( labelSelector );
+				if ( !this.buttonElement.length ) {
+					this.buttonElement = ancestor.find( labelSelector );
+				}
+			}
+			this.element.addClass( "ui-helper-hidden-accessible" );
+
+			checked = this.element.is( ":checked" );
+			if ( checked ) {
+				this.buttonElement.addClass( "ui-state-active" );
+			}
+			this.buttonElement.prop( "aria-pressed", checked );
+		} else {
+			this.buttonElement = this.element;
+		}
+	},
+
+	widget: function() {
+		return this.buttonElement;
+	},
+
+	_destroy: function() {
+		this.element
+			.removeClass( "ui-helper-hidden-accessible" );
+		this.buttonElement
+			.removeClass( baseClasses + " ui-state-active " + typeClasses )
+			.removeAttr( "role" )
+			.removeAttr( "aria-pressed" )
+			.html( this.buttonElement.find(".ui-button-text").html() );
+
+		if ( !this.hasTitle ) {
+			this.buttonElement.removeAttr( "title" );
+		}
+	},
+
+	_setOption: function( key, value ) {
+		this._super( key, value );
+		if ( key === "disabled" ) {
+			this.element.prop( "disabled", !!value );
+			if ( value ) {
+				this.buttonElement.removeClass( "ui-state-focus" );
+			}
+			return;
+		}
+		this._resetButton();
+	},
+
+	refresh: function() {
+		//See #8237 & #8828
+		var isDisabled = this.element.is( "input, button" ) ? this.element.is( ":disabled" ) : this.element.hasClass( "ui-button-disabled" );
+
+		if ( isDisabled !== this.options.disabled ) {
+			this._setOption( "disabled", isDisabled );
+		}
+		if ( this.type === "radio" ) {
+			radioGroup( this.element[0] ).each(function() {
+				if ( $( this ).is( ":checked" ) ) {
+					$( this ).button( "widget" )
+						.addClass( "ui-state-active" )
+						.attr( "aria-pressed", "true" );
+				} else {
+					$( this ).button( "widget" )
+						.removeClass( "ui-state-active" )
+						.attr( "aria-pressed", "false" );
+				}
+			});
+		} else if ( this.type === "checkbox" ) {
+			if ( this.element.is( ":checked" ) ) {
+				this.buttonElement
+					.addClass( "ui-state-active" )
+					.attr( "aria-pressed", "true" );
+			} else {
+				this.buttonElement
+					.removeClass( "ui-state-active" )
+					.attr( "aria-pressed", "false" );
+			}
+		}
+	},
+
+	_resetButton: function() {
+		if ( this.type === "input" ) {
+			if ( this.options.label ) {
+				this.element.val( this.options.label );
+			}
+			return;
+		}
+		var buttonElement = this.buttonElement.removeClass( typeClasses ),
+			buttonText = $( "<span></span>", this.document[0] )
+				.addClass( "ui-button-text" )
+				.html( this.options.label )
+				.appendTo( buttonElement.empty() )
+				.text(),
+			icons = this.options.icons,
+			multipleIcons = icons.primary && icons.secondary,
+			buttonClasses = [];
+
+		if ( icons.primary || icons.secondary ) {
+			if ( this.options.text ) {
+				buttonClasses.push( "ui-button-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
+			}
+
+			if ( icons.primary ) {
+				buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
+			}
+
+			if ( icons.secondary ) {
+				buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
+			}
+
+			if ( !this.options.text ) {
+				buttonClasses.push( multipleIcons ? "ui-button-icons-only" : "ui-button-icon-only" );
+
+				if ( !this.hasTitle ) {
+					buttonElement.attr( "title", $.trim( buttonText ) );
+				}
+			}
+		} else {
+			buttonClasses.push( "ui-button-text-only" );
+		}
+		buttonElement.addClass( buttonClasses.join( " " ) );
+	}
+});
+
+$.widget( "ui.buttonset", {
+	version: "1.10.4",
+	options: {
+		items: "button, input[type=button], input[type=submit], input[type=reset], input[type=checkbox], input[type=radio], a, :data(ui-button)"
+	},
+
+	_create: function() {
+		this.element.addClass( "ui-buttonset" );
+	},
+
+	_init: function() {
+		this.refresh();
+	},
+
+	_setOption: function( key, value ) {
+		if ( key === "disabled" ) {
+			this.buttons.button( "option", key, value );
+		}
+
+		this._super( key, value );
+	},
+
+	refresh: function() {
+		var rtl = this.element.css( "direction" ) === "rtl";
+
+		this.buttons = this.element.find( this.options.items )
+			.filter( ":ui-button" )
+				.button( "refresh" )
+			.end()
+			.not( ":ui-button" )
+				.button()
+			.end()
+			.map(function() {
+				return $( this ).button( "widget" )[ 0 ];
+			})
+				.removeClass( "ui-corner-all ui-corner-left ui-corner-right" )
+				.filter( ":first" )
+					.addClass( rtl ? "ui-corner-right" : "ui-corner-left" )
+				.end()
+				.filter( ":last" )
+					.addClass( rtl ? "ui-corner-left" : "ui-corner-right" )
+				.end()
+			.end();
+	},
+
+	_destroy: function() {
+		this.element.removeClass( "ui-buttonset" );
+		this.buttons
+			.map(function() {
+				return $( this ).button( "widget" )[ 0 ];
+			})
+				.removeClass( "ui-corner-left ui-corner-right" )
+			.end()
+			.button( "destroy" );
+	}
+});
+
+}( jQuery ) );
+
+/*!
+ * jQuery UI Slider 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/slider/
+ *
+ * Depends:
+ *	jquery.ui.core.js
+ *	jquery.ui.mouse.js
+ *	jquery.ui.widget.js
+ */
+(function( $, undefined ) {
+
+// number of pages in a slider
+// (how many times can you page up/down to go through the whole range)
+var numPages = 5;
+
+$.widget( "ui.slider", $.ui.mouse, {
+	version: "1.10.4",
+	widgetEventPrefix: "slide",
+
+	options: {
+		animate: false,
+		distance: 0,
+		max: 100,
+		min: 0,
+		orientation: "horizontal",
+		range: false,
+		step: 1,
+		value: 0,
+		values: null,
+
+		// callbacks
+		change: null,
+		slide: null,
+		start: null,
+		stop: null
+	},
+
+	_create: function() {
+		this._keySliding = false;
+		this._mouseSliding = false;
+		this._animateOff = true;
+		this._handleIndex = null;
+		this._detectOrientation();
+		this._mouseInit();
+
+		this.element
+			.addClass( "ui-slider" +
+				" ui-slider-" + this.orientation +
+				" ui-widget" +
+				" ui-widget-content" +
+				" ui-corner-all");
+
+		this._refresh();
+		this._setOption( "disabled", this.options.disabled );
+
+		this._animateOff = false;
+	},
+
+	_refresh: function() {
+		this._createRange();
+		this._createHandles();
+		this._setupEvents();
+		this._refreshValue();
+	},
+
+	_createHandles: function() {
+		var i, handleCount,
+			options = this.options,
+			existingHandles = this.element.find( ".ui-slider-handle" ).addClass( "ui-state-default ui-corner-all" ),
+			handle = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>",
+			handles = [];
+
+		handleCount = ( options.values && options.values.length ) || 1;
+
+		if ( existingHandles.length > handleCount ) {
+			existingHandles.slice( handleCount ).remove();
+			existingHandles = existingHandles.slice( 0, handleCount );
+		}
+
+		for ( i = existingHandles.length; i < handleCount; i++ ) {
+			handles.push( handle );
+		}
+
+		this.handles = existingHandles.add( $( handles.join( "" ) ).appendTo( this.element ) );
+
+		this.handle = this.handles.eq( 0 );
+
+		this.handles.each(function( i ) {
+			$( this ).data( "ui-slider-handle-index", i );
+		});
+	},
+
+	_createRange: function() {
+		var options = this.options,
+			classes = "";
+
+		if ( options.range ) {
+			if ( options.range === true ) {
+				if ( !options.values ) {
+					options.values = [ this._valueMin(), this._valueMin() ];
+				} else if ( options.values.length && options.values.length !== 2 ) {
+					options.values = [ options.values[0], options.values[0] ];
+				} else if ( $.isArray( options.values ) ) {
+					options.values = options.values.slice(0);
+				}
+			}
+
+			if ( !this.range || !this.range.length ) {
+				this.range = $( "<div></div>" )
+					.appendTo( this.element );
+
+				classes = "ui-slider-range" +
+				// note: this isn't the most fittingly semantic framework class for this element,
+				// but worked best visually with a variety of themes
+				" ui-widget-header ui-corner-all";
+			} else {
+				this.range.removeClass( "ui-slider-range-min ui-slider-range-max" )
+					// Handle range switching from true to min/max
+					.css({
+						"left": "",
+						"bottom": ""
+					});
+			}
+
+			this.range.addClass( classes +
+				( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ) );
+		} else {
+			if ( this.range ) {
+				this.range.remove();
+			}
+			this.range = null;
+		}
+	},
+
+	_setupEvents: function() {
+		var elements = this.handles.add( this.range ).filter( "a" );
+		this._off( elements );
+		this._on( elements, this._handleEvents );
+		this._hoverable( elements );
+		this._focusable( elements );
+	},
+
+	_destroy: function() {
+		this.handles.remove();
+		if ( this.range ) {
+			this.range.remove();
+		}
+
+		this.element
+			.removeClass( "ui-slider" +
+				" ui-slider-horizontal" +
+				" ui-slider-vertical" +
+				" ui-widget" +
+				" ui-widget-content" +
+				" ui-corner-all" );
+
+		this._mouseDestroy();
+	},
+
+	_mouseCapture: function( event ) {
+		var position, normValue, distance, closestHandle, index, allowed, offset, mouseOverHandle,
+			that = this,
+			o = this.options;
+
+		if ( o.disabled ) {
+			return false;
+		}
+
+		this.elementSize = {
+			width: this.element.outerWidth(),
+			height: this.element.outerHeight()
+		};
+		this.elementOffset = this.element.offset();
+
+		position = { x: event.pageX, y: event.pageY };
+		normValue = this._normValueFromMouse( position );
+		distance = this._valueMax() - this._valueMin() + 1;
+		this.handles.each(function( i ) {
+			var thisDistance = Math.abs( normValue - that.values(i) );
+			if (( distance > thisDistance ) ||
+				( distance === thisDistance &&
+					(i === that._lastChangedValue || that.values(i) === o.min ))) {
+				distance = thisDistance;
+				closestHandle = $( this );
+				index = i;
+			}
+		});
+
+		allowed = this._start( event, index );
+		if ( allowed === false ) {
+			return false;
+		}
+		this._mouseSliding = true;
+
+		this._handleIndex = index;
+
+		closestHandle
+			.addClass( "ui-state-active" )
+			.focus();
+
+		offset = closestHandle.offset();
+		mouseOverHandle = !$( event.target ).parents().addBack().is( ".ui-slider-handle" );
+		this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
+			left: event.pageX - offset.left - ( closestHandle.width() / 2 ),
+			top: event.pageY - offset.top -
+				( closestHandle.height() / 2 ) -
+				( parseInt( closestHandle.css("borderTopWidth"), 10 ) || 0 ) -
+				( parseInt( closestHandle.css("borderBottomWidth"), 10 ) || 0) +
+				( parseInt( closestHandle.css("marginTop"), 10 ) || 0)
+		};
+
+		if ( !this.handles.hasClass( "ui-state-hover" ) ) {
+			this._slide( event, index, normValue );
+		}
+		this._animateOff = true;
+		return true;
+	},
+
+	_mouseStart: function() {
+		return true;
+	},
+
+	_mouseDrag: function( event ) {
+		var position = { x: event.pageX, y: event.pageY },
+			normValue = this._normValueFromMouse( position );
+
+		this._slide( event, this._handleIndex, normValue );
+
+		return false;
+	},
+
+	_mouseStop: function( event ) {
+		this.handles.removeClass( "ui-state-active" );
+		this._mouseSliding = false;
+
+		this._stop( event, this._handleIndex );
+		this._change( event, this._handleIndex );
+
+		this._handleIndex = null;
+		this._clickOffset = null;
+		this._animateOff = false;
+
+		return false;
+	},
+
+	_detectOrientation: function() {
+		this.orientation = ( this.options.orientation === "vertical" ) ? "vertical" : "horizontal";
+	},
+
+	_normValueFromMouse: function( position ) {
+		var pixelTotal,
+			pixelMouse,
+			percentMouse,
+			valueTotal,
+			valueMouse;
+
+		if ( this.orientation === "horizontal" ) {
+			pixelTotal = this.elementSize.width;
+			pixelMouse = position.x - this.elementOffset.left - ( this._clickOffset ? this._clickOffset.left : 0 );
+		} else {
+			pixelTotal = this.elementSize.height;
+			pixelMouse = position.y - this.elementOffset.top - ( this._clickOffset ? this._clickOffset.top : 0 );
+		}
+
+		percentMouse = ( pixelMouse / pixelTotal );
+		if ( percentMouse > 1 ) {
+			percentMouse = 1;
+		}
+		if ( percentMouse < 0 ) {
+			percentMouse = 0;
+		}
+		if ( this.orientation === "vertical" ) {
+			percentMouse = 1 - percentMouse;
+		}
+
+		valueTotal = this._valueMax() - this._valueMin();
+		valueMouse = this._valueMin() + percentMouse * valueTotal;
+
+		return this._trimAlignValue( valueMouse );
+	},
+
+	_start: function( event, index ) {
+		var uiHash = {
+			handle: this.handles[ index ],
+			value: this.value()
+		};
+		if ( this.options.values && this.options.values.length ) {
+			uiHash.value = this.values( index );
+			uiHash.values = this.values();
+		}
+		return this._trigger( "start", event, uiHash );
+	},
+
+	_slide: function( event, index, newVal ) {
+		var otherVal,
+			newValues,
+			allowed;
+
+		if ( this.options.values && this.options.values.length ) {
+			otherVal = this.values( index ? 0 : 1 );
+
+			if ( ( this.options.values.length === 2 && this.options.range === true ) &&
+					( ( index === 0 && newVal > otherVal) || ( index === 1 && newVal < otherVal ) )
+				) {
+				newVal = otherVal;
+			}
+
+			if ( newVal !== this.values( index ) ) {
+				newValues = this.values();
+				newValues[ index ] = newVal;
+				// A slide can be canceled by returning false from the slide callback
+				allowed = this._trigger( "slide", event, {
+					handle: this.handles[ index ],
+					value: newVal,
+					values: newValues
+				} );
+				otherVal = this.values( index ? 0 : 1 );
+				if ( allowed !== false ) {
+					this.values( index, newVal );
+				}
+			}
+		} else {
+			if ( newVal !== this.value() ) {
+				// A slide can be canceled by returning false from the slide callback
+				allowed = this._trigger( "slide", event, {
+					handle: this.handles[ index ],
+					value: newVal
+				} );
+				if ( allowed !== false ) {
+					this.value( newVal );
+				}
+			}
+		}
+	},
+
+	_stop: function( event, index ) {
+		var uiHash = {
+			handle: this.handles[ index ],
+			value: this.value()
+		};
+		if ( this.options.values && this.options.values.length ) {
+			uiHash.value = this.values( index );
+			uiHash.values = this.values();
+		}
+
+		this._trigger( "stop", event, uiHash );
+	},
+
+	_change: function( event, index ) {
+		if ( !this._keySliding && !this._mouseSliding ) {
+			var uiHash = {
+				handle: this.handles[ index ],
+				value: this.value()
+			};
+			if ( this.options.values && this.options.values.length ) {
+				uiHash.value = this.values( index );
+				uiHash.values = this.values();
+			}
+
+			//store the last changed value index for reference when handles overlap
+			this._lastChangedValue = index;
+
+			this._trigger( "change", event, uiHash );
+		}
+	},
+
+	value: function( newValue ) {
+		if ( arguments.length ) {
+			this.options.value = this._trimAlignValue( newValue );
+			this._refreshValue();
+			this._change( null, 0 );
+			return;
+		}
+
+		return this._value();
+	},
+
+	values: function( index, newValue ) {
+		var vals,
+			newValues,
+			i;
+
+		if ( arguments.length > 1 ) {
+			this.options.values[ index ] = this._trimAlignValue( newValue );
+			this._refreshValue();
+			this._change( null, index );
+			return;
+		}
+
+		if ( arguments.length ) {
+			if ( $.isArray( arguments[ 0 ] ) ) {
+				vals = this.options.values;
+				newValues = arguments[ 0 ];
+				for ( i = 0; i < vals.length; i += 1 ) {
+					vals[ i ] = this._trimAlignValue( newValues[ i ] );
+					this._change( null, i );
+				}
+				this._refreshValue();
+			} else {
+				if ( this.options.values && this.options.values.length ) {
+					return this._values( index );
+				} else {
+					return this.value();
+				}
+			}
+		} else {
+			return this._values();
+		}
+	},
+
+	_setOption: function( key, value ) {
+		var i,
+			valsLength = 0;
+
+		if ( key === "range" && this.options.range === true ) {
+			if ( value === "min" ) {
+				this.options.value = this._values( 0 );
+				this.options.values = null;
+			} else if ( value === "max" ) {
+				this.options.value = this._values( this.options.values.length-1 );
+				this.options.values = null;
+			}
+		}
+
+		if ( $.isArray( this.options.values ) ) {
+			valsLength = this.options.values.length;
+		}
+
+		$.Widget.prototype._setOption.apply( this, arguments );
+
+		switch ( key ) {
+			case "orientation":
+				this._detectOrientation();
+				this.element
+					.removeClass( "ui-slider-horizontal ui-slider-vertical" )
+					.addClass( "ui-slider-" + this.orientation );
+				this._refreshValue();
+				break;
+			case "value":
+				this._animateOff = true;
+				this._refreshValue();
+				this._change( null, 0 );
+				this._animateOff = false;
+				break;
+			case "values":
+				this._animateOff = true;
+				this._refreshValue();
+				for ( i = 0; i < valsLength; i += 1 ) {
+					this._change( null, i );
+				}
+				this._animateOff = false;
+				break;
+			case "min":
+			case "max":
+				this._animateOff = true;
+				this._refreshValue();
+				this._animateOff = false;
+				break;
+			case "range":
+				this._animateOff = true;
+				this._refresh();
+				this._animateOff = false;
+				break;
+		}
+	},
+
+	//internal value getter
+	// _value() returns value trimmed by min and max, aligned by step
+	_value: function() {
+		var val = this.options.value;
+		val = this._trimAlignValue( val );
+
+		return val;
+	},
+
+	//internal values getter
+	// _values() returns array of values trimmed by min and max, aligned by step
+	// _values( index ) returns single value trimmed by min and max, aligned by step
+	_values: function( index ) {
+		var val,
+			vals,
+			i;
+
+		if ( arguments.length ) {
+			val = this.options.values[ index ];
+			val = this._trimAlignValue( val );
+
+			return val;
+		} else if ( this.options.values && this.options.values.length ) {
+			// .slice() creates a copy of the array
+			// this copy gets trimmed by min and max and then returned
+			vals = this.options.values.slice();
+			for ( i = 0; i < vals.length; i+= 1) {
+				vals[ i ] = this._trimAlignValue( vals[ i ] );
+			}
+
+			return vals;
+		} else {
+			return [];
+		}
+	},
+
+	// returns the step-aligned value that val is closest to, between (inclusive) min and max
+	_trimAlignValue: function( val ) {
+		if ( val <= this._valueMin() ) {
+			return this._valueMin();
+		}
+		if ( val >= this._valueMax() ) {
+			return this._valueMax();
+		}
+		var step = ( this.options.step > 0 ) ? this.options.step : 1,
+			valModStep = (val - this._valueMin()) % step,
+			alignValue = val - valModStep;
+
+		if ( Math.abs(valModStep) * 2 >= step ) {
+			alignValue += ( valModStep > 0 ) ? step : ( -step );
+		}
+
+		// Since JavaScript has problems with large floats, round
+		// the final value to 5 digits after the decimal point (see #4124)
+		return parseFloat( alignValue.toFixed(5) );
+	},
+
+	_valueMin: function() {
+		return this.options.min;
+	},
+
+	_valueMax: function() {
+		return this.options.max;
+	},
+
+	_refreshValue: function() {
+		var lastValPercent, valPercent, value, valueMin, valueMax,
+			oRange = this.options.range,
+			o = this.options,
+			that = this,
+			animate = ( !this._animateOff ) ? o.animate : false,
+			_set = {};
+
+		if ( this.options.values && this.options.values.length ) {
+			this.handles.each(function( i ) {
+				valPercent = ( that.values(i) - that._valueMin() ) / ( that._valueMax() - that._valueMin() ) * 100;
+				_set[ that.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
+				$( this ).stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+				if ( that.options.range === true ) {
+					if ( that.orientation === "horizontal" ) {
+						if ( i === 0 ) {
+							that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { left: valPercent + "%" }, o.animate );
+						}
+						if ( i === 1 ) {
+							that.range[ animate ? "animate" : "css" ]( { width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+						}
+					} else {
+						if ( i === 0 ) {
+							that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { bottom: ( valPercent ) + "%" }, o.animate );
+						}
+						if ( i === 1 ) {
+							that.range[ animate ? "animate" : "css" ]( { height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
+						}
+					}
+				}
+				lastValPercent = valPercent;
+			});
+		} else {
+			value = this.value();
+			valueMin = this._valueMin();
+			valueMax = this._valueMax();
+			valPercent = ( valueMax !== valueMin ) ?
+					( value - valueMin ) / ( valueMax - valueMin ) * 100 :
+					0;
+			_set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
+			this.handle.stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
+
+			if ( oRange === "min" && this.orientation === "horizontal" ) {
+				this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { width: valPercent + "%" }, o.animate );
+			}
+			if ( oRange === "max" && this.orientation === "horizontal" ) {
+				this.range[ animate ? "animate" : "css" ]( { width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+			}
+			if ( oRange === "min" && this.orientation === "vertical" ) {
+				this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { height: valPercent + "%" }, o.animate );
+			}
+			if ( oRange === "max" && this.orientation === "vertical" ) {
+				this.range[ animate ? "animate" : "css" ]( { height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
+			}
+		}
+	},
+
+	_handleEvents: {
+		keydown: function( event ) {
+			var allowed, curVal, newVal, step,
+				index = $( event.target ).data( "ui-slider-handle-index" );
+
+			switch ( event.keyCode ) {
+				case $.ui.keyCode.HOME:
+				case $.ui.keyCode.END:
+				case $.ui.keyCode.PAGE_UP:
+				case $.ui.keyCode.PAGE_DOWN:
+				case $.ui.keyCode.UP:
+				case $.ui.keyCode.RIGHT:
+				case $.ui.keyCode.DOWN:
+				case $.ui.keyCode.LEFT:
+					event.preventDefault();
+					if ( !this._keySliding ) {
+						this._keySliding = true;
+						$( event.target ).addClass( "ui-state-active" );
+						allowed = this._start( event, index );
+						if ( allowed === false ) {
+							return;
+						}
+					}
+					break;
+			}
+
+			step = this.options.step;
+			if ( this.options.values && this.options.values.length ) {
+				curVal = newVal = this.values( index );
+			} else {
+				curVal = newVal = this.value();
+			}
+
+			switch ( event.keyCode ) {
+				case $.ui.keyCode.HOME:
+					newVal = this._valueMin();
+					break;
+				case $.ui.keyCode.END:
+					newVal = this._valueMax();
+					break;
+				case $.ui.keyCode.PAGE_UP:
+					newVal = this._trimAlignValue( curVal + ( (this._valueMax() - this._valueMin()) / numPages ) );
+					break;
+				case $.ui.keyCode.PAGE_DOWN:
+					newVal = this._trimAlignValue( curVal - ( (this._valueMax() - this._valueMin()) / numPages ) );
+					break;
+				case $.ui.keyCode.UP:
+				case $.ui.keyCode.RIGHT:
+					if ( curVal === this._valueMax() ) {
+						return;
+					}
+					newVal = this._trimAlignValue( curVal + step );
+					break;
+				case $.ui.keyCode.DOWN:
+				case $.ui.keyCode.LEFT:
+					if ( curVal === this._valueMin() ) {
+						return;
+					}
+					newVal = this._trimAlignValue( curVal - step );
+					break;
+			}
+
+			this._slide( event, index, newVal );
+		},
+		click: function( event ) {
+			event.preventDefault();
+		},
+		keyup: function( event ) {
+			var index = $( event.target ).data( "ui-slider-handle-index" );
+
+			if ( this._keySliding ) {
+				this._keySliding = false;
+				this._stop( event, index );
+				this._change( event, index );
+				$( event.target ).removeClass( "ui-state-active" );
+			}
+		}
+	}
+
+});
+
+}(jQuery));
+
+/*!
+ * jQuery UI Effects 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/effects-core/
+ */
+(function($, undefined) {
+
+var dataSpace = "ui-effects-";
+
+$.effects = {
+	effect: {}
+};
+
+/*!
+ * jQuery Color Animations v2.1.2
+ * https://github.com/jquery/jquery-color
+ *
+ * Copyright 2013 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * Date: Wed Jan 16 08:47:09 2013 -0600
+ */
+(function( jQuery, undefined ) {
+
+	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
+
+	// plusequals test for += 100 -= 100
+	rplusequals = /^([\-+])=\s*(\d+\.?\d*)/,
+	// a set of RE's that can match strings and generate color tuples.
+	stringParsers = [{
+			re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
+			parse: function( execResult ) {
+				return [
+					execResult[ 1 ],
+					execResult[ 2 ],
+					execResult[ 3 ],
+					execResult[ 4 ]
+				];
+			}
+		}, {
+			re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
+			parse: function( execResult ) {
+				return [
+					execResult[ 1 ] * 2.55,
+					execResult[ 2 ] * 2.55,
+					execResult[ 3 ] * 2.55,
+					execResult[ 4 ]
+				];
+			}
+		}, {
+			// this regex ignores A-F because it's compared against an already lowercased string
+			re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
+			parse: function( execResult ) {
+				return [
+					parseInt( execResult[ 1 ], 16 ),
+					parseInt( execResult[ 2 ], 16 ),
+					parseInt( execResult[ 3 ], 16 )
+				];
+			}
+		}, {
+			// this regex ignores A-F because it's compared against an already lowercased string
+			re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
+			parse: function( execResult ) {
+				return [
+					parseInt( execResult[ 1 ] + execResult[ 1 ], 16 ),
+					parseInt( execResult[ 2 ] + execResult[ 2 ], 16 ),
+					parseInt( execResult[ 3 ] + execResult[ 3 ], 16 )
+				];
+			}
+		}, {
+			re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
+			space: "hsla",
+			parse: function( execResult ) {
+				return [
+					execResult[ 1 ],
+					execResult[ 2 ] / 100,
+					execResult[ 3 ] / 100,
+					execResult[ 4 ]
+				];
+			}
+		}],
+
+	// jQuery.Color( )
+	color = jQuery.Color = function( color, green, blue, alpha ) {
+		return new jQuery.Color.fn.parse( color, green, blue, alpha );
+	},
+	spaces = {
+		rgba: {
+			props: {
+				red: {
+					idx: 0,
+					type: "byte"
+				},
+				green: {
+					idx: 1,
+					type: "byte"
+				},
+				blue: {
+					idx: 2,
+					type: "byte"
+				}
+			}
+		},
+
+		hsla: {
+			props: {
+				hue: {
+					idx: 0,
+					type: "degrees"
+				},
+				saturation: {
+					idx: 1,
+					type: "percent"
+				},
+				lightness: {
+					idx: 2,
+					type: "percent"
+				}
+			}
+		}
+	},
+	propTypes = {
+		"byte": {
+			floor: true,
+			max: 255
+		},
+		"percent": {
+			max: 1
+		},
+		"degrees": {
+			mod: 360,
+			floor: true
+		}
+	},
+	support = color.support = {},
+
+	// element for support tests
+	supportElem = jQuery( "<p>" )[ 0 ],
+
+	// colors = jQuery.Color.names
+	colors,
+
+	// local aliases of functions called often
+	each = jQuery.each;
+
+// determine rgba support immediately
+supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
+support.rgba = supportElem.style.backgroundColor.indexOf( "rgba" ) > -1;
+
+// define cache name and alpha properties
+// for rgba and hsla spaces
+each( spaces, function( spaceName, space ) {
+	space.cache = "_" + spaceName;
+	space.props.alpha = {
+		idx: 3,
+		type: "percent",
+		def: 1
+	};
+});
+
+function clamp( value, prop, allowEmpty ) {
+	var type = propTypes[ prop.type ] || {};
+
+	if ( value == null ) {
+		return (allowEmpty || !prop.def) ? null : prop.def;
+	}
+
+	// ~~ is an short way of doing floor for positive numbers
+	value = type.floor ? ~~value : parseFloat( value );
+
+	// IE will pass in empty strings as value for alpha,
+	// which will hit this case
+	if ( isNaN( value ) ) {
+		return prop.def;
+	}
+
+	if ( type.mod ) {
+		// we add mod before modding to make sure that negatives values
+		// get converted properly: -10 -> 350
+		return (value + type.mod) % type.mod;
+	}
+
+	// for now all property types without mod have min and max
+	return 0 > value ? 0 : type.max < value ? type.max : value;
+}
+
+function stringParse( string ) {
+	var inst = color(),
+		rgba = inst._rgba = [];
+
+	string = string.toLowerCase();
+
+	each( stringParsers, function( i, parser ) {
+		var parsed,
+			match = parser.re.exec( string ),
+			values = match && parser.parse( match ),
+			spaceName = parser.space || "rgba";
+
+		if ( values ) {
+			parsed = inst[ spaceName ]( values );
+
+			// if this was an rgba parse the assignment might happen twice
+			// oh well....
+			inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
+			rgba = inst._rgba = parsed._rgba;
+
+			// exit each( stringParsers ) here because we matched
+			return false;
+		}
+	});
+
+	// Found a stringParser that handled it
+	if ( rgba.length ) {
+
+		// if this came from a parsed string, force "transparent" when alpha is 0
+		// chrome, (and maybe others) return "transparent" as rgba(0,0,0,0)
+		if ( rgba.join() === "0,0,0,0" ) {
+			jQuery.extend( rgba, colors.transparent );
+		}
+		return inst;
+	}
+
+	// named colors
+	return colors[ string ];
+}
+
+color.fn = jQuery.extend( color.prototype, {
+	parse: function( red, green, blue, alpha ) {
+		if ( red === undefined ) {
+			this._rgba = [ null, null, null, null ];
+			return this;
+		}
+		if ( red.jquery || red.nodeType ) {
+			red = jQuery( red ).css( green );
+			green = undefined;
+		}
+
+		var inst = this,
+			type = jQuery.type( red ),
+			rgba = this._rgba = [];
+
+		// more than 1 argument specified - assume ( red, green, blue, alpha )
+		if ( green !== undefined ) {
+			red = [ red, green, blue, alpha ];
+			type = "array";
+		}
+
+		if ( type === "string" ) {
+			return this.parse( stringParse( red ) || colors._default );
+		}
+
+		if ( type === "array" ) {
+			each( spaces.rgba.props, function( key, prop ) {
+				rgba[ prop.idx ] = clamp( red[ prop.idx ], prop );
+			});
+			return this;
+		}
+
+		if ( type === "object" ) {
+			if ( red instanceof color ) {
+				each( spaces, function( spaceName, space ) {
+					if ( red[ space.cache ] ) {
+						inst[ space.cache ] = red[ space.cache ].slice();
+					}
+				});
+			} else {
+				each( spaces, function( spaceName, space ) {
+					var cache = space.cache;
+					each( space.props, function( key, prop ) {
+
+						// if the cache doesn't exist, and we know how to convert
+						if ( !inst[ cache ] && space.to ) {
+
+							// if the value was null, we don't need to copy it
+							// if the key was alpha, we don't need to copy it either
+							if ( key === "alpha" || red[ key ] == null ) {
+								return;
+							}
+							inst[ cache ] = space.to( inst._rgba );
+						}
+
+						// this is the only case where we allow nulls for ALL properties.
+						// call clamp with alwaysAllowEmpty
+						inst[ cache ][ prop.idx ] = clamp( red[ key ], prop, true );
+					});
+
+					// everything defined but alpha?
+					if ( inst[ cache ] && jQuery.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
+						// use the default of 1
+						inst[ cache ][ 3 ] = 1;
+						if ( space.from ) {
+							inst._rgba = space.from( inst[ cache ] );
+						}
+					}
+				});
+			}
+			return this;
+		}
+	},
+	is: function( compare ) {
+		var is = color( compare ),
+			same = true,
+			inst = this;
+
+		each( spaces, function( _, space ) {
+			var localCache,
+				isCache = is[ space.cache ];
+			if (isCache) {
+				localCache = inst[ space.cache ] || space.to && space.to( inst._rgba ) || [];
+				each( space.props, function( _, prop ) {
+					if ( isCache[ prop.idx ] != null ) {
+						same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
+						return same;
+					}
+				});
+			}
+			return same;
+		});
+		return same;
+	},
+	_space: function() {
+		var used = [],
+			inst = this;
+		each( spaces, function( spaceName, space ) {
+			if ( inst[ space.cache ] ) {
+				used.push( spaceName );
+			}
+		});
+		return used.pop();
+	},
+	transition: function( other, distance ) {
+		var end = color( other ),
+			spaceName = end._space(),
+			space = spaces[ spaceName ],
+			startColor = this.alpha() === 0 ? color( "transparent" ) : this,
+			start = startColor[ space.cache ] || space.to( startColor._rgba ),
+			result = start.slice();
+
+		end = end[ space.cache ];
+		each( space.props, function( key, prop ) {
+			var index = prop.idx,
+				startValue = start[ index ],
+				endValue = end[ index ],
+				type = propTypes[ prop.type ] || {};
+
+			// if null, don't override start value
+			if ( endValue === null ) {
+				return;
+			}
+			// if null - use end
+			if ( startValue === null ) {
+				result[ index ] = endValue;
+			} else {
+				if ( type.mod ) {
+					if ( endValue - startValue > type.mod / 2 ) {
+						startValue += type.mod;
+					} else if ( startValue - endValue > type.mod / 2 ) {
+						startValue -= type.mod;
+					}
+				}
+				result[ index ] = clamp( ( endValue - startValue ) * distance + startValue, prop );
+			}
+		});
+		return this[ spaceName ]( result );
+	},
+	blend: function( opaque ) {
+		// if we are already opaque - return ourself
+		if ( this._rgba[ 3 ] === 1 ) {
+			return this;
+		}
+
+		var rgb = this._rgba.slice(),
+			a = rgb.pop(),
+			blend = color( opaque )._rgba;
+
+		return color( jQuery.map( rgb, function( v, i ) {
+			return ( 1 - a ) * blend[ i ] + a * v;
+		}));
+	},
+	toRgbaString: function() {
+		var prefix = "rgba(",
+			rgba = jQuery.map( this._rgba, function( v, i ) {
+				return v == null ? ( i > 2 ? 1 : 0 ) : v;
+			});
+
+		if ( rgba[ 3 ] === 1 ) {
+			rgba.pop();
+			prefix = "rgb(";
+		}
+
+		return prefix + rgba.join() + ")";
+	},
+	toHslaString: function() {
+		var prefix = "hsla(",
+			hsla = jQuery.map( this.hsla(), function( v, i ) {
+				if ( v == null ) {
+					v = i > 2 ? 1 : 0;
+				}
+
+				// catch 1 and 2
+				if ( i && i < 3 ) {
+					v = Math.round( v * 100 ) + "%";
+				}
+				return v;
+			});
+
+		if ( hsla[ 3 ] === 1 ) {
+			hsla.pop();
+			prefix = "hsl(";
+		}
+		return prefix + hsla.join() + ")";
+	},
+	toHexString: function( includeAlpha ) {
+		var rgba = this._rgba.slice(),
+			alpha = rgba.pop();
+
+		if ( includeAlpha ) {
+			rgba.push( ~~( alpha * 255 ) );
+		}
+
+		return "#" + jQuery.map( rgba, function( v ) {
+
+			// default to 0 when nulls exist
+			v = ( v || 0 ).toString( 16 );
+			return v.length === 1 ? "0" + v : v;
+		}).join("");
+	},
+	toString: function() {
+		return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
+	}
+});
+color.fn.parse.prototype = color.fn;
+
+// hsla conversions adapted from:
+// https://code.google.com/p/maashaack/source/browse/packages/graphics/trunk/src/graphics/colors/HUE2RGB.as?r=5021
+
+function hue2rgb( p, q, h ) {
+	h = ( h + 1 ) % 1;
+	if ( h * 6 < 1 ) {
+		return p + (q - p) * h * 6;
+	}
+	if ( h * 2 < 1) {
+		return q;
+	}
+	if ( h * 3 < 2 ) {
+		return p + (q - p) * ((2/3) - h) * 6;
+	}
+	return p;
+}
+
+spaces.hsla.to = function ( rgba ) {
+	if ( rgba[ 0 ] == null || rgba[ 1 ] == null || rgba[ 2 ] == null ) {
+		return [ null, null, null, rgba[ 3 ] ];
+	}
+	var r = rgba[ 0 ] / 255,
+		g = rgba[ 1 ] / 255,
+		b = rgba[ 2 ] / 255,
+		a = rgba[ 3 ],
+		max = Math.max( r, g, b ),
+		min = Math.min( r, g, b ),
+		diff = max - min,
+		add = max + min,
+		l = add * 0.5,
+		h, s;
+
+	if ( min === max ) {
+		h = 0;
+	} else if ( r === max ) {
+		h = ( 60 * ( g - b ) / diff ) + 360;
+	} else if ( g === max ) {
+		h = ( 60 * ( b - r ) / diff ) + 120;
+	} else {
+		h = ( 60 * ( r - g ) / diff ) + 240;
+	}
+
+	// chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
+	// otherwise, saturation is based on the ratio of chroma (diff) to lightness (add)
+	if ( diff === 0 ) {
+		s = 0;
+	} else if ( l <= 0.5 ) {
+		s = diff / add;
+	} else {
+		s = diff / ( 2 - add );
+	}
+	return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
+};
+
+spaces.hsla.from = function ( hsla ) {
+	if ( hsla[ 0 ] == null || hsla[ 1 ] == null || hsla[ 2 ] == null ) {
+		return [ null, null, null, hsla[ 3 ] ];
+	}
+	var h = hsla[ 0 ] / 360,
+		s = hsla[ 1 ],
+		l = hsla[ 2 ],
+		a = hsla[ 3 ],
+		q = l <= 0.5 ? l * ( 1 + s ) : l + s - l * s,
+		p = 2 * l - q;
+
+	return [
+		Math.round( hue2rgb( p, q, h + ( 1 / 3 ) ) * 255 ),
+		Math.round( hue2rgb( p, q, h ) * 255 ),
+		Math.round( hue2rgb( p, q, h - ( 1 / 3 ) ) * 255 ),
+		a
+	];
+};
+
+
+each( spaces, function( spaceName, space ) {
+	var props = space.props,
+		cache = space.cache,
+		to = space.to,
+		from = space.from;
+
+	// makes rgba() and hsla()
+	color.fn[ spaceName ] = function( value ) {
+
+		// generate a cache for this space if it doesn't exist
+		if ( to && !this[ cache ] ) {
+			this[ cache ] = to( this._rgba );
+		}
+		if ( value === undefined ) {
+			return this[ cache ].slice();
+		}
+
+		var ret,
+			type = jQuery.type( value ),
+			arr = ( type === "array" || type === "object" ) ? value : arguments,
+			local = this[ cache ].slice();
+
+		each( props, function( key, prop ) {
+			var val = arr[ type === "object" ? key : prop.idx ];
+			if ( val == null ) {
+				val = local[ prop.idx ];
+			}
+			local[ prop.idx ] = clamp( val, prop );
+		});
+
+		if ( from ) {
+			ret = color( from( local ) );
+			ret[ cache ] = local;
+			return ret;
+		} else {
+			return color( local );
+		}
+	};
+
+	// makes red() green() blue() alpha() hue() saturation() lightness()
+	each( props, function( key, prop ) {
+		// alpha is included in more than one space
+		if ( color.fn[ key ] ) {
+			return;
+		}
+		color.fn[ key ] = function( value ) {
+			var vtype = jQuery.type( value ),
+				fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
+				local = this[ fn ](),
+				cur = local[ prop.idx ],
+				match;
+
+			if ( vtype === "undefined" ) {
+				return cur;
+			}
+
+			if ( vtype === "function" ) {
+				value = value.call( this, cur );
+				vtype = jQuery.type( value );
+			}
+			if ( value == null && prop.empty ) {
+				return this;
+			}
+			if ( vtype === "string" ) {
+				match = rplusequals.exec( value );
+				if ( match ) {
+					value = cur + parseFloat( match[ 2 ] ) * ( match[ 1 ] === "+" ? 1 : -1 );
+				}
+			}
+			local[ prop.idx ] = value;
+			return this[ fn ]( local );
+		};
+	});
+});
+
+// add cssHook and .fx.step function for each named hook.
+// accept a space separated string of properties
+color.hook = function( hook ) {
+	var hooks = hook.split( " " );
+	each( hooks, function( i, hook ) {
+		jQuery.cssHooks[ hook ] = {
+			set: function( elem, value ) {
+				var parsed, curElem,
+					backgroundColor = "";
+
+				if ( value !== "transparent" && ( jQuery.type( value ) !== "string" || ( parsed = stringParse( value ) ) ) ) {
+					value = color( parsed || value );
+					if ( !support.rgba && value._rgba[ 3 ] !== 1 ) {
+						curElem = hook === "backgroundColor" ? elem.parentNode : elem;
+						while (
+							(backgroundColor === "" || backgroundColor === "transparent") &&
+							curElem && curElem.style
+						) {
+							try {
+								backgroundColor = jQuery.css( curElem, "backgroundColor" );
+								curElem = curElem.parentNode;
+							} catch ( e ) {
+							}
+						}
+
+						value = value.blend( backgroundColor && backgroundColor !== "transparent" ?
+							backgroundColor :
+							"_default" );
+					}
+
+					value = value.toRgbaString();
+				}
+				try {
+					elem.style[ hook ] = value;
+				} catch( e ) {
+					// wrapped to prevent IE from throwing errors on "invalid" values like 'auto' or 'inherit'
+				}
+			}
+		};
+		jQuery.fx.step[ hook ] = function( fx ) {
+			if ( !fx.colorInit ) {
+				fx.start = color( fx.elem, hook );
+				fx.end = color( fx.end );
+				fx.colorInit = true;
+			}
+			jQuery.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
+		};
+	});
+
+};
+
+color.hook( stepHooks );
+
+jQuery.cssHooks.borderColor = {
+	expand: function( value ) {
+		var expanded = {};
+
+		each( [ "Top", "Right", "Bottom", "Left" ], function( i, part ) {
+			expanded[ "border" + part + "Color" ] = value;
+		});
+		return expanded;
+	}
+};
+
+// Basic color names only.
+// Usage of any of the other color names requires adding yourself or including
+// jquery.color.svg-names.js.
+colors = jQuery.Color.names = {
+	// 4.1. Basic color keywords
+	aqua: "#00ffff",
+	black: "#000000",
+	blue: "#0000ff",
+	fuchsia: "#ff00ff",
+	gray: "#808080",
+	green: "#008000",
+	lime: "#00ff00",
+	maroon: "#800000",
+	navy: "#000080",
+	olive: "#808000",
+	purple: "#800080",
+	red: "#ff0000",
+	silver: "#c0c0c0",
+	teal: "#008080",
+	white: "#ffffff",
+	yellow: "#ffff00",
+
+	// 4.2.3. "transparent" color keyword
+	transparent: [ null, null, null, 0 ],
+
+	_default: "#ffffff"
+};
+
+})( jQuery );
+
+
+/******************************************************************************/
+/****************************** CLASS ANIMATIONS ******************************/
+/******************************************************************************/
+(function() {
+
+var classAnimationActions = [ "add", "remove", "toggle" ],
+	shorthandStyles = {
+		border: 1,
+		borderBottom: 1,
+		borderColor: 1,
+		borderLeft: 1,
+		borderRight: 1,
+		borderTop: 1,
+		borderWidth: 1,
+		margin: 1,
+		padding: 1
+	};
+
+$.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function( _, prop ) {
+	$.fx.step[ prop ] = function( fx ) {
+		if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
+			jQuery.style( fx.elem, prop, fx.end );
+			fx.setAttr = true;
+		}
+	};
+});
+
+function getElementStyles( elem ) {
+	var key, len,
+		style = elem.ownerDocument.defaultView ?
+			elem.ownerDocument.defaultView.getComputedStyle( elem, null ) :
+			elem.currentStyle,
+		styles = {};
+
+	if ( style && style.length && style[ 0 ] && style[ style[ 0 ] ] ) {
+		len = style.length;
+		while ( len-- ) {
+			key = style[ len ];
+			if ( typeof style[ key ] === "string" ) {
+				styles[ $.camelCase( key ) ] = style[ key ];
+			}
+		}
+	// support: Opera, IE <9
+	} else {
+		for ( key in style ) {
+			if ( typeof style[ key ] === "string" ) {
+				styles[ key ] = style[ key ];
+			}
+		}
+	}
+
+	return styles;
+}
+
+
+function styleDifference( oldStyle, newStyle ) {
+	var diff = {},
+		name, value;
+
+	for ( name in newStyle ) {
+		value = newStyle[ name ];
+		if ( oldStyle[ name ] !== value ) {
+			if ( !shorthandStyles[ name ] ) {
+				if ( $.fx.step[ name ] || !isNaN( parseFloat( value ) ) ) {
+					diff[ name ] = value;
+				}
+			}
+		}
+	}
+
+	return diff;
+}
+
+// support: jQuery <1.8
+if ( !$.fn.addBack ) {
+	$.fn.addBack = function( selector ) {
+		return this.add( selector == null ?
+			this.prevObject : this.prevObject.filter( selector )
+		);
+	};
+}
+
+$.effects.animateClass = function( value, duration, easing, callback ) {
+	var o = $.speed( duration, easing, callback );
+
+	return this.queue( function() {
+		var animated = $( this ),
+			baseClass = animated.attr( "class" ) || "",
+			applyClassChange,
+			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
+
+		// map the animated objects to store the original styles.
+		allAnimations = allAnimations.map(function() {
+			var el = $( this );
+			return {
+				el: el,
+				start: getElementStyles( this )
+			};
+		});
+
+		// apply class change
+		applyClassChange = function() {
+			$.each( classAnimationActions, function(i, action) {
+				if ( value[ action ] ) {
+					animated[ action + "Class" ]( value[ action ] );
+				}
+			});
+		};
+		applyClassChange();
+
+		// map all animated objects again - calculate new styles and diff
+		allAnimations = allAnimations.map(function() {
+			this.end = getElementStyles( this.el[ 0 ] );
+			this.diff = styleDifference( this.start, this.end );
+			return this;
+		});
+
+		// apply original class
+		animated.attr( "class", baseClass );
+
+		// map all animated objects again - this time collecting a promise
+		allAnimations = allAnimations.map(function() {
+			var styleInfo = this,
+				dfd = $.Deferred(),
+				opts = $.extend({}, o, {
+					queue: false,
+					complete: function() {
+						dfd.resolve( styleInfo );
+					}
+				});
+
+			this.el.animate( this.diff, opts );
+			return dfd.promise();
+		});
+
+		// once all animations have completed:
+		$.when.apply( $, allAnimations.get() ).done(function() {
+
+			// set the final class
+			applyClassChange();
+
+			// for each animated element,
+			// clear all css properties that were animated
+			$.each( arguments, function() {
+				var el = this.el;
+				$.each( this.diff, function(key) {
+					el.css( key, "" );
+				});
+			});
+
+			// this is guarnteed to be there if you use jQuery.speed()
+			// it also handles dequeuing the next anim...
+			o.complete.call( animated[ 0 ] );
+		});
+	});
+};
+
+$.fn.extend({
+	addClass: (function( orig ) {
+		return function( classNames, speed, easing, callback ) {
+			return speed ?
+				$.effects.animateClass.call( this,
+					{ add: classNames }, speed, easing, callback ) :
+				orig.apply( this, arguments );
+		};
+	})( $.fn.addClass ),
+
+	removeClass: (function( orig ) {
+		return function( classNames, speed, easing, callback ) {
+			return arguments.length > 1 ?
+				$.effects.animateClass.call( this,
+					{ remove: classNames }, speed, easing, callback ) :
+				orig.apply( this, arguments );
+		};
+	})( $.fn.removeClass ),
+
+	toggleClass: (function( orig ) {
+		return function( classNames, force, speed, easing, callback ) {
+			if ( typeof force === "boolean" || force === undefined ) {
+				if ( !speed ) {
+					// without speed parameter
+					return orig.apply( this, arguments );
+				} else {
+					return $.effects.animateClass.call( this,
+						(force ? { add: classNames } : { remove: classNames }),
+						speed, easing, callback );
+				}
+			} else {
+				// without force parameter
+				return $.effects.animateClass.call( this,
+					{ toggle: classNames }, force, speed, easing );
+			}
+		};
+	})( $.fn.toggleClass ),
+
+	switchClass: function( remove, add, speed, easing, callback) {
+		return $.effects.animateClass.call( this, {
+			add: add,
+			remove: remove
+		}, speed, easing, callback );
+	}
+});
+
+})();
+
+/******************************************************************************/
+/*********************************** EFFECTS **********************************/
+/******************************************************************************/
+
+(function() {
+
+$.extend( $.effects, {
+	version: "1.10.4",
+
+	// Saves a set of properties in a data storage
+	save: function( element, set ) {
+		for( var i=0; i < set.length; i++ ) {
+			if ( set[ i ] !== null ) {
+				element.data( dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ] );
+			}
+		}
+	},
+
+	// Restores a set of previously saved properties from a data storage
+	restore: function( element, set ) {
+		var val, i;
+		for( i=0; i < set.length; i++ ) {
+			if ( set[ i ] !== null ) {
+				val = element.data( dataSpace + set[ i ] );
+				// support: jQuery 1.6.2
+				// http://bugs.jquery.com/ticket/9917
+				// jQuery 1.6.2 incorrectly returns undefined for any falsy value.
+				// We can't differentiate between "" and 0 here, so we just assume
+				// empty string since it's likely to be a more common value...
+				if ( val === undefined ) {
+					val = "";
+				}
+				element.css( set[ i ], val );
+			}
+		}
+	},
+
+	setMode: function( el, mode ) {
+		if (mode === "toggle") {
+			mode = el.is( ":hidden" ) ? "show" : "hide";
+		}
+		return mode;
+	},
+
+	// Translates a [top,left] array into a baseline value
+	// this should be a little more flexible in the future to handle a string & hash
+	getBaseline: function( origin, original ) {
+		var y, x;
+		switch ( origin[ 0 ] ) {
+			case "top": y = 0; break;
+			case "middle": y = 0.5; break;
+			case "bottom": y = 1; break;
+			default: y = origin[ 0 ] / original.height;
+		}
+		switch ( origin[ 1 ] ) {
+			case "left": x = 0; break;
+			case "center": x = 0.5; break;
+			case "right": x = 1; break;
+			default: x = origin[ 1 ] / original.width;
+		}
+		return {
+			x: x,
+			y: y
+		};
+	},
+
+	// Wraps the element around a wrapper that copies position properties
+	createWrapper: function( element ) {
+
+		// if the element is already wrapped, return it
+		if ( element.parent().is( ".ui-effects-wrapper" )) {
+			return element.parent();
+		}
+
+		// wrap the element
+		var props = {
+				width: element.outerWidth(true),
+				height: element.outerHeight(true),
+				"float": element.css( "float" )
+			},
+			wrapper = $( "<div></div>" )
+				.addClass( "ui-effects-wrapper" )
+				.css({
+					fontSize: "100%",
+					background: "transparent",
+					border: "none",
+					margin: 0,
+					padding: 0
+				}),
+			// Store the size in case width/height are defined in % - Fixes #5245
+			size = {
+				width: element.width(),
+				height: element.height()
+			},
+			active = document.activeElement;
+
+		// support: Firefox
+		// Firefox incorrectly exposes anonymous content
+		// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
+		try {
+			active.id;
+		} catch( e ) {
+			active = document.body;
+		}
+
+		element.wrap( wrapper );
+
+		// Fixes #7595 - Elements lose focus when wrapped.
+		if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
+			$( active ).focus();
+		}
+
+		wrapper = element.parent(); //Hotfix for jQuery 1.4 since some change in wrap() seems to actually lose the reference to the wrapped element
+
+		// transfer positioning properties to the wrapper
+		if ( element.css( "position" ) === "static" ) {
+			wrapper.css({ position: "relative" });
+			element.css({ position: "relative" });
+		} else {
+			$.extend( props, {
+				position: element.css( "position" ),
+				zIndex: element.css( "z-index" )
+			});
+			$.each([ "top", "left", "bottom", "right" ], function(i, pos) {
+				props[ pos ] = element.css( pos );
+				if ( isNaN( parseInt( props[ pos ], 10 ) ) ) {
+					props[ pos ] = "auto";
+				}
+			});
+			element.css({
+				position: "relative",
+				top: 0,
+				left: 0,
+				right: "auto",
+				bottom: "auto"
+			});
+		}
+		element.css(size);
+
+		return wrapper.css( props ).show();
+	},
+
+	removeWrapper: function( element ) {
+		var active = document.activeElement;
+
+		if ( element.parent().is( ".ui-effects-wrapper" ) ) {
+			element.parent().replaceWith( element );
+
+			// Fixes #7595 - Elements lose focus when wrapped.
+			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
+				$( active ).focus();
+			}
+		}
+
+
+		return element;
+	},
+
+	setTransition: function( element, list, factor, value ) {
+		value = value || {};
+		$.each( list, function( i, x ) {
+			var unit = element.cssUnit( x );
+			if ( unit[ 0 ] > 0 ) {
+				value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
+			}
+		});
+		return value;
+	}
+});
+
+// return an effect options object for the given parameters:
+function _normalizeArguments( effect, options, speed, callback ) {
+
+	// allow passing all options as the first parameter
+	if ( $.isPlainObject( effect ) ) {
+		options = effect;
+		effect = effect.effect;
+	}
+
+	// convert to an object
+	effect = { effect: effect };
+
+	// catch (effect, null, ...)
+	if ( options == null ) {
+		options = {};
+	}
+
+	// catch (effect, callback)
+	if ( $.isFunction( options ) ) {
+		callback = options;
+		speed = null;
+		options = {};
+	}
+
+	// catch (effect, speed, ?)
+	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
+		callback = speed;
+		speed = options;
+		options = {};
+	}
+
+	// catch (effect, options, callback)
+	if ( $.isFunction( speed ) ) {
+		callback = speed;
+		speed = null;
+	}
+
+	// add options to effect
+	if ( options ) {
+		$.extend( effect, options );
+	}
+
+	speed = speed || options.duration;
+	effect.duration = $.fx.off ? 0 :
+		typeof speed === "number" ? speed :
+		speed in $.fx.speeds ? $.fx.speeds[ speed ] :
+		$.fx.speeds._default;
+
+	effect.complete = callback || options.complete;
+
+	return effect;
+}
+
+function standardAnimationOption( option ) {
+	// Valid standard speeds (nothing, number, named speed)
+	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
+		return true;
+	}
+
+	// Invalid strings - treat as "normal" speed
+	if ( typeof option === "string" && !$.effects.effect[ option ] ) {
+		return true;
+	}
+
+	// Complete callback
+	if ( $.isFunction( option ) ) {
+		return true;
+	}
+
+	// Options hash (but not naming an effect)
+	if ( typeof option === "object" && !option.effect ) {
+		return true;
+	}
+
+	// Didn't match any standard API
+	return false;
+}
+
+$.fn.extend({
+	effect: function( /* effect, options, speed, callback */ ) {
+		var args = _normalizeArguments.apply( this, arguments ),
+			mode = args.mode,
+			queue = args.queue,
+			effectMethod = $.effects.effect[ args.effect ];
+
+		if ( $.fx.off || !effectMethod ) {
+			// delegate to the original method (e.g., .show()) if possible
+			if ( mode ) {
+				return this[ mode ]( args.duration, args.complete );
+			} else {
+				return this.each( function() {
+					if ( args.complete ) {
+						args.complete.call( this );
+					}
+				});
+			}
+		}
+
+		function run( next ) {
+			var elem = $( this ),
+				complete = args.complete,
+				mode = args.mode;
+
+			function done() {
+				if ( $.isFunction( complete ) ) {
+					complete.call( elem[0] );
+				}
+				if ( $.isFunction( next ) ) {
+					next();
+				}
+			}
+
+			// If the element already has the correct final state, delegate to
+			// the core methods so the internal tracking of "olddisplay" works.
+			if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
+				elem[ mode ]();
+				done();
+			} else {
+				effectMethod.call( elem[0], args, done );
+			}
+		}
+
+		return queue === false ? this.each( run ) : this.queue( queue || "fx", run );
+	},
+
+	show: (function( orig ) {
+		return function( option ) {
+			if ( standardAnimationOption( option ) ) {
+				return orig.apply( this, arguments );
+			} else {
+				var args = _normalizeArguments.apply( this, arguments );
+				args.mode = "show";
+				return this.effect.call( this, args );
+			}
+		};
+	})( $.fn.show ),
+
+	hide: (function( orig ) {
+		return function( option ) {
+			if ( standardAnimationOption( option ) ) {
+				return orig.apply( this, arguments );
+			} else {
+				var args = _normalizeArguments.apply( this, arguments );
+				args.mode = "hide";
+				return this.effect.call( this, args );
+			}
+		};
+	})( $.fn.hide ),
+
+	toggle: (function( orig ) {
+		return function( option ) {
+			if ( standardAnimationOption( option ) || typeof option === "boolean" ) {
+				return orig.apply( this, arguments );
+			} else {
+				var args = _normalizeArguments.apply( this, arguments );
+				args.mode = "toggle";
+				return this.effect.call( this, args );
+			}
+		};
+	})( $.fn.toggle ),
+
+	// helper functions
+	cssUnit: function(key) {
+		var style = this.css( key ),
+			val = [];
+
+		$.each( [ "em", "px", "%", "pt" ], function( i, unit ) {
+			if ( style.indexOf( unit ) > 0 ) {
+				val = [ parseFloat( style ), unit ];
+			}
+		});
+		return val;
+	}
+});
+
+})();
+
+/******************************************************************************/
+/*********************************** EASING ***********************************/
+/******************************************************************************/
+
+(function() {
+
+// based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
+
+var baseEasings = {};
+
+$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
+	baseEasings[ name ] = function( p ) {
+		return Math.pow( p, i + 2 );
+	};
+});
+
+$.extend( baseEasings, {
+	Sine: function ( p ) {
+		return 1 - Math.cos( p * Math.PI / 2 );
+	},
+	Circ: function ( p ) {
+		return 1 - Math.sqrt( 1 - p * p );
+	},
+	Elastic: function( p ) {
+		return p === 0 || p === 1 ? p :
+			-Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
+	},
+	Back: function( p ) {
+		return p * p * ( 3 * p - 2 );
+	},
+	Bounce: function ( p ) {
+		var pow2,
+			bounce = 4;
+
+		while ( p < ( ( pow2 = Math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
+		return 1 / Math.pow( 4, 3 - bounce ) - 7.5625 * Math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
+	}
+});
+
+$.each( baseEasings, function( name, easeIn ) {
+	$.easing[ "easeIn" + name ] = easeIn;
+	$.easing[ "easeOut" + name ] = function( p ) {
+		return 1 - easeIn( 1 - p );
+	};
+	$.easing[ "easeInOut" + name ] = function( p ) {
+		return p < 0.5 ?
+			easeIn( p * 2 ) / 2 :
+			1 - easeIn( p * -2 + 2 ) / 2;
+	};
+});
+
+})();
+
+})(jQuery);
+
+/*!
+ * jQuery UI Touch Punch 0.2.2
+ *
+ * Copyright 2011, Dave Furfero
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Depends:
+ *  jquery.ui.widget.js
+ *  jquery.ui.mouse.js
+ */
+(function ($) {
+
+  // Detect touch support
+  $.support.touch = 'ontouchend' in document;
+
+  // Ignore browsers without touch support
+  if (!$.support.touch) {
+    return;
+  }
+
+  var mouseProto = $.ui.mouse.prototype,
+      _mouseInit = mouseProto._mouseInit,
+      touchHandled;
+
+  /**
+   * Simulate a mouse event based on a corresponding touch event
+   * @param {Object} event A touch event
+   * @param {String} simulatedType The corresponding mouse event
+   */
+  function simulateMouseEvent (event, simulatedType) {
+
+    // Ignore multi-touch events
+    if (event.originalEvent.touches.length > 1) {
+      return;
+    }
+
+    event.preventDefault();
+
+    var touch = event.originalEvent.changedTouches[0],
+        simulatedEvent = document.createEvent('MouseEvents');
+    
+    // Initialize the simulated mouse event using the touch event's coordinates
+    simulatedEvent.initMouseEvent(
+      simulatedType,    // type
+      true,             // bubbles                    
+      true,             // cancelable                 
+      window,           // view                       
+      1,                // detail                     
+      touch.screenX,    // screenX                    
+      touch.screenY,    // screenY                    
+      touch.clientX,    // clientX                    
+      touch.clientY,    // clientY                    
+      false,            // ctrlKey                    
+      false,            // altKey                     
+      false,            // shiftKey                   
+      false,            // metaKey                    
+      0,                // button                     
+      null              // relatedTarget              
+    );
+
+    // Dispatch the simulated event to the target element
+    event.target.dispatchEvent(simulatedEvent);
+  }
+
+  /**
+   * Handle the jQuery UI widget's touchstart events
+   * @param {Object} event The widget element's touchstart event
+   */
+  mouseProto._touchStart = function (event) {
+
+    var self = this;
+
+    // Ignore the event if another widget is already being handled
+    if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
+      return;
+    }
+
+    // Set the flag to prevent other widgets from inheriting the touch event
+    touchHandled = true;
+
+    // Track movement to determine if interaction was a click
+    self._touchMoved = false;
+
+    // Simulate the mouseover event
+    simulateMouseEvent(event, 'mouseover');
+
+    // Simulate the mousemove event
+    simulateMouseEvent(event, 'mousemove');
+
+    // Simulate the mousedown event
+    simulateMouseEvent(event, 'mousedown');
+  };
+
+  /**
+   * Handle the jQuery UI widget's touchmove events
+   * @param {Object} event The document's touchmove event
+   */
+  mouseProto._touchMove = function (event) {
+
+    // Ignore event if not handled
+    if (!touchHandled) {
+      return;
+    }
+
+    // Interaction was not a click
+    this._touchMoved = true;
+
+    // Simulate the mousemove event
+    simulateMouseEvent(event, 'mousemove');
+  };
+
+  /**
+   * Handle the jQuery UI widget's touchend events
+   * @param {Object} event The document's touchend event
+   */
+  mouseProto._touchEnd = function (event) {
+
+    // Ignore event if not handled
+    if (!touchHandled) {
+      return;
+    }
+
+    // Simulate the mouseup event
+    simulateMouseEvent(event, 'mouseup');
+
+    // Simulate the mouseout event
+    simulateMouseEvent(event, 'mouseout');
+
+    // If the touch interaction did not move, it should trigger a click
+    if (!this._touchMoved) {
+
+      // Simulate the click event
+      simulateMouseEvent(event, 'click');
+    }
+
+    // Unset the flag to allow other widgets to inherit the touch event
+    touchHandled = false;
+  };
+
+  /**
+   * A duck punch of the $.ui.mouse _mouseInit method to support touch events.
+   * This method extends the widget with bound touch event handlers that
+   * translate touch events to mouse events and pass them to the widget's
+   * original mouse event handling methods.
+   */
+  mouseProto._mouseInit = function () {
+    
+    var self = this;
+
+    // Delegate the touch handlers to the widget's element
+    self.element
+      .bind('touchstart', $.proxy(self, '_touchStart'))
+      .bind('touchmove', $.proxy(self, '_touchMove'))
+      .bind('touchend', $.proxy(self, '_touchEnd'));
+
+    // Call the original $.ui.mouse init method
+    _mouseInit.call(self);
+  };
+
+})(jQuery);
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -3268,6 +7306,18 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   });
 })(window.jQuery);
 
+/*!
+
+Holder - client side image placeholders
+Version 2.4.0+bxlim
+© 2014 Ivan Malopinsky - http://imsky.co
+
+Site:     http://imsky.github.io/holder
+Issues:   https://github.com/imsky/holder/issues
+License:  http://opensource.org/licenses/MIT
+
+*/
+!function(e,t,r){t[e]=r}("onDomReady",this,function(e){"use strict";function t(e){if(!b){if(!a.body)return i(t);for(b=!0;e=S.shift();)i(e)}}function r(e){(y||e.type===s||a[c]===u)&&(n(),t())}function n(){y?(a[x](m,r,d),e[x](s,r,d)):(a[g](v,r),e[g](h,r))}function i(e,t){setTimeout(e,+t>=0?t:1)}function o(e){b?i(e):S.push(e)}null==document.readyState&&document.addEventListener&&(document.addEventListener("DOMContentLoaded",function E(){document.removeEventListener("DOMContentLoaded",E,!1),document.readyState="complete"},!1),document.readyState="loading");var a=e.document,l=a.documentElement,s="load",d=!1,h="on"+s,u="complete",c="readyState",f="attachEvent",g="detachEvent",p="addEventListener",m="DOMContentLoaded",v="onreadystatechange",x="removeEventListener",y=p in a,w=d,b=d,S=[];if(a[c]===u)i(t);else if(y)a[p](m,r,d),e[p](s,r,d);else{a[f](v,r),e[f](h,r);try{w=null==e.frameElement&&l}catch(C){}w&&w.doScroll&&!function k(){if(!b){try{w.doScroll("left")}catch(e){return i(k,50)}n(),t()}}()}return o.version="1.4.0",o.isReady=function(){return b},o}(this)),document.querySelectorAll||(document.querySelectorAll=function(e){var t,r=document.createElement("style"),n=[];for(document.documentElement.firstChild.appendChild(r),document._qsa=[],r.styleSheet.cssText=e+"{x-qsa:expression(document._qsa && document._qsa.push(this))}",window.scrollBy(0,0),r.parentNode.removeChild(r);document._qsa.length;)t=document._qsa.shift(),t.style.removeAttribute("x-qsa"),n.push(t);return document._qsa=null,n}),document.querySelector||(document.querySelector=function(e){var t=document.querySelectorAll(e);return t.length?t[0]:null}),document.getElementsByClassName||(document.getElementsByClassName=function(e){return e=String(e).replace(/^|\s+/g,"."),document.querySelectorAll(e)}),Object.keys||(Object.keys=function(e){if(e!==Object(e))throw TypeError("Object.keys called on non-object");var t,r=[];for(t in e)Object.prototype.hasOwnProperty.call(e,t)&&r.push(t);return r}),function(e){var t="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";e.atob=e.atob||function(e){e=String(e);var r,n=0,i=[],o=0,a=0;if(e=e.replace(/\s/g,""),e.length%4===0&&(e=e.replace(/=+$/,"")),e.length%4===1)throw Error("InvalidCharacterError");if(/[^+/0-9A-Za-z]/.test(e))throw Error("InvalidCharacterError");for(;n<e.length;)r=t.indexOf(e.charAt(n)),o=o<<6|r,a+=6,24===a&&(i.push(String.fromCharCode(o>>16&255)),i.push(String.fromCharCode(o>>8&255)),i.push(String.fromCharCode(255&o)),a=0,o=0),n+=1;return 12===a?(o>>=4,i.push(String.fromCharCode(255&o))):18===a&&(o>>=2,i.push(String.fromCharCode(o>>8&255)),i.push(String.fromCharCode(255&o))),i.join("")},e.btoa=e.btoa||function(e){e=String(e);var r,n,i,o,a,l,s,d=0,h=[];if(/[^\x00-\xFF]/.test(e))throw Error("InvalidCharacterError");for(;d<e.length;)r=e.charCodeAt(d++),n=e.charCodeAt(d++),i=e.charCodeAt(d++),o=r>>2,a=(3&r)<<4|n>>4,l=(15&n)<<2|i>>6,s=63&i,d===e.length+2?(l=64,s=64):d===e.length+1&&(s=64),h.push(t.charAt(o),t.charAt(a),t.charAt(l),t.charAt(s));return h.join("")}}(this),function(){function e(t,r,n){t.document;var i,o=t.currentStyle[r].match(/([\d\.]+)(%|cm|em|in|mm|pc|pt|)/)||[0,0,""],a=o[1],l=o[2];return n=n?/%|em/.test(l)&&t.parentElement?e(t.parentElement,"fontSize",null):16:n,i="fontSize"==r?n:/width/i.test(r)?t.clientWidth:t.clientHeight,"%"==l?a/100*i:"cm"==l?.3937*a*96:"em"==l?a*n:"in"==l?96*a:"mm"==l?.3937*a*96/10:"pc"==l?12*a*96/72:"pt"==l?96*a/72:a}function t(e,t){var r="border"==t?"Width":"",n=t+"Top"+r,i=t+"Right"+r,o=t+"Bottom"+r,a=t+"Left"+r;e[t]=(e[n]==e[i]&&e[n]==e[o]&&e[n]==e[a]?[e[n]]:e[n]==e[o]&&e[a]==e[i]?[e[n],e[i]]:e[a]==e[i]?[e[n],e[i],e[o]]:[e[n],e[i],e[o],e[a]]).join(" ")}function r(r){var n,i=this,o=r.currentStyle,a=e(r,"fontSize"),l=function(e){return"-"+e.toLowerCase()};for(n in o)if(Array.prototype.push.call(i,"styleFloat"==n?"float":n.replace(/[A-Z]/,l)),"width"==n)i[n]=r.offsetWidth+"px";else if("height"==n)i[n]=r.offsetHeight+"px";else if("styleFloat"==n)i.float=o[n];else if(/margin.|padding.|border.+W/.test(n)&&"auto"!=i[n])i[n]=Math.round(e(r,n,a))+"px";else if(/^outline/.test(n))try{i[n]=o[n]}catch(s){i.outlineColor=o.color,i.outlineStyle=i.outlineStyle||"none",i.outlineWidth=i.outlineWidth||"0px",i.outline=[i.outlineColor,i.outlineWidth,i.outlineStyle].join(" ")}else i[n]=o[n];t(i,"margin"),t(i,"padding"),t(i,"border"),i.fontSize=Math.round(a)+"px"}window.getComputedStyle||(r.prototype={constructor:r,getPropertyPriority:function(){throw new Error("NotSupportedError: DOM Exception 9")},getPropertyValue:function(e){return this[e.replace(/-\w/g,function(e){return e[1].toUpperCase()})]},item:function(e){return this[e]},removeProperty:function(){throw new Error("NoModificationAllowedError: DOM Exception 7")},setProperty:function(){throw new Error("NoModificationAllowedError: DOM Exception 7")},getPropertyCSSValue:function(){throw new Error("NotSupportedError: DOM Exception 9")}},window.getComputedStyle=Window.prototype.getComputedStyle=function(e){return new r(e)})}(),Object.prototype.hasOwnProperty||(Object.prototype.hasOwnProperty=function(e){var t=this.__proto__||this.constructor.prototype;return e in this&&(!(e in t)||t[e]!==this[e])}),function(e,t){e.augment=t()}(this,function(){"use strict";var e=function(){},t=Array.prototype.slice,r=function(r,n){var i=e.prototype="function"==typeof r?r.prototype:r,o=new e,a=n.apply(o,t.call(arguments,2).concat(i));if("object"==typeof a)for(var l in a)o[l]=a[l];if(!o.hasOwnProperty("constructor"))return o;var s=o.constructor;return s.prototype=o,s};return r.defclass=function(e){var t=e.constructor;return t.prototype=e,t},r.extend=function(e,t){return r(e,function(e){return this.uber=e,t})},r}),function(e,t){function r(e,t,r,o){var a=n(r.substr(r.lastIndexOf(e.domain)),e);a&&i(null,o,a,t)}function n(e,t){for(var r={theme:p(A.settings.themes.gray,null),stylesheets:t.stylesheets,holderURL:[]},n=!1,i=String.fromCharCode(11),o=e.replace(/([^\\])\//g,"$1"+i).split(i),a=/%[0-9a-f]{2}/gi,l=o.length,s=0;l>s;s++){var d=o[s];if(d.match(a))try{d=decodeURIComponent(d)}catch(h){d=o[s]}var u=!1;if(A.flags.dimensions.match(d))n=!0,r.dimensions=A.flags.dimensions.output(d),u=!0;else if(A.flags.fluid.match(d))n=!0,r.dimensions=A.flags.fluid.output(d),r.fluid=!0,u=!0;else if(A.flags.textmode.match(d))r.textmode=A.flags.textmode.output(d),u=!0;else if(A.flags.colors.match(d)){var c=A.flags.colors.output(d);r.theme=p(r.theme,c),u=!0}else if(t.themes[d])t.themes.hasOwnProperty(d)&&(r.theme=p(t.themes[d],null)),u=!0;else if(A.flags.font.match(d))r.font=A.flags.font.output(d),u=!0;else if(A.flags.auto.match(d))r.auto=!0,u=!0;else if(A.flags.text.match(d))r.text=A.flags.text.output(d),u=!0;else if(A.flags.random.match(d)){null==A.vars.cache.themeKeys&&(A.vars.cache.themeKeys=Object.keys(t.themes));var f=A.vars.cache.themeKeys[0|Math.random()*A.vars.cache.themeKeys.length];r.theme=p(t.themes[f],null),u=!0}u&&r.holderURL.push(d)}return r.holderURL.unshift(t.domain),r.holderURL=r.holderURL.join("/"),n?r:!1}function i(e,t,r,n){var i=r.dimensions,a=r.theme,l=i.width+"x"+i.height;if(e=null==e?r.fluid?"fluid":"image":e,null!=r.text&&(a.text=r.text,"object"===t.nodeName.toLowerCase())){for(var d=a.text.split("\\n"),u=0;u<d.length;u++)d[u]=b(d[u]);a.text=d.join("\\n")}var f=r.holderURL,g=p(n,null);r.font&&(a.font=r.font,!g.noFontFallback&&"img"===t.nodeName.toLowerCase()&&A.setup.supportsCanvas&&"svg"===g.renderer&&(g=p(g,{renderer:"canvas"}))),r.font&&"canvas"==g.renderer&&(g.reRender=!0),"background"==e?null==t.getAttribute("data-background-src")&&c(t,{"data-background-src":f}):c(t,{"data-src":f}),r.theme=a,t.holderData={flags:r,renderSettings:g},("image"==e||"fluid"==e)&&c(t,{alt:a.text?(a.text.length>16?a.text.substring(0,16)+"…":a.text)+" ["+l+"]":l}),"image"==e?("html"!=g.renderer&&r.auto||(t.style.width=i.width+"px",t.style.height=i.height+"px"),"html"==g.renderer?t.style.backgroundColor=a.background:(o(e,{dimensions:i,theme:a,flags:r},t,g),r.textmode&&"exact"==r.textmode&&(A.vars.resizableImages.push(t),s(t)))):"background"==e&&"html"!=g.renderer?o(e,{dimensions:i,theme:a,flags:r},t,g):"fluid"==e&&("%"==i.height.slice(-1)?t.style.height=i.height:null!=r.auto&&r.auto||(t.style.height=i.height+"px"),"%"==i.width.slice(-1)?t.style.width=i.width:null!=r.auto&&r.auto||(t.style.width=i.width+"px"),("inline"==t.style.display||""===t.style.display||"none"==t.style.display)&&(t.style.display="block"),h(t),"html"==g.renderer?t.style.backgroundColor=a.background:(A.vars.resizableImages.push(t),s(t)))}function o(e,t,r,n){function i(){var e=null;switch(n.renderer){case"canvas":e=L(s);break;case"svg":e=O(s,n);break;default:throw"Holder: invalid renderer: "+n.renderer}return e}var o=null;switch(n.renderer){case"svg":if(!A.setup.supportsSVG)return;break;case"canvas":if(!A.setup.supportsCanvas)return;break;default:return}{var l={width:t.dimensions.width,height:t.dimensions.height,theme:t.theme,flags:t.flags},s=a(l);({text:l.text,width:l.width,height:l.height,textHeight:l.font.size,font:l.font.family,fontWeight:l.font.weight,template:l.theme})}if(o=i(),null==o)throw"Holder: couldn't render placeholder";"background"==e?(r.style.backgroundImage="url("+o+")",r.style.backgroundSize=l.width+"px "+l.height+"px"):("img"===r.nodeName.toLowerCase()?c(r,{src:o}):"object"===r.nodeName.toLowerCase()&&(c(r,{data:o}),c(r,{type:"image/svg+xml"})),n.reRender&&setTimeout(function(){var e=i();if(null==e)throw"Holder: couldn't render placeholder";"img"===r.nodeName.toLowerCase()?c(r,{src:e}):"object"===r.nodeName.toLowerCase()&&(c(r,{data:e}),c(r,{type:"image/svg+xml"}))},100)),c(r,{"data-holder-rendered":!0})}function a(e){function t(e,t,r,n){t.width=r,t.height=n,e.width=Math.max(e.width,t.width),e.height+=t.height,e.add(t)}switch(e.font={family:e.theme.font?e.theme.font:"Arial, Helvetica, Open Sans, sans-serif",size:l(e.width,e.height,e.theme.size?e.theme.size:12),weight:e.theme.fontweight?e.theme.fontweight:"bold"},e.text=e.theme.text?e.theme.text:Math.floor(e.width)+"x"+Math.floor(e.height),e.flags.textmode){case"literal":e.text=e.flags.dimensions.width+"x"+e.flags.dimensions.height;break;case"exact":if(!e.flags.exactDimensions)break;e.text=Math.floor(e.flags.exactDimensions.width)+"x"+Math.floor(e.flags.exactDimensions.height)}var r=new F({width:e.width,height:e.height}),n=r.Shape,i=new n.Rect("holderBg",{fill:e.theme.background});i.resize(e.width,e.height),r.root.add(i);var o=new n.Group("holderTextGroup",{text:e.text,align:"center",font:e.font,fill:e.theme.foreground});o.moveTo(null,null,1),r.root.add(o);var a=o.textPositionData=T(r);if(!a)throw"Holder: staging fallback not supported yet.";o.properties.leading=a.boundingBox.height;var s=null,d=null;if(a.lineCount>1){var h=0,u=0,c=e.width*A.setup.lineWrapRatio,f=0;d=new n.Group("line"+f);for(var g=0;g<a.words.length;g++){var p=a.words[g];s=new n.Text(p.text);var m="\\n"==p.text;(h+p.width>=c||m===!0)&&(t(o,d,h,o.properties.leading),h=0,u+=o.properties.leading,f+=1,d=new n.Group("line"+f),d.y=u),m!==!0&&(s.moveTo(h,0),h+=a.spaceWidth+p.width,d.add(s))}t(o,d,h,o.properties.leading);for(var v in o.children)d=o.children[v],d.moveTo((o.width-d.width)/2,null,null);o.moveTo((e.width-o.width)/2,(e.height-o.height)/2,null),(e.height-o.height)/2<0&&o.moveTo(null,0,null)}else s=new n.Text(e.text),d=new n.Group("line0"),d.add(s),o.add(d),o.moveTo((e.width-a.boundingBox.width)/2,(e.height-a.boundingBox.height)/2,null);return r}function l(e,t,r){t=parseInt(t,10),e=parseInt(e,10);var n=Math.max(t,e),i=Math.min(t,e),o=1/12,a=Math.min(.75*i,.75*n*o);return Math.round(Math.max(r,a))}function s(e){var t;t=null==e||null==e.nodeType?A.vars.resizableImages:[e];for(var r in t)if(t.hasOwnProperty(r)){var n=t[r];if(n.holderData){var i=n.holderData.flags,a=d(n,k.invisibleErrorFn(s));if(a){if(i.fluid&&i.auto){var l=n.holderData.fluidConfig;switch(l.mode){case"width":a.height=a.width/l.ratio;break;case"height":a.width=a.height*l.ratio}}var h={dimensions:a,theme:i.theme,flags:i};i.textmode&&"exact"==i.textmode&&(i.exactDimensions=a,h.dimensions=i.dimensions),o("image",h,n,n.holderData.renderSettings)}}}}function d(e,t){var r={height:e.clientHeight,width:e.clientWidth};return r.height||r.width?(e.removeAttribute("data-holder-invisible"),r):(c(e,{"data-holder-invisible":!0}),void t.call(this,e))}function h(e){if(e.holderData){var t=d(e,k.invisibleErrorFn(h));if(t){var r=e.holderData.flags,n={fluidHeight:"%"==r.dimensions.height.slice(-1),fluidWidth:"%"==r.dimensions.width.slice(-1),mode:null,initialDimensions:t};n.fluidWidth&&!n.fluidHeight?(n.mode="width",n.ratio=n.initialDimensions.width/parseFloat(r.dimensions.height)):!n.fluidWidth&&n.fluidHeight&&(n.mode="height",n.ratio=parseFloat(r.dimensions.width)/n.initialDimensions.height),e.holderData.fluidConfig=n}}}function u(e,t){return null==t?E.createElement(e):E.createElementNS(t,e)}function c(e,t){for(var r in t)e.setAttribute(r,t[r])}function f(e,t,r){if(null==e){e=u("svg",C);var n=u("defs",C);e.appendChild(n)}return e.webkitMatchesSelector&&e.setAttribute("xmlns",C),c(e,{width:t,height:r,viewBox:"0 0 "+t+" "+r,preserveAspectRatio:"none"}),e}function g(e,r){if(t.XMLSerializer){{var n=new XMLSerializer,i="",o=r.stylesheets;e.querySelector("defs")}if(r.svgXMLStylesheet){for(var a=(new DOMParser).parseFromString("<xml />","application/xml"),l=o.length-1;l>=0;l--){var s=a.createProcessingInstruction("xml-stylesheet",'href="'+o[l]+'" rel="stylesheet"');a.insertBefore(s,a.firstChild)}var d=a.createProcessingInstruction("xml",'version="1.0" encoding="UTF-8" standalone="yes"');a.insertBefore(d,a.firstChild),a.removeChild(a.documentElement),i=n.serializeToString(a)}var h=n.serializeToString(e);return h=h.replace(/\&amp;(\#[0-9]{2,}\;)/g,"&$1"),i+h}}function p(e,t){var r={};for(var n in e)e.hasOwnProperty(n)&&(r[n]=e[n]);if(null!=t)for(var i in t)t.hasOwnProperty(i)&&(r[i]=t[i]);return r}function m(e){var t=[];for(var r in e)e.hasOwnProperty(r)&&t.push(r+":"+e[r]);return t.join(";")}function v(e){A.vars.debounceTimer||e.call(this),A.vars.debounceTimer&&clearTimeout(A.vars.debounceTimer),A.vars.debounceTimer=setTimeout(function(){A.vars.debounceTimer=null,e.call(this)},A.setup.debounce)}function x(){v(function(){s(null)})}function y(e){var r=null;return"string"==typeof e?r=E.querySelectorAll(e):t.NodeList&&e instanceof t.NodeList?r=e:t.Node&&e instanceof t.Node?r=[e]:t.HTMLCollection&&e instanceof t.HTMLCollection?r=e:null===e&&(r=[]),r}function w(e,t){var r=new Image;r.onerror=function(){t.call(this,!1,e)},r.onload=function(){t.call(this,!0,e)},r.src=e.src}function b(e){for(var t=[],r=0,n=e.length-1;n>=0;n--)r=e[n].charCodeAt(),t.unshift(r>128?["&#",r,";"].join(""):e[n]);return t.join("")}function S(e){return e.replace(/&#(\d+);/g,function(e,t){return String.fromCharCode(t)})}var C="http://www.w3.org/2000/svg",E=t.document,k={addTheme:function(e,t){return null!=e&&null!=t&&(A.settings.themes[e]=t),delete A.vars.cache.themeKeys,this},addImage:function(e,t){var r=E.querySelectorAll(t);if(r.length)for(var n=0,i=r.length;i>n;n++){var o=u("img");c(o,{"data-src":e}),r[n].appendChild(o)}return this},run:function(e){e=e||{};var o={};A.vars.preempted=!0;var a=p(A.settings,e);o.renderer=a.renderer?a.renderer:A.setup.renderer,-1===A.setup.renderers.join(",").indexOf(o.renderer)&&(o.renderer=A.setup.supportsSVG?"svg":A.setup.supportsCanvas?"canvas":"html"),a.use_canvas?o.renderer="canvas":a.use_svg&&(o.renderer="svg");var l=y(a.images),s=y(a.bgnodes),d=y(a.stylenodes),h=y(a.objects);o.stylesheets=[],o.svgXMLStylesheet=!0,o.noFontFallback=a.noFontFallback?a.noFontFallback:!1;for(var c=0;c<d.length;c++){var f=d[c];if(f.attributes.rel&&f.attributes.href&&"stylesheet"==f.attributes.rel.value){var g=f.attributes.href.value,m=u("a");m.href=g;var v=m.protocol+"//"+m.host+m.pathname+m.search;o.stylesheets.push(v)}}for(c=0;c<s.length;c++){var x=t.getComputedStyle(s[c],null).getPropertyValue("background-image"),b=s[c].getAttribute("data-background-src"),S=null;S=null==b?x:b;var C=null,E="?"+a.domain+"/";if(0===S.indexOf(E))C=S.slice(1);else if(-1!=S.indexOf(E)){var k=S.substr(S.indexOf(E)).slice(1),T=k.match(/([^\"]*)"?\)/);null!=T&&(C=T[1])}if(null!=C){var L=n(C,a);L&&i("background",s[c],L,o)}}for(c=0;c<h.length;c++){var O=h[c],F={};try{F.data=O.getAttribute("data"),F.dataSrc=O.getAttribute("data-src")}catch(z){}var M=null!=F.data&&0===F.data.indexOf(a.domain),D=null!=F.dataSrc&&0===F.dataSrc.indexOf(a.domain);M?r(a,o,F.data,O):D&&r(a,o,F.dataSrc,O)}for(c=0;c<l.length;c++){var R=l[c],j={};try{j.src=R.getAttribute("src"),j.dataSrc=R.getAttribute("data-src"),j.rendered=R.getAttribute("data-holder-rendered")}catch(z){}var B=null!=j.src,P=null!=j.dataSrc&&0===j.dataSrc.indexOf(a.domain),N=null!=j.rendered&&"true"==j.rendered;B?0===j.src.indexOf(a.domain)?r(a,o,j.src,R):P&&(N?r(a,o,j.dataSrc,R):w({src:j.src,options:a,renderSettings:o,dataSrc:j.dataSrc,image:R},function(e,t){e||r(t.options,t.renderSettings,t.dataSrc,t.image)})):P&&r(a,o,j.dataSrc,R)}return this},invisibleErrorFn:function(){return function(e){if(e.hasAttribute("data-holder-invisible"))throw"Holder: invisible placeholder"}}};k.add_theme=k.addTheme,k.add_image=k.addImage,k.invisible_error_fn=k.invisibleErrorFn;var A={settings:{domain:"holder.js",images:"img",objects:"object",bgnodes:"body .holderjs",stylenodes:"head link.holderjs",stylesheets:[],themes:{gray:{background:"#EEEEEE",foreground:"#AAAAAA"},social:{background:"#3a5a97",foreground:"#FFFFFF"},industrial:{background:"#434A52",foreground:"#C2F200"},sky:{background:"#0D8FDB",foreground:"#FFFFFF"},vine:{background:"#39DBAC",foreground:"#1E292C"},lava:{background:"#F8591A",foreground:"#1C2846",size:12}}},flags:{dimensions:{regex:/^(\d+)x(\d+)$/,output:function(e){var t=this.regex.exec(e);return{width:+t[1],height:+t[2]}}},fluid:{regex:/^([0-9]+%?)x([0-9]+%?)$/,output:function(e){var t=this.regex.exec(e);return{width:t[1],height:t[2]}}},colors:{regex:/(?:#|\^)([0-9a-f]{3,})\:(?:#|\^)([0-9a-f]{3,})/i,output:function(e){var t=this.regex.exec(e);return{foreground:"#"+t[2],background:"#"+t[1]}}},text:{regex:/text\:(.*)/,output:function(e){return this.regex.exec(e)[1].replace("\\/","/")}},font:{regex:/font\:(.*)/,output:function(e){return this.regex.exec(e)[1]}},auto:{regex:/^auto$/},textmode:{regex:/textmode\:(.*)/,output:function(e){return this.regex.exec(e)[1]}},random:{regex:/^random$/}}},T=function(){var e=null,t=null,r=null;return function(n){var i=n.root;if(A.setup.supportsSVG){var o=!1,a=function(e){return E.createTextNode(e)};null==e&&(o=!0),e=f(e,i.properties.width,i.properties.height),o&&(t=u("text",C),r=a(null),c(t,{x:0}),t.appendChild(r),e.appendChild(t),E.body.appendChild(e),e.style.visibility="hidden",e.style.position="absolute",e.style.top="-100%",e.style.left="-100%");var l=i.children.holderTextGroup,s=l.properties;c(t,{y:s.font.size,style:m({"font-weight":s.font.weight,"font-size":s.font.size+"px","font-family":s.font.family,"dominant-baseline":"middle"})}),r.nodeValue=s.text;var d=t.getBBox(),h=Math.ceil(d.width/(i.properties.width*A.setup.lineWrapRatio)),g=s.text.split(" "),p=s.text.match(/\\n/g);h+=null==p?0:p.length,r.nodeValue=s.text.replace(/[ ]+/g,"");var v=t.getComputedTextLength(),x=d.width-v,y=Math.round(x/Math.max(1,g.length-1)),w=[];if(h>1){r.nodeValue="";for(var b=0;b<g.length;b++)if(0!==g[b].length){r.nodeValue=S(g[b]);var k=t.getBBox();w.push({text:g[b],width:k.width})}}return{spaceWidth:y,lineCount:h,boundingBox:d,words:w}}return!1}}(),L=function(){var e=u("canvas"),t=null;return function(r){null==t&&(t=e.getContext("2d"));var n=r.root;e.width=A.dpr(n.properties.width),e.height=A.dpr(n.properties.height),t.textBaseline="middle",t.fillStyle=n.children.holderBg.properties.fill,t.fillRect(0,0,A.dpr(n.children.holderBg.width),A.dpr(n.children.holderBg.height));{var i=n.children.holderTextGroup;i.properties}t.font=i.properties.font.weight+" "+A.dpr(i.properties.font.size)+"px "+i.properties.font.family+", monospace",t.fillStyle=i.properties.fill;for(var o in i.children){var a=i.children[o];for(var l in a.children){var s=a.children[l],d=A.dpr(i.x+a.x+s.x),h=A.dpr(i.y+a.y+s.y+i.properties.leading/2);t.fillText(s.properties.text,d,h)}}return e.toDataURL("image/png")}}(),O=function(){if(t.XMLSerializer){var e=f(null,0,0),r=u("rect",C);return e.appendChild(r),function(t,n){var i=t.root;f(e,i.properties.width,i.properties.height);for(var o=e.querySelectorAll("g"),a=0;a<o.length;a++)o[a].parentNode.removeChild(o[a]);c(r,{width:i.children.holderBg.width,height:i.children.holderBg.height,fill:i.children.holderBg.properties.fill});var l=i.children.holderTextGroup,s=l.properties,d=u("g",C);e.appendChild(d);for(var h in l.children){var p=l.children[h];for(var v in p.children){var x=p.children[v],y=l.x+p.x+x.x,w=l.y+p.y+x.y+l.properties.leading/2,b=u("text",C),S=E.createTextNode(null);c(b,{x:y,y:w,style:m({fill:s.fill,"font-weight":s.font.weight,"font-family":s.font.family+", monospace","font-size":s.font.size+"px","dominant-baseline":"central"})}),S.nodeValue=x.properties.text,b.appendChild(S),d.appendChild(b)}}var k="data:image/svg+xml;base64,"+btoa(unescape(encodeURIComponent(g(e,n))));return k}}}(),F=function(e){function t(e,t){for(var r in t)e[r]=t[r];return e}var r=1,n=augment.defclass({constructor:function(e){r++,this.parent=null,this.children={},this.id=r,this.name="n"+r,null!=e&&(this.name=e),this.x=0,this.y=0,this.z=0,this.width=0,this.height=0},resize:function(e,t){null!=e&&(this.width=e),null!=t&&(this.height=t)},moveTo:function(e,t,r){this.x=null!=e?e:this.x,this.y=null!=t?t:this.y,this.z=null!=r?r:this.z},add:function(e){var t=e.name;if(null!=this.children[t])throw"SceneGraph: child with that name already exists: "+t;this.children[t]=e,e.parent=this}}),i=augment(n,function(t){this.constructor=function(){t.constructor.call(this,"root"),this.properties=e}}),o=augment(n,function(e){function r(r,n){if(e.constructor.call(this,r),this.properties={fill:"#000"},null!=n)t(this.properties,n);else if(null!=r&&"string"!=typeof r)throw"SceneGraph: invalid node name"}this.Group=augment.extend(this,{constructor:r,type:"group"}),this.Rect=augment.extend(this,{constructor:r,type:"rect"}),this.Text=augment.extend(this,{constructor:function(e){r.call(this),this.properties.text=e},type:"text"})}),a=new i;return this.Shape=o,this.root=a,this};for(var z in A.flags)A.flags.hasOwnProperty(z)&&(A.flags[z].match=function(e){return e.match(this.regex)});A.setup={renderer:"html",debounce:100,ratio:1,supportsCanvas:!1,supportsSVG:!1,lineWrapRatio:.9,renderers:["html","canvas","svg"]},A.dpr=function(e){return e*A.setup.ratio},A.vars={preempted:!1,resizableImages:[],debounceTimer:null,cache:{}},function(){var e=1,r=1,n=u("canvas"),i=null;n.getContext&&-1!=n.toDataURL("image/png").indexOf("data:image/png")&&(A.setup.renderer="canvas",i=n.getContext("2d"),A.setup.supportsCanvas=!0),A.setup.supportsCanvas&&(e=t.devicePixelRatio||1,r=i.webkitBackingStorePixelRatio||i.mozBackingStorePixelRatio||i.msBackingStorePixelRatio||i.oBackingStorePixelRatio||i.backingStorePixelRatio||1),A.setup.ratio=e/r,E.createElementNS&&E.createElementNS(C,"svg").createSVGRect&&(A.setup.renderer="svg",A.setup.supportsSVG=!0)}(),e(k,"Holder",t),t.onDomReady&&t.onDomReady(function(){A.vars.preempted||k.run(),t.addEventListener?(t.addEventListener("resize",x,!1),t.addEventListener("orientationchange",x,!1)):t.attachEvent("onresize",x),"object"==typeof t.Turbolinks&&t.document.addEventListener("page:change",function(){k.run()})})}(function(e,t,r){var n="function"==typeof define&&define.amd;n?define(e):r[t]=e},this);
 /*!
  * typeahead.js 0.10.5
  * https://github.com/twitter/typeahead.js
@@ -8715,4044 +12765,6 @@ the specific language governing permissions and limitations under the Apache Lic
 
 }(jQuery));
 
-/*!
- * jQuery UI Core 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/category/ui-core/
- */
-(function( $, undefined ) {
-
-var uuid = 0,
-	runiqueId = /^ui-id-\d+$/;
-
-// $.ui might exist from components with no dependencies, e.g., $.ui.position
-$.ui = $.ui || {};
-
-$.extend( $.ui, {
-	version: "1.10.4",
-
-	keyCode: {
-		BACKSPACE: 8,
-		COMMA: 188,
-		DELETE: 46,
-		DOWN: 40,
-		END: 35,
-		ENTER: 13,
-		ESCAPE: 27,
-		HOME: 36,
-		LEFT: 37,
-		NUMPAD_ADD: 107,
-		NUMPAD_DECIMAL: 110,
-		NUMPAD_DIVIDE: 111,
-		NUMPAD_ENTER: 108,
-		NUMPAD_MULTIPLY: 106,
-		NUMPAD_SUBTRACT: 109,
-		PAGE_DOWN: 34,
-		PAGE_UP: 33,
-		PERIOD: 190,
-		RIGHT: 39,
-		SPACE: 32,
-		TAB: 9,
-		UP: 38
-	}
-});
-
-// plugins
-$.fn.extend({
-	focus: (function( orig ) {
-		return function( delay, fn ) {
-			return typeof delay === "number" ?
-				this.each(function() {
-					var elem = this;
-					setTimeout(function() {
-						$( elem ).focus();
-						if ( fn ) {
-							fn.call( elem );
-						}
-					}, delay );
-				}) :
-				orig.apply( this, arguments );
-		};
-	})( $.fn.focus ),
-
-	scrollParent: function() {
-		var scrollParent;
-		if (($.ui.ie && (/(static|relative)/).test(this.css("position"))) || (/absolute/).test(this.css("position"))) {
-			scrollParent = this.parents().filter(function() {
-				return (/(relative|absolute|fixed)/).test($.css(this,"position")) && (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
-			}).eq(0);
-		} else {
-			scrollParent = this.parents().filter(function() {
-				return (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
-			}).eq(0);
-		}
-
-		return (/fixed/).test(this.css("position")) || !scrollParent.length ? $(document) : scrollParent;
-	},
-
-	zIndex: function( zIndex ) {
-		if ( zIndex !== undefined ) {
-			return this.css( "zIndex", zIndex );
-		}
-
-		if ( this.length ) {
-			var elem = $( this[ 0 ] ), position, value;
-			while ( elem.length && elem[ 0 ] !== document ) {
-				// Ignore z-index if position is set to a value where z-index is ignored by the browser
-				// This makes behavior of this function consistent across browsers
-				// WebKit always returns auto if the element is positioned
-				position = elem.css( "position" );
-				if ( position === "absolute" || position === "relative" || position === "fixed" ) {
-					// IE returns 0 when zIndex is not specified
-					// other browsers return a string
-					// we ignore the case of nested elements with an explicit value of 0
-					// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
-					value = parseInt( elem.css( "zIndex" ), 10 );
-					if ( !isNaN( value ) && value !== 0 ) {
-						return value;
-					}
-				}
-				elem = elem.parent();
-			}
-		}
-
-		return 0;
-	},
-
-	uniqueId: function() {
-		return this.each(function() {
-			if ( !this.id ) {
-				this.id = "ui-id-" + (++uuid);
-			}
-		});
-	},
-
-	removeUniqueId: function() {
-		return this.each(function() {
-			if ( runiqueId.test( this.id ) ) {
-				$( this ).removeAttr( "id" );
-			}
-		});
-	}
-});
-
-// selectors
-function focusable( element, isTabIndexNotNaN ) {
-	var map, mapName, img,
-		nodeName = element.nodeName.toLowerCase();
-	if ( "area" === nodeName ) {
-		map = element.parentNode;
-		mapName = map.name;
-		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
-			return false;
-		}
-		img = $( "img[usemap=#" + mapName + "]" )[0];
-		return !!img && visible( img );
-	}
-	return ( /input|select|textarea|button|object/.test( nodeName ) ?
-		!element.disabled :
-		"a" === nodeName ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN) &&
-		// the element and all of its ancestors must be visible
-		visible( element );
-}
-
-function visible( element ) {
-	return $.expr.filters.visible( element ) &&
-		!$( element ).parents().addBack().filter(function() {
-			return $.css( this, "visibility" ) === "hidden";
-		}).length;
-}
-
-$.extend( $.expr[ ":" ], {
-	data: $.expr.createPseudo ?
-		$.expr.createPseudo(function( dataName ) {
-			return function( elem ) {
-				return !!$.data( elem, dataName );
-			};
-		}) :
-		// support: jQuery <1.8
-		function( elem, i, match ) {
-			return !!$.data( elem, match[ 3 ] );
-		},
-
-	focusable: function( element ) {
-		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
-	},
-
-	tabbable: function( element ) {
-		var tabIndex = $.attr( element, "tabindex" ),
-			isTabIndexNaN = isNaN( tabIndex );
-		return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
-	}
-});
-
-// support: jQuery <1.8
-if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
-	$.each( [ "Width", "Height" ], function( i, name ) {
-		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
-			type = name.toLowerCase(),
-			orig = {
-				innerWidth: $.fn.innerWidth,
-				innerHeight: $.fn.innerHeight,
-				outerWidth: $.fn.outerWidth,
-				outerHeight: $.fn.outerHeight
-			};
-
-		function reduce( elem, size, border, margin ) {
-			$.each( side, function() {
-				size -= parseFloat( $.css( elem, "padding" + this ) ) || 0;
-				if ( border ) {
-					size -= parseFloat( $.css( elem, "border" + this + "Width" ) ) || 0;
-				}
-				if ( margin ) {
-					size -= parseFloat( $.css( elem, "margin" + this ) ) || 0;
-				}
-			});
-			return size;
-		}
-
-		$.fn[ "inner" + name ] = function( size ) {
-			if ( size === undefined ) {
-				return orig[ "inner" + name ].call( this );
-			}
-
-			return this.each(function() {
-				$( this ).css( type, reduce( this, size ) + "px" );
-			});
-		};
-
-		$.fn[ "outer" + name] = function( size, margin ) {
-			if ( typeof size !== "number" ) {
-				return orig[ "outer" + name ].call( this, size );
-			}
-
-			return this.each(function() {
-				$( this).css( type, reduce( this, size, true, margin ) + "px" );
-			});
-		};
-	});
-}
-
-// support: jQuery <1.8
-if ( !$.fn.addBack ) {
-	$.fn.addBack = function( selector ) {
-		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter( selector )
-		);
-	};
-}
-
-// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
-if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
-	$.fn.removeData = (function( removeData ) {
-		return function( key ) {
-			if ( arguments.length ) {
-				return removeData.call( this, $.camelCase( key ) );
-			} else {
-				return removeData.call( this );
-			}
-		};
-	})( $.fn.removeData );
-}
-
-
-
-
-
-// deprecated
-$.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
-
-$.support.selectstart = "onselectstart" in document.createElement( "div" );
-$.fn.extend({
-	disableSelection: function() {
-		return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
-			".ui-disableSelection", function( event ) {
-				event.preventDefault();
-			});
-	},
-
-	enableSelection: function() {
-		return this.unbind( ".ui-disableSelection" );
-	}
-});
-
-$.extend( $.ui, {
-	// $.ui.plugin is deprecated. Use $.widget() extensions instead.
-	plugin: {
-		add: function( module, option, set ) {
-			var i,
-				proto = $.ui[ module ].prototype;
-			for ( i in set ) {
-				proto.plugins[ i ] = proto.plugins[ i ] || [];
-				proto.plugins[ i ].push( [ option, set[ i ] ] );
-			}
-		},
-		call: function( instance, name, args ) {
-			var i,
-				set = instance.plugins[ name ];
-			if ( !set || !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11 ) {
-				return;
-			}
-
-			for ( i = 0; i < set.length; i++ ) {
-				if ( instance.options[ set[ i ][ 0 ] ] ) {
-					set[ i ][ 1 ].apply( instance.element, args );
-				}
-			}
-		}
-	},
-
-	// only used by resizable
-	hasScroll: function( el, a ) {
-
-		//If overflow is hidden, the element might have extra content, but the user wants to hide it
-		if ( $( el ).css( "overflow" ) === "hidden") {
-			return false;
-		}
-
-		var scroll = ( a && a === "left" ) ? "scrollLeft" : "scrollTop",
-			has = false;
-
-		if ( el[ scroll ] > 0 ) {
-			return true;
-		}
-
-		// TODO: determine which cases actually cause this to happen
-		// if the element doesn't have the scroll set, see if it's possible to
-		// set the scroll
-		el[ scroll ] = 1;
-		has = ( el[ scroll ] > 0 );
-		el[ scroll ] = 0;
-		return has;
-	}
-});
-
-})( jQuery );
-
-/*!
- * jQuery UI Widget 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/jQuery.widget/
- */
-(function( $, undefined ) {
-
-var uuid = 0,
-	slice = Array.prototype.slice,
-	_cleanData = $.cleanData;
-$.cleanData = function( elems ) {
-	for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
-		try {
-			$( elem ).triggerHandler( "remove" );
-		// http://bugs.jquery.com/ticket/8235
-		} catch( e ) {}
-	}
-	_cleanData( elems );
-};
-
-$.widget = function( name, base, prototype ) {
-	var fullName, existingConstructor, constructor, basePrototype,
-		// proxiedPrototype allows the provided prototype to remain unmodified
-		// so that it can be used as a mixin for multiple widgets (#8876)
-		proxiedPrototype = {},
-		namespace = name.split( "." )[ 0 ];
-
-	name = name.split( "." )[ 1 ];
-	fullName = namespace + "-" + name;
-
-	if ( !prototype ) {
-		prototype = base;
-		base = $.Widget;
-	}
-
-	// create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
-	};
-
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
-		// allow instantiation without "new" keyword
-		if ( !this._createWidget ) {
-			return new constructor( options, element );
-		}
-
-		// allow instantiation without initializing for simple inheritance
-		// must use "new" keyword (the code above always passes args)
-		if ( arguments.length ) {
-			this._createWidget( options, element );
-		}
-	};
-	// extend with the existing constructor to carry over any static properties
-	$.extend( constructor, existingConstructor, {
-		version: prototype.version,
-		// copy the object used to create the prototype in case we need to
-		// redefine the widget later
-		_proto: $.extend( {}, prototype ),
-		// track widgets that inherit from this widget in case this widget is
-		// redefined after a widget inherits from it
-		_childConstructors: []
-	});
-
-	basePrototype = new base();
-	// we need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
-	// inheriting from
-	basePrototype.options = $.widget.extend( {}, basePrototype.options );
-	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
-			proxiedPrototype[ prop ] = value;
-			return;
-		}
-		proxiedPrototype[ prop ] = (function() {
-			var _super = function() {
-					return base.prototype[ prop ].apply( this, arguments );
-				},
-				_superApply = function( args ) {
-					return base.prototype[ prop ].apply( this, args );
-				};
-			return function() {
-				var __super = this._super,
-					__superApply = this._superApply,
-					returnValue;
-
-				this._super = _super;
-				this._superApply = _superApply;
-
-				returnValue = value.apply( this, arguments );
-
-				this._super = __super;
-				this._superApply = __superApply;
-
-				return returnValue;
-			};
-		})();
-	});
-	constructor.prototype = $.widget.extend( basePrototype, {
-		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
-		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
-	}, proxiedPrototype, {
-		constructor: constructor,
-		namespace: namespace,
-		widgetName: name,
-		widgetFullName: fullName
-	});
-
-	// If this widget is being redefined then we need to find all widgets that
-	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
-	// level in the prototype chain.
-	if ( existingConstructor ) {
-		$.each( existingConstructor._childConstructors, function( i, child ) {
-			var childPrototype = child.prototype;
-
-			// redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
-		});
-		// remove the list of existing child constructors from the old constructor
-		// so the old child constructors can be garbage collected
-		delete existingConstructor._childConstructors;
-	} else {
-		base._childConstructors.push( constructor );
-	}
-
-	$.widget.bridge( name, constructor );
-};
-
-$.widget.extend = function( target ) {
-	var input = slice.call( arguments, 1 ),
-		inputIndex = 0,
-		inputLength = input.length,
-		key,
-		value;
-	for ( ; inputIndex < inputLength; inputIndex++ ) {
-		for ( key in input[ inputIndex ] ) {
-			value = input[ inputIndex ][ key ];
-			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
-				// Clone objects
-				if ( $.isPlainObject( value ) ) {
-					target[ key ] = $.isPlainObject( target[ key ] ) ?
-						$.widget.extend( {}, target[ key ], value ) :
-						// Don't extend strings, arrays, etc. with objects
-						$.widget.extend( {}, value );
-				// Copy everything else by reference
-				} else {
-					target[ key ] = value;
-				}
-			}
-		}
-	}
-	return target;
-};
-
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
-		var isMethodCall = typeof options === "string",
-			args = slice.call( arguments, 1 ),
-			returnValue = this;
-
-		// allow multiple hashes to be passed on init
-		options = !isMethodCall && args.length ?
-			$.widget.extend.apply( null, [ options ].concat(args) ) :
-			options;
-
-		if ( isMethodCall ) {
-			this.each(function() {
-				var methodValue,
-					instance = $.data( this, fullName );
-				if ( !instance ) {
-					return $.error( "cannot call methods on " + name + " prior to initialization; " +
-						"attempted to call method '" + options + "'" );
-				}
-				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
-					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
-				}
-				methodValue = instance[ options ].apply( instance, args );
-				if ( methodValue !== instance && methodValue !== undefined ) {
-					returnValue = methodValue && methodValue.jquery ?
-						returnValue.pushStack( methodValue.get() ) :
-						methodValue;
-					return false;
-				}
-			});
-		} else {
-			this.each(function() {
-				var instance = $.data( this, fullName );
-				if ( instance ) {
-					instance.option( options || {} )._init();
-				} else {
-					$.data( this, fullName, new object( options, this ) );
-				}
-			});
-		}
-
-		return returnValue;
-	};
-};
-
-$.Widget = function( /* options, element */ ) {};
-$.Widget._childConstructors = [];
-
-$.Widget.prototype = {
-	widgetName: "widget",
-	widgetEventPrefix: "",
-	defaultElement: "<div>",
-	options: {
-		disabled: false,
-
-		// callbacks
-		create: null
-	},
-	_createWidget: function( options, element ) {
-		element = $( element || this.defaultElement || this )[ 0 ];
-		this.element = $( element );
-		this.uuid = uuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
-		this.options = $.widget.extend( {},
-			this.options,
-			this._getCreateOptions(),
-			options );
-
-		this.bindings = $();
-		this.hoverable = $();
-		this.focusable = $();
-
-		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
-			this._on( true, this.element, {
-				remove: function( event ) {
-					if ( event.target === element ) {
-						this.destroy();
-					}
-				}
-			});
-			this.document = $( element.style ?
-				// element within the document
-				element.ownerDocument :
-				// element is window or document
-				element.document || element );
-			this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
-		}
-
-		this._create();
-		this._trigger( "create", null, this._getCreateEventData() );
-		this._init();
-	},
-	_getCreateOptions: $.noop,
-	_getCreateEventData: $.noop,
-	_create: $.noop,
-	_init: $.noop,
-
-	destroy: function() {
-		this._destroy();
-		// we can probably remove the unbind calls in 2.0
-		// all event bindings should go through this._on()
-		this.element
-			.unbind( this.eventNamespace )
-			// 1.9 BC for #7810
-			// TODO remove dual storage
-			.removeData( this.widgetName )
-			.removeData( this.widgetFullName )
-			// support: jquery <1.6.3
-			// http://bugs.jquery.com/ticket/9413
-			.removeData( $.camelCase( this.widgetFullName ) );
-		this.widget()
-			.unbind( this.eventNamespace )
-			.removeAttr( "aria-disabled" )
-			.removeClass(
-				this.widgetFullName + "-disabled " +
-				"ui-state-disabled" );
-
-		// clean up events and states
-		this.bindings.unbind( this.eventNamespace );
-		this.hoverable.removeClass( "ui-state-hover" );
-		this.focusable.removeClass( "ui-state-focus" );
-	},
-	_destroy: $.noop,
-
-	widget: function() {
-		return this.element;
-	},
-
-	option: function( key, value ) {
-		var options = key,
-			parts,
-			curOption,
-			i;
-
-		if ( arguments.length === 0 ) {
-			// don't return a reference to the internal hash
-			return $.widget.extend( {}, this.options );
-		}
-
-		if ( typeof key === "string" ) {
-			// handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
-			options = {};
-			parts = key.split( "." );
-			key = parts.shift();
-			if ( parts.length ) {
-				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
-				for ( i = 0; i < parts.length - 1; i++ ) {
-					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-					curOption = curOption[ parts[ i ] ];
-				}
-				key = parts.pop();
-				if ( arguments.length === 1 ) {
-					return curOption[ key ] === undefined ? null : curOption[ key ];
-				}
-				curOption[ key ] = value;
-			} else {
-				if ( arguments.length === 1 ) {
-					return this.options[ key ] === undefined ? null : this.options[ key ];
-				}
-				options[ key ] = value;
-			}
-		}
-
-		this._setOptions( options );
-
-		return this;
-	},
-	_setOptions: function( options ) {
-		var key;
-
-		for ( key in options ) {
-			this._setOption( key, options[ key ] );
-		}
-
-		return this;
-	},
-	_setOption: function( key, value ) {
-		this.options[ key ] = value;
-
-		if ( key === "disabled" ) {
-			this.widget()
-				.toggleClass( this.widgetFullName + "-disabled ui-state-disabled", !!value )
-				.attr( "aria-disabled", value );
-			this.hoverable.removeClass( "ui-state-hover" );
-			this.focusable.removeClass( "ui-state-focus" );
-		}
-
-		return this;
-	},
-
-	enable: function() {
-		return this._setOption( "disabled", false );
-	},
-	disable: function() {
-		return this._setOption( "disabled", true );
-	},
-
-	_on: function( suppressDisabledCheck, element, handlers ) {
-		var delegateElement,
-			instance = this;
-
-		// no suppressDisabledCheck flag, shuffle arguments
-		if ( typeof suppressDisabledCheck !== "boolean" ) {
-			handlers = element;
-			element = suppressDisabledCheck;
-			suppressDisabledCheck = false;
-		}
-
-		// no element argument, shuffle and use this.element
-		if ( !handlers ) {
-			handlers = element;
-			element = this.element;
-			delegateElement = this.widget();
-		} else {
-			// accept selectors, DOM elements
-			element = delegateElement = $( element );
-			this.bindings = this.bindings.add( element );
-		}
-
-		$.each( handlers, function( event, handler ) {
-			function handlerProxy() {
-				// allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
-				if ( !suppressDisabledCheck &&
-						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
-					return;
-				}
-				return ( typeof handler === "string" ? instance[ handler ] : handler )
-					.apply( instance, arguments );
-			}
-
-			// copy the guid so direct unbinding works
-			if ( typeof handler !== "string" ) {
-				handlerProxy.guid = handler.guid =
-					handler.guid || handlerProxy.guid || $.guid++;
-			}
-
-			var match = event.match( /^(\w+)\s*(.*)$/ ),
-				eventName = match[1] + instance.eventNamespace,
-				selector = match[2];
-			if ( selector ) {
-				delegateElement.delegate( selector, eventName, handlerProxy );
-			} else {
-				element.bind( eventName, handlerProxy );
-			}
-		});
-	},
-
-	_off: function( element, eventName ) {
-		eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) + this.eventNamespace;
-		element.unbind( eventName ).undelegate( eventName );
-	},
-
-	_delay: function( handler, delay ) {
-		function handlerProxy() {
-			return ( typeof handler === "string" ? instance[ handler ] : handler )
-				.apply( instance, arguments );
-		}
-		var instance = this;
-		return setTimeout( handlerProxy, delay || 0 );
-	},
-
-	_hoverable: function( element ) {
-		this.hoverable = this.hoverable.add( element );
-		this._on( element, {
-			mouseenter: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-hover" );
-			},
-			mouseleave: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-hover" );
-			}
-		});
-	},
-
-	_focusable: function( element ) {
-		this.focusable = this.focusable.add( element );
-		this._on( element, {
-			focusin: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-focus" );
-			},
-			focusout: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-focus" );
-			}
-		});
-	},
-
-	_trigger: function( type, event, data ) {
-		var prop, orig,
-			callback = this.options[ type ];
-
-		data = data || {};
-		event = $.Event( event );
-		event.type = ( type === this.widgetEventPrefix ?
-			type :
-			this.widgetEventPrefix + type ).toLowerCase();
-		// the original event may come from any element
-		// so we need to reset the target on the new event
-		event.target = this.element[ 0 ];
-
-		// copy original event properties over to the new event
-		orig = event.originalEvent;
-		if ( orig ) {
-			for ( prop in orig ) {
-				if ( !( prop in event ) ) {
-					event[ prop ] = orig[ prop ];
-				}
-			}
-		}
-
-		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
-			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
-			event.isDefaultPrevented() );
-	}
-};
-
-$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
-	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
-		if ( typeof options === "string" ) {
-			options = { effect: options };
-		}
-		var hasOptions,
-			effectName = !options ?
-				method :
-				options === true || typeof options === "number" ?
-					defaultEffect :
-					options.effect || defaultEffect;
-		options = options || {};
-		if ( typeof options === "number" ) {
-			options = { duration: options };
-		}
-		hasOptions = !$.isEmptyObject( options );
-		options.complete = callback;
-		if ( options.delay ) {
-			element.delay( options.delay );
-		}
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
-			element[ method ]( options );
-		} else if ( effectName !== method && element[ effectName ] ) {
-			element[ effectName ]( options.duration, options.easing, callback );
-		} else {
-			element.queue(function( next ) {
-				$( this )[ method ]();
-				if ( callback ) {
-					callback.call( element[ 0 ] );
-				}
-				next();
-			});
-		}
-	};
-});
-
-})( jQuery );
-
-/*!
- * jQuery UI Mouse 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/mouse/
- *
- * Depends:
- *	jquery.ui.widget.js
- */
-(function( $, undefined ) {
-
-var mouseHandled = false;
-$( document ).mouseup( function() {
-	mouseHandled = false;
-});
-
-$.widget("ui.mouse", {
-	version: "1.10.4",
-	options: {
-		cancel: "input,textarea,button,select,option",
-		distance: 1,
-		delay: 0
-	},
-	_mouseInit: function() {
-		var that = this;
-
-		this.element
-			.bind("mousedown."+this.widgetName, function(event) {
-				return that._mouseDown(event);
-			})
-			.bind("click."+this.widgetName, function(event) {
-				if (true === $.data(event.target, that.widgetName + ".preventClickEvent")) {
-					$.removeData(event.target, that.widgetName + ".preventClickEvent");
-					event.stopImmediatePropagation();
-					return false;
-				}
-			});
-
-		this.started = false;
-	},
-
-	// TODO: make sure destroying one instance of mouse doesn't mess with
-	// other instances of mouse
-	_mouseDestroy: function() {
-		this.element.unbind("."+this.widgetName);
-		if ( this._mouseMoveDelegate ) {
-			$(document)
-				.unbind("mousemove."+this.widgetName, this._mouseMoveDelegate)
-				.unbind("mouseup."+this.widgetName, this._mouseUpDelegate);
-		}
-	},
-
-	_mouseDown: function(event) {
-		// don't let more than one widget handle mouseStart
-		if( mouseHandled ) { return; }
-
-		// we may have missed mouseup (out of window)
-		(this._mouseStarted && this._mouseUp(event));
-
-		this._mouseDownEvent = event;
-
-		var that = this,
-			btnIsLeft = (event.which === 1),
-			// event.target.nodeName works around a bug in IE 8 with
-			// disabled inputs (#7620)
-			elIsCancel = (typeof this.options.cancel === "string" && event.target.nodeName ? $(event.target).closest(this.options.cancel).length : false);
-		if (!btnIsLeft || elIsCancel || !this._mouseCapture(event)) {
-			return true;
-		}
-
-		this.mouseDelayMet = !this.options.delay;
-		if (!this.mouseDelayMet) {
-			this._mouseDelayTimer = setTimeout(function() {
-				that.mouseDelayMet = true;
-			}, this.options.delay);
-		}
-
-		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
-			this._mouseStarted = (this._mouseStart(event) !== false);
-			if (!this._mouseStarted) {
-				event.preventDefault();
-				return true;
-			}
-		}
-
-		// Click event may never have fired (Gecko & Opera)
-		if (true === $.data(event.target, this.widgetName + ".preventClickEvent")) {
-			$.removeData(event.target, this.widgetName + ".preventClickEvent");
-		}
-
-		// these delegates are required to keep context
-		this._mouseMoveDelegate = function(event) {
-			return that._mouseMove(event);
-		};
-		this._mouseUpDelegate = function(event) {
-			return that._mouseUp(event);
-		};
-		$(document)
-			.bind("mousemove."+this.widgetName, this._mouseMoveDelegate)
-			.bind("mouseup."+this.widgetName, this._mouseUpDelegate);
-
-		event.preventDefault();
-
-		mouseHandled = true;
-		return true;
-	},
-
-	_mouseMove: function(event) {
-		// IE mouseup check - mouseup happened when mouse was out of window
-		if ($.ui.ie && ( !document.documentMode || document.documentMode < 9 ) && !event.button) {
-			return this._mouseUp(event);
-		}
-
-		if (this._mouseStarted) {
-			this._mouseDrag(event);
-			return event.preventDefault();
-		}
-
-		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
-			this._mouseStarted =
-				(this._mouseStart(this._mouseDownEvent, event) !== false);
-			(this._mouseStarted ? this._mouseDrag(event) : this._mouseUp(event));
-		}
-
-		return !this._mouseStarted;
-	},
-
-	_mouseUp: function(event) {
-		$(document)
-			.unbind("mousemove."+this.widgetName, this._mouseMoveDelegate)
-			.unbind("mouseup."+this.widgetName, this._mouseUpDelegate);
-
-		if (this._mouseStarted) {
-			this._mouseStarted = false;
-
-			if (event.target === this._mouseDownEvent.target) {
-				$.data(event.target, this.widgetName + ".preventClickEvent", true);
-			}
-
-			this._mouseStop(event);
-		}
-
-		return false;
-	},
-
-	_mouseDistanceMet: function(event) {
-		return (Math.max(
-				Math.abs(this._mouseDownEvent.pageX - event.pageX),
-				Math.abs(this._mouseDownEvent.pageY - event.pageY)
-			) >= this.options.distance
-		);
-	},
-
-	_mouseDelayMet: function(/* event */) {
-		return this.mouseDelayMet;
-	},
-
-	// These are placeholder methods, to be overriden by extending plugin
-	_mouseStart: function(/* event */) {},
-	_mouseDrag: function(/* event */) {},
-	_mouseStop: function(/* event */) {},
-	_mouseCapture: function(/* event */) { return true; }
-});
-
-})(jQuery);
-
-/*!
- * jQuery UI Position 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/position/
- */
-(function( $, undefined ) {
-
-$.ui = $.ui || {};
-
-var cachedScrollbarWidth,
-	max = Math.max,
-	abs = Math.abs,
-	round = Math.round,
-	rhorizontal = /left|center|right/,
-	rvertical = /top|center|bottom/,
-	roffset = /[\+\-]\d+(\.[\d]+)?%?/,
-	rposition = /^\w+/,
-	rpercent = /%$/,
-	_position = $.fn.position;
-
-function getOffsets( offsets, width, height ) {
-	return [
-		parseFloat( offsets[ 0 ] ) * ( rpercent.test( offsets[ 0 ] ) ? width / 100 : 1 ),
-		parseFloat( offsets[ 1 ] ) * ( rpercent.test( offsets[ 1 ] ) ? height / 100 : 1 )
-	];
-}
-
-function parseCss( element, property ) {
-	return parseInt( $.css( element, property ), 10 ) || 0;
-}
-
-function getDimensions( elem ) {
-	var raw = elem[0];
-	if ( raw.nodeType === 9 ) {
-		return {
-			width: elem.width(),
-			height: elem.height(),
-			offset: { top: 0, left: 0 }
-		};
-	}
-	if ( $.isWindow( raw ) ) {
-		return {
-			width: elem.width(),
-			height: elem.height(),
-			offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
-		};
-	}
-	if ( raw.preventDefault ) {
-		return {
-			width: 0,
-			height: 0,
-			offset: { top: raw.pageY, left: raw.pageX }
-		};
-	}
-	return {
-		width: elem.outerWidth(),
-		height: elem.outerHeight(),
-		offset: elem.offset()
-	};
-}
-
-$.position = {
-	scrollbarWidth: function() {
-		if ( cachedScrollbarWidth !== undefined ) {
-			return cachedScrollbarWidth;
-		}
-		var w1, w2,
-			div = $( "<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>" ),
-			innerDiv = div.children()[0];
-
-		$( "body" ).append( div );
-		w1 = innerDiv.offsetWidth;
-		div.css( "overflow", "scroll" );
-
-		w2 = innerDiv.offsetWidth;
-
-		if ( w1 === w2 ) {
-			w2 = div[0].clientWidth;
-		}
-
-		div.remove();
-
-		return (cachedScrollbarWidth = w1 - w2);
-	},
-	getScrollInfo: function( within ) {
-		var overflowX = within.isWindow || within.isDocument ? "" :
-				within.element.css( "overflow-x" ),
-			overflowY = within.isWindow || within.isDocument ? "" :
-				within.element.css( "overflow-y" ),
-			hasOverflowX = overflowX === "scroll" ||
-				( overflowX === "auto" && within.width < within.element[0].scrollWidth ),
-			hasOverflowY = overflowY === "scroll" ||
-				( overflowY === "auto" && within.height < within.element[0].scrollHeight );
-		return {
-			width: hasOverflowY ? $.position.scrollbarWidth() : 0,
-			height: hasOverflowX ? $.position.scrollbarWidth() : 0
-		};
-	},
-	getWithinInfo: function( element ) {
-		var withinElement = $( element || window ),
-			isWindow = $.isWindow( withinElement[0] ),
-			isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
-		return {
-			element: withinElement,
-			isWindow: isWindow,
-			isDocument: isDocument,
-			offset: withinElement.offset() || { left: 0, top: 0 },
-			scrollLeft: withinElement.scrollLeft(),
-			scrollTop: withinElement.scrollTop(),
-			width: isWindow ? withinElement.width() : withinElement.outerWidth(),
-			height: isWindow ? withinElement.height() : withinElement.outerHeight()
-		};
-	}
-};
-
-$.fn.position = function( options ) {
-	if ( !options || !options.of ) {
-		return _position.apply( this, arguments );
-	}
-
-	// make a copy, we don't want to modify arguments
-	options = $.extend( {}, options );
-
-	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
-		target = $( options.of ),
-		within = $.position.getWithinInfo( options.within ),
-		scrollInfo = $.position.getScrollInfo( within ),
-		collision = ( options.collision || "flip" ).split( " " ),
-		offsets = {};
-
-	dimensions = getDimensions( target );
-	if ( target[0].preventDefault ) {
-		// force left top to allow flipping
-		options.at = "left top";
-	}
-	targetWidth = dimensions.width;
-	targetHeight = dimensions.height;
-	targetOffset = dimensions.offset;
-	// clone to reuse original targetOffset later
-	basePosition = $.extend( {}, targetOffset );
-
-	// force my and at to have valid horizontal and vertical positions
-	// if a value is missing or invalid, it will be converted to center
-	$.each( [ "my", "at" ], function() {
-		var pos = ( options[ this ] || "" ).split( " " ),
-			horizontalOffset,
-			verticalOffset;
-
-		if ( pos.length === 1) {
-			pos = rhorizontal.test( pos[ 0 ] ) ?
-				pos.concat( [ "center" ] ) :
-				rvertical.test( pos[ 0 ] ) ?
-					[ "center" ].concat( pos ) :
-					[ "center", "center" ];
-		}
-		pos[ 0 ] = rhorizontal.test( pos[ 0 ] ) ? pos[ 0 ] : "center";
-		pos[ 1 ] = rvertical.test( pos[ 1 ] ) ? pos[ 1 ] : "center";
-
-		// calculate offsets
-		horizontalOffset = roffset.exec( pos[ 0 ] );
-		verticalOffset = roffset.exec( pos[ 1 ] );
-		offsets[ this ] = [
-			horizontalOffset ? horizontalOffset[ 0 ] : 0,
-			verticalOffset ? verticalOffset[ 0 ] : 0
-		];
-
-		// reduce to just the positions without the offsets
-		options[ this ] = [
-			rposition.exec( pos[ 0 ] )[ 0 ],
-			rposition.exec( pos[ 1 ] )[ 0 ]
-		];
-	});
-
-	// normalize collision option
-	if ( collision.length === 1 ) {
-		collision[ 1 ] = collision[ 0 ];
-	}
-
-	if ( options.at[ 0 ] === "right" ) {
-		basePosition.left += targetWidth;
-	} else if ( options.at[ 0 ] === "center" ) {
-		basePosition.left += targetWidth / 2;
-	}
-
-	if ( options.at[ 1 ] === "bottom" ) {
-		basePosition.top += targetHeight;
-	} else if ( options.at[ 1 ] === "center" ) {
-		basePosition.top += targetHeight / 2;
-	}
-
-	atOffset = getOffsets( offsets.at, targetWidth, targetHeight );
-	basePosition.left += atOffset[ 0 ];
-	basePosition.top += atOffset[ 1 ];
-
-	return this.each(function() {
-		var collisionPosition, using,
-			elem = $( this ),
-			elemWidth = elem.outerWidth(),
-			elemHeight = elem.outerHeight(),
-			marginLeft = parseCss( this, "marginLeft" ),
-			marginTop = parseCss( this, "marginTop" ),
-			collisionWidth = elemWidth + marginLeft + parseCss( this, "marginRight" ) + scrollInfo.width,
-			collisionHeight = elemHeight + marginTop + parseCss( this, "marginBottom" ) + scrollInfo.height,
-			position = $.extend( {}, basePosition ),
-			myOffset = getOffsets( offsets.my, elem.outerWidth(), elem.outerHeight() );
-
-		if ( options.my[ 0 ] === "right" ) {
-			position.left -= elemWidth;
-		} else if ( options.my[ 0 ] === "center" ) {
-			position.left -= elemWidth / 2;
-		}
-
-		if ( options.my[ 1 ] === "bottom" ) {
-			position.top -= elemHeight;
-		} else if ( options.my[ 1 ] === "center" ) {
-			position.top -= elemHeight / 2;
-		}
-
-		position.left += myOffset[ 0 ];
-		position.top += myOffset[ 1 ];
-
-		// if the browser doesn't support fractions, then round for consistent results
-		if ( !$.support.offsetFractions ) {
-			position.left = round( position.left );
-			position.top = round( position.top );
-		}
-
-		collisionPosition = {
-			marginLeft: marginLeft,
-			marginTop: marginTop
-		};
-
-		$.each( [ "left", "top" ], function( i, dir ) {
-			if ( $.ui.position[ collision[ i ] ] ) {
-				$.ui.position[ collision[ i ] ][ dir ]( position, {
-					targetWidth: targetWidth,
-					targetHeight: targetHeight,
-					elemWidth: elemWidth,
-					elemHeight: elemHeight,
-					collisionPosition: collisionPosition,
-					collisionWidth: collisionWidth,
-					collisionHeight: collisionHeight,
-					offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
-					my: options.my,
-					at: options.at,
-					within: within,
-					elem : elem
-				});
-			}
-		});
-
-		if ( options.using ) {
-			// adds feedback as second argument to using callback, if present
-			using = function( props ) {
-				var left = targetOffset.left - position.left,
-					right = left + targetWidth - elemWidth,
-					top = targetOffset.top - position.top,
-					bottom = top + targetHeight - elemHeight,
-					feedback = {
-						target: {
-							element: target,
-							left: targetOffset.left,
-							top: targetOffset.top,
-							width: targetWidth,
-							height: targetHeight
-						},
-						element: {
-							element: elem,
-							left: position.left,
-							top: position.top,
-							width: elemWidth,
-							height: elemHeight
-						},
-						horizontal: right < 0 ? "left" : left > 0 ? "right" : "center",
-						vertical: bottom < 0 ? "top" : top > 0 ? "bottom" : "middle"
-					};
-				if ( targetWidth < elemWidth && abs( left + right ) < targetWidth ) {
-					feedback.horizontal = "center";
-				}
-				if ( targetHeight < elemHeight && abs( top + bottom ) < targetHeight ) {
-					feedback.vertical = "middle";
-				}
-				if ( max( abs( left ), abs( right ) ) > max( abs( top ), abs( bottom ) ) ) {
-					feedback.important = "horizontal";
-				} else {
-					feedback.important = "vertical";
-				}
-				options.using.call( this, props, feedback );
-			};
-		}
-
-		elem.offset( $.extend( position, { using: using } ) );
-	});
-};
-
-$.ui.position = {
-	fit: {
-		left: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.isWindow ? within.scrollLeft : within.offset.left,
-				outerWidth = within.width,
-				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
-				overLeft = withinOffset - collisionPosLeft,
-				overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset,
-				newOverRight;
-
-			// element is wider than within
-			if ( data.collisionWidth > outerWidth ) {
-				// element is initially over the left side of within
-				if ( overLeft > 0 && overRight <= 0 ) {
-					newOverRight = position.left + overLeft + data.collisionWidth - outerWidth - withinOffset;
-					position.left += overLeft - newOverRight;
-				// element is initially over right side of within
-				} else if ( overRight > 0 && overLeft <= 0 ) {
-					position.left = withinOffset;
-				// element is initially over both left and right sides of within
-				} else {
-					if ( overLeft > overRight ) {
-						position.left = withinOffset + outerWidth - data.collisionWidth;
-					} else {
-						position.left = withinOffset;
-					}
-				}
-			// too far left -> align with left edge
-			} else if ( overLeft > 0 ) {
-				position.left += overLeft;
-			// too far right -> align with right edge
-			} else if ( overRight > 0 ) {
-				position.left -= overRight;
-			// adjust based on position and margin
-			} else {
-				position.left = max( position.left - collisionPosLeft, position.left );
-			}
-		},
-		top: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.isWindow ? within.scrollTop : within.offset.top,
-				outerHeight = data.within.height,
-				collisionPosTop = position.top - data.collisionPosition.marginTop,
-				overTop = withinOffset - collisionPosTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
-				newOverBottom;
-
-			// element is taller than within
-			if ( data.collisionHeight > outerHeight ) {
-				// element is initially over the top of within
-				if ( overTop > 0 && overBottom <= 0 ) {
-					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight - withinOffset;
-					position.top += overTop - newOverBottom;
-				// element is initially over bottom of within
-				} else if ( overBottom > 0 && overTop <= 0 ) {
-					position.top = withinOffset;
-				// element is initially over both top and bottom of within
-				} else {
-					if ( overTop > overBottom ) {
-						position.top = withinOffset + outerHeight - data.collisionHeight;
-					} else {
-						position.top = withinOffset;
-					}
-				}
-			// too far up -> align with top
-			} else if ( overTop > 0 ) {
-				position.top += overTop;
-			// too far down -> align with bottom edge
-			} else if ( overBottom > 0 ) {
-				position.top -= overBottom;
-			// adjust based on position and margin
-			} else {
-				position.top = max( position.top - collisionPosTop, position.top );
-			}
-		}
-	},
-	flip: {
-		left: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.offset.left + within.scrollLeft,
-				outerWidth = within.width,
-				offsetLeft = within.isWindow ? within.scrollLeft : within.offset.left,
-				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
-				overLeft = collisionPosLeft - offsetLeft,
-				overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft,
-				myOffset = data.my[ 0 ] === "left" ?
-					-data.elemWidth :
-					data.my[ 0 ] === "right" ?
-						data.elemWidth :
-						0,
-				atOffset = data.at[ 0 ] === "left" ?
-					data.targetWidth :
-					data.at[ 0 ] === "right" ?
-						-data.targetWidth :
-						0,
-				offset = -2 * data.offset[ 0 ],
-				newOverRight,
-				newOverLeft;
-
-			if ( overLeft < 0 ) {
-				newOverRight = position.left + myOffset + atOffset + offset + data.collisionWidth - outerWidth - withinOffset;
-				if ( newOverRight < 0 || newOverRight < abs( overLeft ) ) {
-					position.left += myOffset + atOffset + offset;
-				}
-			}
-			else if ( overRight > 0 ) {
-				newOverLeft = position.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
-				if ( newOverLeft > 0 || abs( newOverLeft ) < overRight ) {
-					position.left += myOffset + atOffset + offset;
-				}
-			}
-		},
-		top: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.offset.top + within.scrollTop,
-				outerHeight = within.height,
-				offsetTop = within.isWindow ? within.scrollTop : within.offset.top,
-				collisionPosTop = position.top - data.collisionPosition.marginTop,
-				overTop = collisionPosTop - offsetTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
-				top = data.my[ 1 ] === "top",
-				myOffset = top ?
-					-data.elemHeight :
-					data.my[ 1 ] === "bottom" ?
-						data.elemHeight :
-						0,
-				atOffset = data.at[ 1 ] === "top" ?
-					data.targetHeight :
-					data.at[ 1 ] === "bottom" ?
-						-data.targetHeight :
-						0,
-				offset = -2 * data.offset[ 1 ],
-				newOverTop,
-				newOverBottom;
-			if ( overTop < 0 ) {
-				newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight - outerHeight - withinOffset;
-				if ( ( position.top + myOffset + atOffset + offset) > overTop && ( newOverBottom < 0 || newOverBottom < abs( overTop ) ) ) {
-					position.top += myOffset + atOffset + offset;
-				}
-			}
-			else if ( overBottom > 0 ) {
-				newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
-				if ( ( position.top + myOffset + atOffset + offset) > overBottom && ( newOverTop > 0 || abs( newOverTop ) < overBottom ) ) {
-					position.top += myOffset + atOffset + offset;
-				}
-			}
-		}
-	},
-	flipfit: {
-		left: function() {
-			$.ui.position.flip.left.apply( this, arguments );
-			$.ui.position.fit.left.apply( this, arguments );
-		},
-		top: function() {
-			$.ui.position.flip.top.apply( this, arguments );
-			$.ui.position.fit.top.apply( this, arguments );
-		}
-	}
-};
-
-// fraction support test
-(function () {
-	var testElement, testElementParent, testElementStyle, offsetLeft, i,
-		body = document.getElementsByTagName( "body" )[ 0 ],
-		div = document.createElement( "div" );
-
-	//Create a "fake body" for testing based on method used in jQuery.support
-	testElement = document.createElement( body ? "div" : "body" );
-	testElementStyle = {
-		visibility: "hidden",
-		width: 0,
-		height: 0,
-		border: 0,
-		margin: 0,
-		background: "none"
-	};
-	if ( body ) {
-		$.extend( testElementStyle, {
-			position: "absolute",
-			left: "-1000px",
-			top: "-1000px"
-		});
-	}
-	for ( i in testElementStyle ) {
-		testElement.style[ i ] = testElementStyle[ i ];
-	}
-	testElement.appendChild( div );
-	testElementParent = body || document.documentElement;
-	testElementParent.insertBefore( testElement, testElementParent.firstChild );
-
-	div.style.cssText = "position: absolute; left: 10.7432222px;";
-
-	offsetLeft = $( div ).offset().left;
-	$.support.offsetFractions = offsetLeft > 10 && offsetLeft < 11;
-
-	testElement.innerHTML = "";
-	testElementParent.removeChild( testElement );
-})();
-
-}( jQuery ) );
-
-/*!
- * jQuery UI Button 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/button/
- *
- * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- */
-(function( $, undefined ) {
-
-var lastActive,
-	baseClasses = "ui-button ui-widget ui-state-default ui-corner-all",
-	typeClasses = "ui-button-icons-only ui-button-icon-only ui-button-text-icons ui-button-text-icon-primary ui-button-text-icon-secondary ui-button-text-only",
-	formResetHandler = function() {
-		var form = $( this );
-		setTimeout(function() {
-			form.find( ":ui-button" ).button( "refresh" );
-		}, 1 );
-	},
-	radioGroup = function( radio ) {
-		var name = radio.name,
-			form = radio.form,
-			radios = $( [] );
-		if ( name ) {
-			name = name.replace( /'/g, "\\'" );
-			if ( form ) {
-				radios = $( form ).find( "[name='" + name + "']" );
-			} else {
-				radios = $( "[name='" + name + "']", radio.ownerDocument )
-					.filter(function() {
-						return !this.form;
-					});
-			}
-		}
-		return radios;
-	};
-
-$.widget( "ui.button", {
-	version: "1.10.4",
-	defaultElement: "<button>",
-	options: {
-		disabled: null,
-		text: true,
-		label: null,
-		icons: {
-			primary: null,
-			secondary: null
-		}
-	},
-	_create: function() {
-		this.element.closest( "form" )
-			.unbind( "reset" + this.eventNamespace )
-			.bind( "reset" + this.eventNamespace, formResetHandler );
-
-		if ( typeof this.options.disabled !== "boolean" ) {
-			this.options.disabled = !!this.element.prop( "disabled" );
-		} else {
-			this.element.prop( "disabled", this.options.disabled );
-		}
-
-		this._determineButtonType();
-		this.hasTitle = !!this.buttonElement.attr( "title" );
-
-		var that = this,
-			options = this.options,
-			toggleButton = this.type === "checkbox" || this.type === "radio",
-			activeClass = !toggleButton ? "ui-state-active" : "";
-
-		if ( options.label === null ) {
-			options.label = (this.type === "input" ? this.buttonElement.val() : this.buttonElement.html());
-		}
-
-		this._hoverable( this.buttonElement );
-
-		this.buttonElement
-			.addClass( baseClasses )
-			.attr( "role", "button" )
-			.bind( "mouseenter" + this.eventNamespace, function() {
-				if ( options.disabled ) {
-					return;
-				}
-				if ( this === lastActive ) {
-					$( this ).addClass( "ui-state-active" );
-				}
-			})
-			.bind( "mouseleave" + this.eventNamespace, function() {
-				if ( options.disabled ) {
-					return;
-				}
-				$( this ).removeClass( activeClass );
-			})
-			.bind( "click" + this.eventNamespace, function( event ) {
-				if ( options.disabled ) {
-					event.preventDefault();
-					event.stopImmediatePropagation();
-				}
-			});
-
-		// Can't use _focusable() because the element that receives focus
-		// and the element that gets the ui-state-focus class are different
-		this._on({
-			focus: function() {
-				this.buttonElement.addClass( "ui-state-focus" );
-			},
-			blur: function() {
-				this.buttonElement.removeClass( "ui-state-focus" );
-			}
-		});
-
-		if ( toggleButton ) {
-			this.element.bind( "change" + this.eventNamespace, function() {
-				that.refresh();
-			});
-		}
-
-		if ( this.type === "checkbox" ) {
-			this.buttonElement.bind( "click" + this.eventNamespace, function() {
-				if ( options.disabled ) {
-					return false;
-				}
-			});
-		} else if ( this.type === "radio" ) {
-			this.buttonElement.bind( "click" + this.eventNamespace, function() {
-				if ( options.disabled ) {
-					return false;
-				}
-				$( this ).addClass( "ui-state-active" );
-				that.buttonElement.attr( "aria-pressed", "true" );
-
-				var radio = that.element[ 0 ];
-				radioGroup( radio )
-					.not( radio )
-					.map(function() {
-						return $( this ).button( "widget" )[ 0 ];
-					})
-					.removeClass( "ui-state-active" )
-					.attr( "aria-pressed", "false" );
-			});
-		} else {
-			this.buttonElement
-				.bind( "mousedown" + this.eventNamespace, function() {
-					if ( options.disabled ) {
-						return false;
-					}
-					$( this ).addClass( "ui-state-active" );
-					lastActive = this;
-					that.document.one( "mouseup", function() {
-						lastActive = null;
-					});
-				})
-				.bind( "mouseup" + this.eventNamespace, function() {
-					if ( options.disabled ) {
-						return false;
-					}
-					$( this ).removeClass( "ui-state-active" );
-				})
-				.bind( "keydown" + this.eventNamespace, function(event) {
-					if ( options.disabled ) {
-						return false;
-					}
-					if ( event.keyCode === $.ui.keyCode.SPACE || event.keyCode === $.ui.keyCode.ENTER ) {
-						$( this ).addClass( "ui-state-active" );
-					}
-				})
-				// see #8559, we bind to blur here in case the button element loses
-				// focus between keydown and keyup, it would be left in an "active" state
-				.bind( "keyup" + this.eventNamespace + " blur" + this.eventNamespace, function() {
-					$( this ).removeClass( "ui-state-active" );
-				});
-
-			if ( this.buttonElement.is("a") ) {
-				this.buttonElement.keyup(function(event) {
-					if ( event.keyCode === $.ui.keyCode.SPACE ) {
-						// TODO pass through original event correctly (just as 2nd argument doesn't work)
-						$( this ).click();
-					}
-				});
-			}
-		}
-
-		// TODO: pull out $.Widget's handling for the disabled option into
-		// $.Widget.prototype._setOptionDisabled so it's easy to proxy and can
-		// be overridden by individual plugins
-		this._setOption( "disabled", options.disabled );
-		this._resetButton();
-	},
-
-	_determineButtonType: function() {
-		var ancestor, labelSelector, checked;
-
-		if ( this.element.is("[type=checkbox]") ) {
-			this.type = "checkbox";
-		} else if ( this.element.is("[type=radio]") ) {
-			this.type = "radio";
-		} else if ( this.element.is("input") ) {
-			this.type = "input";
-		} else {
-			this.type = "button";
-		}
-
-		if ( this.type === "checkbox" || this.type === "radio" ) {
-			// we don't search against the document in case the element
-			// is disconnected from the DOM
-			ancestor = this.element.parents().last();
-			labelSelector = "label[for='" + this.element.attr("id") + "']";
-			this.buttonElement = ancestor.find( labelSelector );
-			if ( !this.buttonElement.length ) {
-				ancestor = ancestor.length ? ancestor.siblings() : this.element.siblings();
-				this.buttonElement = ancestor.filter( labelSelector );
-				if ( !this.buttonElement.length ) {
-					this.buttonElement = ancestor.find( labelSelector );
-				}
-			}
-			this.element.addClass( "ui-helper-hidden-accessible" );
-
-			checked = this.element.is( ":checked" );
-			if ( checked ) {
-				this.buttonElement.addClass( "ui-state-active" );
-			}
-			this.buttonElement.prop( "aria-pressed", checked );
-		} else {
-			this.buttonElement = this.element;
-		}
-	},
-
-	widget: function() {
-		return this.buttonElement;
-	},
-
-	_destroy: function() {
-		this.element
-			.removeClass( "ui-helper-hidden-accessible" );
-		this.buttonElement
-			.removeClass( baseClasses + " ui-state-active " + typeClasses )
-			.removeAttr( "role" )
-			.removeAttr( "aria-pressed" )
-			.html( this.buttonElement.find(".ui-button-text").html() );
-
-		if ( !this.hasTitle ) {
-			this.buttonElement.removeAttr( "title" );
-		}
-	},
-
-	_setOption: function( key, value ) {
-		this._super( key, value );
-		if ( key === "disabled" ) {
-			this.element.prop( "disabled", !!value );
-			if ( value ) {
-				this.buttonElement.removeClass( "ui-state-focus" );
-			}
-			return;
-		}
-		this._resetButton();
-	},
-
-	refresh: function() {
-		//See #8237 & #8828
-		var isDisabled = this.element.is( "input, button" ) ? this.element.is( ":disabled" ) : this.element.hasClass( "ui-button-disabled" );
-
-		if ( isDisabled !== this.options.disabled ) {
-			this._setOption( "disabled", isDisabled );
-		}
-		if ( this.type === "radio" ) {
-			radioGroup( this.element[0] ).each(function() {
-				if ( $( this ).is( ":checked" ) ) {
-					$( this ).button( "widget" )
-						.addClass( "ui-state-active" )
-						.attr( "aria-pressed", "true" );
-				} else {
-					$( this ).button( "widget" )
-						.removeClass( "ui-state-active" )
-						.attr( "aria-pressed", "false" );
-				}
-			});
-		} else if ( this.type === "checkbox" ) {
-			if ( this.element.is( ":checked" ) ) {
-				this.buttonElement
-					.addClass( "ui-state-active" )
-					.attr( "aria-pressed", "true" );
-			} else {
-				this.buttonElement
-					.removeClass( "ui-state-active" )
-					.attr( "aria-pressed", "false" );
-			}
-		}
-	},
-
-	_resetButton: function() {
-		if ( this.type === "input" ) {
-			if ( this.options.label ) {
-				this.element.val( this.options.label );
-			}
-			return;
-		}
-		var buttonElement = this.buttonElement.removeClass( typeClasses ),
-			buttonText = $( "<span></span>", this.document[0] )
-				.addClass( "ui-button-text" )
-				.html( this.options.label )
-				.appendTo( buttonElement.empty() )
-				.text(),
-			icons = this.options.icons,
-			multipleIcons = icons.primary && icons.secondary,
-			buttonClasses = [];
-
-		if ( icons.primary || icons.secondary ) {
-			if ( this.options.text ) {
-				buttonClasses.push( "ui-button-text-icon" + ( multipleIcons ? "s" : ( icons.primary ? "-primary" : "-secondary" ) ) );
-			}
-
-			if ( icons.primary ) {
-				buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
-			}
-
-			if ( icons.secondary ) {
-				buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
-			}
-
-			if ( !this.options.text ) {
-				buttonClasses.push( multipleIcons ? "ui-button-icons-only" : "ui-button-icon-only" );
-
-				if ( !this.hasTitle ) {
-					buttonElement.attr( "title", $.trim( buttonText ) );
-				}
-			}
-		} else {
-			buttonClasses.push( "ui-button-text-only" );
-		}
-		buttonElement.addClass( buttonClasses.join( " " ) );
-	}
-});
-
-$.widget( "ui.buttonset", {
-	version: "1.10.4",
-	options: {
-		items: "button, input[type=button], input[type=submit], input[type=reset], input[type=checkbox], input[type=radio], a, :data(ui-button)"
-	},
-
-	_create: function() {
-		this.element.addClass( "ui-buttonset" );
-	},
-
-	_init: function() {
-		this.refresh();
-	},
-
-	_setOption: function( key, value ) {
-		if ( key === "disabled" ) {
-			this.buttons.button( "option", key, value );
-		}
-
-		this._super( key, value );
-	},
-
-	refresh: function() {
-		var rtl = this.element.css( "direction" ) === "rtl";
-
-		this.buttons = this.element.find( this.options.items )
-			.filter( ":ui-button" )
-				.button( "refresh" )
-			.end()
-			.not( ":ui-button" )
-				.button()
-			.end()
-			.map(function() {
-				return $( this ).button( "widget" )[ 0 ];
-			})
-				.removeClass( "ui-corner-all ui-corner-left ui-corner-right" )
-				.filter( ":first" )
-					.addClass( rtl ? "ui-corner-right" : "ui-corner-left" )
-				.end()
-				.filter( ":last" )
-					.addClass( rtl ? "ui-corner-left" : "ui-corner-right" )
-				.end()
-			.end();
-	},
-
-	_destroy: function() {
-		this.element.removeClass( "ui-buttonset" );
-		this.buttons
-			.map(function() {
-				return $( this ).button( "widget" )[ 0 ];
-			})
-				.removeClass( "ui-corner-left ui-corner-right" )
-			.end()
-			.button( "destroy" );
-	}
-});
-
-}( jQuery ) );
-
-/*!
- * jQuery UI Slider 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/slider/
- *
- * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
- */
-(function( $, undefined ) {
-
-// number of pages in a slider
-// (how many times can you page up/down to go through the whole range)
-var numPages = 5;
-
-$.widget( "ui.slider", $.ui.mouse, {
-	version: "1.10.4",
-	widgetEventPrefix: "slide",
-
-	options: {
-		animate: false,
-		distance: 0,
-		max: 100,
-		min: 0,
-		orientation: "horizontal",
-		range: false,
-		step: 1,
-		value: 0,
-		values: null,
-
-		// callbacks
-		change: null,
-		slide: null,
-		start: null,
-		stop: null
-	},
-
-	_create: function() {
-		this._keySliding = false;
-		this._mouseSliding = false;
-		this._animateOff = true;
-		this._handleIndex = null;
-		this._detectOrientation();
-		this._mouseInit();
-
-		this.element
-			.addClass( "ui-slider" +
-				" ui-slider-" + this.orientation +
-				" ui-widget" +
-				" ui-widget-content" +
-				" ui-corner-all");
-
-		this._refresh();
-		this._setOption( "disabled", this.options.disabled );
-
-		this._animateOff = false;
-	},
-
-	_refresh: function() {
-		this._createRange();
-		this._createHandles();
-		this._setupEvents();
-		this._refreshValue();
-	},
-
-	_createHandles: function() {
-		var i, handleCount,
-			options = this.options,
-			existingHandles = this.element.find( ".ui-slider-handle" ).addClass( "ui-state-default ui-corner-all" ),
-			handle = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>",
-			handles = [];
-
-		handleCount = ( options.values && options.values.length ) || 1;
-
-		if ( existingHandles.length > handleCount ) {
-			existingHandles.slice( handleCount ).remove();
-			existingHandles = existingHandles.slice( 0, handleCount );
-		}
-
-		for ( i = existingHandles.length; i < handleCount; i++ ) {
-			handles.push( handle );
-		}
-
-		this.handles = existingHandles.add( $( handles.join( "" ) ).appendTo( this.element ) );
-
-		this.handle = this.handles.eq( 0 );
-
-		this.handles.each(function( i ) {
-			$( this ).data( "ui-slider-handle-index", i );
-		});
-	},
-
-	_createRange: function() {
-		var options = this.options,
-			classes = "";
-
-		if ( options.range ) {
-			if ( options.range === true ) {
-				if ( !options.values ) {
-					options.values = [ this._valueMin(), this._valueMin() ];
-				} else if ( options.values.length && options.values.length !== 2 ) {
-					options.values = [ options.values[0], options.values[0] ];
-				} else if ( $.isArray( options.values ) ) {
-					options.values = options.values.slice(0);
-				}
-			}
-
-			if ( !this.range || !this.range.length ) {
-				this.range = $( "<div></div>" )
-					.appendTo( this.element );
-
-				classes = "ui-slider-range" +
-				// note: this isn't the most fittingly semantic framework class for this element,
-				// but worked best visually with a variety of themes
-				" ui-widget-header ui-corner-all";
-			} else {
-				this.range.removeClass( "ui-slider-range-min ui-slider-range-max" )
-					// Handle range switching from true to min/max
-					.css({
-						"left": "",
-						"bottom": ""
-					});
-			}
-
-			this.range.addClass( classes +
-				( ( options.range === "min" || options.range === "max" ) ? " ui-slider-range-" + options.range : "" ) );
-		} else {
-			if ( this.range ) {
-				this.range.remove();
-			}
-			this.range = null;
-		}
-	},
-
-	_setupEvents: function() {
-		var elements = this.handles.add( this.range ).filter( "a" );
-		this._off( elements );
-		this._on( elements, this._handleEvents );
-		this._hoverable( elements );
-		this._focusable( elements );
-	},
-
-	_destroy: function() {
-		this.handles.remove();
-		if ( this.range ) {
-			this.range.remove();
-		}
-
-		this.element
-			.removeClass( "ui-slider" +
-				" ui-slider-horizontal" +
-				" ui-slider-vertical" +
-				" ui-widget" +
-				" ui-widget-content" +
-				" ui-corner-all" );
-
-		this._mouseDestroy();
-	},
-
-	_mouseCapture: function( event ) {
-		var position, normValue, distance, closestHandle, index, allowed, offset, mouseOverHandle,
-			that = this,
-			o = this.options;
-
-		if ( o.disabled ) {
-			return false;
-		}
-
-		this.elementSize = {
-			width: this.element.outerWidth(),
-			height: this.element.outerHeight()
-		};
-		this.elementOffset = this.element.offset();
-
-		position = { x: event.pageX, y: event.pageY };
-		normValue = this._normValueFromMouse( position );
-		distance = this._valueMax() - this._valueMin() + 1;
-		this.handles.each(function( i ) {
-			var thisDistance = Math.abs( normValue - that.values(i) );
-			if (( distance > thisDistance ) ||
-				( distance === thisDistance &&
-					(i === that._lastChangedValue || that.values(i) === o.min ))) {
-				distance = thisDistance;
-				closestHandle = $( this );
-				index = i;
-			}
-		});
-
-		allowed = this._start( event, index );
-		if ( allowed === false ) {
-			return false;
-		}
-		this._mouseSliding = true;
-
-		this._handleIndex = index;
-
-		closestHandle
-			.addClass( "ui-state-active" )
-			.focus();
-
-		offset = closestHandle.offset();
-		mouseOverHandle = !$( event.target ).parents().addBack().is( ".ui-slider-handle" );
-		this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
-			left: event.pageX - offset.left - ( closestHandle.width() / 2 ),
-			top: event.pageY - offset.top -
-				( closestHandle.height() / 2 ) -
-				( parseInt( closestHandle.css("borderTopWidth"), 10 ) || 0 ) -
-				( parseInt( closestHandle.css("borderBottomWidth"), 10 ) || 0) +
-				( parseInt( closestHandle.css("marginTop"), 10 ) || 0)
-		};
-
-		if ( !this.handles.hasClass( "ui-state-hover" ) ) {
-			this._slide( event, index, normValue );
-		}
-		this._animateOff = true;
-		return true;
-	},
-
-	_mouseStart: function() {
-		return true;
-	},
-
-	_mouseDrag: function( event ) {
-		var position = { x: event.pageX, y: event.pageY },
-			normValue = this._normValueFromMouse( position );
-
-		this._slide( event, this._handleIndex, normValue );
-
-		return false;
-	},
-
-	_mouseStop: function( event ) {
-		this.handles.removeClass( "ui-state-active" );
-		this._mouseSliding = false;
-
-		this._stop( event, this._handleIndex );
-		this._change( event, this._handleIndex );
-
-		this._handleIndex = null;
-		this._clickOffset = null;
-		this._animateOff = false;
-
-		return false;
-	},
-
-	_detectOrientation: function() {
-		this.orientation = ( this.options.orientation === "vertical" ) ? "vertical" : "horizontal";
-	},
-
-	_normValueFromMouse: function( position ) {
-		var pixelTotal,
-			pixelMouse,
-			percentMouse,
-			valueTotal,
-			valueMouse;
-
-		if ( this.orientation === "horizontal" ) {
-			pixelTotal = this.elementSize.width;
-			pixelMouse = position.x - this.elementOffset.left - ( this._clickOffset ? this._clickOffset.left : 0 );
-		} else {
-			pixelTotal = this.elementSize.height;
-			pixelMouse = position.y - this.elementOffset.top - ( this._clickOffset ? this._clickOffset.top : 0 );
-		}
-
-		percentMouse = ( pixelMouse / pixelTotal );
-		if ( percentMouse > 1 ) {
-			percentMouse = 1;
-		}
-		if ( percentMouse < 0 ) {
-			percentMouse = 0;
-		}
-		if ( this.orientation === "vertical" ) {
-			percentMouse = 1 - percentMouse;
-		}
-
-		valueTotal = this._valueMax() - this._valueMin();
-		valueMouse = this._valueMin() + percentMouse * valueTotal;
-
-		return this._trimAlignValue( valueMouse );
-	},
-
-	_start: function( event, index ) {
-		var uiHash = {
-			handle: this.handles[ index ],
-			value: this.value()
-		};
-		if ( this.options.values && this.options.values.length ) {
-			uiHash.value = this.values( index );
-			uiHash.values = this.values();
-		}
-		return this._trigger( "start", event, uiHash );
-	},
-
-	_slide: function( event, index, newVal ) {
-		var otherVal,
-			newValues,
-			allowed;
-
-		if ( this.options.values && this.options.values.length ) {
-			otherVal = this.values( index ? 0 : 1 );
-
-			if ( ( this.options.values.length === 2 && this.options.range === true ) &&
-					( ( index === 0 && newVal > otherVal) || ( index === 1 && newVal < otherVal ) )
-				) {
-				newVal = otherVal;
-			}
-
-			if ( newVal !== this.values( index ) ) {
-				newValues = this.values();
-				newValues[ index ] = newVal;
-				// A slide can be canceled by returning false from the slide callback
-				allowed = this._trigger( "slide", event, {
-					handle: this.handles[ index ],
-					value: newVal,
-					values: newValues
-				} );
-				otherVal = this.values( index ? 0 : 1 );
-				if ( allowed !== false ) {
-					this.values( index, newVal );
-				}
-			}
-		} else {
-			if ( newVal !== this.value() ) {
-				// A slide can be canceled by returning false from the slide callback
-				allowed = this._trigger( "slide", event, {
-					handle: this.handles[ index ],
-					value: newVal
-				} );
-				if ( allowed !== false ) {
-					this.value( newVal );
-				}
-			}
-		}
-	},
-
-	_stop: function( event, index ) {
-		var uiHash = {
-			handle: this.handles[ index ],
-			value: this.value()
-		};
-		if ( this.options.values && this.options.values.length ) {
-			uiHash.value = this.values( index );
-			uiHash.values = this.values();
-		}
-
-		this._trigger( "stop", event, uiHash );
-	},
-
-	_change: function( event, index ) {
-		if ( !this._keySliding && !this._mouseSliding ) {
-			var uiHash = {
-				handle: this.handles[ index ],
-				value: this.value()
-			};
-			if ( this.options.values && this.options.values.length ) {
-				uiHash.value = this.values( index );
-				uiHash.values = this.values();
-			}
-
-			//store the last changed value index for reference when handles overlap
-			this._lastChangedValue = index;
-
-			this._trigger( "change", event, uiHash );
-		}
-	},
-
-	value: function( newValue ) {
-		if ( arguments.length ) {
-			this.options.value = this._trimAlignValue( newValue );
-			this._refreshValue();
-			this._change( null, 0 );
-			return;
-		}
-
-		return this._value();
-	},
-
-	values: function( index, newValue ) {
-		var vals,
-			newValues,
-			i;
-
-		if ( arguments.length > 1 ) {
-			this.options.values[ index ] = this._trimAlignValue( newValue );
-			this._refreshValue();
-			this._change( null, index );
-			return;
-		}
-
-		if ( arguments.length ) {
-			if ( $.isArray( arguments[ 0 ] ) ) {
-				vals = this.options.values;
-				newValues = arguments[ 0 ];
-				for ( i = 0; i < vals.length; i += 1 ) {
-					vals[ i ] = this._trimAlignValue( newValues[ i ] );
-					this._change( null, i );
-				}
-				this._refreshValue();
-			} else {
-				if ( this.options.values && this.options.values.length ) {
-					return this._values( index );
-				} else {
-					return this.value();
-				}
-			}
-		} else {
-			return this._values();
-		}
-	},
-
-	_setOption: function( key, value ) {
-		var i,
-			valsLength = 0;
-
-		if ( key === "range" && this.options.range === true ) {
-			if ( value === "min" ) {
-				this.options.value = this._values( 0 );
-				this.options.values = null;
-			} else if ( value === "max" ) {
-				this.options.value = this._values( this.options.values.length-1 );
-				this.options.values = null;
-			}
-		}
-
-		if ( $.isArray( this.options.values ) ) {
-			valsLength = this.options.values.length;
-		}
-
-		$.Widget.prototype._setOption.apply( this, arguments );
-
-		switch ( key ) {
-			case "orientation":
-				this._detectOrientation();
-				this.element
-					.removeClass( "ui-slider-horizontal ui-slider-vertical" )
-					.addClass( "ui-slider-" + this.orientation );
-				this._refreshValue();
-				break;
-			case "value":
-				this._animateOff = true;
-				this._refreshValue();
-				this._change( null, 0 );
-				this._animateOff = false;
-				break;
-			case "values":
-				this._animateOff = true;
-				this._refreshValue();
-				for ( i = 0; i < valsLength; i += 1 ) {
-					this._change( null, i );
-				}
-				this._animateOff = false;
-				break;
-			case "min":
-			case "max":
-				this._animateOff = true;
-				this._refreshValue();
-				this._animateOff = false;
-				break;
-			case "range":
-				this._animateOff = true;
-				this._refresh();
-				this._animateOff = false;
-				break;
-		}
-	},
-
-	//internal value getter
-	// _value() returns value trimmed by min and max, aligned by step
-	_value: function() {
-		var val = this.options.value;
-		val = this._trimAlignValue( val );
-
-		return val;
-	},
-
-	//internal values getter
-	// _values() returns array of values trimmed by min and max, aligned by step
-	// _values( index ) returns single value trimmed by min and max, aligned by step
-	_values: function( index ) {
-		var val,
-			vals,
-			i;
-
-		if ( arguments.length ) {
-			val = this.options.values[ index ];
-			val = this._trimAlignValue( val );
-
-			return val;
-		} else if ( this.options.values && this.options.values.length ) {
-			// .slice() creates a copy of the array
-			// this copy gets trimmed by min and max and then returned
-			vals = this.options.values.slice();
-			for ( i = 0; i < vals.length; i+= 1) {
-				vals[ i ] = this._trimAlignValue( vals[ i ] );
-			}
-
-			return vals;
-		} else {
-			return [];
-		}
-	},
-
-	// returns the step-aligned value that val is closest to, between (inclusive) min and max
-	_trimAlignValue: function( val ) {
-		if ( val <= this._valueMin() ) {
-			return this._valueMin();
-		}
-		if ( val >= this._valueMax() ) {
-			return this._valueMax();
-		}
-		var step = ( this.options.step > 0 ) ? this.options.step : 1,
-			valModStep = (val - this._valueMin()) % step,
-			alignValue = val - valModStep;
-
-		if ( Math.abs(valModStep) * 2 >= step ) {
-			alignValue += ( valModStep > 0 ) ? step : ( -step );
-		}
-
-		// Since JavaScript has problems with large floats, round
-		// the final value to 5 digits after the decimal point (see #4124)
-		return parseFloat( alignValue.toFixed(5) );
-	},
-
-	_valueMin: function() {
-		return this.options.min;
-	},
-
-	_valueMax: function() {
-		return this.options.max;
-	},
-
-	_refreshValue: function() {
-		var lastValPercent, valPercent, value, valueMin, valueMax,
-			oRange = this.options.range,
-			o = this.options,
-			that = this,
-			animate = ( !this._animateOff ) ? o.animate : false,
-			_set = {};
-
-		if ( this.options.values && this.options.values.length ) {
-			this.handles.each(function( i ) {
-				valPercent = ( that.values(i) - that._valueMin() ) / ( that._valueMax() - that._valueMin() ) * 100;
-				_set[ that.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-				$( this ).stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
-				if ( that.options.range === true ) {
-					if ( that.orientation === "horizontal" ) {
-						if ( i === 0 ) {
-							that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { left: valPercent + "%" }, o.animate );
-						}
-						if ( i === 1 ) {
-							that.range[ animate ? "animate" : "css" ]( { width: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
-						}
-					} else {
-						if ( i === 0 ) {
-							that.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { bottom: ( valPercent ) + "%" }, o.animate );
-						}
-						if ( i === 1 ) {
-							that.range[ animate ? "animate" : "css" ]( { height: ( valPercent - lastValPercent ) + "%" }, { queue: false, duration: o.animate } );
-						}
-					}
-				}
-				lastValPercent = valPercent;
-			});
-		} else {
-			value = this.value();
-			valueMin = this._valueMin();
-			valueMax = this._valueMax();
-			valPercent = ( valueMax !== valueMin ) ?
-					( value - valueMin ) / ( valueMax - valueMin ) * 100 :
-					0;
-			_set[ this.orientation === "horizontal" ? "left" : "bottom" ] = valPercent + "%";
-			this.handle.stop( 1, 1 )[ animate ? "animate" : "css" ]( _set, o.animate );
-
-			if ( oRange === "min" && this.orientation === "horizontal" ) {
-				this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { width: valPercent + "%" }, o.animate );
-			}
-			if ( oRange === "max" && this.orientation === "horizontal" ) {
-				this.range[ animate ? "animate" : "css" ]( { width: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
-			}
-			if ( oRange === "min" && this.orientation === "vertical" ) {
-				this.range.stop( 1, 1 )[ animate ? "animate" : "css" ]( { height: valPercent + "%" }, o.animate );
-			}
-			if ( oRange === "max" && this.orientation === "vertical" ) {
-				this.range[ animate ? "animate" : "css" ]( { height: ( 100 - valPercent ) + "%" }, { queue: false, duration: o.animate } );
-			}
-		}
-	},
-
-	_handleEvents: {
-		keydown: function( event ) {
-			var allowed, curVal, newVal, step,
-				index = $( event.target ).data( "ui-slider-handle-index" );
-
-			switch ( event.keyCode ) {
-				case $.ui.keyCode.HOME:
-				case $.ui.keyCode.END:
-				case $.ui.keyCode.PAGE_UP:
-				case $.ui.keyCode.PAGE_DOWN:
-				case $.ui.keyCode.UP:
-				case $.ui.keyCode.RIGHT:
-				case $.ui.keyCode.DOWN:
-				case $.ui.keyCode.LEFT:
-					event.preventDefault();
-					if ( !this._keySliding ) {
-						this._keySliding = true;
-						$( event.target ).addClass( "ui-state-active" );
-						allowed = this._start( event, index );
-						if ( allowed === false ) {
-							return;
-						}
-					}
-					break;
-			}
-
-			step = this.options.step;
-			if ( this.options.values && this.options.values.length ) {
-				curVal = newVal = this.values( index );
-			} else {
-				curVal = newVal = this.value();
-			}
-
-			switch ( event.keyCode ) {
-				case $.ui.keyCode.HOME:
-					newVal = this._valueMin();
-					break;
-				case $.ui.keyCode.END:
-					newVal = this._valueMax();
-					break;
-				case $.ui.keyCode.PAGE_UP:
-					newVal = this._trimAlignValue( curVal + ( (this._valueMax() - this._valueMin()) / numPages ) );
-					break;
-				case $.ui.keyCode.PAGE_DOWN:
-					newVal = this._trimAlignValue( curVal - ( (this._valueMax() - this._valueMin()) / numPages ) );
-					break;
-				case $.ui.keyCode.UP:
-				case $.ui.keyCode.RIGHT:
-					if ( curVal === this._valueMax() ) {
-						return;
-					}
-					newVal = this._trimAlignValue( curVal + step );
-					break;
-				case $.ui.keyCode.DOWN:
-				case $.ui.keyCode.LEFT:
-					if ( curVal === this._valueMin() ) {
-						return;
-					}
-					newVal = this._trimAlignValue( curVal - step );
-					break;
-			}
-
-			this._slide( event, index, newVal );
-		},
-		click: function( event ) {
-			event.preventDefault();
-		},
-		keyup: function( event ) {
-			var index = $( event.target ).data( "ui-slider-handle-index" );
-
-			if ( this._keySliding ) {
-				this._keySliding = false;
-				this._stop( event, index );
-				this._change( event, index );
-				$( event.target ).removeClass( "ui-state-active" );
-			}
-		}
-	}
-
-});
-
-}(jQuery));
-
-/*!
- * jQuery UI Effects 1.10.4
- * http://jqueryui.com
- *
- * Copyright 2014 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/category/effects-core/
- */
-(function($, undefined) {
-
-var dataSpace = "ui-effects-";
-
-$.effects = {
-	effect: {}
-};
-
-/*!
- * jQuery Color Animations v2.1.2
- * https://github.com/jquery/jquery-color
- *
- * Copyright 2013 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * Date: Wed Jan 16 08:47:09 2013 -0600
- */
-(function( jQuery, undefined ) {
-
-	var stepHooks = "backgroundColor borderBottomColor borderLeftColor borderRightColor borderTopColor color columnRuleColor outlineColor textDecorationColor textEmphasisColor",
-
-	// plusequals test for += 100 -= 100
-	rplusequals = /^([\-+])=\s*(\d+\.?\d*)/,
-	// a set of RE's that can match strings and generate color tuples.
-	stringParsers = [{
-			re: /rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
-			parse: function( execResult ) {
-				return [
-					execResult[ 1 ],
-					execResult[ 2 ],
-					execResult[ 3 ],
-					execResult[ 4 ]
-				];
-			}
-		}, {
-			re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
-			parse: function( execResult ) {
-				return [
-					execResult[ 1 ] * 2.55,
-					execResult[ 2 ] * 2.55,
-					execResult[ 3 ] * 2.55,
-					execResult[ 4 ]
-				];
-			}
-		}, {
-			// this regex ignores A-F because it's compared against an already lowercased string
-			re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
-			parse: function( execResult ) {
-				return [
-					parseInt( execResult[ 1 ], 16 ),
-					parseInt( execResult[ 2 ], 16 ),
-					parseInt( execResult[ 3 ], 16 )
-				];
-			}
-		}, {
-			// this regex ignores A-F because it's compared against an already lowercased string
-			re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
-			parse: function( execResult ) {
-				return [
-					parseInt( execResult[ 1 ] + execResult[ 1 ], 16 ),
-					parseInt( execResult[ 2 ] + execResult[ 2 ], 16 ),
-					parseInt( execResult[ 3 ] + execResult[ 3 ], 16 )
-				];
-			}
-		}, {
-			re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
-			space: "hsla",
-			parse: function( execResult ) {
-				return [
-					execResult[ 1 ],
-					execResult[ 2 ] / 100,
-					execResult[ 3 ] / 100,
-					execResult[ 4 ]
-				];
-			}
-		}],
-
-	// jQuery.Color( )
-	color = jQuery.Color = function( color, green, blue, alpha ) {
-		return new jQuery.Color.fn.parse( color, green, blue, alpha );
-	},
-	spaces = {
-		rgba: {
-			props: {
-				red: {
-					idx: 0,
-					type: "byte"
-				},
-				green: {
-					idx: 1,
-					type: "byte"
-				},
-				blue: {
-					idx: 2,
-					type: "byte"
-				}
-			}
-		},
-
-		hsla: {
-			props: {
-				hue: {
-					idx: 0,
-					type: "degrees"
-				},
-				saturation: {
-					idx: 1,
-					type: "percent"
-				},
-				lightness: {
-					idx: 2,
-					type: "percent"
-				}
-			}
-		}
-	},
-	propTypes = {
-		"byte": {
-			floor: true,
-			max: 255
-		},
-		"percent": {
-			max: 1
-		},
-		"degrees": {
-			mod: 360,
-			floor: true
-		}
-	},
-	support = color.support = {},
-
-	// element for support tests
-	supportElem = jQuery( "<p>" )[ 0 ],
-
-	// colors = jQuery.Color.names
-	colors,
-
-	// local aliases of functions called often
-	each = jQuery.each;
-
-// determine rgba support immediately
-supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
-support.rgba = supportElem.style.backgroundColor.indexOf( "rgba" ) > -1;
-
-// define cache name and alpha properties
-// for rgba and hsla spaces
-each( spaces, function( spaceName, space ) {
-	space.cache = "_" + spaceName;
-	space.props.alpha = {
-		idx: 3,
-		type: "percent",
-		def: 1
-	};
-});
-
-function clamp( value, prop, allowEmpty ) {
-	var type = propTypes[ prop.type ] || {};
-
-	if ( value == null ) {
-		return (allowEmpty || !prop.def) ? null : prop.def;
-	}
-
-	// ~~ is an short way of doing floor for positive numbers
-	value = type.floor ? ~~value : parseFloat( value );
-
-	// IE will pass in empty strings as value for alpha,
-	// which will hit this case
-	if ( isNaN( value ) ) {
-		return prop.def;
-	}
-
-	if ( type.mod ) {
-		// we add mod before modding to make sure that negatives values
-		// get converted properly: -10 -> 350
-		return (value + type.mod) % type.mod;
-	}
-
-	// for now all property types without mod have min and max
-	return 0 > value ? 0 : type.max < value ? type.max : value;
-}
-
-function stringParse( string ) {
-	var inst = color(),
-		rgba = inst._rgba = [];
-
-	string = string.toLowerCase();
-
-	each( stringParsers, function( i, parser ) {
-		var parsed,
-			match = parser.re.exec( string ),
-			values = match && parser.parse( match ),
-			spaceName = parser.space || "rgba";
-
-		if ( values ) {
-			parsed = inst[ spaceName ]( values );
-
-			// if this was an rgba parse the assignment might happen twice
-			// oh well....
-			inst[ spaces[ spaceName ].cache ] = parsed[ spaces[ spaceName ].cache ];
-			rgba = inst._rgba = parsed._rgba;
-
-			// exit each( stringParsers ) here because we matched
-			return false;
-		}
-	});
-
-	// Found a stringParser that handled it
-	if ( rgba.length ) {
-
-		// if this came from a parsed string, force "transparent" when alpha is 0
-		// chrome, (and maybe others) return "transparent" as rgba(0,0,0,0)
-		if ( rgba.join() === "0,0,0,0" ) {
-			jQuery.extend( rgba, colors.transparent );
-		}
-		return inst;
-	}
-
-	// named colors
-	return colors[ string ];
-}
-
-color.fn = jQuery.extend( color.prototype, {
-	parse: function( red, green, blue, alpha ) {
-		if ( red === undefined ) {
-			this._rgba = [ null, null, null, null ];
-			return this;
-		}
-		if ( red.jquery || red.nodeType ) {
-			red = jQuery( red ).css( green );
-			green = undefined;
-		}
-
-		var inst = this,
-			type = jQuery.type( red ),
-			rgba = this._rgba = [];
-
-		// more than 1 argument specified - assume ( red, green, blue, alpha )
-		if ( green !== undefined ) {
-			red = [ red, green, blue, alpha ];
-			type = "array";
-		}
-
-		if ( type === "string" ) {
-			return this.parse( stringParse( red ) || colors._default );
-		}
-
-		if ( type === "array" ) {
-			each( spaces.rgba.props, function( key, prop ) {
-				rgba[ prop.idx ] = clamp( red[ prop.idx ], prop );
-			});
-			return this;
-		}
-
-		if ( type === "object" ) {
-			if ( red instanceof color ) {
-				each( spaces, function( spaceName, space ) {
-					if ( red[ space.cache ] ) {
-						inst[ space.cache ] = red[ space.cache ].slice();
-					}
-				});
-			} else {
-				each( spaces, function( spaceName, space ) {
-					var cache = space.cache;
-					each( space.props, function( key, prop ) {
-
-						// if the cache doesn't exist, and we know how to convert
-						if ( !inst[ cache ] && space.to ) {
-
-							// if the value was null, we don't need to copy it
-							// if the key was alpha, we don't need to copy it either
-							if ( key === "alpha" || red[ key ] == null ) {
-								return;
-							}
-							inst[ cache ] = space.to( inst._rgba );
-						}
-
-						// this is the only case where we allow nulls for ALL properties.
-						// call clamp with alwaysAllowEmpty
-						inst[ cache ][ prop.idx ] = clamp( red[ key ], prop, true );
-					});
-
-					// everything defined but alpha?
-					if ( inst[ cache ] && jQuery.inArray( null, inst[ cache ].slice( 0, 3 ) ) < 0 ) {
-						// use the default of 1
-						inst[ cache ][ 3 ] = 1;
-						if ( space.from ) {
-							inst._rgba = space.from( inst[ cache ] );
-						}
-					}
-				});
-			}
-			return this;
-		}
-	},
-	is: function( compare ) {
-		var is = color( compare ),
-			same = true,
-			inst = this;
-
-		each( spaces, function( _, space ) {
-			var localCache,
-				isCache = is[ space.cache ];
-			if (isCache) {
-				localCache = inst[ space.cache ] || space.to && space.to( inst._rgba ) || [];
-				each( space.props, function( _, prop ) {
-					if ( isCache[ prop.idx ] != null ) {
-						same = ( isCache[ prop.idx ] === localCache[ prop.idx ] );
-						return same;
-					}
-				});
-			}
-			return same;
-		});
-		return same;
-	},
-	_space: function() {
-		var used = [],
-			inst = this;
-		each( spaces, function( spaceName, space ) {
-			if ( inst[ space.cache ] ) {
-				used.push( spaceName );
-			}
-		});
-		return used.pop();
-	},
-	transition: function( other, distance ) {
-		var end = color( other ),
-			spaceName = end._space(),
-			space = spaces[ spaceName ],
-			startColor = this.alpha() === 0 ? color( "transparent" ) : this,
-			start = startColor[ space.cache ] || space.to( startColor._rgba ),
-			result = start.slice();
-
-		end = end[ space.cache ];
-		each( space.props, function( key, prop ) {
-			var index = prop.idx,
-				startValue = start[ index ],
-				endValue = end[ index ],
-				type = propTypes[ prop.type ] || {};
-
-			// if null, don't override start value
-			if ( endValue === null ) {
-				return;
-			}
-			// if null - use end
-			if ( startValue === null ) {
-				result[ index ] = endValue;
-			} else {
-				if ( type.mod ) {
-					if ( endValue - startValue > type.mod / 2 ) {
-						startValue += type.mod;
-					} else if ( startValue - endValue > type.mod / 2 ) {
-						startValue -= type.mod;
-					}
-				}
-				result[ index ] = clamp( ( endValue - startValue ) * distance + startValue, prop );
-			}
-		});
-		return this[ spaceName ]( result );
-	},
-	blend: function( opaque ) {
-		// if we are already opaque - return ourself
-		if ( this._rgba[ 3 ] === 1 ) {
-			return this;
-		}
-
-		var rgb = this._rgba.slice(),
-			a = rgb.pop(),
-			blend = color( opaque )._rgba;
-
-		return color( jQuery.map( rgb, function( v, i ) {
-			return ( 1 - a ) * blend[ i ] + a * v;
-		}));
-	},
-	toRgbaString: function() {
-		var prefix = "rgba(",
-			rgba = jQuery.map( this._rgba, function( v, i ) {
-				return v == null ? ( i > 2 ? 1 : 0 ) : v;
-			});
-
-		if ( rgba[ 3 ] === 1 ) {
-			rgba.pop();
-			prefix = "rgb(";
-		}
-
-		return prefix + rgba.join() + ")";
-	},
-	toHslaString: function() {
-		var prefix = "hsla(",
-			hsla = jQuery.map( this.hsla(), function( v, i ) {
-				if ( v == null ) {
-					v = i > 2 ? 1 : 0;
-				}
-
-				// catch 1 and 2
-				if ( i && i < 3 ) {
-					v = Math.round( v * 100 ) + "%";
-				}
-				return v;
-			});
-
-		if ( hsla[ 3 ] === 1 ) {
-			hsla.pop();
-			prefix = "hsl(";
-		}
-		return prefix + hsla.join() + ")";
-	},
-	toHexString: function( includeAlpha ) {
-		var rgba = this._rgba.slice(),
-			alpha = rgba.pop();
-
-		if ( includeAlpha ) {
-			rgba.push( ~~( alpha * 255 ) );
-		}
-
-		return "#" + jQuery.map( rgba, function( v ) {
-
-			// default to 0 when nulls exist
-			v = ( v || 0 ).toString( 16 );
-			return v.length === 1 ? "0" + v : v;
-		}).join("");
-	},
-	toString: function() {
-		return this._rgba[ 3 ] === 0 ? "transparent" : this.toRgbaString();
-	}
-});
-color.fn.parse.prototype = color.fn;
-
-// hsla conversions adapted from:
-// https://code.google.com/p/maashaack/source/browse/packages/graphics/trunk/src/graphics/colors/HUE2RGB.as?r=5021
-
-function hue2rgb( p, q, h ) {
-	h = ( h + 1 ) % 1;
-	if ( h * 6 < 1 ) {
-		return p + (q - p) * h * 6;
-	}
-	if ( h * 2 < 1) {
-		return q;
-	}
-	if ( h * 3 < 2 ) {
-		return p + (q - p) * ((2/3) - h) * 6;
-	}
-	return p;
-}
-
-spaces.hsla.to = function ( rgba ) {
-	if ( rgba[ 0 ] == null || rgba[ 1 ] == null || rgba[ 2 ] == null ) {
-		return [ null, null, null, rgba[ 3 ] ];
-	}
-	var r = rgba[ 0 ] / 255,
-		g = rgba[ 1 ] / 255,
-		b = rgba[ 2 ] / 255,
-		a = rgba[ 3 ],
-		max = Math.max( r, g, b ),
-		min = Math.min( r, g, b ),
-		diff = max - min,
-		add = max + min,
-		l = add * 0.5,
-		h, s;
-
-	if ( min === max ) {
-		h = 0;
-	} else if ( r === max ) {
-		h = ( 60 * ( g - b ) / diff ) + 360;
-	} else if ( g === max ) {
-		h = ( 60 * ( b - r ) / diff ) + 120;
-	} else {
-		h = ( 60 * ( r - g ) / diff ) + 240;
-	}
-
-	// chroma (diff) == 0 means greyscale which, by definition, saturation = 0%
-	// otherwise, saturation is based on the ratio of chroma (diff) to lightness (add)
-	if ( diff === 0 ) {
-		s = 0;
-	} else if ( l <= 0.5 ) {
-		s = diff / add;
-	} else {
-		s = diff / ( 2 - add );
-	}
-	return [ Math.round(h) % 360, s, l, a == null ? 1 : a ];
-};
-
-spaces.hsla.from = function ( hsla ) {
-	if ( hsla[ 0 ] == null || hsla[ 1 ] == null || hsla[ 2 ] == null ) {
-		return [ null, null, null, hsla[ 3 ] ];
-	}
-	var h = hsla[ 0 ] / 360,
-		s = hsla[ 1 ],
-		l = hsla[ 2 ],
-		a = hsla[ 3 ],
-		q = l <= 0.5 ? l * ( 1 + s ) : l + s - l * s,
-		p = 2 * l - q;
-
-	return [
-		Math.round( hue2rgb( p, q, h + ( 1 / 3 ) ) * 255 ),
-		Math.round( hue2rgb( p, q, h ) * 255 ),
-		Math.round( hue2rgb( p, q, h - ( 1 / 3 ) ) * 255 ),
-		a
-	];
-};
-
-
-each( spaces, function( spaceName, space ) {
-	var props = space.props,
-		cache = space.cache,
-		to = space.to,
-		from = space.from;
-
-	// makes rgba() and hsla()
-	color.fn[ spaceName ] = function( value ) {
-
-		// generate a cache for this space if it doesn't exist
-		if ( to && !this[ cache ] ) {
-			this[ cache ] = to( this._rgba );
-		}
-		if ( value === undefined ) {
-			return this[ cache ].slice();
-		}
-
-		var ret,
-			type = jQuery.type( value ),
-			arr = ( type === "array" || type === "object" ) ? value : arguments,
-			local = this[ cache ].slice();
-
-		each( props, function( key, prop ) {
-			var val = arr[ type === "object" ? key : prop.idx ];
-			if ( val == null ) {
-				val = local[ prop.idx ];
-			}
-			local[ prop.idx ] = clamp( val, prop );
-		});
-
-		if ( from ) {
-			ret = color( from( local ) );
-			ret[ cache ] = local;
-			return ret;
-		} else {
-			return color( local );
-		}
-	};
-
-	// makes red() green() blue() alpha() hue() saturation() lightness()
-	each( props, function( key, prop ) {
-		// alpha is included in more than one space
-		if ( color.fn[ key ] ) {
-			return;
-		}
-		color.fn[ key ] = function( value ) {
-			var vtype = jQuery.type( value ),
-				fn = ( key === "alpha" ? ( this._hsla ? "hsla" : "rgba" ) : spaceName ),
-				local = this[ fn ](),
-				cur = local[ prop.idx ],
-				match;
-
-			if ( vtype === "undefined" ) {
-				return cur;
-			}
-
-			if ( vtype === "function" ) {
-				value = value.call( this, cur );
-				vtype = jQuery.type( value );
-			}
-			if ( value == null && prop.empty ) {
-				return this;
-			}
-			if ( vtype === "string" ) {
-				match = rplusequals.exec( value );
-				if ( match ) {
-					value = cur + parseFloat( match[ 2 ] ) * ( match[ 1 ] === "+" ? 1 : -1 );
-				}
-			}
-			local[ prop.idx ] = value;
-			return this[ fn ]( local );
-		};
-	});
-});
-
-// add cssHook and .fx.step function for each named hook.
-// accept a space separated string of properties
-color.hook = function( hook ) {
-	var hooks = hook.split( " " );
-	each( hooks, function( i, hook ) {
-		jQuery.cssHooks[ hook ] = {
-			set: function( elem, value ) {
-				var parsed, curElem,
-					backgroundColor = "";
-
-				if ( value !== "transparent" && ( jQuery.type( value ) !== "string" || ( parsed = stringParse( value ) ) ) ) {
-					value = color( parsed || value );
-					if ( !support.rgba && value._rgba[ 3 ] !== 1 ) {
-						curElem = hook === "backgroundColor" ? elem.parentNode : elem;
-						while (
-							(backgroundColor === "" || backgroundColor === "transparent") &&
-							curElem && curElem.style
-						) {
-							try {
-								backgroundColor = jQuery.css( curElem, "backgroundColor" );
-								curElem = curElem.parentNode;
-							} catch ( e ) {
-							}
-						}
-
-						value = value.blend( backgroundColor && backgroundColor !== "transparent" ?
-							backgroundColor :
-							"_default" );
-					}
-
-					value = value.toRgbaString();
-				}
-				try {
-					elem.style[ hook ] = value;
-				} catch( e ) {
-					// wrapped to prevent IE from throwing errors on "invalid" values like 'auto' or 'inherit'
-				}
-			}
-		};
-		jQuery.fx.step[ hook ] = function( fx ) {
-			if ( !fx.colorInit ) {
-				fx.start = color( fx.elem, hook );
-				fx.end = color( fx.end );
-				fx.colorInit = true;
-			}
-			jQuery.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
-		};
-	});
-
-};
-
-color.hook( stepHooks );
-
-jQuery.cssHooks.borderColor = {
-	expand: function( value ) {
-		var expanded = {};
-
-		each( [ "Top", "Right", "Bottom", "Left" ], function( i, part ) {
-			expanded[ "border" + part + "Color" ] = value;
-		});
-		return expanded;
-	}
-};
-
-// Basic color names only.
-// Usage of any of the other color names requires adding yourself or including
-// jquery.color.svg-names.js.
-colors = jQuery.Color.names = {
-	// 4.1. Basic color keywords
-	aqua: "#00ffff",
-	black: "#000000",
-	blue: "#0000ff",
-	fuchsia: "#ff00ff",
-	gray: "#808080",
-	green: "#008000",
-	lime: "#00ff00",
-	maroon: "#800000",
-	navy: "#000080",
-	olive: "#808000",
-	purple: "#800080",
-	red: "#ff0000",
-	silver: "#c0c0c0",
-	teal: "#008080",
-	white: "#ffffff",
-	yellow: "#ffff00",
-
-	// 4.2.3. "transparent" color keyword
-	transparent: [ null, null, null, 0 ],
-
-	_default: "#ffffff"
-};
-
-})( jQuery );
-
-
-/******************************************************************************/
-/****************************** CLASS ANIMATIONS ******************************/
-/******************************************************************************/
-(function() {
-
-var classAnimationActions = [ "add", "remove", "toggle" ],
-	shorthandStyles = {
-		border: 1,
-		borderBottom: 1,
-		borderColor: 1,
-		borderLeft: 1,
-		borderRight: 1,
-		borderTop: 1,
-		borderWidth: 1,
-		margin: 1,
-		padding: 1
-	};
-
-$.each([ "borderLeftStyle", "borderRightStyle", "borderBottomStyle", "borderTopStyle" ], function( _, prop ) {
-	$.fx.step[ prop ] = function( fx ) {
-		if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
-			jQuery.style( fx.elem, prop, fx.end );
-			fx.setAttr = true;
-		}
-	};
-});
-
-function getElementStyles( elem ) {
-	var key, len,
-		style = elem.ownerDocument.defaultView ?
-			elem.ownerDocument.defaultView.getComputedStyle( elem, null ) :
-			elem.currentStyle,
-		styles = {};
-
-	if ( style && style.length && style[ 0 ] && style[ style[ 0 ] ] ) {
-		len = style.length;
-		while ( len-- ) {
-			key = style[ len ];
-			if ( typeof style[ key ] === "string" ) {
-				styles[ $.camelCase( key ) ] = style[ key ];
-			}
-		}
-	// support: Opera, IE <9
-	} else {
-		for ( key in style ) {
-			if ( typeof style[ key ] === "string" ) {
-				styles[ key ] = style[ key ];
-			}
-		}
-	}
-
-	return styles;
-}
-
-
-function styleDifference( oldStyle, newStyle ) {
-	var diff = {},
-		name, value;
-
-	for ( name in newStyle ) {
-		value = newStyle[ name ];
-		if ( oldStyle[ name ] !== value ) {
-			if ( !shorthandStyles[ name ] ) {
-				if ( $.fx.step[ name ] || !isNaN( parseFloat( value ) ) ) {
-					diff[ name ] = value;
-				}
-			}
-		}
-	}
-
-	return diff;
-}
-
-// support: jQuery <1.8
-if ( !$.fn.addBack ) {
-	$.fn.addBack = function( selector ) {
-		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter( selector )
-		);
-	};
-}
-
-$.effects.animateClass = function( value, duration, easing, callback ) {
-	var o = $.speed( duration, easing, callback );
-
-	return this.queue( function() {
-		var animated = $( this ),
-			baseClass = animated.attr( "class" ) || "",
-			applyClassChange,
-			allAnimations = o.children ? animated.find( "*" ).addBack() : animated;
-
-		// map the animated objects to store the original styles.
-		allAnimations = allAnimations.map(function() {
-			var el = $( this );
-			return {
-				el: el,
-				start: getElementStyles( this )
-			};
-		});
-
-		// apply class change
-		applyClassChange = function() {
-			$.each( classAnimationActions, function(i, action) {
-				if ( value[ action ] ) {
-					animated[ action + "Class" ]( value[ action ] );
-				}
-			});
-		};
-		applyClassChange();
-
-		// map all animated objects again - calculate new styles and diff
-		allAnimations = allAnimations.map(function() {
-			this.end = getElementStyles( this.el[ 0 ] );
-			this.diff = styleDifference( this.start, this.end );
-			return this;
-		});
-
-		// apply original class
-		animated.attr( "class", baseClass );
-
-		// map all animated objects again - this time collecting a promise
-		allAnimations = allAnimations.map(function() {
-			var styleInfo = this,
-				dfd = $.Deferred(),
-				opts = $.extend({}, o, {
-					queue: false,
-					complete: function() {
-						dfd.resolve( styleInfo );
-					}
-				});
-
-			this.el.animate( this.diff, opts );
-			return dfd.promise();
-		});
-
-		// once all animations have completed:
-		$.when.apply( $, allAnimations.get() ).done(function() {
-
-			// set the final class
-			applyClassChange();
-
-			// for each animated element,
-			// clear all css properties that were animated
-			$.each( arguments, function() {
-				var el = this.el;
-				$.each( this.diff, function(key) {
-					el.css( key, "" );
-				});
-			});
-
-			// this is guarnteed to be there if you use jQuery.speed()
-			// it also handles dequeuing the next anim...
-			o.complete.call( animated[ 0 ] );
-		});
-	});
-};
-
-$.fn.extend({
-	addClass: (function( orig ) {
-		return function( classNames, speed, easing, callback ) {
-			return speed ?
-				$.effects.animateClass.call( this,
-					{ add: classNames }, speed, easing, callback ) :
-				orig.apply( this, arguments );
-		};
-	})( $.fn.addClass ),
-
-	removeClass: (function( orig ) {
-		return function( classNames, speed, easing, callback ) {
-			return arguments.length > 1 ?
-				$.effects.animateClass.call( this,
-					{ remove: classNames }, speed, easing, callback ) :
-				orig.apply( this, arguments );
-		};
-	})( $.fn.removeClass ),
-
-	toggleClass: (function( orig ) {
-		return function( classNames, force, speed, easing, callback ) {
-			if ( typeof force === "boolean" || force === undefined ) {
-				if ( !speed ) {
-					// without speed parameter
-					return orig.apply( this, arguments );
-				} else {
-					return $.effects.animateClass.call( this,
-						(force ? { add: classNames } : { remove: classNames }),
-						speed, easing, callback );
-				}
-			} else {
-				// without force parameter
-				return $.effects.animateClass.call( this,
-					{ toggle: classNames }, force, speed, easing );
-			}
-		};
-	})( $.fn.toggleClass ),
-
-	switchClass: function( remove, add, speed, easing, callback) {
-		return $.effects.animateClass.call( this, {
-			add: add,
-			remove: remove
-		}, speed, easing, callback );
-	}
-});
-
-})();
-
-/******************************************************************************/
-/*********************************** EFFECTS **********************************/
-/******************************************************************************/
-
-(function() {
-
-$.extend( $.effects, {
-	version: "1.10.4",
-
-	// Saves a set of properties in a data storage
-	save: function( element, set ) {
-		for( var i=0; i < set.length; i++ ) {
-			if ( set[ i ] !== null ) {
-				element.data( dataSpace + set[ i ], element[ 0 ].style[ set[ i ] ] );
-			}
-		}
-	},
-
-	// Restores a set of previously saved properties from a data storage
-	restore: function( element, set ) {
-		var val, i;
-		for( i=0; i < set.length; i++ ) {
-			if ( set[ i ] !== null ) {
-				val = element.data( dataSpace + set[ i ] );
-				// support: jQuery 1.6.2
-				// http://bugs.jquery.com/ticket/9917
-				// jQuery 1.6.2 incorrectly returns undefined for any falsy value.
-				// We can't differentiate between "" and 0 here, so we just assume
-				// empty string since it's likely to be a more common value...
-				if ( val === undefined ) {
-					val = "";
-				}
-				element.css( set[ i ], val );
-			}
-		}
-	},
-
-	setMode: function( el, mode ) {
-		if (mode === "toggle") {
-			mode = el.is( ":hidden" ) ? "show" : "hide";
-		}
-		return mode;
-	},
-
-	// Translates a [top,left] array into a baseline value
-	// this should be a little more flexible in the future to handle a string & hash
-	getBaseline: function( origin, original ) {
-		var y, x;
-		switch ( origin[ 0 ] ) {
-			case "top": y = 0; break;
-			case "middle": y = 0.5; break;
-			case "bottom": y = 1; break;
-			default: y = origin[ 0 ] / original.height;
-		}
-		switch ( origin[ 1 ] ) {
-			case "left": x = 0; break;
-			case "center": x = 0.5; break;
-			case "right": x = 1; break;
-			default: x = origin[ 1 ] / original.width;
-		}
-		return {
-			x: x,
-			y: y
-		};
-	},
-
-	// Wraps the element around a wrapper that copies position properties
-	createWrapper: function( element ) {
-
-		// if the element is already wrapped, return it
-		if ( element.parent().is( ".ui-effects-wrapper" )) {
-			return element.parent();
-		}
-
-		// wrap the element
-		var props = {
-				width: element.outerWidth(true),
-				height: element.outerHeight(true),
-				"float": element.css( "float" )
-			},
-			wrapper = $( "<div></div>" )
-				.addClass( "ui-effects-wrapper" )
-				.css({
-					fontSize: "100%",
-					background: "transparent",
-					border: "none",
-					margin: 0,
-					padding: 0
-				}),
-			// Store the size in case width/height are defined in % - Fixes #5245
-			size = {
-				width: element.width(),
-				height: element.height()
-			},
-			active = document.activeElement;
-
-		// support: Firefox
-		// Firefox incorrectly exposes anonymous content
-		// https://bugzilla.mozilla.org/show_bug.cgi?id=561664
-		try {
-			active.id;
-		} catch( e ) {
-			active = document.body;
-		}
-
-		element.wrap( wrapper );
-
-		// Fixes #7595 - Elements lose focus when wrapped.
-		if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-			$( active ).focus();
-		}
-
-		wrapper = element.parent(); //Hotfix for jQuery 1.4 since some change in wrap() seems to actually lose the reference to the wrapped element
-
-		// transfer positioning properties to the wrapper
-		if ( element.css( "position" ) === "static" ) {
-			wrapper.css({ position: "relative" });
-			element.css({ position: "relative" });
-		} else {
-			$.extend( props, {
-				position: element.css( "position" ),
-				zIndex: element.css( "z-index" )
-			});
-			$.each([ "top", "left", "bottom", "right" ], function(i, pos) {
-				props[ pos ] = element.css( pos );
-				if ( isNaN( parseInt( props[ pos ], 10 ) ) ) {
-					props[ pos ] = "auto";
-				}
-			});
-			element.css({
-				position: "relative",
-				top: 0,
-				left: 0,
-				right: "auto",
-				bottom: "auto"
-			});
-		}
-		element.css(size);
-
-		return wrapper.css( props ).show();
-	},
-
-	removeWrapper: function( element ) {
-		var active = document.activeElement;
-
-		if ( element.parent().is( ".ui-effects-wrapper" ) ) {
-			element.parent().replaceWith( element );
-
-			// Fixes #7595 - Elements lose focus when wrapped.
-			if ( element[ 0 ] === active || $.contains( element[ 0 ], active ) ) {
-				$( active ).focus();
-			}
-		}
-
-
-		return element;
-	},
-
-	setTransition: function( element, list, factor, value ) {
-		value = value || {};
-		$.each( list, function( i, x ) {
-			var unit = element.cssUnit( x );
-			if ( unit[ 0 ] > 0 ) {
-				value[ x ] = unit[ 0 ] * factor + unit[ 1 ];
-			}
-		});
-		return value;
-	}
-});
-
-// return an effect options object for the given parameters:
-function _normalizeArguments( effect, options, speed, callback ) {
-
-	// allow passing all options as the first parameter
-	if ( $.isPlainObject( effect ) ) {
-		options = effect;
-		effect = effect.effect;
-	}
-
-	// convert to an object
-	effect = { effect: effect };
-
-	// catch (effect, null, ...)
-	if ( options == null ) {
-		options = {};
-	}
-
-	// catch (effect, callback)
-	if ( $.isFunction( options ) ) {
-		callback = options;
-		speed = null;
-		options = {};
-	}
-
-	// catch (effect, speed, ?)
-	if ( typeof options === "number" || $.fx.speeds[ options ] ) {
-		callback = speed;
-		speed = options;
-		options = {};
-	}
-
-	// catch (effect, options, callback)
-	if ( $.isFunction( speed ) ) {
-		callback = speed;
-		speed = null;
-	}
-
-	// add options to effect
-	if ( options ) {
-		$.extend( effect, options );
-	}
-
-	speed = speed || options.duration;
-	effect.duration = $.fx.off ? 0 :
-		typeof speed === "number" ? speed :
-		speed in $.fx.speeds ? $.fx.speeds[ speed ] :
-		$.fx.speeds._default;
-
-	effect.complete = callback || options.complete;
-
-	return effect;
-}
-
-function standardAnimationOption( option ) {
-	// Valid standard speeds (nothing, number, named speed)
-	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
-		return true;
-	}
-
-	// Invalid strings - treat as "normal" speed
-	if ( typeof option === "string" && !$.effects.effect[ option ] ) {
-		return true;
-	}
-
-	// Complete callback
-	if ( $.isFunction( option ) ) {
-		return true;
-	}
-
-	// Options hash (but not naming an effect)
-	if ( typeof option === "object" && !option.effect ) {
-		return true;
-	}
-
-	// Didn't match any standard API
-	return false;
-}
-
-$.fn.extend({
-	effect: function( /* effect, options, speed, callback */ ) {
-		var args = _normalizeArguments.apply( this, arguments ),
-			mode = args.mode,
-			queue = args.queue,
-			effectMethod = $.effects.effect[ args.effect ];
-
-		if ( $.fx.off || !effectMethod ) {
-			// delegate to the original method (e.g., .show()) if possible
-			if ( mode ) {
-				return this[ mode ]( args.duration, args.complete );
-			} else {
-				return this.each( function() {
-					if ( args.complete ) {
-						args.complete.call( this );
-					}
-				});
-			}
-		}
-
-		function run( next ) {
-			var elem = $( this ),
-				complete = args.complete,
-				mode = args.mode;
-
-			function done() {
-				if ( $.isFunction( complete ) ) {
-					complete.call( elem[0] );
-				}
-				if ( $.isFunction( next ) ) {
-					next();
-				}
-			}
-
-			// If the element already has the correct final state, delegate to
-			// the core methods so the internal tracking of "olddisplay" works.
-			if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
-				elem[ mode ]();
-				done();
-			} else {
-				effectMethod.call( elem[0], args, done );
-			}
-		}
-
-		return queue === false ? this.each( run ) : this.queue( queue || "fx", run );
-	},
-
-	show: (function( orig ) {
-		return function( option ) {
-			if ( standardAnimationOption( option ) ) {
-				return orig.apply( this, arguments );
-			} else {
-				var args = _normalizeArguments.apply( this, arguments );
-				args.mode = "show";
-				return this.effect.call( this, args );
-			}
-		};
-	})( $.fn.show ),
-
-	hide: (function( orig ) {
-		return function( option ) {
-			if ( standardAnimationOption( option ) ) {
-				return orig.apply( this, arguments );
-			} else {
-				var args = _normalizeArguments.apply( this, arguments );
-				args.mode = "hide";
-				return this.effect.call( this, args );
-			}
-		};
-	})( $.fn.hide ),
-
-	toggle: (function( orig ) {
-		return function( option ) {
-			if ( standardAnimationOption( option ) || typeof option === "boolean" ) {
-				return orig.apply( this, arguments );
-			} else {
-				var args = _normalizeArguments.apply( this, arguments );
-				args.mode = "toggle";
-				return this.effect.call( this, args );
-			}
-		};
-	})( $.fn.toggle ),
-
-	// helper functions
-	cssUnit: function(key) {
-		var style = this.css( key ),
-			val = [];
-
-		$.each( [ "em", "px", "%", "pt" ], function( i, unit ) {
-			if ( style.indexOf( unit ) > 0 ) {
-				val = [ parseFloat( style ), unit ];
-			}
-		});
-		return val;
-	}
-});
-
-})();
-
-/******************************************************************************/
-/*********************************** EASING ***********************************/
-/******************************************************************************/
-
-(function() {
-
-// based on easing equations from Robert Penner (http://www.robertpenner.com/easing)
-
-var baseEasings = {};
-
-$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
-	baseEasings[ name ] = function( p ) {
-		return Math.pow( p, i + 2 );
-	};
-});
-
-$.extend( baseEasings, {
-	Sine: function ( p ) {
-		return 1 - Math.cos( p * Math.PI / 2 );
-	},
-	Circ: function ( p ) {
-		return 1 - Math.sqrt( 1 - p * p );
-	},
-	Elastic: function( p ) {
-		return p === 0 || p === 1 ? p :
-			-Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
-	},
-	Back: function( p ) {
-		return p * p * ( 3 * p - 2 );
-	},
-	Bounce: function ( p ) {
-		var pow2,
-			bounce = 4;
-
-		while ( p < ( ( pow2 = Math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
-		return 1 / Math.pow( 4, 3 - bounce ) - 7.5625 * Math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
-	}
-});
-
-$.each( baseEasings, function( name, easeIn ) {
-	$.easing[ "easeIn" + name ] = easeIn;
-	$.easing[ "easeOut" + name ] = function( p ) {
-		return 1 - easeIn( 1 - p );
-	};
-	$.easing[ "easeInOut" + name ] = function( p ) {
-		return p < 0.5 ?
-			easeIn( p * 2 ) / 2 :
-			1 - easeIn( p * -2 + 2 ) / 2;
-	};
-});
-
-})();
-
-})(jQuery);
-
-/*!
- * jQuery UI Touch Punch 0.2.2
- *
- * Copyright 2011, Dave Furfero
- * Dual licensed under the MIT or GPL Version 2 licenses.
- *
- * Depends:
- *  jquery.ui.widget.js
- *  jquery.ui.mouse.js
- */
-(function ($) {
-
-  // Detect touch support
-  $.support.touch = 'ontouchend' in document;
-
-  // Ignore browsers without touch support
-  if (!$.support.touch) {
-    return;
-  }
-
-  var mouseProto = $.ui.mouse.prototype,
-      _mouseInit = mouseProto._mouseInit,
-      touchHandled;
-
-  /**
-   * Simulate a mouse event based on a corresponding touch event
-   * @param {Object} event A touch event
-   * @param {String} simulatedType The corresponding mouse event
-   */
-  function simulateMouseEvent (event, simulatedType) {
-
-    // Ignore multi-touch events
-    if (event.originalEvent.touches.length > 1) {
-      return;
-    }
-
-    event.preventDefault();
-
-    var touch = event.originalEvent.changedTouches[0],
-        simulatedEvent = document.createEvent('MouseEvents');
-    
-    // Initialize the simulated mouse event using the touch event's coordinates
-    simulatedEvent.initMouseEvent(
-      simulatedType,    // type
-      true,             // bubbles                    
-      true,             // cancelable                 
-      window,           // view                       
-      1,                // detail                     
-      touch.screenX,    // screenX                    
-      touch.screenY,    // screenY                    
-      touch.clientX,    // clientX                    
-      touch.clientY,    // clientY                    
-      false,            // ctrlKey                    
-      false,            // altKey                     
-      false,            // shiftKey                   
-      false,            // metaKey                    
-      0,                // button                     
-      null              // relatedTarget              
-    );
-
-    // Dispatch the simulated event to the target element
-    event.target.dispatchEvent(simulatedEvent);
-  }
-
-  /**
-   * Handle the jQuery UI widget's touchstart events
-   * @param {Object} event The widget element's touchstart event
-   */
-  mouseProto._touchStart = function (event) {
-
-    var self = this;
-
-    // Ignore the event if another widget is already being handled
-    if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0])) {
-      return;
-    }
-
-    // Set the flag to prevent other widgets from inheriting the touch event
-    touchHandled = true;
-
-    // Track movement to determine if interaction was a click
-    self._touchMoved = false;
-
-    // Simulate the mouseover event
-    simulateMouseEvent(event, 'mouseover');
-
-    // Simulate the mousemove event
-    simulateMouseEvent(event, 'mousemove');
-
-    // Simulate the mousedown event
-    simulateMouseEvent(event, 'mousedown');
-  };
-
-  /**
-   * Handle the jQuery UI widget's touchmove events
-   * @param {Object} event The document's touchmove event
-   */
-  mouseProto._touchMove = function (event) {
-
-    // Ignore event if not handled
-    if (!touchHandled) {
-      return;
-    }
-
-    // Interaction was not a click
-    this._touchMoved = true;
-
-    // Simulate the mousemove event
-    simulateMouseEvent(event, 'mousemove');
-  };
-
-  /**
-   * Handle the jQuery UI widget's touchend events
-   * @param {Object} event The document's touchend event
-   */
-  mouseProto._touchEnd = function (event) {
-
-    // Ignore event if not handled
-    if (!touchHandled) {
-      return;
-    }
-
-    // Simulate the mouseup event
-    simulateMouseEvent(event, 'mouseup');
-
-    // Simulate the mouseout event
-    simulateMouseEvent(event, 'mouseout');
-
-    // If the touch interaction did not move, it should trigger a click
-    if (!this._touchMoved) {
-
-      // Simulate the click event
-      simulateMouseEvent(event, 'click');
-    }
-
-    // Unset the flag to allow other widgets to inherit the touch event
-    touchHandled = false;
-  };
-
-  /**
-   * A duck punch of the $.ui.mouse _mouseInit method to support touch events.
-   * This method extends the widget with bound touch event handlers that
-   * translate touch events to mouse events and pass them to the widget's
-   * original mouse event handling methods.
-   */
-  mouseProto._mouseInit = function () {
-    
-    var self = this;
-
-    // Delegate the touch handlers to the widget's element
-    self.element
-      .bind('touchstart', $.proxy(self, '_touchStart'))
-      .bind('touchmove', $.proxy(self, '_touchMove'))
-      .bind('touchend', $.proxy(self, '_touchEnd'));
-
-    // Call the original $.ui.mouse init method
-    _mouseInit.call(self);
-  };
-
-})(jQuery);
 /* ============================================================
  * flatui-radiocheck v0.1.0
  * ============================================================ */

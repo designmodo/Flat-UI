@@ -1,5 +1,5 @@
 /*!
- * Flat UI Free v2.2.0 (http://designmodo.github.io/Flat-UI/)
+ * Flat UI Free v2.2.1 (http://designmodo.github.io/Flat-UI/)
  * Copyright 2013-2014 Designmodo, Inc.
  */
 
@@ -3788,65 +3788,6 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
 .twitter-typeahead {
   width: 100%;
   }
-.twitter-typeahead .tt-query,
-.twitter-typeahead .tt-hint {
-  height: 42px;
-  padding: 8px 12px;
-  font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.467;
-  color: #34495e;
-  border: 2px solid #bdc3c7;
-  border-radius: 6px;
-  box-shadow: none;
-  -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
-          transition: border .25s linear, color .25s linear, background-color .25s linear;
-  }
-.twitter-typeahead .tt-query::-moz-placeholder,
-.twitter-typeahead .tt-hint::-moz-placeholder {
-  color: #b2bcc5;
-  opacity: 1;
-  }
-.twitter-typeahead .tt-query:-ms-input-placeholder,
-.twitter-typeahead .tt-hint:-ms-input-placeholder {
-  color: #b2bcc5;
-  }
-.twitter-typeahead .tt-query::-webkit-input-placeholder,
-.twitter-typeahead .tt-hint::-webkit-input-placeholder {
-  color: #b2bcc5;
-  }
-.form-group.focus .twitter-typeahead .tt-query,
-.form-group.focus .twitter-typeahead .tt-hint,
-.twitter-typeahead .tt-query:focus,
-.twitter-typeahead .tt-hint:focus {
-  border-color: #1abc9c;
-  outline: 0;
-  box-shadow: none;
-  }
-.twitter-typeahead .tt-query[disabled],
-.twitter-typeahead .tt-hint[disabled],
-.twitter-typeahead .tt-query[readonly],
-.twitter-typeahead .tt-hint[readonly],
-fieldset[disabled] .twitter-typeahead .tt-query,
-fieldset[disabled] .twitter-typeahead .tt-hint {
-  color: #d5dbdb;
-  cursor: default;
-  background-color: #f4f6f6;
-  border-color: #d5dbdb;
-  opacity: .7;
-  }
-.twitter-typeahead .tt-query.flat,
-.twitter-typeahead .tt-hint.flat {
-  border-color: transparent;
-  }
-.twitter-typeahead .tt-query.flat:hover,
-.twitter-typeahead .tt-hint.flat:hover {
-  border-color: #bdc3c7;
-  }
-.twitter-typeahead .tt-query.flat:focus,
-.twitter-typeahead .tt-hint.flat:focus {
-  border-color: #1abc9c;
-  }
 .twitter-typeahead .tt-dropdown-menu {
   width: 100%;
   padding: 5px 0;
@@ -4603,7 +4544,8 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   color: #606d7a;
   }
 .dropdown-menu > li:first-child > a:first-child {
-  border-top-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   }
 .dropdown-menu > li:last-child > a:first-child {
   border-bottom-right-radius: 4px;

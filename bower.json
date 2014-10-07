@@ -1,6 +1,6 @@
 {
   "name": "flat-ui",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": [
     "less/flat-ui.less",
     "dist/css/flat-ui.css",
@@ -19,6 +19,7 @@
     "jquery-ui": "~1.10.4",
     "bootstrap": "~3.2.0",
     "bootstrap-switch": "~3.0.2",
+    "holderjs": "~2.4.0",
     "html5shiv": "~3.7.2",
     "jquery-ui-touch-punch": "*",
     "respond": "~1.4.2",

@@ -65,14 +65,6 @@ module.exports = function (grunt) {
       },
       dist: {
         src: [
-          '<%= bower_conf.directory %>/bootstrap/dist/js/bootstrap.js',
-
-          '<%= bower_conf.directory %>/bootstrap-switch/dist/js/bootstrap-switch.js',
-          '<%= bower_conf.directory %>/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
-          '<%= bower_conf.directory %>/typeahead.js/dist/typeahead.bundle.js',
-          '<%= bower_conf.directory %>/videojs/dist/video-js/video.js',
-          '<%= bower_conf.directory %>/select2/select2.js',
-
           '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.core.js',
           '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.widget.js',
           '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.mouse.js',
@@ -81,6 +73,15 @@ module.exports = function (grunt) {
           '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.slider.js',
           '<%= bower_conf.directory %>/jquery-ui/ui/jquery.ui.effect.js',
           '<%= bower_conf.directory %>/jquery-ui-touch-punch/jquery.ui.touch-punch.js',
+
+          '<%= bower_conf.directory %>/bootstrap/dist/js/bootstrap.js',
+
+          '<%= bower_conf.directory %>/bootstrap-switch/dist/js/bootstrap-switch.js',
+          '<%= bower_conf.directory %>/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+          '<%= bower_conf.directory %>/holderjs/holder.js',
+          '<%= bower_conf.directory %>/typeahead.js/dist/typeahead.bundle.js',
+          '<%= bower_conf.directory %>/videojs/dist/video-js/video.js',
+          '<%= bower_conf.directory %>/select2/select2.js',
 
           'js/*.js',
           '!js/application.js'
