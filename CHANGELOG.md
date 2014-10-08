@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.1
+
+  * Fixed issue with dropdowns border-top-radius (https://github.com/designmodo/Flat-UI-Pro-Support/issues/460);
+  * Fixed conflict issue of jquery-ui and bootstrap button.js (https://github.com/designmodo/Flat-UI-Pro-Support/issues/465);
+  * Added holder.js library;
+  * Added test case for typeahead component; 
+  * Typeahead: fixed form-control styling;
+  * Various small bugfixes and improvements.
+
 ## 2.2.0
 
 ###Misc
