@@ -2,6 +2,7 @@
 // Variables
 // --------------------------------------------------
 
+
 // == Colors
 //
 //##
@@ -50,6 +51,14 @@
 @brand-danger:              @alizarin;
 @brand-info:                @peter-river;
 
+// Social colors
+@social-pinterest:          #cb2028;
+@social-linkedin:           #0072b5;
+@social-stumbleupon:        #ed4a13;
+@social-googleplus:         #2d2d2d;
+@social-facebook:           #2f4b93;
+@social-twitter:            #00bdef;
+
 
 //== Scaffolding
 //
@@ -61,6 +70,8 @@
 //** Global textual link color.
 @link-color:                @green-sea;
 @link-hover-color:          @turquoise;
+//** Link hover decoration.
+@link-hover-decoration:     underline;
 
 
 //== Typography
@@ -69,8 +80,8 @@
 
 @font-family-base:              "Lato", Helvetica, Arial, sans-serif;
 @font-family-demo:              "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-monospace:         Monaco, Menlo, Consolas, "Courier New", monospace;
-@font-size-base:                18px;
+@font-family-monospace:          Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-size-base:                 18px;
 
 @local-font-path:               "../fonts/lato/";
 @local-font-name:               "lato-regular";
@@ -86,34 +97,34 @@
 @local-font-name-bold-italic:   "lato-bolditalic";
 @local-font-svg-id-bold-italic: "latobold-italic";
 
-@font-size-h1:                  floor((@font-size-base * 3.444)); // ~62px
-@font-size-h2:                  ceil((@font-size-base * 2.889)); // ~52px
-@font-size-h3:                  ceil((@font-size-base * 2.222)); // ~40px
-@font-size-h4:                  ceil((@font-size-base * 1.611)); // ~29px
-@font-size-h5:                  floor((@font-size-base * 1.556)); // ~28px
-@font-size-h6:                  ceil((@font-size-base * 1.333)); // ~24px
+@font-size-h1:              floor((@font-size-base * 3.444)); // ~62px
+@font-size-h2:              ceil((@font-size-base * 2.889)); // ~52px
+@font-size-h3:              ceil((@font-size-base * 2.222)); // ~40px
+@font-size-h4:              ceil((@font-size-base * 1.611)); // ~29px
+@font-size-h5:              floor((@font-size-base * 1.556)); // ~28px
+@font-size-h6:              ceil((@font-size-base * 1.333)); // ~24px
 
-@line-height-base:              1.72222; // 31/18
-@line-height-computed:          floor((@font-size-base * @line-height-base)); // ~31px
+@line-height-base:          1.72222; // 31/18
+@line-height-computed:      floor((@font-size-base * @line-height-base)); // ~31px
 
-@headings-font-family:          inherit;
-@headings-font-weight:          700;
-@headings-line-height:          1.1;
-@headings-color:                inherit;
+@headings-font-family:      inherit;
+@headings-font-weight:      700;
+@headings-line-height:      1.1;
+@headings-color:            inherit;
 
 
 //== Iconography
 //
-//## Specify custom locations of the include Flat UI icon font.
+//## Specify custom locations of the include Glyphicons icon font.
 
-@icon-font-path:                "../fonts/glyphicons/";
-@icon-font-name:                "flat-ui-icons-regular";
-@icon-font-svg-id:              "flat-ui-icons-regular";
+@icon-font-path:            "../fonts/glyphicons/";
+@icon-font-name:            "flat-ui-pro-icons-regular";
+@icon-font-svg-id:          "flat-ui-pro-icons-regular";
 
 //** Icon sizes for use in components
-@icon-normal:                   16px;
-@icon-medium:                   18px;
-@icon-large:                    32px;
+@icon-normal:               16px;
+@icon-medium:               18px;
+@icon-large:                32px;
 
 
 //== Components
@@ -151,6 +162,9 @@
 @btn-line-height-sm:         1.385; // ~16px
 @btn-line-height-xs:         1.083; // ~13px
 
+@btn-social-font-size-base:   floor((@component-font-size-base * 0.867)); // ~13px
+@btn-social-line-height-base: 1.077;  // ~14px
+
 @btn-font-weight:            normal;
 
 @btn-default-color:          @inverse;
@@ -183,31 +197,38 @@
 //
 //##
 
-@input-font-size-base:      @component-font-size-base;
-@input-font-size-sm:        floor((@component-font-size-base * 0.867)); // ~13px
-@input-font-size-lg:        ceil((@component-font-size-base * 1.133)); // ~17px
-@input-font-size-hg:        floor((@component-font-size-base * 1.467)); // ~22px
+@input-font-size-base:     @component-font-size-base;
+@input-font-size-sm:       floor((@component-font-size-base * 0.867)); // ~13px
+@input-font-size-lg:       ceil((@component-font-size-base * 1.133)); // ~17px
+@input-font-size-hg:       floor((@component-font-size-base * 1.467)); // ~22px
 
-@input-line-height-base:    1.467; // ~22px
-@input-line-height-sm:      1.462; // ~19px
-@input-line-height-lg:      1.235; // ~21px
-@input-line-height-hg:      1.318; // ~29px
+@input-line-height-base:   1.467; // ~22px
+@input-line-height-sm:     1.462; // ~19px
+@input-line-height-lg:     1.235; // ~21px
+@input-line-height-hg:     1.318; // ~29px
 
 @input-icon-font-size:     ceil((@component-font-size-base * 1.067));  // ~16px
 @input-icon-font-size-lg:  ceil((@component-font-size-base * 1.2));  // ~18px
 @input-icon-font-size-hg:  ceil((@component-font-size-base * 1.333));  // ~20px
 
-@input-bg:                  @inverse;
-@input-bg-disabled:         mix(@gray, white, 10%);
+@input-bg:                 @inverse;
+@input-bg-disabled:        mix(@gray, white, 10%);
 
-@input-height-sm:           35px;
-@input-height-base:         41px;
-@input-height-lg:           45px;
-@input-height-hg:           53px;
+@input-height-sm:          35px;
+@input-height-base:        41px;
+@input-height-lg:          45px;
+@input-height-hg:          53px;
 
-@input-border-radius:       @border-radius-large;
+@input-border-radius:      @border-radius-large;
 
-@legend-color:              inherit;
+//** Disabled cursor for form controls and buttons.
+@cursor-disabled:          not-allowed;
+
+@legend-color:             inherit;
+
+
+
+
 
 
 //== Tags Input
@@ -215,12 +236,12 @@
 //##
 
 @tagsinput-container-bg:                    @inverse;
-@tagsinput-container-border-color:          mix(@inverse, @brand-primary, 90%);;
+@tagsinput-container-border-color:          mix(@inverse, @brand-primary, 90%);
 @tagsinput-container-border-radius:         @border-radius-large;
 
 @tagsinput-input-color:                     @brand-primary;
 
-@tagsinput-tag-bg:                          mix(@inverse, @brand-primary, 90%);;
+@tagsinput-tag-bg:                          mix(@inverse, @brand-primary, 90%);
 @tagsinput-tag-color:                       mix(@brand-primary, @inverse, 65%);
 @tagsinput-tag-hover-bg:                    mix(@brand-secondary, black, 85%);
 @tagsinput-tag-hover-color:                 @inverse;
@@ -331,6 +352,8 @@
 @pager-color:                @inverse;
 
 
+
+
 //== Navbar
 //
 //##
@@ -413,13 +436,11 @@
 @navbar-inverse-form-icon:            desaturate(lighten(@brand-primary, 13%), 6%);
 @navbar-inverse-form-border:          @navbar-inverse-divider;
 
-// Dropdown menu
-@navbar-inverse-dropdown-arrow:             @navbar-inverse-bg;
+// Navbar dropdowns
 @navbar-inverse-dropdown-bg:                @navbar-inverse-bg;
 @navbar-inverse-dropdown-link-color:        mix(@navbar-inverse-bg, @navbar-inverse-color, 15%);
 @navbar-inverse-dropdown-link-hover-color:  @inverse;
 @navbar-inverse-dropdown-link-hover-bg:     @brand-secondary;
-
 
 //== Dropdowns
 //
@@ -452,6 +473,7 @@
 
 //** Text color for headers within dropdown menus.
 @dropdown-header-color:          fade(@brand-primary, 60%);
+
 
 // Inverted dropdown
 //
@@ -514,6 +536,7 @@
 @switch-height:              29px;
 
 
+
 //== Video player
 //
 //##
@@ -548,18 +571,20 @@
 @vplayer-duration-color:              mix(@brand-primary, @inverse, 80%);
 
 
+
+
 //== Todo list
 //
 //##
 
-@todo-bg:                     @brand-primary;
-@todo-bg-active:              mix(@brand-primary, black, 85%);
-@todo-search-bg:              @brand-secondary;
-@todo-search-color:           @brand-primary;
-@todo-color:                  mix(@brand-primary, @inverse, 66%);
-@todo-name-color:             @inverse;
-@todo-color-active:           @brand-secondary;
-@todo-border-radius:          @border-radius-large;
+@todo-bg:               @brand-primary;
+@todo-bg-active:        mix(@brand-primary, black, 85%);
+@todo-search-bg:        @brand-secondary;
+@todo-search-color:     @brand-primary;
+@todo-color:            mix(@brand-primary, @inverse, 66%);
+@todo-name-color:       @inverse;
+@todo-color-active:     @brand-secondary;
+@todo-border-radius:    @border-radius-large;
 
 
 //== Thumbnails
@@ -580,12 +605,14 @@
 //** Padding around the thumbnail caption
 @thumbnail-caption-padding:   9px;
 
+
 //== Tiles
 //
 //##
 
 @tiles-bg:                   mix(@brand-primary, @inverse, 8%);
 @tiles-border-radius:        @border-radius-large;
+
 
 
 //== Media queries breakpoints
@@ -624,7 +651,8 @@
 //** Point at which the navbar begins collapsing.
 @grid-float-breakpoint-max:   (@grid-float-breakpoint - 1);
 
-// Form states and alerts
+
+//== Form states and alerts
 //
 //## Define colors for form feedback states and, by default, alerts.
 
@@ -672,7 +700,9 @@
 @tooltip-inverse-arrow-color: @tooltip-inverse-bg;
 
 
-// Code
+
+
+//== Code
 //
 //##
 
@@ -689,7 +719,7 @@
 @pre-border-radius:           @border-radius-large;
 
 
-// Type
+//== Form states and alerts
 //
 //##
 
@@ -709,7 +739,7 @@
 @dl-horizontal-offset:        @component-offset-horizontal;
 
 
-// Miscellaneous
+//== Miscellaneous
 //
 //##
 

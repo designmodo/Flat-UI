@@ -37,7 +37,7 @@ input[type="search"] {
 label {
   font-weight: normal;
   font-size: @component-font-size-base;
-  line-height: 2.4; // ~36px
+  line-height: 2.3; // ~36px
 }
 
 // Placeholder
@@ -96,7 +96,7 @@ label {
     border-color: mix(@gray, white, 40%);
     color: mix(@gray, white, 40%);
     cursor: default;
-    opacity: .7;
+    .opacity(.7);
   }
 
   // Flat (without border)
@@ -113,15 +113,18 @@ label {
 }
 
 // Form control sizing
-.input-sm {
+.input-sm,
+.form-group-sm .form-control {  
   .input-size(@input-height-sm; 6px; 10px; @input-font-size-sm; @input-line-height-sm);
 }
 
-.input-lg {
+.input-lg,
+.form-group-lg .form-control {  
   .input-size(@input-height-lg; 10px; 15px; @input-font-size-lg; @input-line-height-lg);
 }
 
-.input-hg {
+.input-hg,
+.form-group-hg .form-control {  
   .input-size(@input-height-hg; 10px; 16px; @input-font-size-hg; @input-line-height-hg);
 }
 
@@ -140,23 +143,27 @@ label {
   background-color: transparent;
   padding: 0 12px 0 0;
   border-radius: @input-border-radius;
+  pointer-events: none;
 }
 
-.input-hg + .form-control-feedback {
+.input-hg + .form-control-feedback, 
+.control-feedback-hg {
   font-size: @input-icon-font-size-hg;
   line-height: 48px;
   padding-right: 16px;
   width: auto;
   height: 48px;
 }
-.input-lg + .form-control-feedback {
+.input-lg + .form-control-feedback,
+.control-feedback-lg {
   font-size: @input-icon-font-size-lg;
   line-height: 40px;
   width: auto;
   height: 40px;
   padding-right: 15px;
 }
-.input-sm + .form-control-feedback {
+.input-sm + .form-control-feedback,
+.control-feedback-sm {
   line-height: 29px;
   height: 29px;
   width: auto;
@@ -178,9 +185,10 @@ label {
 .form-control[readonly] + .form-control-feedback,
 fieldset[disabled] .form-control + .form-control-feedback,
 .form-control.disabled + .form-control-feedback {
+  cursor: @cursor-disabled;
   color: mix(@gray, white, 40%);
   background-color: transparent;
-  opacity: .7;
+  .opacity(.7);
 }
 
 
@@ -267,9 +275,6 @@ fieldset[disabled] .form-control + .form-control-feedback,
         padding-bottom: 2px;
       }
     }
-    .form-control {
-      &:extend(.input-lg);
-    }
   }
   .form-group-sm {
     @media (min-width: @screen-sm-min) {
@@ -278,9 +283,6 @@ fieldset[disabled] .form-control + .form-control-feedback,
         padding-top: 2px;
         padding-bottom: 2px;
       }
-    }
-    .form-control {
-      &:extend(.input-sm);
     }
   }
 }

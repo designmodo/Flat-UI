@@ -28,12 +28,41 @@
           <input name="tagsinput-01" class="tagsinput" value="Clean, Fresh, Modern, Unique" />
           <h5 class="demo-panel-title">Tags Input Primary with typeahead functionality</h5>
           <div class="tagsinput-primary">
-            <input name="tagsinput-02" class="tagsinput tagsinput-typeahead" value="Alabama"/>
+            <input name="tagsinput-02" class="tagsinput tagsinput-typeahead input-lg" value="Alabama"/>
           </div>
+
+          <h5 class="demo-panel-title">Typeahead only</h5>
+          <div class="form-group">
+            <input class="form-control typeahead-only input-lg" type="text" id="typeahead-demo-01" />
+          </div>        
+
+          <h5 class="demo-panel-title">Typeahead with feedback icons</h5>
+          <p>Huge</p>
+          <div class="form-group">
+            <input class="form-control typeahead-only input-hg" type="text" id="typeahead-demo-01" />
+            <span class="form-control-feedback control-feedback-hg fui-location"></span>
+          </div>        
+
+          <p>Default</p>
+          <div class="form-group">
+            <input class="form-control typeahead-only" type="text" id="typeahead-demo-01" />
+            <span class="form-control-feedback fui-location"></span>
+          </div>        
+
+          <p>Large</p>
+          <div class="form-group">
+            <input class="form-control typeahead-only input-lg" type="text" id="typeahead-demo-01" />
+            <span class="form-control-feedback control-feedback-lg  fui-location"></span>
+          </div>        
+
+          <p>Small</p>
+          <div class="form-group">
+            <input class="form-control typeahead-only input-sm" type="text" id="typeahead-demo-01" />
+            <span class="form-control-feedback control-feedback-sm fui-location"></span>
+          </div>        
+
         </div> <!-- /tags -->
       </div><!-- /.row -->
-    </div><!-- /.container -->
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../../dist/js/vendor/jquery.min.js"></script>
@@ -42,7 +71,6 @@
     <script src="../../dist/js/flat-ui.js"></script>
 
     <script src="../assets/js/application.js"></script>
-    <script src="../bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
     <script>
 
       var states = new Bloodhound({
@@ -50,7 +78,7 @@
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         limit: 4,
         local: [
-          { word: "AlabamaAlabamaAlabamaAlabama" },
+          { word: "Alabama" },
           { word: "Alaska" },
           { word: "Arizona" },
           { word: "Arkansas" },
@@ -64,6 +92,12 @@
       $('input.tagsinput').tagsinput();
 
       $('input.tagsinput-typeahead').tagsinput('input').typeahead(null, {
+        name: 'states',
+        displayKey: 'word',
+        source: states.ttAdapter()
+      });
+
+      $('input.typeahead-only').typeahead(null, {
         name: 'states',
         displayKey: 'word',
         source: states.ttAdapter()

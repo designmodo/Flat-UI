@@ -164,7 +164,8 @@ module.exports = function (grunt) {
 
     csslint: {
       options: {
-        csslintrc: 'less/.csslintrc'
+        csslintrc: 'less/.csslintrc',
+        'overqualified-elements': false
       },
       src: [
         'dist/css/<%= pkg.name %>.css'

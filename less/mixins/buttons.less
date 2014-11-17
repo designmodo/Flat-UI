@@ -47,3 +47,18 @@
   line-height: @line-height;
   border-radius: @border-radius;
 }
+
+// Social button variants
+.social-button-variant(@color; @background) {
+  color: @color;
+  background-color: @background;
+
+  &:hover,
+  &:focus {
+    background-color: mix(@background, white, 80%);
+  }
+  &:active,
+  &.active {
+    background-color: mix(@background, black, 85%);
+  }
+}

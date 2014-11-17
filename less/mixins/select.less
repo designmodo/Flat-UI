@@ -37,6 +37,7 @@
 .select-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
   .button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius);
   padding-right: (@padding-horizontal * 2 + 9px);
+  min-height: round((@line-height*@font-size + 2*@padding-vertical)); // we need min-height for empty ones
 }
 
 .multiple-select-variant(@background; @hover-background; @border-color) {

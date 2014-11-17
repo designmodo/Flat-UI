@@ -50,7 +50,7 @@
   &.typeahead {
     display: none;
     width: auto;
-    margin-top: 5px;
+    margin-top: 5px;    
     border: 2px solid @brand-secondary;
     padding: 5px 0;
     background-color: @inverse;
@@ -99,13 +99,8 @@
   &:hover,
   &:focus {
     color: @dropdown-link-disabled-color;
-  }
-}
-// Nuke hover/focus effects
-.dropdown-menu > .disabled > a {
-  &:hover,
-  &:focus {
     background-color: transparent;
+    cursor: @cursor-disabled;
   }
 }
 
@@ -165,7 +160,7 @@
 }
 
 // Inversed Dropdown Menu
-//
+// 
 // ## Alternative color variation for dropdown
 
 .dropdown-menu-inverse {
@@ -219,7 +214,7 @@
   // Dropdown section headers
   .dropdown-header {
     color: @dropdown-inverse-header-color;
-  }
+  }  
 }
 
 // Component alignment
