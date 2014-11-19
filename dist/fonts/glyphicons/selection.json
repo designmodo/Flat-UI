@@ -2063,7 +2063,7 @@
 	],
 	"height": 1024,
 	"metadata": {
-		"name": "Flat-UI-Icons",
+		"name": "flat-ui-icons",
 		"url": "http://designmodo.com/flat",
 		"designer": "Sergey Shmidt",
 		"designerURL": "http://designmodo.com",
@@ -2076,7 +2076,7 @@
 		"fontPref": {
 			"prefix": "fui-",
 			"metadata": {
-				"fontFamily": "Flat-UI-Icons",
+				"fontFamily": "flat-ui-icons",
 				"majorVersion": 1,
 				"minorVersion": 1,
 				"fontURL": "http://designmodo.com/flat",
