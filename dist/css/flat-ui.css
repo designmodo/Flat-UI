@@ -52,14 +52,14 @@
   src: url('../fonts/lato/lato-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/lato/lato-regular.woff') format('woff'), url('../fonts/lato/lato-regular.ttf') format('truetype'), url('../fonts/lato/lato-regular.svg#latoregular') format('svg');
   }
 @font-face {
-  font-family: 'Flat-UI-Pro-Icons';
+  font-family: 'Flat-UI-Icons';
 
-  src: url('../fonts/glyphicons/flat-ui-pro-icons-regular.eot');
-  src: url('../fonts/glyphicons/flat-ui-pro-icons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons/flat-ui-pro-icons-regular.woff') format('woff'), url('../fonts/glyphicons/flat-ui-pro-icons-regular.ttf') format('truetype'), url('../fonts/glyphicons/flat-ui-pro-icons-regular.svg#flat-ui-pro-icons-regular') format('svg');
+  src: url('../fonts/glyphicons/flat-ui-icons-regular.eot');
+  src: url('../fonts/glyphicons/flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons/flat-ui-icons-regular.woff') format('woff'), url('../fonts/glyphicons/flat-ui-icons-regular.ttf') format('truetype'), url('../fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
   }
 [class^="fui-"],
 [class*="fui-"] {
-  font-family: 'Flat-UI-Pro-Icons';
+  font-family: 'Flat-UI-Icons';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -2017,7 +2017,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .radio .icon-checked:before,
 .checkbox .icon-unchecked:before,
 .radio .icon-unchecked:before {
-  font-family: 'Flat-UI-Pro-Icons';
+  font-family: 'Flat-UI-Icons';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -2298,7 +2298,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
           transition: opacity .25s linear;
   }
 .bootstrap-tagsinput .tag > span:after {
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   line-height: 27px;
   content: "\e609";
 
@@ -3684,7 +3684,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
           transition: opacity .25s linear;
   }
 .select2-search-choice .select2-search-choice-close:after {
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   line-height: 27px;
   content: "\e609";
 
@@ -4133,7 +4133,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   border: none;
   }
 .navbar-toggle:before {
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   font-size: 22px;
   font-style: normal;
   font-weight: normal;
@@ -5314,7 +5314,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   top: 38%;
   left: 50%;
   margin: -.5em 0 0 -.5em;
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   font-size: 16px;
   color: #1abc9c;
   -webkit-transition: color .25s, opacity .25s;
@@ -5382,7 +5382,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   position: absolute;
   left: 50%;
   margin: 0 0 0 -.5em;
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   font-size: 16px;
   line-height: 18px;
   -webkit-transition: color .25s, opacity .25s;
@@ -5524,7 +5524,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   position: absolute;
   left: 50%;
   margin: 0 0 0 -.5em;
-  font-family: "Flat-UI-Pro-Icons";
+  font-family: "Flat-UI-Icons";
   font-size: 16px;
   line-height: 18px;
   content: "\e619";
@@ -5641,7 +5641,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   border-radius: 50%;
   }
 .todo li.todo-done:after {
-  font-family: 'Flat-UI-Pro-Icons';
+  font-family: 'Flat-UI-Icons';
   font-size: 12px;
   font-style: normal;
   font-weight: normal;
@@ -5670,7 +5670,7 @@ fieldset[disabled] .navbar-inverse .navbar-btn.active {
   left: 92%;
   display: inline-block;
   margin: -.5em 0 0 -1em;
-  font-family: 'Flat-UI-Pro-Icons';
+  font-family: 'Flat-UI-Icons';
   font-size: 16px;
   line-height: 17px;
   content: "\e630";

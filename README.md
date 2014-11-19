@@ -9,14 +9,14 @@ To get started, check out [getting started page](http://designmodo.github.io/Fla
 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download PSD](http://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.3.0](http://designmodo.com/flat/) (from $39)
++ [Flat UI Pro 1.3.2](http://designmodo.com/flat/) (from $39)
 
 
 ## Quick start
 
 Three quick start options are available:
 
-- [Download the latest release](https://github.com/designmodo/Flat-UI/archive/2.2.1.zip).
+- [Download the latest release](https://github.com/designmodo/Flat-UI/archive/2.2.2.zip).
 - Clone the repo: `git clone https://github.com/designmodo/Flat-UI.git`.
 - Install with [Bower](http://bower.io): `bower install flat-ui`.
 

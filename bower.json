@@ -1,6 +1,6 @@
 {
   "name": "flat-ui",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "main": [
     "less/flat-ui.less",
     "dist/css/flat-ui.css",
@@ -11,8 +11,7 @@
     "dist/fonts/flat-ui-icons-regular.woff"
   ],
   "ignore": [
-    ".*",
-    "docs"
+    ".*"
   ],
   "devDependencies": {
     "jquery": "~1.11.1",
@@ -26,8 +25,10 @@
     "typeahead.js": "~0.10.5",
     "google-code-prettify": "~1.0.3",
     "bootstrap-tagsinput": "~0.4.2",
-    "videojs": "~4.7.2",
     "select2": "~3.5.1"
+  },
+  "dependencies": {
+    "videojs": "~4.7.2"
   },
   "resolutions": {
     "jquery": "~1.11.1"
