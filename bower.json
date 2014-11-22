@@ -5,10 +5,10 @@
     "less/flat-ui.less",
     "dist/css/flat-ui.css",
     "dist/js/flat-ui.js",
-    "dist/fonts/flat-ui-icons-regular.eot",
-    "dist/fonts/flat-ui-icons-regular.svg",
-    "dist/fonts/flat-ui-icons-regular.ttf",
-    "dist/fonts/flat-ui-icons-regular.woff"
+    "dist/fonts/glyphicons/flat-ui-icons-regular.eot",
+    "dist/fonts/glyphicons/flat-ui-icons-regular.svg",
+    "dist/fonts/glyphicons/flat-ui-icons-regular.ttf",
+    "dist/fonts/glyphicons/flat-ui-icons-regular.woff"
   ],
   "ignore": [
     ".*"
