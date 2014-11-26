@@ -79,6 +79,12 @@ We provide compiled CSS and JS (`flat-ui.*`), as well as compiled and minified C
 Flat UI's documentation, included in this repo in the docs directory and publicly hosted on GitHub Pages at <http://designmodo.github.io/Flat-UI/docs/components.html>.
 
 
+## SASS support
+
+If you are interested in SASS source files - you can visit this project made by @wingrunr21: 
+[Designmodo's Flat-UI ported to SASS with support for Flat-UI Pro](https://github.com/wingrunr21/flat-ui-sass)
+
+
 ## Authors
 
 **Sergey Shmidt**
