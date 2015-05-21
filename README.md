@@ -117,6 +117,8 @@ Flat UI Free is made using the Lato typeface, which can be downloaded for free h
 
 More products from Designmodo: <http://designmodo.com/shop/>
 
+Designmodo Market: <http://market.designmodo.com/>
+
 Tutorials: <http://designmodo.com/tutorials/>
 
 Freebies: <http://designmodo.com/freebies/>
