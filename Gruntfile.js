@@ -258,7 +258,7 @@ module.exports = function (grunt) {
         src: [
           'bootstrap/dist/css/bootstrap.min.css'
         ],
-        dest: 'dist/css/vendor/'
+        dest: 'dist/css/vendor/bootstrap/css/'
       },
       docsVendorJS: {
         expand: true,
