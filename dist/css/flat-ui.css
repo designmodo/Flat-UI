@@ -2782,124 +2782,124 @@ fieldset[disabled] .input-group-btn .btn-default.active {
     border-radius: 0;
   }
 }
-.pagination-danger ul {
+.pagination-danger {
   background-color: #e74c3c;
 }
-.pagination-danger ul li.previous > a {
+.pagination-danger li.previous > a {
   border-right-color: #ef897e;
 }
-.pagination-danger ul li > a,
-.pagination-danger ul li > span {
+.pagination-danger li > a,
+.pagination-danger li > span {
   border-left-color: #ef897e;
 }
-.pagination-danger ul li > a:hover,
-.pagination-danger ul li > span:hover,
-.pagination-danger ul li > a:focus,
-.pagination-danger ul li > span:focus {
+.pagination-danger li > a:hover,
+.pagination-danger li > span:hover,
+.pagination-danger li > a:focus,
+.pagination-danger li > span:focus {
   background-color: #ec7063;
 }
-.pagination-danger ul li > a:active,
-.pagination-danger ul li > span:active {
+.pagination-danger li > a:active,
+.pagination-danger li > span:active {
   background-color: #c44133;
 }
-.pagination-danger ul li.active > a,
-.pagination-danger ul li.active > span {
+.pagination-danger li.active > a,
+.pagination-danger li.active > span {
   background-color: #c44133;
 }
-.pagination-success ul {
+.pagination-success {
   background-color: #2ecc71;
 }
-.pagination-success ul li.previous > a {
+.pagination-success li.previous > a {
   border-right-color: #75dda1;
 }
-.pagination-success ul li > a,
-.pagination-success ul li > span {
+.pagination-success li > a,
+.pagination-success li > span {
   border-left-color: #75dda1;
 }
-.pagination-success ul li > a:hover,
-.pagination-success ul li > span:hover,
-.pagination-success ul li > a:focus,
-.pagination-success ul li > span:focus {
+.pagination-success li > a:hover,
+.pagination-success li > span:hover,
+.pagination-success li > a:focus,
+.pagination-success li > span:focus {
   background-color: #58d68d;
 }
-.pagination-success ul li > a:active,
-.pagination-success ul li > span:active {
+.pagination-success li > a:active,
+.pagination-success li > span:active {
   background-color: #27ad60;
 }
-.pagination-success ul li.active > a,
-.pagination-success ul li.active > span {
+.pagination-success li.active > a,
+.pagination-success li.active > span {
   background-color: #27ad60;
 }
-.pagination-warning ul {
+.pagination-warning {
   background-color: #f1c40f;
 }
-.pagination-warning ul li.previous > a {
+.pagination-warning li.previous > a {
   border-right-color: #f6d861;
 }
-.pagination-warning ul li > a,
-.pagination-warning ul li > span {
+.pagination-warning li > a,
+.pagination-warning li > span {
   border-left-color: #f6d861;
 }
-.pagination-warning ul li > a:hover,
-.pagination-warning ul li > span:hover,
-.pagination-warning ul li > a:focus,
-.pagination-warning ul li > span:focus {
+.pagination-warning li > a:hover,
+.pagination-warning li > span:hover,
+.pagination-warning li > a:focus,
+.pagination-warning li > span:focus {
   background-color: #f4d313;
 }
-.pagination-warning ul li > a:active,
-.pagination-warning ul li > span:active {
+.pagination-warning li > a:active,
+.pagination-warning li > span:active {
   background-color: #cda70d;
 }
-.pagination-warning ul li.active > a,
-.pagination-warning ul li.active > span {
+.pagination-warning li.active > a,
+.pagination-warning li.active > span {
   background-color: #cda70d;
 }
-.pagination-info ul {
+.pagination-info {
   background-color: #3498db;
 }
-.pagination-info ul li.previous > a {
+.pagination-info li.previous > a {
   border-right-color: #79bbe7;
 }
-.pagination-info ul li > a,
-.pagination-info ul li > span {
+.pagination-info li > a,
+.pagination-info li > span {
   border-left-color: #79bbe7;
 }
-.pagination-info ul li > a:hover,
-.pagination-info ul li > span:hover,
-.pagination-info ul li > a:focus,
-.pagination-info ul li > span:focus {
+.pagination-info li > a:hover,
+.pagination-info li > span:hover,
+.pagination-info li > a:focus,
+.pagination-info li > span:focus {
   background-color: #5dade2;
 }
-.pagination-info ul li > a:active,
-.pagination-info ul li > span:active {
+.pagination-info li > a:active,
+.pagination-info li > span:active {
   background-color: #2c81ba;
 }
-.pagination-info ul li.active > a,
-.pagination-info ul li.active > span {
+.pagination-info li.active > a,
+.pagination-info li.active > span {
   background-color: #2c81ba;
 }
-.pagination-inverse ul {
+.pagination-inverse {
   background-color: #34495e;
 }
-.pagination-inverse ul li.previous > a {
+.pagination-inverse li.previous > a {
   border-right-color: #798795;
 }
-.pagination-inverse ul li > a,
-.pagination-inverse ul li > span {
+.pagination-inverse li > a,
+.pagination-inverse li > span {
   border-left-color: #798795;
 }
-.pagination-inverse ul li > a:hover,
-.pagination-inverse ul li > span:hover,
-.pagination-inverse ul li > a:focus,
-.pagination-inverse ul li > span:focus {
+.pagination-inverse li > a:hover,
+.pagination-inverse li > span:hover,
+.pagination-inverse li > a:focus,
+.pagination-inverse li > span:focus {
   background-color: #415b76;
 }
-.pagination-inverse ul li > a:active,
-.pagination-inverse ul li > span:active {
+.pagination-inverse li > a:active,
+.pagination-inverse li > span:active {
   background-color: #2c3e50;
 }
-.pagination-inverse ul li.active > a,
-.pagination-inverse ul li.active > span {
+.pagination-inverse li.active > a,
+.pagination-inverse li.active > span {
   background-color: #2c3e50;
 }
 .pagination-minimal > li:first-child {
