@@ -2796,6 +2796,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination-danger li > span:hover,
 .pagination-danger li > a:focus,
 .pagination-danger li > span:focus {
+  border-left-color: #ef897e;
   background-color: #ec7063;
 }
 .pagination-danger li > a:active,
@@ -2804,7 +2805,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination-danger li.active > a,
 .pagination-danger li.active > span {
+  border-left-color: #ef897e;
   background-color: #c44133;
+}
+.pagination-danger li.active > a:hover,
+.pagination-danger li.active > span:hover,
+.pagination-danger li.active > a:focus,
+.pagination-danger li.active > span:focus {
+  border-left-color: #ef897e;
+  background-color: #ec7063;
 }
 .pagination-success {
   background-color: #2ecc71;
@@ -2820,6 +2829,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination-success li > span:hover,
 .pagination-success li > a:focus,
 .pagination-success li > span:focus {
+  border-left-color: #75dda1;
   background-color: #58d68d;
 }
 .pagination-success li > a:active,
@@ -2828,7 +2838,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination-success li.active > a,
 .pagination-success li.active > span {
+  border-left-color: #75dda1;
   background-color: #27ad60;
+}
+.pagination-success li.active > a:hover,
+.pagination-success li.active > span:hover,
+.pagination-success li.active > a:focus,
+.pagination-success li.active > span:focus {
+  border-left-color: #75dda1;
+  background-color: #58d68d;
 }
 .pagination-warning {
   background-color: #f1c40f;
@@ -2844,6 +2862,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination-warning li > span:hover,
 .pagination-warning li > a:focus,
 .pagination-warning li > span:focus {
+  border-left-color: #f6d861;
   background-color: #f4d313;
 }
 .pagination-warning li > a:active,
@@ -2852,7 +2871,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination-warning li.active > a,
 .pagination-warning li.active > span {
+  border-left-color: #f6d861;
   background-color: #cda70d;
+}
+.pagination-warning li.active > a:hover,
+.pagination-warning li.active > span:hover,
+.pagination-warning li.active > a:focus,
+.pagination-warning li.active > span:focus {
+  border-left-color: #f6d861;
+  background-color: #f4d313;
 }
 .pagination-info {
   background-color: #3498db;
@@ -2868,6 +2895,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination-info li > span:hover,
 .pagination-info li > a:focus,
 .pagination-info li > span:focus {
+  border-left-color: #79bbe7;
   background-color: #5dade2;
 }
 .pagination-info li > a:active,
@@ -2876,7 +2904,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination-info li.active > a,
 .pagination-info li.active > span {
+  border-left-color: #79bbe7;
   background-color: #2c81ba;
+}
+.pagination-info li.active > a:hover,
+.pagination-info li.active > span:hover,
+.pagination-info li.active > a:focus,
+.pagination-info li.active > span:focus {
+  border-left-color: #79bbe7;
+  background-color: #5dade2;
 }
 .pagination-inverse {
   background-color: #34495e;
@@ -2892,6 +2928,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .pagination-inverse li > span:hover,
 .pagination-inverse li > a:focus,
 .pagination-inverse li > span:focus {
+  border-left-color: #798795;
   background-color: #415b76;
 }
 .pagination-inverse li > a:active,
@@ -2900,7 +2937,15 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 .pagination-inverse li.active > a,
 .pagination-inverse li.active > span {
+  border-left-color: #798795;
   background-color: #2c3e50;
+}
+.pagination-inverse li.active > a:hover,
+.pagination-inverse li.active > span:hover,
+.pagination-inverse li.active > a:focus,
+.pagination-inverse li.active > span:focus {
+  border-left-color: #798795;
+  background-color: #415b76;
 }
 .pagination-minimal > li:first-child {
   border-radius: 6px 0 0 6px;
