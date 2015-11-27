@@ -1,7 +1,7 @@
 // Pagination variants
 
 .pagination-variant(@color, @hover, @active) {
-  ul {
+  & {
     background-color: @color;
 
     li {
@@ -14,6 +14,7 @@
         border-left-color: mix(@color, white, 66%);
 
         &:hover, &:focus {
+          border-left-color: mix(@color, white, 66%);
           background-color: @hover;
         }
         &:active {
@@ -23,6 +24,11 @@
       &.active {
         > a, > span {
           background-color: @active;
+
+          &:hover, &:focus {
+            border-left-color: mix(@color, white, 66%);
+            background-color: @hover;
+          }
         }
       }
     }

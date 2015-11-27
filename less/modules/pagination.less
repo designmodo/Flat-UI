@@ -5,34 +5,34 @@
 .pagination {
   position: relative;
   display: block;
+  background: @pagination-bg;
+  color: @pagination-color;
+  padding: 0;
+  display: inline-block;
+  border-radius: @pagination-border-radius;
+  word-spacing: -0.5px;
 
   @media (min-width: @screen-sm-min) {
     display: inline-block;
   }
 
-  > ul {
-    background: @pagination-bg;
-    color: @pagination-color;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
+  @media (max-width: @screen-xs-max) {
+    height: 41px;
+    padding: 0 55px 0 52px;
+    overflow: auto;
+    white-space: nowrap;
     border-radius: @pagination-border-radius;
-    word-spacing: -0.5px;
-
-    @media (max-width: @screen-xs-max) {
-      height: 41px;
-      padding: 0 55px 0 52px;
-      overflow: auto;
-      white-space: nowrap;
-      border-radius: @pagination-border-radius;
-    }
   }
 
   li {
     display: inline-block;
-    margin-right: -3px;
+    margin-right: -2px;
     vertical-align: middle;
     word-spacing: normal;
+
+    a {
+      position: static;
+    }
 
     // Pseudos and states
     &.active {
@@ -40,6 +40,14 @@
         background-color: @pagination-hover-bg;
         color: @inverse;
         border-color: mix(@pagination-bg, white, 80%);
+
+        &,
+        &:hover,
+        &:focus {
+          background-color: @pagination-hover-bg;
+          color: @pagination-color;
+          border-color: mix(@pagination-bg, white, 80%);
+        }
       }
       &.previous,
       &.next {
@@ -255,105 +263,103 @@
 // Ultra minimal pagination
 // --------------------------------------------------
 .pagination-minimal {
-  > ul {
-    > li {
-      &:first-child {
-        border-radius: @pagination-border-radius 0 0 @pagination-border-radius;
+  > li {
+    &:first-child {
+      border-radius: @pagination-border-radius 0 0 @pagination-border-radius;
 
-        &.previous + li {
-          > a,
-          > span {
-            border-left-width: 5px;
-          }
-        }
-      }
-      &:last-child {
-        border-radius: 0 @pagination-border-radius @pagination-border-radius 0;
-      }
-      &.previous,
-      &.next {
+      &.previous + li {
         > a,
         > span {
-          background: transparent;
-          border: none;
-          border-right: 2px solid mix(@pagination-bg, white, 66%);
-          margin: 0 9px 0 0;
-          padding: 12px 17px;
-          border-radius: @pagination-border-radius 0 0 @pagination-border-radius;
-
-          &,
-          &:hover,
-          &:focus {
-            border-color: mix(@pagination-bg, white, 66%) !important;
-          }
-
-          @media (max-width: @screen-xs-max) {
-            margin-right: 0;
-          }
+          border-left-width: 5px;
         }
       }
-      &.next {
-        margin-left: 9px;
-
-        > a,
-        > span {
-          border-left: 2px solid mix(@pagination-bg, white, 66%);
-          border-right: none;
-          margin: 0;
-          border-radius: 0 @pagination-border-radius @pagination-border-radius 0;
-        }
-      }
-      &.active {
-        > a,
-        > span {
-          background-color: @inverse;
-          border-color: @inverse;
-          border-width: 2px !important;
-          color: @pagination-bg;
-          margin: 10px 5px 9px;
-
-          &:hover,
-          &:focus {
-            background-color: @inverse;
-            border-color: @inverse;
-            color: @pagination-bg;
-          }
-        }
-        &.previous,
-        &.next {
-          border-color: mix(@pagination-bg, white, 66%);
-        }
-        &.previous {
-          margin-right: 6px;
-        }
-      }
-
-      // Link
+    }
+    &:last-child {
+      border-radius: 0 @pagination-border-radius @pagination-border-radius 0;
+    }
+    &.previous,
+    &.next {
       > a,
       > span {
-        background: @inverse;
-        border: 5px solid @pagination-bg;
-        color: @inverse;
-        line-height: 16px;
-        margin: 7px 2px 6px;
-        min-width: 0;
-        min-height: 16px;
-        padding: 0 4px;
-        border-radius: 50px;
-        background-clip: padding-box;
-        transition: background .2s ease-out, border-color 0s ease-out, color .2s ease-out;
+        background: transparent;
+        border: none;
+        border-right: 2px solid mix(@pagination-bg, white, 66%);
+        margin: 0 9px 0 0;
+        padding: 12px 17px;
+        border-radius: @pagination-border-radius 0 0 @pagination-border-radius;
+
+        &,
+        &:hover,
+        &:focus {
+          border-color: mix(@pagination-bg, white, 66%) !important;
+        }
+
+        @media (max-width: @screen-xs-max) {
+          margin-right: 0;
+        }
+      }
+    }
+    &.next {
+      margin-left: 9px;
+
+      > a,
+      > span {
+        border-left: 2px solid mix(@pagination-bg, white, 66%);
+        border-right: none;
+        margin: 0;
+        border-radius: 0 @pagination-border-radius @pagination-border-radius 0;
+      }
+    }
+    &.active {
+      > a,
+      > span {
+        background-color: @inverse;
+        border-color: @inverse;
+        border-width: 2px !important;
+        color: @pagination-bg;
+        margin: 10px 5px 9px;
 
         &:hover,
         &:focus {
-          background-color: @pagination-hover-bg;
-          border-color: @pagination-hover-bg;
-          color: @inverse;
-          transition: background .2s ease-out, border-color .2s ease-out, color .2s ease-out;
+          background-color: @inverse;
+          border-color: @inverse;
+          color: @pagination-bg;
         }
-        &:active {
-          background-color: mix(@brand-secondary, black, 85%);
-          border-color: mix(@brand-secondary, black, 85%);
-        }
+      }
+      &.previous,
+      &.next {
+        border-color: mix(@pagination-bg, white, 66%);
+      }
+      &.previous {
+        margin-right: 6px;
+      }
+    }
+
+    // Link
+    > a,
+    > span {
+      background: @inverse;
+      border: 5px solid @pagination-bg;
+      color: @inverse;
+      line-height: 16px;
+      margin: 7px 2px 6px;
+      min-width: 0;
+      min-height: 16px;
+      padding: 0 4px;
+      border-radius: 50px;
+      background-clip: padding-box;
+      transition: background .2s ease-out, border-color 0s ease-out, color .2s ease-out;
+
+      &:hover,
+      &:focus {
+        background-color: @pagination-hover-bg;
+        border-color: @pagination-hover-bg;
+        color: @inverse;
+        transition: background .2s ease-out, border-color .2s ease-out, color .2s ease-out;
+      }
+      &:active {
+        background-color: mix(@brand-secondary, black, 85%);
+        border-color: mix(@brand-secondary, black, 85%);
       }
     }
   }
