@@ -5,6 +5,7 @@
   "author": "Designmodo, Inc.",
   "license": "CC BY 3.0 and MIT",
   "homepage": "http://designmodo.github.io/Flat-UI/",
+  "main": "index",
   "keywords": [
     "ui",
     "flat",
