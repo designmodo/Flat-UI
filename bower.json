@@ -1,6 +1,5 @@
 {
   "name": "flat-ui",
-  "version": "2.2.2",
   "main": [
     "less/flat-ui.less",
     "dist/css/flat-ui.css",

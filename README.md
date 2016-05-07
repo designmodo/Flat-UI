@@ -1,5 +1,7 @@
 # [Flat UI Free](http://designmodo.github.io/Flat-UI/)
 
+[![Join the chat at https://gitter.im/designmodo/Flat-UI](https://badges.gitter.im/designmodo/Flat-UI.svg)](https://gitter.im/designmodo/Flat-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
 
 To get started, check out [getting started page](http://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
@@ -16,7 +18,7 @@ To get started, check out [getting started page](http://designmodo.github.io/Fla
 
 Three quick start options are available:
 
-- [Download the latest release](https://github.com/designmodo/Flat-UI/archive/2.2.2.zip).
+- [Download the latest release](https://github.com/designmodo/Flat-UI/archive/2.3.0.zip).
 - Clone the repo: `git clone https://github.com/designmodo/Flat-UI.git`.
 - Install with [Bower](http://bower.io): `bower install flat-ui`.
 
