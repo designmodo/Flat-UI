@@ -642,6 +642,20 @@ $(':radio').on('change.radiocheck', function() {
 &lt;/div&gt;
 </pre>
 
+    
+          <p class="ptl mtl">
+            You'll need to add some Javascript code in order to append icons (on left position) like search icon above
+          </p>
+
+<pre class="prettyprint">
+// Focus state for append/prepend inputs
+$('.input-group').on('focus', '.form-control', function () {
+  $(this).closest('.input-group, .form-group').addClass('focus');
+}).on('blur', '.form-control', function () {
+  $(this).closest('.input-group, .form-group').removeClass('focus');
+});
+</pre>
+
           <div id="fui-navbar"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
