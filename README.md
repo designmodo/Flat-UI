@@ -1,6 +1,7 @@
 # [Flat UI Free](http://designmodo.github.io/Flat-UI/)
 
 [![Join the chat at https://gitter.im/designmodo/Flat-UI](https://badges.gitter.im/designmodo/Flat-UI.svg)](https://gitter.im/designmodo/Flat-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![CDNJS](https://img.shields.io/cdnjs/v/flat-ui.svg)](https://cdnjs.com/libraries/flat-ui/)
 
 Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
 
