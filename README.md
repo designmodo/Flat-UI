@@ -11,8 +11,8 @@ To get started, check out [getting started page](http://designmodo.github.io/Fla
 ## Links:
 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
-+ [Download PSD](http://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.3.2](http://designmodo.com/flat/) (from $39)
++ [Download PSD](https://designmodo.com/flat-free/) (for designers)
++ [Flat UI Pro 1.3.2](https://designmodo.com/flat/) (from $39)
 
 
 ## Quick start
@@ -110,7 +110,7 @@ If you are interested in SASS source files - you can visit this project made by 
 
 Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html.
 
-You are allowed to use these elements anywhere you want, however we’ll highly appreciate if you will link to our [website](http://designmodo.com).
+You are allowed to use these elements anywhere you want, however we’ll highly appreciate if you will link to our [website](https://designmodo.com).
 
 ## Typeface
 
@@ -118,15 +118,15 @@ Flat UI Free is made using the Lato typeface, which can be downloaded for free h
 
 ## Useful Links (How To)
 
-More products from Designmodo: <http://designmodo.com/shop/>
+More products from Designmodo: <https://designmodo.com/shop/>
 
 Designmodo Market: <http://market.designmodo.com/>
 
-Tutorials: <http://designmodo.com/tutorials/>
+Tutorials: <https://designmodo.com/tutorials/>
 
-Freebies: <http://designmodo.com/freebies/>
+Freebies: <https://designmodo.com/freebies/>
 
-Affiliate Program (earn money): <http://designmodo.com/affiliates/>
+Affiliate Program (earn money): <https://designmodo.com/affiliates/>
 
 Social Media:
 
