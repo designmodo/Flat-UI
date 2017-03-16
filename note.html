@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Form tool template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Loading Bootstrap -->
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="jumbotron.css" rel="stylesheet">
+
+<!-- Loading Flat UI -->
+<link href="css/flat-ui.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Form Template</a>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!--/.navbar-collapse -->
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>On the Record.</h1>
+            <p>This is a template for making a basic form tool.</p>
+            <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+    
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="well well-sm">
+                    <form class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend class="text-center header">Meeting Info</legend>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-1">
+                                    <input id="fname" name="name" type="text" placeholder="Meeting title" class="form-control">
+                                </div>
+                            
+                                <div class="col-sm-3">
+                                    <div class="btn-group select mbn">
+
+                                        <button class="btn dropdown-toggle clearfix btn-info" data-toggle="dropdown"><span class="filter-option pull-left">ETS Groups</span>&nbsp;<span class="caret"></span></button>
+                                        <span class="dropdown-arrow"></span>
+
+                                        <ul class="dropdown-menu dropdown-inverse" role="menu" style="max-height: 754px; overflow-y: auto; min-height: 108px;">
+                                            <li rel="0" class=""><dt>Profile</dt>
+                                                <a tabindex="-1" href="#" class="opt ">
+                                                    <span class="pull-left">Engineering</span>
+                                                </a>
+                                            </li>
+                                            <li rel="1" class="selected">
+                                                <a tabindex="-1" href="#" class="opt  active">
+                                                    <span class="pull-left">My Friends</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <!-- <div class="dropdown">
+                                        <button class="btn btn-primary btn-embossed dropdown-toggle" data-toggle="dropdown">::before<span class="filter-option pull-left"></span>
+                                        <span class="caret"></span></button>
+                                        <span class="dropdown-arrow dropdown-arrow"></span>
+                                        <ul class="dropdown-menu dropdown-inverse">
+                                            <li><a href="#">Engineering</a></li>
+                                            <li><a href="#">Plans & Controls</a></li>
+                                            <li><a href="#">Service Delivery</a></li>
+                                            <li><a href="#">Solutions</a></li>
+                                            <li><a href="#">TAM</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" class="btn btn-primary btn-embossed">Submit</button>
+                                </div>
+                                -->
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!--
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-hg" placeholder="Meeting title" />
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Group<span class="caret"></span></button>
+                                <span class="dropdown-arrow dropdown-arrow"></span>
+                                <ul class="dropdown-menu dropdown-inverse">
+                                    <li><a href="#">Engineering</a></li>
+                                    <li><a href="#">Plans & Controls</a></li>
+                                    <li><a href="#">Service Delivery</a></li>
+                                    <li><a href="#">Solutions</a></li>
+                                    <li><a href="#">TAM</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+-->
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Content</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <a class="btn btn-success pull-right" href="#" role="button">Add content</a>
+            </div>
+        </div>
+    <hr>
+
+    <footer>
+    <p>&copy; Company 2014</p>
+    </footer>
+    </div> <!-- /container -->
+
+    <!-- /.container -->
+
+
+    <!-- Load JS here for greater good =============================-->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/flatui-checkbox.js"></script>
+    <script src="js/flatui-radio.js"></script>
+    <script src="js/jquery.tagsinput.js"></script>
+    <script src="js/jquery.placeholder.js"></script>
+</body>
+</html>
