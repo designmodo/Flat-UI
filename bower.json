@@ -15,7 +15,7 @@
   "devDependencies": {
     "jquery": "~1.11.1",
     "jquery-ui": "~1.10.4",
-    "bootstrap": "~3.2.0",
+    "bootstrap": "~3.3.0",
     "bootstrap-switch": "~3.0.2",
     "holderjs": "~2.4.0",
     "html5shiv": "~3.7.2",
