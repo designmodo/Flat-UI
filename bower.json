@@ -24,7 +24,7 @@
     "typeahead.js": "~0.10.5",
     "google-code-prettify": "~1.0.3",
     "bootstrap-tagsinput": "~0.4.2",
-    "select2": "~3.5.1"
+    "select2": "~4.0.0"
   },
   "dependencies": {
     "videojs": "~4.7.2"
