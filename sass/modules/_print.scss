@@ -1,0 +1,40 @@
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+// ==========================================================================
+// Print styles.
+// Inlined to avoid the additional HTTP request: h5bp.com/r
+// ==========================================================================
+
+@media print {
+  .btn {
+    border-style: solid;
+    border-width: 2px;
+  }
+  .dropdown-menu {
+    background: #fff !important;  
+    border: 2px solid #ddd;
+  }
+  .input-group-rounded .input-group-btn {
+    & + .form-control, 
+    & + .select2-search input[type="text"] {
+      padding-left: 10px;
+    }
+  }
+  .form-control {
+    border: 2px solid #ddd !important;
+  }
+  .bootstrap-switch {
+    height: 33px;
+    width: 84px;
+    border: 2px solid #bdc3c7;
+  }
+  .tooltip {
+    border: 2px solid #bdc3c7;
+  }
+  .progress, .ui-slider {
+    background: #ddd !important;
+  }
+  .progress-bar, .ui-slider-range, .ui-slider-handle {
+    background: #bdc3c7 !important;
+  }
+}
