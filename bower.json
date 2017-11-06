@@ -15,7 +15,7 @@
   "devDependencies": {
     "jquery": "~1.11.1",
     "jquery-ui": "~1.10.4",
-    "bootstrap": "~3.2.0",
+    "bootstrap": "~3.3.0",
     "bootstrap-switch": "~3.0.2",
     "holderjs": "~2.4.0",
     "html5shiv": "~3.7.2",
@@ -24,7 +24,7 @@
     "typeahead.js": "~0.10.5",
     "google-code-prettify": "~1.0.3",
     "bootstrap-tagsinput": "~0.4.2",
-    "select2": "~3.5.1"
+    "select2": "~4.0.0"
   },
   "dependencies": {
     "videojs": "~4.7.2"

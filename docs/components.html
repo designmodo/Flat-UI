@@ -1297,22 +1297,22 @@ $('.input-group').on('focus', '.form-control', function () {
           <p class="mbl pbl">
             Grids are supported here as&nbsp;well. For more technical details read the <a href="http://ivaynberg.github.io/select2/#documentation">original&nbsp;documentation</a>.
           </p>
+          
+          <div class="mbl">
+            <select class="form-control select select-primary mbl" data-toggle="select" style="width: 40%;">
+              <optgroup label="Profile">
+                <option value="0">My Profile</option>
+                <option value="1">My Friends</option>
+              </optgroup>
+              <optgroup label="System">
+                <option value="2">Messages</option>
+                <option value="3">My Settings</option>
+                <option value="4">Logout</option>
+              </optgroup>
+            </select>
+          </div>
 
-          <select class="form-control select select-primary mbl" data-toggle="select">
-            <optgroup label="Profile">
-              <option value="0">My Profile</option>
-              <option value="1">My Friends</option>
-            </optgroup>
-            <optgroup label="System">
-              <option value="2">Messages</option>
-              <option value="3">My Settings</option>
-              <option value="4">Logout</option>
-            </optgroup>
-          </select>
-
-          <br>
-
-          <select multiple="multiple" class="form-control multiselect multiselect-info mbl" data-toggle="select">
+          <select multiple="multiple" class="form-control multiselect multiselect-info mbl" data-toggle="select" style="width: 50%;">
             <option value="0">1</option>
             <option value="1" selected>2</option>
             <option value="2" selected>3</option>
@@ -1325,7 +1325,7 @@ $('.input-group').on('focus', '.form-control', function () {
           </p>
 
 <pre class="prettyprint mvl">
-&lt;select class="form-control select select-primary select-block mbl"&gt;
+&lt;select class="form-control select select-primary select-block mbl" style="width: 40%;"&gt;
   &lt;optgroup label="Profile"&gt;
     &lt;option value="0"&gt;My Profile&lt;/option&gt;
     &lt;option value="1"&gt;My Friends&lt;/option&gt;
@@ -1337,7 +1337,7 @@ $('.input-group').on('focus', '.form-control', function () {
   &lt;/optgroup&gt;
 &lt;/select&gt;
 
-&lt;select multiple="multiple" class="form-control multiselect multiselect-info"&gt;
+&lt;select multiple="multiple" class="form-control multiselect multiselect-info" style="width: 50%;"&gt;
   &lt;option value="0"&gt;1&lt;/option&gt;
   &lt;option value="1" selected&gt;2&lt;/option&gt;
   &lt;option value="2" selected&gt;3&lt;/option&gt;
@@ -1346,14 +1346,17 @@ $('.input-group').on('focus', '.form-control', function () {
 &lt;/select&gt;
 </pre>
 
+<pre class="prettyprint mvl">
+// don't forget to set width with style argument on your element to make it responsive
+// see https://select2.github.io/examples.html#responsive
+</pre>
+
           <p class="mvl ptl">
             Then transform all the system selects into custom ones with JS:
           </p>
 
 <pre class="prettyprint mvl">
-$("select").select2({dropdownCssClass: 'dropdown-inverse'});
-
-// dropdownCssClass: dropdown class name
+$("select").select2();
 
 // You can always select by any other attribute, not just tag name.
 // Also you can leave selectpicker arguments blank to apply defaults.

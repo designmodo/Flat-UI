@@ -2,35 +2,28 @@
 //
 
 .select-variant(@color; @background; @hover-background; @active-background; @disabled-background: @gray-light; @arrow-color) {
-  .select2-choice {
-    color: @color;
-    background-color: @background;
-
+  & + .select2-container .selection .select2-selection {
+     color: @color;
+     background-color: @background;
+     border-color: @background;
     &:hover,
-    &.hover,
     &:focus,
     &:active {
       color: @color;
       background-color: @hover-background;
-      border-color: @hover-background;
+      border-color:  @hover-background;
     }
     &:active {
-      background: @active-background;
-      border-color: @active-background;
-    }
-    .select2-container-disabled& {
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: @disabled-background;
-        border-color: @background;
-      }
+      background-color: @active-background;
+      border-color:  @active-background;
     }
 
-    .select2-arrow {
-      border-top-color: @arrow-color;
+    & .select2-selection__arrow {
+      border-color: @arrow-color transparent transparent transparent;
     }
+  }
+  & + .select2-container.select2-container--open .selection .select2-selection .select2-selection__arrow {
+    border-color: transparent transparent @arrow-color transparent;
   }
 }
 
@@ -41,15 +34,17 @@
 }
 
 .multiple-select-variant(@background; @hover-background; @border-color) {
-  .select2-container-multi& {
-      border-color: @border-color;
+  & + .select2-container .selection .select2-selection {
+    border-color: @border-color;
 
-      .select2-search-choice {
-        background-color: @background;
+    &.select2-selection--multiple .select2-selection__choice {
+      background-color: @background;
 
-        &:hover {
-          background-color: @hover-background;
-        }
+      &:hover {
+        background-color: @hover-background;
       }
+
+    }
+
   }
 }

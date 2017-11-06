@@ -36,9 +36,8 @@ String.prototype.repeat = function (num) {
     });
 
     // Custom Selects
-    if ($('[data-toggle="select"]').length) {
-      $('[data-toggle="select"]').select2();
-    }
+    $('.select').select2();
+    $('.multiselect').select2();
 
     // Checkboxes and Radio buttons
     $('[data-toggle="checkbox"]').radiocheck();
