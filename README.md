@@ -1,7 +1,5 @@
-# [Flat UI Free](http://designmodo.github.io/Flat-UI/)
 
-[![Join the chat at https://gitter.im/designmodo/Flat-UI](https://badges.gitter.im/designmodo/Flat-UI.svg)](https://gitter.im/designmodo/Flat-UI?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![CDNJS](https://img.shields.io/cdnjs/v/flat-ui.svg)](https://cdnjs.com/libraries/flat-ui/)
+# [Flat UI Free](http://designmodo.github.io/Flat-UI/)
 
 Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
 
@@ -76,7 +74,6 @@ flat-ui/
 
 We provide compiled CSS and JS (`flat-ui.*`), as well as compiled and minified CSS and JS (`flat-ui.min.*`). Fonts with icons are included.
 
-
 ## Documentation
 
 Flat UI's documentation, included in this repo in the docs directory and publicly hosted on GitHub Pages at <http://designmodo.github.io/Flat-UI/docs/components.html>.
@@ -86,24 +83,6 @@ Flat UI's documentation, included in this repo in the docs directory and publicl
 
 If you are interested in SASS source files - you can visit this project made by @wingrunr21: 
 [Designmodo's Flat-UI ported to SASS with support for Flat-UI Pro](https://github.com/wingrunr21/flat-ui-sass)
-
-
-## Authors
-
-**Sergey Shmidt**
-
-+ <http://shmidt.in>
-+ <http://twitter.com/monstercritic>
-
-**Sergii Iurevych**
-
-+ <http://twitter.com/iurevych>
-+ <http://github.com/iurevych>
-
-**Dmitry Pytkin**
-
-+ <http://twitter.com/pytkin>
-+ <http://github.com/pytkin>
 
 
 ## Copyright and license
@@ -116,24 +95,38 @@ You are allowed to use these elements anywhere you want, however we’ll highly 
 
 Flat UI Free is made using the Lato typeface, which can be downloaded for free here: http://www.google.com/webfonts/specimen/Lato
 
-## Useful Links (How To)
+## Designmodo Products
+
+**Postcards**
+
+Create beautiful responsive emails and newsletters with a simple drag & drop. It includes more than 100 modules to 
+help you create custom emails faster than ever before.
+
++ [https://designmodo.com/postcards/](https://designmodo.com/postcards/)
+
+**Slides Framework**
+
+Slides is a framework based on its own CSS3, JavaScript, and HTML5 language with a unique code and structure that lets you create, with minimum effort, visually captivating websites with a lot of built-in options.
+
++ [https://designmodo.com/slides/](https://designmodo.com/slides/)
+
+**Startup Framework**
+
+Startup Framework is based on Bootstrap and help you to create beautiful and responsive websites. Build your website quickly with an intuitive and easy-to-use drag and drop interface.
+
++ [https://designmodo.com/startup/](https://designmodo.com/startup/)
+
+## Useful Links
 
 More products from Designmodo: <https://designmodo.com/shop/>
-
 Designmodo Market: <http://market.designmodo.com/>
-
 Tutorials: <https://designmodo.com/tutorials/>
-
 Freebies: <https://designmodo.com/freebies/>
-
 Affiliate Program (earn money): <https://designmodo.com/affiliates/>
 
 Social Media:
 
 Twitter: <http://www.twitter.com/designmodo>
-
 Facebook: <http://www.facebook.com/designmodo>
-
 RSS: <http://feeds.feedburner.com/designmodo>
-
-Google+: <https://www.google.com/+DesignModo>
+Google+: <https://www.google.com/+Designmodo>
