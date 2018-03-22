@@ -642,7 +642,7 @@ $(':radio').on('change.radiocheck', function() {
 &lt;/div&gt;
 </pre>
 
-    
+
           <p class="ptl mtl">
             You'll need to add some Javascript code in order to append icons (on left position) like search icon above
           </p>
@@ -1394,6 +1394,12 @@ $("select").select2({dropdownCssClass: 'dropdown-inverse'});
   &lt;input type="checkbox" checked data-toggle="switch" name="square-switch" id="switch-02" /&gt;
 &lt;/div&gt;
 </pre>
+
+          <p class="mbl">
+              You need to call the bootstrapSwitch method on the jQuery object of your checkbox
+              to initialize the switch.
+          </p>
+          <pre class="prettyprint mvl">$("[name='my-checkbox']").bootstrapSwitch();</pre>
 
           <p class="mbl">The switch can have various color schemes:</p>
 
