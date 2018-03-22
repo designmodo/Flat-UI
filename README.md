@@ -5,13 +5,11 @@ Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have r
 
 To get started, check out [getting started page](http://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
 
-
 ## Links:
 
 + [Demo Page](http://designmodo.github.io/Flat-UI/)
 + [Download PSD](https://designmodo.com/flat-free/) (for designers)
 + [Flat UI Pro 1.3.2](https://designmodo.com/flat/) (from $39)
-
 
 ## Quick start
 
@@ -84,7 +82,6 @@ Flat UI's documentation, included in this repo in the docs directory and publicl
 If you are interested in SASS source files - you can visit this project made by @wingrunr21: 
 [Designmodo's Flat-UI ported to SASS with support for Flat-UI Pro](https://github.com/wingrunr21/flat-ui-sass)
 
-
 ## Copyright and license
 
 Flat UI Free is licensed under a Creative Commons Attribution 3.0 Unported (CC BY 3.0)  (http://creativecommons.org/licenses/by/3.0/) and MIT License - http://opensource.org/licenses/mit-license.html.
@@ -97,36 +94,37 @@ Flat UI Free is made using the Lato typeface, which can be downloaded for free h
 
 ## Designmodo Products
 
-**Postcards**
+**Postcards - [https://designmodo.com/postcards/](https://designmodo.com/postcards/)**
 
 Create beautiful responsive emails and newsletters with a simple drag & drop. It includes more than 100 modules to 
 help you create custom emails faster than ever before.
 
-+ [https://designmodo.com/postcards/](https://designmodo.com/postcards/)
-
-**Slides Framework**
+**Slides Framework - [https://designmodo.com/slides/](https://designmodo.com/slides/)**
 
 Slides is a framework based on its own CSS3, JavaScript, and HTML5 language with a unique code and structure that lets you create, with minimum effort, visually captivating websites with a lot of built-in options.
 
-+ [https://designmodo.com/slides/](https://designmodo.com/slides/)
-
-**Startup Framework**
+**Startup Framework - [https://designmodo.com/startup/](https://designmodo.com/startup/)**
 
 Startup Framework is based on Bootstrap and help you to create beautiful and responsive websites. Build your website quickly with an intuitive and easy-to-use drag and drop interface.
-
-+ [https://designmodo.com/startup/](https://designmodo.com/startup/)
 
 ## Useful Links
 
 More products from Designmodo: <https://designmodo.com/shop/>
+
 Designmodo Market: <http://market.designmodo.com/>
+
 Tutorials: <https://designmodo.com/tutorials/>
+
 Freebies: <https://designmodo.com/freebies/>
+
 Affiliate Program (earn money): <https://designmodo.com/affiliates/>
 
-Social Media:
+**Social Media:**
 
 Twitter: <http://www.twitter.com/designmodo>
+
 Facebook: <http://www.facebook.com/designmodo>
+
 RSS: <http://feeds.feedburner.com/designmodo>
+
 Google+: <https://www.google.com/+Designmodo>
