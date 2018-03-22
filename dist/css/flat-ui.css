@@ -1,4 +1,4 @@
-/* 
+/*
  * MIT License
  *
  * Copyright (c) 2013-2016 Designmodo
@@ -2503,6 +2503,9 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 .ui-slider-vertical .ui-slider-segment {
   position: absolute;
   right: 3px;
+}
+.ui-slider-disabled {
+    opacity: 0.5;
 }
 .pager {
   background-color: #34495e;
