@@ -29,6 +29,7 @@ nbproject
 *.sublime-workspace
 .idea
 .local
+.tmp
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
