@@ -1,0 +1,127 @@
+//
+// Spaces
+// --------------------------------------------------
+
+// Should be used to modify the default spacing between objects (not between nodes of * the same object)
+// p,m = padding,margin
+// a,t,r,b,l,h,v = all,top,right,bottom,left,horizontal,vertical
+// x,s,m,l,n = extra-small($x),small($s),medium($m),large($l),none(0px)
+
+$x: 3px;
+$s: 5px;
+$m: 10px;
+$l: 20px;
+$h: 40px;
+
+.last-col {
+  overflow: hidden;
+}
+
+.ptn, .pvn, .pan { padding-top: 0 !important; }
+
+.ptx, .pvx, .pax { padding-top: $x !important; }
+
+.pts, .pvs, .pas { padding-top: $s !important; }
+
+.ptm, .pvm, .pam { padding-top: $m !important; }
+
+.ptl, .pvl, .pal { padding-top: $l !important; }
+
+.pth, .pvh, .pah { padding-top: $h !important; }
+
+
+.prn, .phn, .pan { padding-right: 0 !important; }
+
+.prx, .phx, .pax { padding-right: $x !important; }
+
+.prs, .phs, .pas { padding-right: $s !important; }
+
+.prm, .phm, .pam { padding-right: $m !important; }
+
+.prl, .phl, .pal { padding-right: $l !important; }
+
+.prh, .phh, .pah { padding-right: $h !important; }
+
+
+
+.pbn, .pvn, .pan { padding-bottom: 0 !important; }
+
+.pbx, .pvx, .pax { padding-bottom: $x !important; }
+
+.pbs, .pvs, .pas { padding-bottom: $s !important; }
+
+.pbm, .pvm, .pam { padding-bottom: $m !important; }
+
+.pbl, .pvl, .pal { padding-bottom: $l !important; }
+
+.pbh, .pvh, .pah { padding-bottom: $h !important; }
+
+
+
+.pln, .phn, .pan { padding-left: 0 !important; }
+
+.plx, .phx, .pax { padding-left: $x !important; }
+
+.pls, .phs, .pas { padding-left: $s !important; }
+
+.plm, .phm, .pam { padding-left: $m !important; }
+
+.pll, .phl, .pal { padding-left: $l !important; }
+
+.plh, .phh, .pah { padding-left: $h !important; }
+
+
+
+.mtn, .mvn, .man { margin-top: 0 !important; }
+
+.mtx, .mvx, .max { margin-top: $x !important; }
+
+.mts, .mvs, .mas { margin-top: $s !important; }
+
+.mtm, .mvm, .mam { margin-top: $m !important; }
+
+.mtl, .mvl, .mal { margin-top: $l !important; }
+
+.mth, .mvh, .mah { margin-top: $h !important; }
+
+
+
+.mrn, .mhn, .man { margin-right: 0 !important; }
+
+.mrx, .mhx, .max { margin-right: $x !important; }
+
+.mrs, .mhs, .mas { margin-right: $s !important; }
+
+.mrm, .mhm, .mam { margin-right: $m !important; }
+
+.mrl, .mhl, .mal { margin-right: $l !important; }
+
+.mrh, .mhh, .mah { margin-right: $h !important; }
+
+
+
+.mbn, .mvn, .man { margin-bottom: 0 !important; }
+
+.mbx, .mvx, .max { margin-bottom: $x !important; }
+
+.mbs, .mvs, .mas { margin-bottom: $s !important; }
+
+.mbm, .mvm, .mam { margin-bottom: $m !important; }
+
+.mbl, .mvl, .mal { margin-bottom: $l !important; }
+
+.mbh, .mvh, .mah { margin-bottom: $h !important; }
+
+
+
+.mln, .mhn, .man { margin-left: 0 !important; }
+
+.mlx, .mhx, .max { margin-left: $x !important; }
+
+.mls, .mhs, .mas { margin-left: $s !important; }
+
+.mlm, .mhm, .mam { margin-left: $m !important; }
+
+.mll, .mhl, .mal { margin-left: $l !important; }
+
+.mlh, .mhh, .mah { margin-left: $h !important; }

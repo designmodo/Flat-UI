@@ -1,0 +1,30 @@
+// Pagination variants
+
+@mixin pagination-variant($color, $hover, $active) {
+  ul {
+    background-color: $color;
+
+    li {
+      &.previous {
+        > a {
+          border-right-color: mix($color, white, 66%);
+        }
+      }
+      > a, > span {
+        border-left-color: mix($color, white, 66%);
+
+        &:hover, &:focus {
+          background-color: $hover;
+        }
+        &:active {
+          background-color: $active;
+        }
+      }
+      &.active {
+        > a, > span {
+          background-color: $active;
+        }
+      }
+    }
+  }
+}

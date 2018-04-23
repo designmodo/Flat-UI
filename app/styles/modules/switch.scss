@@ -1,0 +1,204 @@
+//
+// Switch
+// --------------------------------------------------
+
+// Switch wrapper
+// --------------------------------------------------
+
+.#{$switch-name} {
+  font-size: $component-font-size-base; // 15px
+  line-height: $switch-height;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: $switch-border-radius;
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  vertical-align: middle;
+  width: $switch-width;
+  height: $switch-height;
+  -webkit-mask-box-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgODAgMjkiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDgwIDI5IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGQ9Ik04MCwxNC41YzAsOC02LjUsMTQuNS0xNC41LDE0LjVoLTUxQzYuNSwyOSwwLDIyLjUsMCwxNC41bDAsMEMwLDYuNSw2LjUsMCwxNC41LDBoNTFDNzMuNSwwLDgwLDYuNSw4MCwxNC41TDgwLDE0LjV6Ii8+DQo8L3N2Zz4NCg==) 0 0 stretch;
+  user-select: none;
+
+  // Handlers wrapp
+  > div {
+    display: inline-block;
+    width: 132px;
+    border-radius: $switch-border-radius;
+    transform: translate3d(0, 0, 0);
+
+    // Handlers
+    > span {
+      font-weight: 700;
+      line-height: 19px;
+      cursor: pointer;
+      display: inline-block;
+      height: 100%;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      text-align: center;
+      z-index: 1;
+      width: 66px;
+      transition: box-shadow .25s ease-out;
+
+      > [class^="fui-"] {
+        text-indent: 0;
+      }
+    }
+    > label {
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-indent: -9999px;
+      font-size: 0;
+      top: 0;
+      left: 0;
+      margin: 0;
+      z-index: 200;
+      @include opacity(0);
+    }
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    position: absolute !important;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    @include opacity(0);
+  }
+}
+
+// `On` handler
+.#{$switch-name}-handle-on {
+  @include border-left-radius($switch-border-radius);
+
+  .#{$switch-name}-off & {
+    @include switch-handle-off-variant(default, $gray-light, mix($brand-primary, white, 63%));
+    @include switch-handle-off-variant(primary, $brand-primary, $brand-secondary);
+    @include switch-handle-off-variant(success, $brand-success, $inverse);
+    @include switch-handle-off-variant(warning, $brand-warning, $inverse);
+    @include switch-handle-off-variant(info, $brand-info, $inverse);
+    @include switch-handle-off-variant(danger, $brand-danger, $inverse);
+  }
+}
+
+// `Off` handler
+.#{$switch-name}-handle-off {
+  @include border-right-radius($switch-border-radius);
+
+  &:before {
+    display: inline-block;
+    content: " ";
+    border: 4px solid transparent;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+    height: 29px;
+    width: 29px;
+    position: absolute;
+    top: 0;
+    left: 51px;
+    z-index: 100;
+    background-clip: padding-box;
+    transition: border-color .25s ease-out, background-color .25s ease-out;
+  }
+}
+
+// Switch `animate` state
+.#{$switch-name}-animate {
+  > div {
+    transition: margin-left .25s ease-out;
+  }
+}
+.#{$switch-name}-on > div {
+  margin-left: 0;
+}
+
+.#{$switch-name}-off > div {
+  margin-left: -51px;
+}
+
+// Switch `disabled` states
+.#{$switch-name}-disabled,
+.#{$switch-name}-readonly {
+  @include opacity(.5);
+  cursor: default;
+
+  > div > span,
+  > div > label {
+    cursor: default !important;
+  }
+}
+
+// Switch `focus` state
+.#{$switch-name}-focused {
+  outline: 0;
+}
+
+
+// Handler feedback states
+// --------------------------------------------------
+
+.#{$switch-name}-default {
+  @include switch-variant($inverse, $gray-light, $gray-light, mix($brand-primary, white, 63%));
+}
+
+.#{$switch-name}-primary {
+  @include switch-variant($brand-secondary, $brand-primary, $brand-primary, $brand-secondary);
+}
+
+.#{$switch-name}-info {
+  @include switch-variant($inverse, $brand-info, $brand-info, $inverse);
+}
+
+.#{$switch-name}-success {
+  @include switch-variant($inverse, $brand-success, $brand-success, $inverse);
+}
+
+.#{$switch-name}-warning {
+  @include switch-variant($inverse, $brand-warning, $brand-warning, $inverse);
+}
+
+.#{$switch-name}-danger {
+  @include switch-variant($inverse, $brand-danger, $brand-danger, $inverse);
+}
+
+
+// Square skin
+// --------------------------------------------------
+
+.#{$switch-name}-square {
+  .#{$switch-name} {
+    -webkit-mask-box-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgODAgMjkiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDgwIDI5IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGQ9Ik04MCwyNWMwLDIuMi0xLjgsNC00LDRINGMtMi4yLDAtNC0xLjgtNC00VjRjMC0yLjIsMS44LTQsNC00aDcyYzIuMiwwLDQsMS44LDQsNFYyNXoiLz4NCjwvc3ZnPg0K) 0 0 stretch;
+    border-radius: $border-radius-base;
+
+    > div {
+      border-radius: $border-radius-base;
+    }
+    .#{$switch-name}-handle-on {
+      text-indent: -15px;
+      @include border-left-radius($border-radius-base);
+    }
+    .#{$switch-name}-handle-off {
+      text-indent: 15px;
+      @include border-right-radius($border-radius-base);
+
+      &:before {
+         border: none;
+        @include border-left-radius(0);
+        @include border-right-radius(($border-radius-base - 2));
+      }
+    }
+  }
+  .#{$switch-name}-off {
+    .#{$switch-name}-handle-off:before {
+      @include border-left-radius(($border-radius-base - 2));
+      @include border-right-radius(0);
+    }
+  }
+}

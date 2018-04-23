@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flat UI Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../../dist/css/flat-ui.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../../dist/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="../../dist/js/vendor/html5shiv.js"></script>
+      <script src="../../dist/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <h4>File Input</h4>
+      <div class="row">
+        <div class="col-md-12 mtl">
+          <p>Inline file input:</p>
+
+          <div class="form-group">
+            <div class="fileinput fileinput-new input-group input-group-hg" data-provides="fileinput">
+              <div class="form-control uneditable-input" data-trigger="fileinput">
+                <span class="fui-clip fileinput-exists"></span>
+                <span class="fileinput-filename"></span>
+              </div>
+              <span class="input-group-addon btn btn-default btn-file">
+                <span class="fileinput-new">Select file</span>
+                <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                <input type="file" name="...">
+              </span>
+              <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="fileinput fileinput-new input-group input-group-lg" data-provides="fileinput">
+              <div class="form-control uneditable-input" data-trigger="fileinput">
+                <span class="fui-clip fileinput-exists"></span>
+                <span class="fileinput-filename"></span>
+              </div>
+              <span class="input-group-addon btn btn-default btn-file">
+                <span class="fileinput-new">Select file</span>
+                <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                <input type="file" name="...">
+              </span>
+              <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+              <div class="form-control uneditable-input" data-trigger="fileinput">
+                <span class="fui-clip fileinput-exists"></span>
+                <span class="fileinput-filename"></span>
+              </div>
+              <span class="input-group-addon btn btn-default btn-file">
+                <span class="fileinput-new">Select file</span>
+                <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                <input type="file" name="...">
+              </span>
+              <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="fileinput fileinput-new input-group input-group-sm" data-provides="fileinput">
+              <div class="form-control uneditable-input" data-trigger="fileinput">
+                <span class="fui-clip fileinput-exists"></span>
+                <span class="fileinput-filename"></span>
+              </div>
+              <span class="input-group-addon btn btn-default btn-file">
+                <span class="fileinput-new">Select file</span>
+                <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                <input type="file" name="...">
+              </span>
+              <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+            </div>
+          </div>
+
+          <p class="ptl">Button file input:</p>
+          <div class="form-group">
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+              <span class="btn btn-primary btn-embossed btn-file">
+                <span class="fileinput-new"><span class="fui-upload"></span>&nbsp;&nbsp;Attach File</span>
+                <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                <input type="file" name="...">
+              </span>
+              <span class="fileinput-filename"></span>
+              <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">&times;</a>
+            </div>
+          </div>
+          <p class="ptl">Image upload:</p>
+            <div class="form-group">
+              <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                <div>
+                  <span class="btn btn-primary btn-embossed btn-file">
+                    <span class="fileinput-new"><span class="fui-image"></span>&nbsp;&nbsp;Select image</span>
+                    <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                    <input type="file" name="...">
+                  </span>
+                  <a href="#" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ptl">
+              <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                  <img data-src="holder.js/100%x100%" alt="...">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                <div>
+                  <span class="btn btn-primary btn-embossed btn-file">
+                    <span class="fileinput-new"><span class="fui-image"></span>&nbsp;&nbsp;Select image</span>
+                    <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                    <input type="file" name="...">
+                  </span>
+                  <a href="#" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                </div>
+              </div>
+            </div>
+
+            <p class="ptl">Different color schemes:</p>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <div class="form-control uneditable-input" data-trigger="fileinput">
+                      <span class="fui-clip fileinput-exists"></span>
+                      <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn btn-default btn-file">
+                      <span class="fileinput-new">Select file</span>
+                      <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                      <input type="file" name="...">
+                    </span>
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group has-error">
+                  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <div class="form-control uneditable-input" data-trigger="fileinput">
+                      <span class="fui-clip fileinput-exists"></span>
+                      <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn btn-default btn-file">
+                      <span class="fileinput-new">Select file</span>
+                      <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                      <input type="file" name="...">
+                    </span>
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group has-warning">
+                  <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                    <div class="form-control uneditable-input" data-trigger="fileinput">
+                      <span class="fui-clip fileinput-exists"></span>
+                      <span class="fileinput-filename"></span>
+                    </div>
+                    <span class="input-group-addon btn btn-default btn-file">
+                      <span class="fileinput-new">Select file</span>
+                      <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                      <input type="file" name="...">
+                    </span>
+                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.row -->
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group has-success">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                      <img data-src="holder.js/100%x100%" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                      <span class="btn btn-primary btn-embossed btn-file">
+                        <span class="fileinput-new"><span class="fui-image"></span>&nbsp;&nbsp;Select image</span>
+                        <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                        <input type="file" name="...">
+                      </span>
+                      <a href="#" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group has-error">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                      <img data-src="holder.js/100%x100%" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                      <span class="btn btn-primary btn-embossed btn-file">
+                        <span class="fileinput-new"><span class="fui-image"></span>&nbsp;&nbsp;Select image</span>
+                        <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                        <input type="file" name="...">
+                      </span>
+                      <a href="#" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group has-warning">
+                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                      <img data-src="holder.js/100%x100%" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                      <span class="btn btn-primary btn-embossed btn-file">
+                        <span class="fileinput-new"><span class="fui-image"></span>&nbsp;&nbsp;Select image</span>
+                        <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                        <input type="file" name="...">
+                      </span>
+                      <a href="#" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- /.row -->
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <script src="../../dist/scripts/flat-ui.js"></script>
+
+    <script src="../assets/js/application.js"></script>
+
+  </body>
+</html>

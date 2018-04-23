@@ -1,0 +1,118 @@
+//
+// Button groups
+// --------------------------------------------------
+
+
+.btn-group {
+  > .btn {
+    & + .btn {
+      margin-left: 0;
+    }
+    & + .dropdown-toggle {
+      border-left: 2px solid rgba($brand-primary, .15);
+      padding: 10px 12px;
+
+      &:after {
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+    &.btn-gh + .dropdown-toggle {
+      .caret {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    }
+    // &.btn-sm + .dropdown-toggle {
+    //   .caret {
+    //     margin-left: 0;
+    //     margin-right: 0;
+    //   }
+    // }
+  }
+}
+
+// Sizing
+//
+// Remix the default button sizing classes into new ones for easier manipulation.
+
+.btn-group-xs > .btn {
+  @extend .btn-xs;
+
+  & + .dropdown-toggle {
+    padding: 6px 9px;
+  }
+}
+
+.btn-group-sm > .btn {
+  @extend .btn-sm;
+
+  & + .dropdown-toggle {
+    padding: 9px 13px;
+  }
+}
+
+.btn-group-lg > .btn {
+  @extend .btn-lg;
+
+  & + .dropdown-toggle {
+    padding: 10px 19px;
+  }
+}
+
+.btn-group-hg > .btn {
+  @extend .btn-hg;
+
+  & + .dropdown-toggle {
+    padding: 13px 20px;
+  }
+}
+
+
+
+// Carets in other button sizes
+// .btn-xs .caret {
+//   border-width: $caret-width-xs-vertical $caret-width-xs 0;
+//   border-bottom-width: 0;
+// }
+.btn-lg .caret {
+  border-width: $caret-width-base-vertical $caret-width-base 0;
+  border-bottom-width: 0;
+}
+// Upside down carets for .dropup
+.dropup .btn-lg .caret {
+  border-width: 0 $caret-width-base $caret-width-base-vertical;
+}
+.dropup .btn-xs .caret {
+  border-width: 0 $caret-width-xs $caret-width-xs-vertical;
+}
+
+.btn-group > .btn,
+.btn-group > .dropdown-menu,
+.btn-group > .popover {
+  font-weight: 400;
+}
+
+.btn-group:focus .dropdown-toggle {
+  outline: none;
+  transition: .25s;
+}
+
+// The clickable button for toggling the menu
+// Remove the gradient and set the same inset shadow as the :active state
+.btn-group.show .dropdown-toggle {
+  color: rgba($btn-default-color, .75);
+  box-shadow: none;
+}
+
+// Other button locations
+// Button with icon inside
+.btn-toolbar .btn {
+  &.active {
+    color: $btn-default-color;
+  }
+  > [class^="fui-"] {
+    font-size: $icon-normal;
+    margin: 0 1px;
+  }
+}

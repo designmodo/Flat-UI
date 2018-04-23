@@ -1,0 +1,292 @@
+//
+// Forms
+// --------------------------------------------------
+
+
+// Normalize non-controls
+//
+// Restyle and baseline non-control form elements.
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: $line-height-computed / 2;
+  font-size: ($component-font-size-base * 1.6); // ~24px
+  line-height: inherit;
+  color: $legend-color;
+  border-bottom: none;
+}
+
+// Normalize form controls
+
+// Textarea
+textarea {
+  font-size: ceil(($font-size-base * 1.071)); // ~15px
+  line-height: 24px;
+  padding: 5px 11px;
+
+  &.form-control {
+    height: auto;
+  }
+}
+
+// Search
+input[type="search"] {
+  -webkit-appearance: none !important; // removes rounded corners for searchfields on iOS
+}
+
+
+// Label
+label {
+  font-weight: normal;
+  font-size: $component-font-size-base;
+  line-height: 2.3; // ~36px
+}
+
+// Placeholder
+//
+// Placeholder text gets special styles because when browsers invalidate entire
+// lines if it doesn't understand a selector/
+.form-control {
+  @include placeholder(desaturate(lighten($brand-primary, 45%), 15%));
+}
+
+// Common form controls
+//
+// Shared size and type resets for form controls. Apply `.form-control` to any
+// of the following form controls:
+//
+// select
+// textarea
+// input[type="text"]
+// input[type="password"]
+// input[type="datetime"]
+// input[type="datetime-local"]
+// input[type="date"]
+// input[type="month"]
+// input[type="time"]
+// input[type="week"]
+// input[type="number"]
+// input[type="email"]
+// input[type="url"]
+// input[type="search"]
+// input[type="tel"]
+// input[type="color"]
+
+.form-control {
+  border: 2px solid $gray-light;
+  color: $brand-primary;
+  font-family: $font-family-base;
+  font-size: $input-font-size-base;
+  line-height: $input-line-height-base;
+  padding: 8px 12px;
+  height: 42px;
+  border-radius: $input-border-radius;
+  box-shadow: none;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+
+  // Customize the `:focus` state
+  @include form-control-focus();
+
+  // Disabled and read-only inputs
+  // Note: HTML5 says that controls under a fieldset > legend:first-child won't
+  // be disabled if the fieldset is disabled. Due to implementation difficulty,
+  // we don't honor that edge case; we style them as disabled anyway.
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+    background-color: $input-bg-disabled;
+    border-color: mix($gray, white, 40%);
+    color: mix($gray, white, 40%);
+    cursor: default;
+    @include opacity(.7);
+  }
+
+  // Flat (without border)
+  &.flat {
+    border-color: transparent;
+
+    &:hover {
+      border-color: $gray-light;
+    }
+    &:focus {
+      border-color: $brand-secondary;
+    }
+  }
+}
+
+// Form control sizing
+.input-sm,
+.form-group-sm .form-control {
+  @include input-size($input-height-sm, 6px, 10px, $input-font-size-sm, $input-line-height-sm)
+}
+
+.input-lg,
+.form-group-lg .form-control {
+  @include input-size($input-height-lg, 10px, 15px, $input-font-size-lg, $input-line-height-lg)
+}
+
+.input-hg,
+.form-group-hg .form-control {
+  @include input-size($input-height-hg, 10px, 16px, $input-font-size-hg, $input-line-height-hg)
+}
+
+// Form control feedback states
+//
+// Apply contextual and semantic states to individual form controls.
+
+.form-control-feedback {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  margin-top: 1px;
+  line-height: 36px;
+  font-size: $input-icon-font-size;
+  color: desaturate(lighten($brand-primary, 45%), 15%);
+  background-color: transparent;
+  padding: 0 12px 0 0;
+  border-radius: $input-border-radius;
+  pointer-events: none;
+}
+
+.input-hg + .form-control-feedback,
+.control-feedback-hg {
+  font-size: $input-icon-font-size-hg;
+  line-height: 48px;
+  padding-right: 16px;
+  width: auto;
+  height: 48px;
+}
+.input-lg + .form-control-feedback,
+.control-feedback-lg {
+  font-size: $input-icon-font-size-lg;
+  line-height: 40px;
+  width: auto;
+  height: 40px;
+  padding-right: 15px;
+}
+.input-sm + .form-control-feedback,
+.control-feedback-sm {
+  line-height: 29px;
+  height: 29px;
+  width: auto;
+  padding-right: 10px;
+}
+
+// Feedback states
+.has-success {
+  @include form-control-validation($brand-success, $brand-success);
+}
+.has-warning {
+  @include form-control-validation($brand-warning, $brand-warning);
+}
+.has-error {
+  @include form-control-validation($brand-danger, $brand-danger);
+}
+
+.form-control[disabled] + .form-control-feedback,
+.form-control[readonly] + .form-control-feedback,
+fieldset[disabled] .form-control + .form-control-feedback,
+.form-control.disabled + .form-control-feedback {
+  cursor: $cursor-disabled;
+  color: mix($gray, white, 40%);
+  background-color: transparent;
+  @include opacity(.7);
+}
+
+
+// Help text
+//
+// Apply to any element you wish to create light text for placement immediately
+// below a form control. Use for general help, formatting, or instructional text.
+
+.help-block {
+  font-size: ceil(($component-font-size-base * 0.933));
+  margin-bottom: 5px;
+  color: mix($brand-primary, $gray-light, 60%);
+}
+
+// Form groups
+//
+// Designed to help with the organization and spacing of vertical forms. For
+// horizontal forms, use the predefined grid classes.
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+// Horizontal forms
+//
+// Horizontal forms are built on grid classes and allow you to create forms with
+// labels on the left and inputs on the right.
+
+.form-horizontal {
+
+  // Consistent vertical alignment of radios and checkboxes
+  //
+  // Labels also get some reset styles, but that is scope to a media query below.
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  // Reset spacing and right align labels, but scope to media queries so that
+  // labels on narrow viewports stack the same as a default form example.
+  @media (min-width: $screen-sm-min) {
+    .control-label {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
+
+  // Make form groups behave like rows
+  .form-group {
+    @include make-row()
+  }
+
+  .form-control-static {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  // Form group sizes
+  //
+  // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
+  // inputs and labels within a `.form-group`.
+  .form-group-hg {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        font-size: $input-font-size-hg;
+        padding-top: 2px;
+        padding-bottom: 0;
+      }
+    }
+    .form-control {
+      @extend .input-hg;
+    }
+  }
+  .form-group-lg {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        font-size: $input-font-size-lg;
+        padding-top: 3px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+  .form-group-sm {
+    @media (min-width: $screen-sm-min) {
+      .control-label {
+        font-size: $input-font-size-sm;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+}

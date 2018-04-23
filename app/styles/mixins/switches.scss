@@ -1,0 +1,32 @@
+// Switch variants
+
+@mixin switch-variant($handle-color, $handle-bg, $label-border, $label-bg) {
+  color: $handle-color;
+  background-color: $handle-bg;
+
+  // second handler "label"
+  ~ .#{$switch-name}-handle-off:before {
+    background-color: $label-bg;
+    border-color: $label-border;
+  }
+
+  // second handler inset shadow
+  .#{$switch-name}-on & {
+    ~ .#{$switch-name}-handle-off {
+      box-shadow: inset 16px 0 0 $handle-bg;
+    }
+  }
+}
+
+// Switch handle-off variant
+@mixin switch-handle-off-variant($handle-name, $handle-border, $handle-bg) {
+  // second heandler outset shadow
+  & ~ .#{$switch-name}-handle-off.#{$switch-name}-#{$handle-name} {
+    box-shadow: "inset 0 0 transparent, -16px 0 0 #{$handle-border}";
+  }
+  // second heandler "label"
+  ~ .#{$switch-name}-handle-off.#{$switch-name}-#{$handle-name}:before {
+    border-color: $handle-border;
+    background-color: $handle-bg;
+  }
+}

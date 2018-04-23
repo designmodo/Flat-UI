@@ -2,16 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Flat UI Free</title>
+    <title>Flat UI Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="../../dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href="../../dist/css/flat-ui.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="../../dist/img/favicon.ico">
+    <link rel="shortcut icon" href="../../dist/favicon.ico">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -19,9 +19,6 @@
       <script src="../../dist/js/vendor/respond.min.js"></script>
     <![endif]-->
     <style>
-      body {
-        padding-bottom: 200px;
-      }
       ul {
         list-style: none;
         padding-left: 33px;
@@ -188,15 +185,88 @@
           </form>
         </div>
       </div><!-- /.row -->
+
+      <div class="row mbl">
+        <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="text-center" width="20px"><label class="checkbox no-label toggle-all" for="checkbox-table-1"><input type="checkbox" value="" id="checkbox-table-1" data-toggle="checkbox"></label></th>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Votes</th>
+                <th>Year</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center"><label class="checkbox no-label" for="checkbox-table-2"><input type="checkbox" value="" id="checkbox-table-2" data-toggle="checkbox"></label></td>
+                <td>1</td>
+                <td>The Shawshank Redemption</td>
+                <td>Crime, Drama</td>
+                <td>923,629</td>
+                <td>1994</td>
+                <td class="text-center">9.2</td>
+              </tr>
+              <tr class="selected-row">
+                <td class="text-center"><label class="checkbox no-label" for="checkbox-table-3"><input type="checkbox" checked="checked" value="" id="checkbox-table-3" data-toggle="checkbox"></label></td>
+                <td>2</td>
+                <td>The Godfather</td>
+                <td>Crime, Drama</td>
+                <td>663,133</td>
+                <td>1972</td>
+                <td class="text-center">9.2</td>
+              </tr>
+              <tr class="selected-row">
+                <td class="text-center"><label class="checkbox no-label" for="checkbox-table-4"><input type="checkbox" checked="checked" value="" id="checkbox-table-4" data-toggle="checkbox"></label></td>
+                <td>3</td>
+                <td>The Godfather: Part II</td>
+                <td>Crime, Drama</td>
+                <td>427,132</td>
+                <td>1974</td>
+                <td class="text-center">9.0</td>
+              </tr>
+              <tr>
+                <td class="text-center"><label class="checkbox no-label" for="checkbox-table-5"><input type="checkbox" value="" id="checkbox-table-5" data-toggle="checkbox"></label></td>
+                <td>4</td>
+                <td>Pulp Fiction</td>
+                <td>Crime, Drama</td>
+                <td>719,280</td>
+                <td>1994</td>
+                <td class="text-center">8.9</td>
+              </tr>
+              <tr>
+                <td class="text-center"><label class="checkbox no-label" for="checkbox-table-6"><input type="checkbox" value="" id="checkbox-table-6" data-toggle="checkbox"></label></td>
+                <td>5</td>
+                <td>The Good, the Bad and the Ugly</td>
+                <td>Adventure, Western</td>
+                <td>218,887</td>
+                <td>1966</td>
+                <td class="text-center">8.9</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div><!-- /.row -->
     </div><!-- /.container -->
+    <br><br><br><br><br><br>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../dist/js/vendor/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../dist/js/flat-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <script src="../../dist/scripts/flat-ui.js"></script>
 
     <script src="../assets/js/application.js"></script>
     <script>
+
+
       $('button:not([type="submit"])').on('click', function (e) {
         var $this = $(this);
 

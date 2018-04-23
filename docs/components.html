@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="">
   <head>
     <meta charset="utf-8">
-    <title>Components &middot; Flat UI Free</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Components &middot; Flat UI</title>
 
     <!-- Loading Bootstrap -->
-    <link href="../dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="../dist/css/flat-ui.min.css" rel="stylesheet">
+    <link href="../dist/css/flat-ui.css" rel="stylesheet">
+
+    <!-- Loading DOC css -->
     <link href="assets/css/docs.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="../img/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-      <script src="../dist/js/vendor/html5shiv.js"></script>
-      <script src="../dist/js/vendor/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
-    <ul class="demo-sidebar hide-on-tablets">
+    <ul class="demo-sidebar hidden-md">
       <li><a href="#fui-button">Buttons</a></li>
       <li><a href="#fui-checkbox">Checkboxes</a></li>
-      <li><a href="#fui-radio">Radio buttons</a></li>
       <li><a href="#fui-dropdown">Dropdown</a></li>
       <li><a href="#fui-input">Input</a></li>
       <li><a href="#fui-navbar">Navbar</a></li>
@@ -32,18 +27,18 @@
       <li><a href="#fui-pagination">Pagination</a></li>
       <li><a href="#fui-progress">Progress</a></li>
       <li><a href="#fui-select">Select</a></li>
+      <li><a href="#fui-slider">Slider</a></li>
       <li><a href="#fui-switch">Switch</a></li>
       <li><a href="#fui-tagsinput">Tags Input</a></li>
       <li><a href="#fui-tooltip">Tooltip</a></li>
-      <li><a href="#fui-slider">Slider</a></li>
       <li><a href="#fui-typeahead">Typeahead</a></li>
       <li><a href="#fui-videoplayer">Video Player</a></li>
     </ul> <!-- /nav -->
 
-		<h1 class="demo-headline">Components</h1>
-    <div class="container">
-    	<div id="fui-button"></div>
 
+    <div id="fui-button"></div>
+    <h1 class="demo-headline">Components</h1>
+    <div class="container">
       <div class="demo-row">
         <div class="demo-title">
           <h3>Buttons</h3>
@@ -51,7 +46,7 @@
 
         <div class="demo-content">
           <p>
-            After restyling the <a href="http://getbootstrap.com/css/#buttons">Bootstrap buttons</a>, we have decided to add a new size: <code>btn-hg</code> which will be used for the main call to action buttons on the page:
+            After restyling the <a href="https://getbootstrap.com/docs/4.0/components/buttons/">Bootstrap buttons</a>, we have decided to add a new size: <code>.btn-hg</code> which will be used for the main call to action buttons on the page:
           </p>
           <p class="mbl">
             <button class="btn btn-hg btn-primary">Huge Button</button>
@@ -78,12 +73,24 @@
             In some cases buttons need to become wider. Yes, we have taken care of that as well:
           </p>
           <p class="mbl">
-            <button class="btn btn-wide btn-primary mrm">Save</button>
-            <button class="btn btn-wide btn-default">Cancel</button>
+            <button class="btn btn-primary btn-wide mrm">Save</button>
+            <button class="btn btn-default btn-wide">Cancel</button>
           </p>
 <pre class="prettyprint">
 &lt;button class="btn btn-default btn-wide"&gt;
   Cancel
+&lt;/button&gt;
+</pre>
+
+          <p class="ptl">
+            Sometime the button on mobile needs to be smaller. To do that we add a new class <code>btn-reduce-on-xs</code>. Check it on a mobile screen size.
+          </p>
+          <p class="mbl">
+            <button class="btn btn-hg btn-primary btn-reduce-on-xs">Responsive Button</button>
+          </p>
+<pre class="prettyprint">
+&lt;button class="btn btn-hg btn-primary btn-reduce-on-xs"&gt;
+  Responsive Button
 &lt;/button&gt;
 </pre>
 
@@ -98,26 +105,60 @@
           </p>
 <pre class="prettyprint">
 &lt;button class="btn btn-primary"&gt;
-  Save
-  &lt;span class="btn-tip"&gt;$300&lt;/span&gt;
+  Save &lt;span class="btn-tip"&gt;$300&lt;/span&gt;
 &lt;/button&gt;
 </pre>
 
           <p class="ptl">
-            As usual you can set different colors:
+            Finally, a nice way to use social buttons out of the box:
           </p>
-          <p>
-	          <button class="btn btn-default mrs">Default</button>
+          <div class="mbl">
+            <button class="btn btn-default btn-social-pinterest mrs"><span class="fui-pinterest"></span> 500</button>
+            <button class="btn btn-social-linkedin mrs"><span class="fui-linkedin"></span> 500</button>
+            <button class="btn btn-social-stumbleupon mrs"><span class="fui-stumbleupon"></span> 500</button>
+            <button class="btn btn-social-googleplus mrs"><span class="fui-googleplus"></span> 500</button>
+            <button class="btn btn-social-facebook mrs"><span class="fui-facebook"></span> 500</button>
+            <button class="btn btn-social-twitter"><span class="fui-twitter"></span> 500</button>
+          </div>
+<pre class="prettyprint">
+&lt;button class="btn btn-default btn-social-pinterest"&gt;
+  &lt;span class="fui-pinterest"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+&lt;button class="btn btn-social-linkedin"&gt;
+  &lt;span class="fui-linkedin"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+&lt;button class="btn btn-social-stumbleupon"&gt;
+  &lt;span class="fui-stumbleupon"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+&lt;button class="btn btn-social-googleplus"&gt;
+  &lt;span class="fui-googleplus"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+&lt;button class="btn btn-social-facebook"&gt;
+  &lt;span class="fui-facebook"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+&lt;button class="btn btn-social-twitter"&gt;
+  &lt;span class="fui-twitter"&gt;&lt;/span&gt; 500
+&lt;/button&gt;
+</pre>
+
+          <p class="ptl">
+            As usual you can assign different colors to your buttons:
+          </p>
+          <div class="mbm">
+            <button class="btn mrs">Button</button>
+            <button class="btn btn-default mrs">Default</button>
             <button class="btn btn-primary mrs">Primary</button>
             <button class="btn btn-info mrs">Info</button>
             <button class="btn btn-danger mrs">Danger</button>
-          </p>
-          <p class="mbl">
+          </div>
+          <div class="mbl">
             <button class="btn btn-success mrs">Success</button>
             <button class="btn btn-warning mrs">Warning</button>
             <button class="btn btn-inverse mrs">Inverse</button>
-          </p>
+            <button class="btn btn-link mrs">Link</button>
+          </div>
 <pre class="prettyprint">
+&lt;button class="btn"&gt;Button&lt;/button&gt;
 &lt;button class="btn btn-default"&gt;Default&lt;/button&gt;
 &lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
 &lt;button class="btn btn-info"&gt;Info&lt;/button&gt;
@@ -125,25 +166,24 @@
 &lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
 &lt;button class="btn btn-warning"&gt;Warning&lt;/button&gt;
 &lt;button class="btn btn-inverse"&gt;Inverse&lt;/button&gt;
+&lt;button class="btn btn-link"&gt;Link&lt;/button&gt;
 </pre>
 
           <p>
             Button groups, toolbars, and disabled state also work as expected.
           </p>
-
           <div id="fui-checkbox"></div>
         </div>
       </div><!-- /.demo-row -->
 
-
       <div class="demo-row">
         <div class="demo-title">
-          <h3>Checkboxes</h3>
+          <h3>Checkboxes and radios</h3>
         </div>
 
         <div class="demo-content">
           <p>
-            Using flat style checkboxes requires a JS plugin which creates all the custom markup for us. Let's take a look:
+            Using flat style checkboxes and radios requires a JS plugin which creates all the custom markup for us. Let's take a look:
           </p>
           <form action="#">
             <div class="row">
@@ -163,6 +203,24 @@
                 <label class="checkbox" for="checkbox4">
                   <input type="checkbox" value="" id="checkbox4" checked="checked" data-toggle="checkbox" disabled="">
                   Checkbox
+                </label>
+              </div>
+              <div class="col-md-6">
+                <label class="radio" for="radio1">
+                  <input type="radio" name="optionsRadios1" value="" id="radio1" data-toggle="radio">
+                  radio
+                </label>
+                <label class="radio" for="radio2">
+                  <input type="radio" name="optionsRadios1" value="" id="radio2" data-toggle="radio" checked="checked" >
+                  radio
+                </label>
+                <label class="radio" for="radio3">
+                  <input type="radio" name="optionsRadios1" value="" id="radio3" data-toggle="radio" disabled="">
+                  radio
+                </label>
+                <label class="radio" for="radio4">
+                  <input type="radio" name="optionsRadios1" value="" id="radio4" data-toggle="radio" disabled="">
+                  radio
                 </label>
               </div>
             </div>
@@ -241,123 +299,10 @@ $(':checkbox').on('change.radiocheck', function() {
   // Do something
 });
 </pre>
-          <div id="fui-radio"></div>
-        </div> <!-- /.demo-content -->
-      </div> <!-- /.demo-row -->
-
-
-      <div class="demo-row">
-        <div class="demo-title">
-          <h3>Radio buttons</h3>
-        </div>
-
-        <div class="demo-content">
-          <p>
-            Using flat style radio buttons requires a JS plugin which creates all the custom markup for us. Let's take a look:
-          </p>
-          <form action="#">
-            <div class="row">
-              <div class="col-md-6">
-                <label class="radio" for="radio1">
-                  <input type="radio" name="optionsRadios1" value="" id="radio1" data-toggle="radio">
-                  Radio button
-                </label>
-                <label class="radio" for="radio2">
-                  <input type="radio" name="optionsRadios1" value="" id="radio2" data-toggle="radio" checked="checked" >
-                  Radio button
-                </label>
-                <label class="radio" for="radio3">
-                  <input type="radio" name="optionsRadios1" value="" id="radio3" data-toggle="radio" disabled="">
-                  Radio button
-                </label>
-                <label class="radio" for="radio4">
-                  <input type="radio" name="optionsRadios1" value="" id="radio4" data-toggle="radio" disabled="">
-                  Radio button
-                </label>
-              </div>
-            </div>
-          </form>
-
-          <h6 class="ptl">The JS:</h6>
-<pre class="prettyprint">
-$(':radio').radiocheck();
-</pre>
-
-          <div class="pvm">
-            <h6>Methods:</h6>
-          </div>
-          <p class="mbl">
-            <strong>.radiocheck('toggle')</strong>
-            <br/>
-            toggles the radio button state from <span class="text-info">checked</span>
-            to <span class="text-info">unchecked</span> and back
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('check')</strong>
-            <br/>
-            sets the radio button state to <span class="text-info">checked</span>
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('uncheck')</strong>
-            <br/>
-            sets the radio button state to <span class="text-info">unchecked</span>
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('disable')</strong>
-            <br/>
-            sets the radio button state to <span class="text-info">disabled</span>
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('enable')</strong>
-            <br/>
-            unsets the <span class="text-info">disabled</span> checkbox state
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('indeterminate')</strong>
-            <br/>
-            sets the radio button state to <span class="text-info">indeterminate</span>
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('determinate')</strong>
-            <br/>
-            unsets the <span class="text-info">indeterminate</span> checkbox state
-          </p>
-          <p class="mbl">
-            <strong>.radiocheck('destroy')</strong>
-            <br/>
-            destroying the radio button cover
-          </p>
-<pre class="prettyprint">
-$(':radio').radiocheck('check');
-</pre>
-
-          <div class="pbm ptl">
-            <h6>Events:</h6>
-          </div>
-          <p class="mbl">
-            <strong>.on('change.radiocheck')</strong>
-            <br/>
-            Fired when the radio button state changes.
-          </p>
-          <p class="mbl">
-            <strong>.on('destroyed.radiocheck')</strong>
-            <br/>
-            Fired when radiocheck destroys cover.
-          </p>
-<pre class="prettyprint">
-$(':radio').on('change.radiocheck', function() {
-// Do something
-});
-</pre>
-
           <div id="fui-dropdown"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
-    </div><!-- /.container -->
 
-
-
-    <div class="container">
       <div class="demo-row">
         <div class="demo-title">
           <h3>Dropdown</h3>
@@ -365,12 +310,12 @@ $(':radio').on('change.radiocheck', function() {
 
         <div class="demo-content">
           <p class="mbl">
-            The same <a href="http://getbootstrap.com/components/#dropdowns">Bootstrap dropdown</a> is used as part of the <code>select</code>, <code>btn-group</code>, <code>nav-tabs</code> and eventually other components to present information as a menu.
+            The same <a href="https://getbootstrap.com/docs/4.0/components/dropdowns/">Bootstrap dropdown</a> is used as part of the <code>select</code>, <code>btn-group</code>, <code>nav-tabs</code> and eventually other components to present information as a menu.
           </p>
 
           <div class="btn-group mrm">
             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-              Dropdown <span class="caret"></span>
+              Dropdown
             </button>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">Action</a></li>
@@ -383,7 +328,7 @@ $(':radio').on('change.radiocheck', function() {
 
           <div class="btn-group">
             <button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
-              Dropdown <span class="caret"></span>
+              Dropdown
             </button>
             <ul class="dropdown-menu dropdown-menu-inverse" role="menu">
               <li><a href="#">Action</a></li>
@@ -399,7 +344,7 @@ $(':radio').on('change.radiocheck', function() {
 &lt;!-- Default skin  --&gt;
 &lt;div class="btn-group"&gt;
   &lt;button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"&gt;
-    Large button &lt;span class="caret"&gt;&lt;/span&gt;
+    Large button
   &lt;/button&gt;
   &lt;ul class="dropdown-menu" role="menu"&gt;
     &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
@@ -413,7 +358,7 @@ $(':radio').on('change.radiocheck', function() {
 &lt;!-- Inverted skin  --&gt;
 &lt;div class="btn-group"&gt;
   &lt;button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown"&gt;
-    Large button &lt;span class="caret"&gt;&lt;/span&gt;
+    Large button
   &lt;/button&gt;
   &lt;ul class="dropdown-menu dropdown-menu-inverse" role="menu"&gt;
     &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
@@ -437,7 +382,7 @@ $(':radio').on('change.radiocheck', function() {
 
         <div class="demo-content">
           <p class="mbl">
-            The restyled <a href="http://getbootstrap.com/css/#forms">Bootstrap input</a>.
+            The restyled <a href="https://getbootstrap.com/docs/4.0/components/forms/">Bootstrap input</a>.
           </p>
 
           <div class="row">
@@ -513,7 +458,7 @@ $(':radio').on('change.radiocheck', function() {
           <div class="row mbl">
             <div class="col-lg-6">
               <div class="input-group">
-                <span class="input-group-addon">@</span>
+                <span class="input-group-text">@</span>
                 <input class="form-control" type="text" placeholder="Prepend" />
               </div>
             </div>
@@ -523,21 +468,21 @@ $(':radio').on('change.radiocheck', function() {
             <div class="col-lg-6">
               <div class="input-group">
                 <input class="form-control" type="text" placeholder="Append" />
-                <span class="input-group-addon">@</span>
+                <span class="input-group-text">@</span>
               </div>
             </div>
           </div>
 <pre class="prettyprint mtm">
 &lt;!-- Prepend --&gt;
 &lt;div class="input-group"&gt;
-  &lt;span class="input-group-addon"&gt;@&lt;/span&gt;
+  &lt;span class="input-group-text"&gt;@&lt;/span&gt;
   &lt;input type="text" class="form-control" placeholder="Prepend" /&gt;
 &lt;/div&gt;
 
 &lt;!-- Append --&gt;
 &lt;div class="input-group"&gt;
   &lt;input type="text" class="form-control" placeholder="Append" /&gt;
-  &lt;span class="input-group-addon"&gt;@&lt;/span&gt;
+  &lt;span class="input-group-text"&gt;@&lt;/span&gt;
 &lt;/div&gt;
 </pre>
 
@@ -575,28 +520,6 @@ $(':radio').on('change.radiocheck', function() {
             </div>
           </div>
 
-<pre class="prettyprint">
-&lt;!-- Error state --&gt;
-&lt;div class="form-group has-error"&gt;
-  &lt;input class="form-control" type="text" placeholder="Error" /&gt;
-&lt;/div&gt;
-
-&lt;!-- Warning state --&gt;
-&lt;div class="form-group has-warning"&gt;
-  &lt;input class="form-control" type="text" placeholder="Error" /&gt;
-&lt;/div&gt;
-
-&lt;!-- Success state --&gt;
-&lt;div class="form-group has-success"&gt;
-  &lt;input class="form-control" type="text" placeholder="Error" /&gt;
-&lt;/div&gt;
-
-&lt;!-- Disabled state --&gt;
-&lt;div class="form-group"&gt;
-  &lt;input class="form-control" type="text" placeholder="Disabled" disabled /&gt;
-&lt;/div&gt;
-</pre>
-
           <p class="ptl mtl">
             The search form doesn't have any background color set to append/prepend:
           </p>
@@ -626,36 +549,6 @@ $(':radio').on('change.radiocheck', function() {
             </div>
           </div>
 
-<pre class="prettyprint">
-&lt;div class="input-group input-group-hg input-group-rounded"&gt;
-  &lt;span class="input-group-btn"&gt;
-    &lt;button type="submit" class="btn"&gt;&lt;span class="fui-search"&gt;&lt;/span&gt;&lt;/button&gt;
-  &lt;/span&gt;
-  &lt;input type="text" class="form-control" placeholder="Search" id="search-query-2"&gt;
-&lt;/div&gt;
-
-&lt;div class="input-group"&gt;
-  &lt;input type="text" class="form-control" placeholder="Search" id="search-query-3"&gt;
-  &lt;span class="input-group-btn"&gt;
-    &lt;button type="submit" class="btn"&gt;&lt;span class="fui-search"&gt;&lt;/span&gt;&lt;/button&gt;
-  &lt;/span&gt;
-&lt;/div&gt;
-</pre>
-
-    
-          <p class="ptl mtl">
-            You'll need to add some Javascript code in order to append icons (on left position) like search icon above
-          </p>
-
-<pre class="prettyprint">
-// Focus state for append/prepend inputs
-$('.input-group').on('focus', '.form-control', function () {
-  $(this).closest('.input-group, .form-group').addClass('focus');
-}).on('blur', '.form-control', function () {
-  $(this).closest('.input-group, .form-group').removeClass('focus');
-});
-</pre>
-
           <div id="fui-navbar"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
@@ -666,22 +559,19 @@ $('.input-group').on('focus', '.form-control', function () {
         </div>
         <div class="demo-content">
           <p class="mbl">
-            The restyled <a href="http://getbootstrap.com/components/#navbar">Bootstrap navbar</a>.
+            The restyled <a href="https://getbootstrap.com/docs/4.0/components/navbar/">Bootstrap navbar</a>.
           </p>
 
-          <nav class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                <span class="sr-only">Toggle navigation</span>
-              </button>
-              <a class="navbar-brand" href="#">Flat UI</a>
-            </div>
+          <nav class="navbar navbar-default navbar-expand-lg" role="navigation">
+            <a class="navbar-brand" href="#">Flat UI</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01">
+            </button>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav mr-auto">
                 <li class="active"><a href="#fakelink">Products</a></li>
                 <li><a href="#fakelink">Features</a></li>
                </ul>
-              <form class="navbar-form navbar-right" action="#" role="search">
+              <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
                 <div class="form-group">
                   <div class="input-group">
                     <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
@@ -695,19 +585,15 @@ $('.input-group').on('focus', '.form-control', function () {
           </nav><!-- /navbar -->
 
 <pre class="prettyprint mvl">
-&lt;nav class="navbar navbar-default" role="navigation"&gt;
-  &lt;div class="navbar-header"&gt;
-    &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01"&gt;
-      &lt;span class="sr-only"&gt;Toggle navigation&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;a class="navbar-brand" href="#"&gt;Flat UI&lt;/a&gt;
-  &lt;/div&gt;
+&lt;nav class="navbar navbar-default navbar-expand-lg" role="navigation"&gt;
+  &lt;a class="navbar-brand" href="#"&gt;Flat UI&lt;/a&gt;
+  &lt;button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"&gt;&lt;/button&gt;
   &lt;div class="collapse navbar-collapse" id="navbar-collapse-01"&gt;
-    &lt;ul class="nav navbar-nav"&gt;
+    &lt;ul class="nav navbar-nav mr-auto"&gt;
       &lt;li class="active"&gt;&lt;a href="#fakelink"&gt;Products&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;&lt;a href="#fakelink"&gt;Features&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
-    &lt;form class="navbar-form navbar-right" action="#" role="search"&gt;
+    &lt;form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search"&gt;
       &lt;div class="form-group"&gt;
         &lt;div class="input-group"&gt;
           &lt;input class="form-control" id="navbarInput-01" type="search" placeholder="Search"&gt;
@@ -722,19 +608,16 @@ $('.input-group').on('focus', '.form-control', function () {
 </pre>
 
         <p class="ptl">Inverted navbar:</p>
-        <nav class="navbar navbar-inverse" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
+        <nav class="navbar navbar-inverse navbar-expand-lg" role="navigation">
             <a class="navbar-brand" href="#">Flat UI</a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbar-collapse-02">
-            <ul class="nav navbar-nav">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-02">
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-02">
+              <ul class="nav navbar-nav mr-auto">
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-02" type="search" placeholder="Search">
@@ -748,26 +631,23 @@ $('.input-group').on('focus', '.form-control', function () {
         </nav><!-- /navbar -->
 
 <pre class="prettyprint mvl">
-&lt;nav class="navbar navbar-inverse" role="navigation"&gt;
+&lt;nav class="navbar navbar-inverse navbar-expand-lg" role="navigation"&gt;
 &lt;!-- Navbar content --&gt;
 &lt;/nav&gt;
 </pre>
 
 
         <p class="ptl">Embossed navbar:</p>
-        <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-03">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
+        <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
             <a class="navbar-brand" href="#">Flat UI</a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbar-collapse-03">
-            <ul class="nav navbar-nav">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-03">
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-03">
+              <ul class="nav navbar-nav mr-auto">
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-03" type="search" placeholder="Search">
@@ -781,25 +661,22 @@ $('.input-group').on('focus', '.form-control', function () {
         </nav><!-- /navbar -->
 
 <pre class="prettyprint mvl">
-&lt;nav class="navbar navbar-inverse navbar-embossed" role="navigation"&gt;
+&lt;nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation"&gt;
 &lt;!-- Navbar content --&gt;
 &lt;/nav&gt;
 </pre>
 
         <p class="ptl">Large navbar:</p>
-        <nav class="navbar navbar-default navbar-lg" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-04">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
+        <nav class="navbar navbar-default navbar-lg navbar-expand-lg" role="navigation">
             <a class="navbar-brand" href="#">Flat UI</a>
-          </div>
-          <div class="collapse navbar-collapse" id="navbar-collapse-04">
-            <ul class="nav navbar-nav">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-04">
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-04">
+              <ul class="nav navbar-nav mr-auto">
               <li class="active"><a href="#fakelink">Products</a></li>
               <li><a href="#fakelink">Features</a></li>
              </ul>
-            <form class="navbar-form navbar-right" action="#" role="search">
+            <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
               <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" id="navbarInput-04" type="search" placeholder="Search">
@@ -813,21 +690,18 @@ $('.input-group').on('focus', '.form-control', function () {
         </nav><!-- /navbar -->
 
 <pre class="prettyprint mvl">
-&lt;nav class="navbar navbar-default navbar-lg" role="navigation"&gt;
+&lt;nav class="navbar navbar-default navbar-lg navbar-expand-lg" role="navigation"&gt;
 &lt;!-- Navbar content --&gt;
 &lt;/nav&gt;
 </pre>
 
         <p class="ptl">Inline forms:</p>
-        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-          <div class="navbar-header">
-            <button data-target="#navbar-collapse-05" data-toggle="collapse" class="navbar-toggle" type="button">
-              <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a href="#" class="navbar-brand">Flat UI</a>
-          </div>
-          <div id="navbar-collapse-05" class="collapse navbar-collapse">
-            <form role="search" class="navbar-form navbar-left">
+        <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation" >
+          <a class="navbar-brand" href="#">Flat UI</a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-05">
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-collapse-05">
+            <form class="navbar-form form-inline" role="search">
               <div class="form-group">
                 <input type="text" placeholder="Search" class="form-control">
               </div>
@@ -837,7 +711,7 @@ $('.input-group').on('focus', '.form-control', function () {
         </nav>
 
 <pre class="prettyprint mvl">
-&lt;form role="search" class="navbar-form navbar-left"&gt;
+&lt;form role="search" class="navbar-form form-inline"&gt;
   &lt;div class="form-group"&gt;
     &lt;input type="text" placeholder="Search" class="form-control"&gt;
   &lt;/div&gt;
@@ -846,16 +720,14 @@ $('.input-group').on('focus', '.form-control', function () {
 </pre>
 
         <p class="ptl">Buttons:</p>
-        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-          <div class="navbar-header">
-            <button data-target="#navbar-collapse-06" data-toggle="collapse" class="navbar-toggle" type="button">
-            </button>
-            <a href="#" class="navbar-brand">Flat UI</a>
-          </div>
+        <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation" >
+          <a class="navbar-brand" href="#">Flat UI</a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-06">
+          </button>
           <div id="navbar-collapse-06" class="collapse navbar-collapse">
             <button class="btn btn-default navbar-btn" type="button">Sign in</button>
-            <button class="btn btn-default navbar-btn btn-sm" type="button">Sign in</button>
-            <button class="btn btn-default navbar-btn btn-xs" type="button">Sign in</button>
+            <button class="btn btn-default navbar-btn btn-sm ml-1" type="button">Sign in</button>
+            <button class="btn btn-default navbar-btn btn-xs ml-1" type="button">Sign in</button>
           </div>
         </nav>
 
@@ -869,46 +741,42 @@ $('.input-group').on('focus', '.form-control', function () {
 </pre>
 
         <p class="ptl">Text:</p>
-        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-          <div class="navbar-header">
-            <button data-target="#navbar-collapse-07" data-toggle="collapse" class="navbar-toggle" type="button">
+        <nav role="navigation" class="navbar navbar-inverse navbar-embossed navbar-expand-lg">
+            <a class="navbar-brand" href="#">Flat UI</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-07">
             </button>
-            <a href="#" class="navbar-brand">Flat UI</a>
-          </div>
           <div id="navbar-collapse-07" class="collapse navbar-collapse">
             <p class="navbar-text">Signed in as Mark Otto</p>
           </div>
         </nav>
 
 <pre class="prettyprint mvl">
-&lt;p class="navbar-text"&gt;Signed in as Mark Otto&lt;/p&gt;
+&lt;div class="collapse navbar-collapse"&gt;
+  &lt;p class="navbar-text"&gt;Signed in as Mark Otto&lt;/p&gt;
+&lt;/div>&lt;!-- /.navbar-collapse --&gt;
 </pre>
 
         <p class="ptl">Non-nav links:</p>
-        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-          <div class="navbar-header">
-            <button data-target="#navbar-collapse-08" data-toggle="collapse" class="navbar-toggle" type="button">
+        <nav role="navigation" class="navbar navbar-inverse navbar-embossed navbar-expand-lg">
+            <a class="navbar-brand" href="#">Flat UI</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-08">
             </button>
-            <a href="#" class="navbar-brand">Flat UI</a>
-          </div>
-          <div id="navbar-collapse-08" class="collapse navbar-collapse">
+          <div id="navbar-collapse-08" class="collapse navbar-collapse justify-content-end">
             <p class="navbar-text navbar-right">Signed in as <a class="navbar-link" href="#">Mark Otto</a></p>
           </div>
         </nav>
 
 <pre class="prettyprint mvl">
-&lt;p class="navbar-text navbar-right"&gt;Signed in as &lt;a class="navbar-link" href="#"&gt;Mark Otto&lt;/a&gt;&lt;/p&gt;
+&lt;div class="collapse navbar-collapse justify-content-end"&gt;
+  &lt;p class="navbar-text navbar-right"&gt;Signed in as &lt;a class="navbar-link" href="#"&gt;Mark Otto&lt;/a&gt;&lt;/p&gt;
+&lt;/div>&lt;!-- /.navbar-collapse --&gt;
 </pre>
 
           <p class="ptl">New and Unread indicators:</p>
-          <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-09">
-                <span class="sr-only">Toggle navigation</span>
-              </button>
-              <a class="navbar-brand" href="#">Flat UI</a>
-            </div>
-
+          <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+            <a class="navbar-brand" href="#">Flat UI</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-09">
+            </button>
             <div class="collapse navbar-collapse" id="#navbar-collapse-09">
               <ul class="nav navbar-nav">
                 <li><a href="#">Messages<span class="navbar-unread">1</span></a></li>
@@ -970,7 +838,6 @@ $('.input-group').on('focus', '.form-control', function () {
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
 
-
       <div class="demo-row">
         <div class="demo-title">
           <h3>Pager</h3>
@@ -1015,17 +882,16 @@ $('.input-group').on('focus', '.form-control', function () {
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
 
-
       <div class="demo-row">
         <div class="demo-title">
           <h3>Pagination</h3>
         </div>
         <div class="demo-content">
           <p>
-            The restyled <a href="http://getbootstrap.com/components/#pagination">Bootstrap pagination</a>. We have added a dropdown navigation, a minimalistic look and a text-only look. We have also added a few color schemes with an alternative layout.
+            The restyled <a href="https://getbootstrap.com/docs/4.0/components/pagination/">Bootstrap pagination</a>. We have added a dropdown navigation, a minimalistic look and a text-only look. We have also added a few color schemes with an alternative layout.
           </p>
-          <div>
-            <ul class="pagination">
+          <div class="pagination">
+            <ul>
               <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
               <li class="active"><a href="#fakelink">1</a></li>
               <li><a href="#fakelink">2</a></li>
@@ -1038,9 +904,7 @@ $('.input-group').on('focus', '.form-control', function () {
               <li><a href="#fakelink">9</a></li>
               <li><a href="#fakelink">10</a></li>
               <li class="pagination-dropdown dropup">
-                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fui-triangle-up"></i>
-                </a>
+                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown"></a>
                 <ul class="dropdown-menu">
                   <li><a href="#fakelink">10–20</a></li>
                   <li><a href="#fakelink">20–30</a></li>
@@ -1052,17 +916,15 @@ $('.input-group').on('focus', '.form-control', function () {
           </div>
 
 <pre class="prettyprint mvl">
-&lt;div&gt;
-  &lt;ul class="pagination"&gt;
+&lt;div class="pagination"&gt;
+  &lt;ul&gt;
     &lt;li class="previous"&gt;
       &lt;a href="#" class="fui-arrow-left"&gt;&lt;/a&gt;
     &lt;/li&gt;
 
     &lt;!-- Make dropdown appear above pagination --&gt;
     &lt;li class="pagination-dropdown dropup"&gt;
-      &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;
-        &lt;i class="fui-triangle-up"&gt;&lt;/i&gt;
-      &lt;/a&gt;
+      &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;&lt;/a&gt;
       &lt;!-- Dropdown menu --&gt;
       &lt;ul class="dropdown-menu"&gt;
         &lt;li&gt;
@@ -1093,9 +955,7 @@ $('.input-group').on('focus', '.form-control', function () {
               <li><a href="#fakelink">9</a></li>
               <li><a href="#fakelink">10</a></li>
               <li class="pagination-dropdown dropup">
-                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fui-triangle-up"></i>
-                </a>
+                <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown"></a>
                 <ul class="dropdown-menu">
                   <li><a href="#fakelink">10–20</a></li>
                   <li><a href="#fakelink">20–30</a></li>
@@ -1245,11 +1105,9 @@ $('.input-group').on('focus', '.form-control', function () {
   &lt;a href="#" class="btn btn-success next"&gt;Next&lt;/a&gt;
 &lt;/div&gt;
 </pre>
-
           <div id="fui-progress"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
-
 
       <div class="demo-row">
         <div class="demo-title">
@@ -1257,12 +1115,12 @@ $('.input-group').on('focus', '.form-control', function () {
         </div>
         <div class="demo-content">
           <p>
-            The restyled <a href="http://getbootstrap.com/components/#progress">Bootstrap progress</a>.
+            The restyled <a href="https://getbootstrap.com/docs/4.0/components/progress/">Bootstrap progress</a>.
           </p>
           <div class="progress">
             <div class="progress-bar" style="width: 45%;"></div>
           </div>
-          <div class="progress">
+          <div class="progress mt-3">
             <div class="progress-bar" style="width: 40%;"></div>
             <div class="progress-bar progress-bar-warning" style="width: 10%;"></div>
             <div class="progress-bar progress-bar-danger" style="width: 10%;"></div>
@@ -1357,6 +1215,141 @@ $("select").select2({dropdownCssClass: 'dropdown-inverse'});
 
 // You can always select by any other attribute, not just tag name.
 // Also you can leave selectpicker arguments blank to apply defaults.
+</pre>
+          <div id="fui-slider"></div>
+        </div> <!-- /.demo-content -->
+      </div> <!-- /.demo-row -->
+
+      <div class="demo-row">
+        <div class="demo-title">
+          <h3>Slider</h3>
+        </div>
+        <div class="demo-content">
+          <p class="mbl">
+            The restyled <a href="http://jqueryui.com/slider">jQuery UI slider</a> with added slider segments.
+          </p>
+
+          <div id="slider"></div>
+
+          <p class="ptl">The markup:</p>
+
+<pre class="prettyprint mvl">
+&lt;div id="slider"&gt;&lt;/div&gt;
+</pre>
+
+          <p class="ptl">The JS:</p>
+
+<pre class="prettyprint mvl">
+var $slider = $("#slider");
+if ($slider.length > 0) {
+  $slider.slider({
+    min: 1,
+    max: 5,
+    value: 3,
+    orientation: "horizontal",
+    range: "min"
+  }).addSliderSegments($slider.slider("option").max);
+}
+</pre>
+
+          <p class="pvl">How does <span class="text-info">addSliderSegments()</span> work?</p>
+          <p>This is an extended jQuery method placed in the <code>application.js</code> file. It calculates how many segments to append to the slider by looking at a <span class="text-info">slider("option").max</span> which shows a maximum slider value.</p>
+
+<pre class="prettyprint mvl">
+// Add segments to a slider
+$.fn.addSliderSegments = function (amount, orientation) {
+  return this.each(function () {
+    if (orientation == "vertical") {
+      var output = ''
+        , i;
+      for (i = 1; i &lt;= amount - 2; i++) {
+        output += '&lt;div class="ui-slider-segment" style="top:' + 100 / (amount - 1) * i + '%;"&gt;&lt;/div&gt;';
+      };
+      $(this).prepend(output);
+    } else {
+      var segmentGap = 100 / (amount - 1) + "%"
+        , segment = '&lt;div class="ui-slider-segment" style="margin-left: ' + segmentGap + ';"&gt;&lt;/div&gt;';
+      $(this).prepend(segment.repeat(amount - 2));
+    }
+  });
+};
+</pre>
+
+          <p class="pvl">Vertical slider:</p>
+
+          <div class="pbl">
+            <div id="vertical-slider" style="height: 200px;"></div>
+          </div>
+
+          <p class="ptl">The markup:</p>
+
+<pre class="prettyprint mvl">
+&lt;div id="vertical-slider" style="height: 200px;"&gt;&lt;/div&gt;
+</pre>
+
+          <p class="ptl">The JS:</p>
+
+<pre class="prettyprint mvl">
+var $verticalSlider = $("#vertical-slider");
+if ($verticalSlider.length) {
+  $verticalSlider.slider({
+    min: 1,
+    max: 5,
+    value: 3,
+    orientation: "vertical",
+    range: "min"
+  }).addSliderSegments($verticalSlider.slider("option").max, "vertical");
+}
+</pre>
+<p class="pvl">Custom slider values:</p>
+
+          <div class="pbl">
+            <div id="slider3">
+              <span class="ui-slider-value first"></span>
+              <span class="ui-slider-value last"></span>
+            </div>
+          </div>
+
+          <p class="ptl">The markup:</p>
+
+<pre class="prettyprint mvl">
+&lt;div id="slider3"&gt;
+  &lt;span class="ui-slider-value first"&gt;&lt;/span&gt;
+  &lt;span class="ui-slider-value last"&gt;&lt;/span&gt;
+&lt;/div&gt;
+</pre>
+
+          <p class="ptl">The JS:</p>
+
+<pre class="prettyprint mvl">
+var $slider3 = $("#slider3")
+  , slider3ValueMultiplier = 100
+  , slider3Options;
+
+if ($slider3.length > 0) {
+  $slider3.slider({
+    min: 1,
+    max: 5,
+    values: [3, 4],
+    orientation: "horizontal",
+    range: true,
+    slide: function(event, ui) {
+      $slider3.find(".ui-slider-value:first")
+        .text("$" + ui.values[0] * slider3ValueMultiplier)
+        .end()
+        .find(".ui-slider-value:last")
+        .text("$" + ui.values[1] * slider3ValueMultiplier);
+    }
+  });
+
+  slider3Options = $slider3.slider("option");
+  $slider3.addSliderSegments(slider3Options.max)
+    .find(".ui-slider-value:first")
+    .text("$" + slider3Options.values[0] * slider3ValueMultiplier)
+    .end()
+    .find(".ui-slider-value:last")
+    .text("$" + slider3Options.values[1] * slider3ValueMultiplier);
+}
 </pre>
           <div id="fui-switch"></div>
         </div> <!-- /.demo-content -->
@@ -1507,7 +1500,7 @@ $('#label-switch').bootstrapSwitch('offText', 'Ag');
             Used for managing multiple tags with the ability to add a new one and to remove or validate an existing one. It is available in 2 color schemes: grey (default) and primary.
           </p>
           <p class="mbl pbl">
-            This component is based on <a href="http://timschlechter.github.io/bootstrap-tagsinput/examples/bootstrap3/">Bootstrap Tags Input</a>.
+            This component is based on <a href="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/">Bootstrap Tags Input</a>.
           </p>
 
           <input name="tagsinput-01" class="tagsinput" data-role="tagsinput" value="Clean, Fresh, Modern, Unique" />
@@ -1523,7 +1516,7 @@ $('#label-switch').bootstrapSwitch('offText', 'Ag');
 
 &lt;!-- Primary tags input --&gt;
 &lt;div class="tagsinput-primary"&gt;
-&lt;input name="tagsinput" class="tagsinput" data-role="tagsinput" value="School, Teacher, Colleague" /&gt;
+&lt;input name="tagsinput" class="tagsinput" value="School, Teacher, Colleague" /&gt;
 &lt;/div&gt;
 </pre>
 
@@ -1541,13 +1534,11 @@ $('#label-switch').bootstrapSwitch('offText', 'Ag');
 $(".tagsinput").tagsinput();
 </pre>
 
-          <p class="mbl pbl">For more technical details read the <a href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/">official plugin&nbsp;documentation</a>.</p>
+          <p class="mbl pbl">For more technical details read the <a href="http://timschlechter.github.io/bootstrap-tagsinput/examples/bootstrap3/">official plugin&nbsp;documentation</a>.</p>
 
           <div id="fui-tooltip"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
-
-			<div id="fui-tooltip" class="pbl"></div>
 
       <div class="demo-row">
         <div class="demo-title">
@@ -1555,12 +1546,12 @@ $(".tagsinput").tagsinput();
         </div>
         <div class="demo-content">
           <p class="mbl">
-            Restyled <a href="http://getbootstrap.com/javascript/#tooltips">Bootstrap tooltip</a>.
+            The restyled <a href="https://getbootstrap.com/docs/4.0/components/tooltips/">Bootstrap tooltip</a>.
           </p>
 
-          <div style="width: 40%; padding-left: 10px; height: 60px;">
+          <div style="height: 70px;">
             <div class="demo-tooltips">
-              <p data-toggle="tooltip" title="Here is a sample of a long dark tooltip. Hell yeah."></p>
+              <p>Here an <a href="#" data-toggle="tooltip" title="Here is a sample of a long dark tooltip. Hell yeah.">example</a></p>
             </div>
           </div> <!-- /tooltips -->
 
@@ -1568,141 +1559,6 @@ $(".tagsinput").tagsinput();
 &lt;p data-toggle="tooltip" title="Tooltip copy"&gt;&lt;/p&gt;
 </pre>
 
-          <div id="fui-slider"></div>
-        </div> <!-- /.demo-content -->
-      </div> <!-- /.demo-row -->
-
-      <div class="demo-row">
-        <div class="demo-title">
-          <h3>Slider</h3>
-        </div>
-        <div class="demo-content">
-          <p class="mbl">
-            The restyled <a href="http://jqueryui.com/slider">jQuery UI slider</a> with added slider segments.
-          </p>
-
-          <div id="slider"></div>
-
-          <p class="ptl">The markup:</p>
-
-<pre class="prettyprint mvl">
-&lt;div id="slider"&gt;&lt;/div&gt;
-</pre>
-
-          <p class="ptl">The JS:</p>
-
-<pre class="prettyprint mvl">
-var $slider = $("#slider");
-if ($slider.length > 0) {
-  $slider.slider({
-    min: 1,
-    max: 5,
-    value: 3,
-    orientation: "horizontal",
-    range: "min"
-  }).addSliderSegments($slider.slider("option").max);
-}
-</pre>
-
-          <p class="pvl">How does <span class="text-info">addSliderSegments()</span> work?</p>
-          <p>This is an extended jQuery method placed in the <code>application.js</code> file. It calculates how many segments to append to the slider by looking at a <span class="text-info">slider("option").max</span> which shows a maximum slider value.</p>
-
-<pre class="prettyprint mvl">
-// Add segments to a slider
-$.fn.addSliderSegments = function (amount, orientation) {
-  return this.each(function () {
-    if (orientation == "vertical") {
-      var output = ''
-        , i;
-      for (i = 1; i &lt;= amount - 2; i++) {
-        output += '&lt;div class="ui-slider-segment" style="top:' + 100 / (amount - 1) * i + '%;"&gt;&lt;/div&gt;';
-      };
-      $(this).prepend(output);
-    } else {
-      var segmentGap = 100 / (amount - 1) + "%"
-        , segment = '&lt;div class="ui-slider-segment" style="margin-left: ' + segmentGap + ';"&gt;&lt;/div&gt;';
-      $(this).prepend(segment.repeat(amount - 2));
-    }
-  });
-};
-</pre>
-
-          <p class="pvl">Vertical slider:</p>
-
-          <div class="pbl">
-            <div id="vertical-slider" style="height: 200px;"></div>
-          </div>
-
-          <p class="ptl">The markup:</p>
-
-<pre class="prettyprint mvl">
-&lt;div id="vertical-slider" style="height: 200px;"&gt;&lt;/div&gt;
-</pre>
-
-          <p class="ptl">The JS:</p>
-
-<pre class="prettyprint mvl">
-var $verticalSlider = $("#vertical-slider");
-if ($verticalSlider.length) {
-  $verticalSlider.slider({
-    min: 1,
-    max: 5,
-    value: 3,
-    orientation: "vertical",
-    range: "min"
-  }).addSliderSegments($verticalSlider.slider("option").max, "vertical");
-}
-</pre>
-<p class="pvl">Custom slider values:</p>
-
-          <div class="pbl">
-            <div id="slider3">
-              <span class="ui-slider-value first"></span>
-              <span class="ui-slider-value last"></span>
-            </div>
-          </div>
-
-          <p class="ptl">The markup:</p>
-
-<pre class="prettyprint mvl">
-&lt;div id="slider3"&gt;
-  &lt;span class="ui-slider-value first"&gt;&lt;/span&gt;
-  &lt;span class="ui-slider-value last"&gt;&lt;/span&gt;
-&lt;/div&gt;
-</pre>
-
-          <p class="ptl">The JS:</p>
-
-<pre class="prettyprint mvl">
-var $slider3 = $("#slider3")
-  , slider3ValueMultiplier = 100
-  , slider3Options;
-
-if ($slider3.length > 0) {
-  $slider3.slider({
-    min: 1,
-    max: 5,
-    values: [3, 4],
-    orientation: "horizontal",
-    range: true,
-    slide: function(event, ui) {
-      $slider3.find(".ui-slider-value:first")
-        .text("$" + ui.values[0] * slider3ValueMultiplier)
-        .end()
-        .find(".ui-slider-value:last")
-        .text("$" + ui.values[1] * slider3ValueMultiplier);
-    }
-  });
-
-  slider3Options = $slider3.slider("option");
-  $slider3.addSliderSegments(slider3Options.max)
-    .find(".ui-slider-value:first")
-    .text("$" + slider3Options.values[0] * slider3ValueMultiplier)
-    .end()
-    .find(".ui-slider-value:last")
-    .text("$" + slider3Options.values[1] * slider3ValueMultiplier);
-}
-</pre>
           <div id="fui-typeahead"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
@@ -1764,6 +1620,7 @@ $('#typeahead-demo-01').typeahead(null, {
 
           <p class="ptl">Useful Resources: <a href="http://twitter.github.io/typeahead.js/examples/">Examples</a>, <a href="https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md">Typeahead docs</a>, <a href="https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md">Bloodhound docs</a>.</p>
 
+
           <div id="fui-videoplayer"></div>
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
@@ -1779,56 +1636,63 @@ $('#typeahead-demo-01').typeahead(null, {
 
           <p class="ptl">Example:</p>
 
-          <video class="video-js" preload="auto" poster="assets/img/video/poster.jpg" data-setup="{}">
-            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4">
-            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm">
+          <video
+            id="my-player"
+            class="video-js"
+            controls
+            preload="auto"
+            poster="assets/images/video/poster.jpg"
+            data-setup='{}'>
+            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4"></source>
+            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm"></source>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+              </a>
+            </p>
           </video>
 
           <p class="ptl">The markup:</p>
 
 <pre class="prettyprint mvl">
-&lt;video class="video-js" preload="auto" poster="assets/img/video/poster.jpg" data-setup="{}"&gt;
+&lt;video class="video-js" controls preload="auto" poster="assets/images/video/poster.jpg" data-setup="{}"&gt;
   &lt;source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4"&gt;
   &lt;source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm"&gt;
 &lt;/video&gt;
 </pre>
 
-          <p class="ptl">To have a working video player you need to include the JS file <code>video-js.js</code> and SWF file <code>video-js.swf</code>. You can do it in 2 ways:</p>
+          <p class="ptl">To have a working video player you need to include the JS file <code>video-js</code>.
 
-          <p class="ptl">Include a CDN version in your page(swf file will be downloaded automaticaly from CDN):</p>
-
-<pre class="prettyprint mvl">
-&lt;script src="//vjs.zencdn.net/4.7/video.js"&gt;&lt;/script&gt;
-</pre>
-
-          <p class="ptl">Include a self hosted version of <code>flat-ui.js</code> and seth path to SWF file:</p>
+          <p class="ptl">Include a CDN version in your page</p>
 
 <pre class="prettyprint mvl">
-&lt;script src="//example.com/path/to/flat-ui.js">&lt;/script&gt;
-&lt;script&gt;
-  videojs.options.flash.swf = "http://example.com/path/to/video-js.swf"
-&lt;/script&gt;
+&lt;script src="//vjs.zencdn.net/6.6.3/video.js"&gt;&lt;/script&gt;
 </pre>
 
-          <p class="ptl">The file <code>video-js.swf</code> can be found in <code>../dist/js/vendor/</code> folder</p>
 
-
-        <p class="ptl">Useful Resources: <a href="https://github.com/videojs/video.js/blob/stable/index.md">Video.js docs</a></p>
+        <p class="ptl">Useful Resources: <a href="http://docs.videojs.com/">Video.js docs</a></p>
 
         </div> <!-- /.demo-content -->
       </div> <!-- /.demo-row -->
 
     </div><!-- /.container -->
 
-    <script src="../dist/js/vendor/jquery.min.js"></script>
-    <script src="../dist/js/vendor/video.js"></script>
-    <script src="../dist/js/flat-ui.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
+
+    <script src="../dist/scripts/flat-ui.js"></script>
 
     <script src="assets/js/prettify.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
     <script src="assets/js/application.js"></script>
 
-    <script>
-      videojs.options.flash.swf = "../dist/js/vendors/video-js.swf"
-    </script>
   </body>
 </html>

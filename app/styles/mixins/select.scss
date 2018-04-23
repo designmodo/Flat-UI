@@ -1,0 +1,71 @@
+// Select variants
+//
+
+@mixin select-variant($color, $background, $hover-background, $active-background, $gray-light) {
+  .select2-choice {
+    color: $color;
+    background-color: $background;
+
+    &:hover,
+    &.hover,
+    &:focus,
+    &:active {
+      color: $color;
+      background-color: $hover-background;
+      border-color: $hover-background;
+    }
+    &:active {
+      background: $active-background;
+      border-color: $active-background;
+    }
+
+    @at-root .select2-container-disabled#{&} {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $gray-light;
+        border-color: $background;
+      }
+    }
+
+    .select2-arrow {
+      border-top-color: $gray-light;
+    }
+  }
+}
+
+@mixin select-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+  padding-right: ($padding-horizontal * 2 + 9px);
+  min-height: round(($line-height*$font-size + 2*$padding-vertical)) // we need min-height for empty ones
+}
+
+@mixin multiple-select-variant($background, $hover-background, $border-color) {
+  @at-root .select2-container-multi#{&} {
+      border-color: $border-color;
+
+      .select2-search-choice {
+        background-color: $background;
+
+        &:hover {
+          background-color: $hover-background;
+        }
+        @at-root .select2-container-disabled#{&} {
+          &,
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: $gray-light;
+            border-color: $gray-light;
+          }
+        }
+      }
+      @at-root .select2-container-disabled#{&} {
+        border-color: $gray-light;
+      }
+  }
+}

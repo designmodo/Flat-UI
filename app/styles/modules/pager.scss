@@ -1,0 +1,58 @@
+//
+// Pager
+// --------------------------------------------------
+
+.pager {
+  background-color: $pager-bg;
+  border-radius: $pager-border-radius;
+  color: $pager-color;
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  text-align: center;
+  list-style: none;
+
+  li {
+    display: inline;
+
+    &:first-child {
+      > a,
+      > span {
+        border-left: none;
+        border-radius: $pager-border-radius 0 0 $pager-border-radius;
+      }
+    }
+
+    > a,
+    > span {
+      display: inline-block;
+      background: none;
+      border: none;
+      border-left: 2px solid mix($brand-primary, black, 85%);
+      color: $inverse;
+      padding: $pager-padding;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 0 $pager-border-radius $pager-border-radius 0;
+      line-height: 1.313;
+
+      &:hover,
+      &:focus {
+        background-color: $pager-hover-bg;
+      }
+      &:active {
+        background-color: $pager-active-bg;
+      }
+
+      // Add some spacing between the icon and text
+      [class*="fui-"] + span {
+        margin-left: 8px;
+      }
+      span + [class*="fui-"] {
+        margin-left: 8px;
+      }
+    }
+  }
+}

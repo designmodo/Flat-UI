@@ -2,16 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Flat UI Free</title>
+    <title>Flat UI Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="../../dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href="../../dist/css/flat-ui.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="../../dist/img/favicon.ico">
+    <link rel="shortcut icon" href="../../dist/favicon.ico">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -20,13 +20,6 @@
     <![endif]-->
   </head>
   <body>
-
-    <style>
-      body {
-        padding-bottom: 200px;
-      }
-    </style>
-
     <div class="container">
       <h4>Forms</h4>
       <div class="row">
@@ -43,9 +36,18 @@
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <input type="file" id="exampleInputFile">
-              <p class="help-block">Example block-level help text here.</p>
+              <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                <div class="form-control uneditable-input" data-trigger="fileinput">
+                  <span class="fui-clip fileinput-exists"></span>
+                  <span class="fileinput-filename"></span>
+                </div>
+                <span class="input-group-addon btn btn-default btn-file">
+                  <span class="fileinput-new">Select file</span>
+                  <span class="fileinput-exists"><span class="fui-gear"></span>&nbsp;&nbsp;Change</span>
+                  <input type="file" name="...">
+                </span>
+                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="fui-trash"></span>&nbsp;&nbsp;Remove</a>
+              </div>
             </div>
             <label class="checkbox" for="checkbox1">
               <input type="checkbox" data-toggle="checkbox" value="" id="checkbox1" required>
@@ -149,22 +151,25 @@
               </label>
             </div>
             <div class="form-group">
-              <select data-toggle="select" class="form-control select select-default">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <select data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
-                <option value="0" selected>1 option</option>
-                <option value="1">2 option</option>
-                <option value="2" selected>3 option</option>
-                <option value="3">4 option</option>
-                <option value="4">5 option</option>
-              </select>
+              <p>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </p>
+
+              <p>
+                <select data-toggle="select" multiple class="form-control multiselect multiselect-default mrs mbm">
+                  <option value="0" selected>1 option</option>
+                  <option value="1">2 option</option>
+                  <option value="2" selected>3 option</option>
+                  <option value="3">4 option</option>
+                  <option value="4">5 option</option>
+                </select>
+              </p>
             </div>
           </form>
         </div>
@@ -213,9 +218,11 @@
                   <option>Disabled select</option>
                 </select>
               </div>
-              <label class="checkbox checkbox-inline" for="checkbox6">
-                <input type="checkbox" data-toggle="checkbox" value="" id="checkbox6" required checked> Can't check this
-              </label>
+              <div class="form-group">
+                <label class="checkbox checkbox-inline" for="checkbox6">
+                  <input type="checkbox" data-toggle="checkbox" value="" id="checkbox6" required checked> Can't check this
+                </label>
+              </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </fieldset>
           </form>
@@ -243,9 +250,6 @@
           <h4>Control sizing</h4>
           <h6>Height sizing</h6>
           <div class="form-group">
-            <input class="form-control input-hg" type="text" placeholder=".input-lg">
-          </div>
-          <div class="form-group">
             <input class="form-control input-lg" type="text" placeholder=".input-lg">
           </div>
           <div class="form-group">
@@ -256,7 +260,7 @@
           </div>
 
           <div class="form-group">
-            <select data-toggle="select" class="form-control select select-default select-hg">
+            <select class="form-control input-lg">
               <optgroup label="Profile">
                 <option value="0">My Profile</option>
                 <option value="1">My Friends</option>
@@ -269,7 +273,7 @@
             </select>
           </div>
           <div class="form-group">
-            <select data-toggle="select" class="form-control select select-default select-lg">
+            <select class="form-control">
               <optgroup label="Profile">
                 <option value="0">My Profile</option>
                 <option value="1">My Friends</option>
@@ -282,20 +286,7 @@
             </select>
           </div>
           <div class="form-group">
-            <select data-toggle="select" class="form-control select select-default">
-              <optgroup label="Profile">
-                <option value="0">My Profile</option>
-                <option value="1">My Friends</option>
-              </optgroup>
-              <optgroup label="System">
-                <option value="2">Messages</option>
-                <option value="3">My Settings</option>
-                <option value="4" class="highlighted">Logout</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="form-group">
-            <select data-toggle="select" class="form-control select select-default select-sm">
+            <select class="form-control input-sm">
               <optgroup label="Profile">
                 <option value="0">My Profile</option>
                 <option value="1">My Friends</option>
@@ -518,13 +509,36 @@
             </div><!-- /.input-group -->
           </div><!-- /.form-group -->
         </div><!-- /.col-lg-6 -->
-      </div><!-- /.row -->
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon">@</span>
+              <input type="text" id="spinner-01" placeholder="" value="0" class="form-control spinner">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form action="#" class="form-horizontal">
+        <div class="form-group">
+          <label for="exmpleInput" class="col-sm-4 control-label">Input Label</label>
+          <div class="col-sm-8">
+            <input type="text" id="exmpleInput" class="form-control" placeholder="Placeholder text">
+            <span class="input-icon fui-info"></span>
+          </div>
+        </div>
+      </form>
     </div><!-- /.container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../dist/js/vendor/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../dist/js/flat-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <script src="../../dist/scripts/flat-ui.js"></script>
 
     <script src="../assets/js/application.js"></script>
 
