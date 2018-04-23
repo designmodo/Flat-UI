@@ -1,0 +1,36 @@
+// Mixins
+// --------------------------------------------------
+
+// Utilities
+@import "mixins/hide-text.scss";
+@import "mixins/opacity.scss";
+@import "mixins/image.scss";
+@import "mixins/reset-filter.scss";
+@import "mixins/resize.scss";
+@import "mixins/responsive-visibility.scss";
+@import "mixins/size.scss";
+@import "mixins/tab-focus.scss";
+@import "mixins/text-emphasis.scss";
+@import "mixins/text-overflow.scss";
+@import "mixins/vendor-prefixes.scss";
+@import "mixins/background-clip.scss";
+@import "mixins/breakpoints.scss";
+
+// Components
+@import "mixins/buttons.scss";
+@import "mixins/select.scss";
+@import "mixins/pagination.scss";
+@import "mixins/nav-divider.scss";
+@import "mixins/forms.scss";
+@import "mixins/switches.scss";
+
+// Skins
+@import "mixins/background-variant.scss";
+@import "mixins/border-radius.scss";
+@import "mixins/gradients.scss";
+
+// Layout
+@import "mixins/clearfix.scss";
+@import "mixins/center-block.scss";
+@import "mixins/navbar-vertical-align.scss";
+@import "mixins/grid.scss";

@@ -1,15 +1,15 @@
 
-# [Flat UI Free](http://designmodo.github.io/Flat-UI/)
+# [Flat UI Free](https://designmodo.github.io/Flat-UI/)
 
 Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
 
-To get started, check out [getting started page](http://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
+To get started, check out [getting started page](https://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
 
 ## Links:
 
-+ [Demo Page](http://designmodo.github.io/Flat-UI/)
++ [Demo Page](https://designmodo.github.io/Flat-UI/)
 + [Download PSD](https://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.3.2](https://designmodo.com/flat/) (from $39)
++ [Flat UI Pro 1.4.0](https://designmodo.com/flat/) (from $39)
 
 ## Quick start
 
@@ -21,7 +21,7 @@ Three quick start options are available:
 
 Run `npm install` and `bower install` to install dependencies.
 
-Read the [getting started page](http://designmodo.github.io/Flat-UI/docs/getting-started.html) for information on the framework contents.
+Read the [getting started page](https://designmodo.github.io/Flat-UI/docs/getting-started.html) for information on the framework contents.
 
 Examples: <https://github.com/designmodo/Flat-UI/tree/master/docs/examples>.
 
@@ -32,54 +32,41 @@ Within the download you'll find the following directories and files, logically g
 
 ```
 flat-ui/
+└── app/
+  ├── css/
+  ├── fonts/
+  ├── images/
+  ├── scripts/
+  └── styles/
+      ├── mixins/
+      ├── modules/
+      ├── flat-ui.scss
+      ├── _mixins.scss
+      ├── _spaces.scss
+      └── _variables.scss
 ├── dist/
-|   ├── css/
-|   |   ├── vendors/
-│   |   ├── flat-ui.css
-│   |   └── flat-ui.min.css
-|   ├── js/
-|   |   ├── vendors/
-│   |   ├── flat-ui.js
-│   |   └── flat-ui.min.js
-|   ├── fonts/
-|   |   ├── lato/
-|   |   └── glyphicons/
-|   |        ├── flat-ui-icons-regular.eot
-|   |        ├── flat-ui-icons-regular.svg
-|   |        ├── flat-ui-icons-regular.ttf
-|   |        ├── flat-ui-icons-regular.woff
-|   |        └── selection.json
-|   ├── img/
-|   └── index.html
+  ├── css/
+  ├── fonts/
+  ├── images/
+  ├── scripts/
 ├── docs/
-|   ├── examples/
-|   ├── components.html
-|   ├── getting-started.html
-|   └── template.html
-├── fonts/
-|   ├── glyphicons/
-|   └── lato/
-├── img/
-├── js/
-└── less/
-    ├── mixins/
-    ├── modules/
-    ├── flat-ui.less
-    ├── mixins.less
-    └── variables.less
-
+  ├── examples/
+  ├── components.html
+  ├── getting-started.html
+  ├── index.html
+  └── template.html
 ```
 
 We provide compiled CSS and JS (`flat-ui.*`), as well as compiled and minified CSS and JS (`flat-ui.min.*`). Fonts with icons are included.
 
 ## Documentation
 
-Flat UI's documentation, included in this repo in the docs directory and publicly hosted on GitHub Pages at <http://designmodo.github.io/Flat-UI/docs/components.html>.
+Flat UI's documentation, included in this repo in the docs directory and publicly hosted on GitHub Pages at <https://designmodo.github.io/Flat-UI/docs/components.html>.
 
 
 ## SASS support
 
-If you are interested in SASS source files - you can visit this project made by @wingrunr21: 
+If you are interested in SASS source files - you can visit this project made by @wingrunr21:
 [Designmodo's Flat-UI ported to SASS with support for Flat-UI Pro](https://github.com/wingrunr21/flat-ui-sass)
 
 ## Copyright and license
@@ -96,7 +83,7 @@ Flat UI Free is made using the Lato typeface, which can be downloaded for free h
 
 **Postcards - [https://designmodo.com/postcards/](https://designmodo.com/postcards/)**
 
-Create beautiful responsive emails and newsletters with a simple drag & drop. It includes more than 100 modules to 
+Create beautiful responsive emails and newsletters with a simple drag & drop. It includes more than 100 modules to
 help you create custom emails faster than ever before.
 
 **Slides Framework - [https://designmodo.com/slides/](https://designmodo.com/slides/)**

@@ -1,11 +1,27 @@
 # Changelog
 
+## 2.4.0
+
+  - conversion LESS code to SCSS;
+  - migration to GULP from GRUNT;
+  - update of BOWER and NPM modules to the last current versions;
+  - integration of LIBSASS module for a fast PRE processor compiling;
+  - update of file directory;
+  - update to Bootstrap 4;
+  - optimisation of images;
+  - update of all FLAT UI components according to the Bootstrap 4 version;
+  - javascript and jquery libraries updates;
+  - responsive version for all components;
+  - update of Component and Template pages;
+  - update of Documentation;
+  - update of Getting-Start page.
+
 ## 2.2.1
 
   * Fixed issue with dropdowns border-top-radius (https://github.com/designmodo/Flat-UI-Pro-Support/issues/460);
   * Fixed conflict issue of jquery-ui and bootstrap button.js (https://github.com/designmodo/Flat-UI-Pro-Support/issues/465);
   * Added holder.js library;
-  * Added test case for typeahead component; 
+  * Added test case for typeahead component;
   * Typeahead: fixed form-control styling;
   * Various small bugfixes and improvements.
 

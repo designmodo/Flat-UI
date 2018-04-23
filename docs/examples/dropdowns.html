@@ -2,16 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Flat UI Free</title>
+    <title>Flat UI Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="../../dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../dist/css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href="../../dist/css/flat-ui.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="../../dist/img/favicon.ico">
+    <link rel="shortcut icon" href="../../dist/favicon.ico">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -20,13 +20,6 @@
     <![endif]-->
   </head>
   <body>
-
-    <style>
-      body {
-        padding-bottom: 200px;
-      }
-    </style>
-
     <div class="container">
 
       <h4>Dropdowns</h4>
@@ -63,7 +56,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">MonsterCritic <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
+                <li class="active"><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
@@ -200,6 +193,46 @@
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
+
+      <h6>Within pills</h6>
+
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="nav nav-pills">
+            <li class="active"><a href="#">Regular link</a></li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" role="button" id="drop4">Dropdown <b class="caret"></b></a>
+              <ul aria-labelledby="drop4" role="menu" class="dropdown-menu" id="menu1">
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Another action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Something else here</a></li>
+                <li class="divider" role="presentation"></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Separated link</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" role="button" id="drop5">Dropdown 2 <b class="caret"></b></a>
+              <ul aria-labelledby="drop5" role="menu" class="dropdown-menu" id="menu2">
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Another action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Something else here</a></li>
+                <li class="divider" role="presentation"></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Separated link</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown" role="button" id="drop6">Dropdown 3 <b class="caret"></b></a>
+              <ul aria-labelledby="drop6" role="menu" class="dropdown-menu" id="menu3">
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Another action</a></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Something else here</a></li>
+                <li class="divider" role="presentation"></li>
+                <li role="presentation"><a href="#" tabindex="-1" role="menuitem">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <h6>Single button dropdowns</h6>
 
@@ -451,6 +484,36 @@
         </div>
       </div>
 
+      <h6>Tabs</h6>
+
+      <div class="tabbable">
+        <ul class="nav nav-tabs nav-append-content">
+          <li><a href="#tab4">Popular</a></li>
+          <li class="active"><a href="#tab5">Newest</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              Dropdown
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#tab5">Newest</a></li>
+              <li><a href="#tab6">Bestselling</a></li>
+            </ul>
+          </li>
+        </ul> <!-- /tabs -->
+        <div class="tab-content">
+          <div class="tab-pane" id="tab4">
+            <p>I'm in Section 1.</p>
+          </div>
+          <div class="tab-pane active" id="tab5">
+            <p>Howdy, I'm in Section 2.</p>
+          </div>
+          <div class="tab-pane" id="tab6">
+            <p>Howdy, I'm in Section 3.</p>
+          </div>
+        </div> <!-- /tab-content -->
+      </div>
+
       <h6>Active item</h6>
 
       <div class="btn-group">
@@ -549,12 +612,17 @@
         </ul>
       </div>
 
-    </div><!-- /.container -->
+      <br><br><br><br><br><br><br><br><br>
+    </div>
+    <!-- /.container-fluid -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../../dist/js/vendor/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../dist/js/flat-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <script src="../../dist/scripts/flat-ui.js"></script>
 
     <script src="../assets/js/application.js"></script>
 

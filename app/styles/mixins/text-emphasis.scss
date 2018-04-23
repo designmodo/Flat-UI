@@ -1,0 +1,8 @@
+// Typography
+
+@mixin text-emphasis-variant($color) {
+  color: $color !important;
+  @at-root a#{&}:hover {
+    color: darken($color, 10%);
+  }
+}

@@ -1,0 +1,65 @@
+// Button variants
+//
+@mixin button-variant($color, $background, $hover-background, $active-background, $gray-light) {
+  color: $color;
+  background-color: $background;
+
+  @at-root .show > .dropdown-toggle#{&},
+  &:hover,
+  &.hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: $color;
+    background-color: $hover-background;
+    border-color: $hover-background;
+  }
+
+  @at-root .show > .dropdown-toggle#{&},
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active  {
+    background: $active-background;
+    border-color: $active-background;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &.hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: $gray-light;
+      border-color: $background;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $inverse;
+  }
+}
+
+// Button sizes
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+// Social button variants
+@mixin social-button-variant($color, $background) {
+  color: $color;
+  background-color: $background;
+
+  &:hover,
+  &:focus {
+    background-color: mix($background, white, 80%);
+  }
+  &:active,
+  &.active {
+    background-color: mix($background, black, 85%);
+  }
+}

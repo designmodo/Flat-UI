@@ -1,0 +1,124 @@
+//
+// Todo list
+// --------------------------------------------------
+
+.todo {  
+  color: $todo-color;
+  margin-bottom: 20px;
+  border-radius: $todo-border-radius;
+
+  ul {
+    background-color: $todo-bg-active;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-radius: 0 0 $todo-border-radius $todo-border-radius;
+  }
+  li {
+    background: $todo-bg;
+    background-size: 20px 20px;
+    cursor: pointer;
+    font-size: ceil(($component-font-size-base * 0.933)); // ~14px
+    line-height: 1.214;
+    margin-top: 2px;
+    padding: 18px 42px 21px 25px;
+    position: relative;
+    transition: .25s;
+    
+    &:first-child {
+      margin-top: 0;
+    }  
+    &:last-child {
+      border-radius: 0 0 $todo-border-radius $todo-border-radius;
+      padding-bottom: 21px;
+    }
+    &.todo-done {
+      background: transparent;
+      color: $todo-color-active;
+
+      .todo-name {
+        color: $todo-color-active;
+      }  
+    }
+    &:after {
+      content:" ";
+      display: block;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top:50%;
+      right:22px;
+      margin-top: -10px;
+      background: $todo-name-color;
+      border-radius: 50%;
+    }  
+    &.todo-done:after {
+      content:"\e60a";
+      font-family: 'Flat-UI-Pro-Icons';
+      text-align: center;
+      font-size: ceil(($component-font-size-base * 0.786)); // ~11px
+      line-height: 21px;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: $todo-color-active;
+      color:$todo-bg-active;
+    }
+  }      
+}
+
+.todo-search {
+  position: relative;
+  background: $todo-search-bg;
+  background-size: 16px 16px;
+  border-radius: $todo-border-radius $todo-border-radius 0 0;
+  color: $todo-search-color;
+  padding: 19px 25px 20px;
+  
+  &:before {
+    position: absolute;
+    font-family: 'Flat-UI-Pro-Icons';
+    content: "\e630";
+    font-size: 16px;
+    line-height: 17px;
+    display: inline-block;
+    top: 50%;
+    left: 92%;
+    margin: -0.5em 0 0 -1em;
+  }
+}
+
+input.todo-search-field {
+  background: none;
+  border: none;
+  color: $todo-search-color;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 23px;
+  padding: 5px 0;
+  text-indent: 0;
+  box-shadow: none;
+  @include placeholder($todo-search-color);
+  outline: none;
+}
+
+.todo-icon {
+  float: left;
+  font-size: 24px;
+  padding: 11px 22px 0 0;
+}
+
+.todo-content {
+  padding-top: 1px;
+  overflow: hidden;
+}
+
+.todo-name {
+  color: $todo-name-color;
+  font-size: 17px;
+  margin: 1px 0 3px;
+}  

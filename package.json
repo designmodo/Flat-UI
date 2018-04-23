@@ -1,46 +1,59 @@
 {
-  "name": "designmodo-flat-ui",
-  "shortname": "flat-ui",
-  "version": "2.3.0",
-  "description": "Flat UI Free is a beautiful theme for Bootstrap. We have redesigned many of its components to look flat in every pixel",
+  "name": "flat-ui-pro",
+  "version": "1.4.0",
+  "private": true,
+  "homepage": "https://designmodo.com/flat",
   "author": "Designmodo, Inc.",
-  "license": "CC BY 3.0 and MIT",
-  "homepage": "http://designmodo.github.io/Flat-UI/",
-  "main": "index",
-  "keywords": [
-    "ui",
-    "flat",
-    "bootstrap"
-  ],
-  "style": "dist/css/flat-ui.css",
-  "less": "less/flat-ui.less",
   "repository": {
     "type": "git",
-    "url": "https://github.com/designmodo/Flat-UI.git"
+    "url": "git://github.com/designmodo/Flat-UI-Pro.git"
   },
   "bugs": {
-    "url": "https://github.com/designmodo/Flat-UI/issues"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-autoprefixer": "~1.0.1",
-    "grunt-banner": "~0.2.3",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-connect": "~0.8.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-csslint": "^0.2.0",
-    "grunt-contrib-cssmin": "~0.10.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-less": "~0.11.4",
-    "grunt-contrib-uglify": "~0.5.1",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-csscomb": "~3.0.0",
-    "grunt-jscs": "~0.7.1",
-    "load-grunt-tasks": "~0.6.0",
-    "time-grunt": "~1.0.0"
+    "url": "https://github.com/designmodo/Flat-UI-Pro-Support/issues"
   },
   "engines": {
-    "node": "~0.10.31"
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.5.2",
+    "browser-sync": "^2.2.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-babel": "^6.1.1",
+    "gulp-cache": "^0.4.2",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-eslint": "^3.0.0",
+    "gulp-filter": "^4.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-minify": "^2.1.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.0.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-useref": "^3.0.0",
+    "main-bower-files": "^2.5.0",
+    "run-sequence": "^1.2.2",
+    "wiredep": "^4.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
   }
 }
