@@ -96,7 +96,7 @@ Startup Framework is based on Bootstrap and help you to create beautiful and res
 
 ## Useful Links
 
-More products from Designmodo: <https://designmodo.com/shop/>
+More products from Designmodo: <https://designmodo.com/products/>
 
 Designmodo Market: <http://market.designmodo.com/>
 
