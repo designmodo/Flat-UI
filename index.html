@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flat UI - Free Bootstrap Framework and Theme</title>
+    <meta name="description" content="Flat UI Kit Free is a Twitter Bootstrap Framework design and Theme, this responsive framework includes a PSD and HTML version."/>
+
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="dist/css/flat-ui.css" rel="stylesheet">
+    <link href="docs/assets/css/demo.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="dist/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="dist/js/vendor/html5shiv.js"></script>
+      <script src="dist/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="demo-headline">
+        <h1 class="demo-logo">
+          <div class="logo"></div>
+          Flat UI
+          <small>Free User Interface Kit</small>
+        </h1>
+      </div> <!-- /demo-headline -->
+
+      <h1 class="demo-section-title">Basic elements</h1>
+      <h3 class="demo-panel-title">Buttons</h3>
+
+      <div class="row demo-row">
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-primary">Primary Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-warning">Warning Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-default">Default Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-danger">Danger Button</a>
+        </div>
+      </div> <!-- /row -->
+
+      <div class="row demo-row">
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-success">Success Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-inverse">Inverse Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-info">Info Button</a>
+        </div>
+        <div class="col">
+          <a href="#fakelink" class="btn btn-block btn-lg btn-default disabled">Disabled Button</a>
+        </div>
+      </div> <!-- /row -->
+
+      <h3 class="demo-panel-title">Input</h3>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <input type="text" value="" placeholder="Inactive" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group has-error">
+            <input type="text" value="" placeholder="Error" class="form-control" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group has-success">
+            <input type="text" value="" placeholder="Success" class="form-control" />
+            <span class="input-icon fui-check-inverted"></span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <input type="text" value="Disabled" disabled="disabled" class="form-control" />
+          </div>
+        </div>
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="col">
+          <h3 class="demo-panel-title">Dropdown</h3>
+
+          <div class="btn-group">
+            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button">Default <span class="caret"></span></button>
+            <ul role="menu" class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+        </div> <!-- /.col -->
+        <div class="col">
+          <h3 class="demo-panel-title">Select</h3>
+          <select class="form-control select select-primary" data-toggle="select">
+            <option value="0">Choose hero</option>
+            <option value="1">Spider Man</option>
+            <option value="2">Wolverine</option>
+            <option value="3">Captain America</option>
+            <option value="4" selected>X-Men</option>
+            <option value="5">Crocodile</option>
+          </select>
+        </div> <!-- /.col -->
+        <div class="col-6">
+          <h3 class="demo-panel-title">Tags input</h3>
+          <div class="tagsinput-primary">
+            <input name="tagsinput" class="tagsinput" data-role="tagsinput" value="School, Teacher, Colleague" />
+          </div>
+        </div> <!-- /.col-6 -->
+      </div> <!-- /.row -->
+
+      <h3 class="demo-panel-title">Navbar</h3>
+      <div class="row demo-row">
+        <div class="col">
+          <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+            <a class="navbar-brand" href="#">Flat UI</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+              <ul class="nav navbar-nav mr-auto">
+                <li><a href="#fakelink">Menu Item<span class="navbar-unread">1</span></a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages</a>
+                  <span class="dropdown-arrow"></span>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </li>
+                <li><a href="#fakelink">About Us</a></li>
+               </ul>
+               <form class="navbar-form form-inline my-2 my-lg-0" action="#" role="search">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div><!-- /.navbar-collapse -->
+          </nav><!-- /navbar -->
+        </div>
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="col-5">
+          <h3 class="demo-panel-title">Progress bars &amp; Sliders</h3>
+          <div class="progress">
+            <div class="progress-bar" style="width: 45%;"></div>
+          </div>
+          <br/>
+          <div class="progress">
+            <div class="progress-bar" style="width: 40%;"></div>
+            <div class="progress-bar progress-bar-warning" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-danger" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-success" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-info" style="width: 10%;"></div>
+          </div>
+          <br/>
+          <div id="slider" class="ui-slider">
+            <div class="ui-slider-segment"></div>
+            <div class="ui-slider-segment"></div>
+            <div class="ui-slider-segment"></div>
+          </div>
+        </div> <!-- /sliders -->
+
+        <div class="col-6 offset-1">
+          <h3 class="demo-panel-title">Navigation</h3>
+          <div class="row demo-navigation">
+            <div class="col-6">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-time"></span></a>
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-photo"></span></a>
+                  <a class="btn btn-primary active" href="#fakelink"><span class="fui-heart"></span></a>
+                  <a class="btn btn-primary" href="#fakelink"><span class="fui-eye"></span></a>
+                </div>
+              </div> <!-- /toolbar -->
+            </div>
+            <div class="col-6 demo-pager">
+              <ul class="pager">
+                <li class="previous">
+                  <a href="#fakelink">
+                    <span class="fui-arrow-left"></span>
+                    <span>All messages</span>
+                  </a>
+                </li>
+                <li class="next">
+                  <a href="#fakelink">
+                    <span class="fui-arrow-right"></span>
+                  </a>
+                </li>
+              </ul> <!-- /pager -->
+            </div>
+          </div> <!-- /demo-navigation -->
+
+          <div class="pagination">
+            <ul>
+              <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+              <li class="active"><a href="#fakelink">1</a></li>
+              <li><a href="#fakelink">2</a></li>
+              <li><a href="#fakelink">3</a></li>
+              <li><a href="#fakelink">4</a></li>
+              <li><a href="#fakelink">5</a></li>
+              <li><a href="#fakelink">6</a></li>
+              <li><a href="#fakelink">7</a></li>
+              <li><a href="#fakelink">8</a></li>
+              <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+            </ul>
+          </div> <!-- /pagination -->
+        </div> <!-- /navigation -->
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="col">
+          <h3 class="demo-panel-title">Checkboxes</h3>
+          <label class="checkbox" for="checkbox1">
+            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+            Unchecked
+          </label>
+          <label class="checkbox" for="checkbox2">
+            <input type="checkbox" checked="checked" value="" id="checkbox2" data-toggle="checkbox" checked="">
+            Checked
+          </label>
+          <label class="checkbox" for="checkbox3">
+            <input type="checkbox" value="" id="checkbox3" data-toggle="checkbox" disabled="">
+            Disabled unchecked
+          </label>
+          <label class="checkbox" for="checkbox4">
+            <input type="checkbox" checked="checked" value="" id="checkbox4" data-toggle="checkbox" disabled="" checked="">
+            Disabled checked
+          </label>
+        </div> <!-- /checkboxes col -->
+
+        <div class="col">
+          <h3 class="demo-panel-title">Radio Buttons</h3>
+          <label class="radio">
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio">
+            Radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" data-toggle="radio" checked="">
+            Radio is on
+          </label>
+
+          <label class="radio">
+            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios3" value="option2" data-toggle="radio" disabled="">
+            Disabled radio is off
+          </label>
+          <label class="radio">
+            <input type="radio" name="optionsRadiosDisabled" id="optionsRadios4" value="option2" data-toggle="radio" checked="" disabled="">
+            Disabled radio is on
+          </label>
+        </div> <!-- /radios col -->
+
+        <div class="col">
+          <h3 class="demo-panel-title">Switches</h3>
+
+          <table width="100%">
+            <tr>
+              <td width="50%" class="pbm">
+                <input type="checkbox" checked data-toggle="switch" id="custom-switch-01" />
+              </td>
+              <td class="pbm">
+                <input type="checkbox" data-toggle="switch" id="custom-switch-02" />
+              </td>
+            </tr>
+            <tr>
+              <td class="pbm">
+                <div class="bootstrap-switch-square">
+                  <input type="checkbox" checked data-toggle="switch" id="custom-switch-03" data-on-text="<span class='fui-check'></span>" data-off-text="<span class='fui-cross'></span>" />
+                </div>
+              </td>
+              <td class="pbm">
+                <div class="bootstrap-switch-square">
+                  <input type="checkbox" data-toggle="switch" id="custom-switch-04" />
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" checked disabled data-toggle="switch" id="custom-switch-5" />
+              </td>
+              <td>
+                <input type="checkbox" checked disabled data-toggle="switch" id="custom-switch-6" />
+              </td>
+            </tr>
+          </table>
+        </div> <!-- /.col -->
+        <div class="col">
+          <h3 class="demo-panel-title">Share</h3>
+          <div class="share mrl">
+            <ul>
+              <li>
+                <label class="share-label" for="share-toggle2">Facebook</label>
+                <input type="checkbox" data-toggle="switch" />
+              </li>
+              <li>
+                <label class="share-label" for="share-toggle4">Twitter</label>
+                <input type="checkbox" checked="" data-toggle="switch" />
+              </li>
+              <li>
+                <label class="share-label" for="share-toggle6">Pinterest</label>
+                <input type="checkbox" data-toggle="switch" />
+              </li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-block btn-large">Share</a>
+          </div> <!-- /share -->
+        </div><!-- /.col -->
+      </div> <!-- /.row -->
+
+      <div class="demo-row typography-row">
+      	<div class="demo-title">
+      		<h3 class="demo-panel-title">Typography</h3>
+      	</div>
+      	<div class="demo-content">
+      		<div class="demo-type-example">
+	      		<h1><span class="demo-heading-note">Header 1</span>Showers across the W</h1>
+      		</div>
+      		<div class="demo-type-example">
+	      		<h2><span class="demo-heading-note">Header 2</span>Give this quartet a few</h2>
+      		</div>
+      		<div class="demo-type-example">
+	      		<h3><span class="demo-heading-note">Header 3</span>The Vatican transitions to a</h3>
+      		</div>
+      		<div class="demo-type-example">
+	      		<h4><span class="demo-heading-note">Header 4</span>Great American Bites: Telluride's Oak, The</h4>
+      		</div>
+      		<div class="demo-type-example">
+	      		<h5><span class="demo-heading-note">Header 5</span>Author Diane Alberts loves her some good</h5>
+      		</div>
+      		<div class="demo-type-example">
+	      		<h6><span class="demo-heading-note">Header 6</span>With the success of young-adult book-to-movie</h6>
+      		</div>
+      		<div class="demo-type-example">
+	      		<span class="demo-text-note">Paragraph</span>
+	          <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <strong>Donec ullamcorper</strong> nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+      		</div>
+      		<div class="demo-type-example">
+	      		<span class="demo-text-note">Image</span>
+	          <img src="docs/assets/images/example-image.jpg" alt="example-image" class="img-rounded img-responsive">
+	          <p class="img-comment"><strong>Note:</strong> gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+      		</div>
+      		<div class="demo-type-example">
+	      		<span class="demo-text-note">Lead Text</span>
+						<p class="lead">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+      		</div>
+      		<div class="demo-type-example">
+	      		<span class="demo-text-note">Quote</span>
+	          <blockquote>
+	            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus.</p>
+	            <small>Steve Jobs, CEO Apple</small>
+	          </blockquote>
+      		</div>
+      		<div class="demo-type-example">
+	      		<span class="demo-text-note">Small Font</span>
+	          <p><small>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</small></p>
+      		</div>
+      	</div><!-- /.demo-content-wide -->
+      </div><!-- /.demo-row -->
+
+      <h3 class="demo-panel-title">Color Swatches</h3>
+      <div class="row demo-swatches-row">
+	      <div class="swatches-col">
+		      <div class="pallete-item">
+			      <dl class="palette palette-turquoise">
+                <dt>#1abc9c</dt>
+                <dd>Turquoise</dd>
+              </dl>
+              <dl class="palette palette-green-sea">
+                <dt>#16a085</dt>
+                <dd>Green sea</dd>
+              </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-emerald">
+              <dt>#2ecc71</dt>
+              <dd>Emerald</dd>
+            </dl>
+            <dl class="palette palette-nephritis">
+              <dt>#27ae60</dt>
+              <dd>Nephritis</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-peter-river">
+              <dt>#3498db</dt>
+              <dd>Peter river</dd>
+            </dl>
+            <dl class="palette palette-belize-hole">
+              <dt>#2980b9</dt>
+              <dd>Belize hole</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-amethyst">
+              <dt>#9b59b6</dt>
+              <dd>Amethyst</dd>
+            </dl>
+            <dl class="palette palette-wisteria">
+              <dt>#8e44ad</dt>
+              <dd>Wisteria</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-wet-asphalt">
+              <dt>#34495e</dt>
+              <dd>Wet asphalt</dd>
+            </dl>
+            <dl class="palette palette-midnight-blue">
+              <dt>#2c3e50</dt>
+              <dd>Midnight blue</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-sun-flower">
+              <dt>#f1c40f</dt>
+              <dd>Sun flower</dd>
+            </dl>
+            <dl class="palette palette-orange">
+              <dt>#f39c12</dt>
+              <dd>Orange</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-carrot">
+              <dt>#e67e22</dt>
+              <dd>Carrot</dd>
+            </dl>
+            <dl class="palette palette-pumpkin">
+              <dt>#d35400</dt>
+              <dd>Pumpkin</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-alizarin">
+              <dt>#e74c3c</dt>
+              <dd>Alizarin</dd>
+            </dl>
+            <dl class="palette palette-pomegranate">
+              <dt>#c0392b</dt>
+              <dd>Pomegranate</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-clouds">
+              <dt>#ecf0f1</dt>
+              <dd>Clouds</dd>
+            </dl>
+            <dl class="palette palette-silver">
+              <dt>#bdc3c7</dt>
+              <dd>Silver</dd>
+            </dl>
+		      </div>
+		      <div class="pallete-item">
+			      <dl class="palette palette-concrete">
+              <dt>#95a5a6</dt>
+              <dd>Concrete</dd>
+            </dl>
+            <dl class="palette palette-asbestos">
+              <dt>#7f8c8d</dt>
+              <dd>Asbestos</dd>
+            </dl>
+		      </div>
+	      </div> <!-- /swatches items -->
+	      <div class="swatches-desc-col">
+		      <h6 class="palette-headline">SWATCHES</h6>
+          <p class="palette-paragraph">
+            Colors &mdash; is almost the most important part of the <strong>Flat UI</strong>. Better to use different shades of provided colors than new.
+          </p>
+          <p class="palette-paragraph">
+            For your convenience we also provide <strong>Swatches Preset</strong> <span>(flat&#8209;ui&#8209;swatches.aco in the Pack folder).</span>
+          </p>
+          <p class="palette-paragraph">
+            <strong>No gradients, no shadows.</strong>
+          </p>
+	      </div> <!-- /swatches desc -->
+      </div> <!-- /swatches row -->
+
+      <h3 class="demo-panel-title">Icons <small>(14)</small></h3>
+      <div class="demo-illustrations">
+        <div class="demo-content">
+          <div><img src="docs/assets/images/icons/toilet-paper.svg" alt="Toilet-Paper"></div>
+          <div><img src="docs/assets/images/icons/gift-box.svg" alt="Gift-Box"></div>
+          <div><img src="docs/assets/images/icons/pencils.svg" alt="Pensils"></div>
+          <div><img src="docs/assets/images/icons/clipboard.svg" alt="Clipboard"></div>
+          <div><img src="docs/assets/images/icons/retina.svg" alt="Retina"></div>
+          <div><img src="docs/assets/images/icons/compas.svg" alt="Compas"></div>
+          <div><img src="docs/assets/images/icons/map.svg" alt="Map"></div>
+          <div><img src="docs/assets/images/icons/chat.svg" alt="Chat"></div>
+          <div><img src="docs/assets/images/icons/mail.svg" alt="Mail"></div>
+          <div><img src="docs/assets/images/icons/book.svg" alt="Book"></div>
+          <div><img src="docs/assets/images/icons/calendar.svg" alt="Calendar"></div>
+          <div><img src="docs/assets/images/icons/paper-bag.svg" alt="Pocket"></div>
+          <div><img src="docs/assets/images/icons/clocks.svg" alt="Watches"></div>
+          <div><img src="docs/assets/images/icons/loop.svg" alt="Infinity-Loop"></div>
+        </div>
+      </div>
+
+
+      <h3 class="demo-panel-title">Glyphs <small>(70)</small></h3>
+      <div class="demo-icons">
+        <div class="demo-content">
+          <span class="fui-info-circle"></span>
+          <span class="fui-alert-circle"></span>
+          <span class="fui-question-circle"></span>
+          <span class="fui-check-circle"></span>
+          <span class="fui-cross-circle"></span>
+          <span class="fui-plus-circle"></span>
+          <span class="fui-window"></span>
+          <span class="fui-windows"></span>
+          <span class="fui-upload"></span>
+          <span class="fui-arrow-right"></span>
+          <span class="fui-arrow-left"></span>
+          <span class="fui-loop"></span>
+          <span class="fui-cmd"></span>
+          <span class="fui-mic"></span>
+          <span class="fui-export"></span>
+          <span class="fui-heart"></span>
+          <span class="fui-location"></span>
+          <span class="fui-plus"></span>
+          <span class="fui-check"></span>
+          <span class="fui-cross"></span>
+          <span class="fui-list"></span>
+          <span class="fui-new"></span>
+          <span class="fui-video"></span>
+          <span class="fui-photo"></span>
+          <span class="fui-time"></span>
+          <span class="fui-eye"></span>
+          <span class="fui-chat"></span>
+          <span class="fui-home"></span>
+          <span class="fui-search"></span>
+          <span class="fui-user"></span>
+          <span class="fui-mail"></span>
+          <span class="fui-lock"></span>
+          <span class="fui-power"></span>
+          <span class="fui-star"></span>
+          <span class="fui-calendar"></span>
+          <span class="fui-gear"></span>
+          <span class="fui-bookmark"></span>
+          <span class="fui-exit"></span>
+          <span class="fui-trash"></span>
+          <span class="fui-folder"></span>
+          <span class="fui-bubble"></span>
+          <span class="fui-calendar-solid"></span>
+          <span class="fui-star-2"></span>
+          <span class="fui-credit-card"></span>
+          <span class="fui-clip"></span>
+          <span class="fui-link"></span>
+          <span class="fui-pause"></span>
+          <span class="fui-play"></span>
+          <span class="fui-volume"></span>
+          <span class="fui-mute"></span>
+          <span class="fui-resize"></span>
+          <span class="fui-tag"></span>
+          <span class="fui-document"></span>
+          <span class="fui-image"></span>
+          <span class="fui-triangle-up"></span>
+          <span class="fui-triangle-up-small"></span>
+          <span class="fui-triangle-right-large"></span>
+          <span class="fui-triangle-left-large"></span>
+          <span class="fui-triangle-down"></span>
+          <span class="fui-triangle-down-small"></span>
+          <span class="fui-radio-unchecked"></span>
+          <span class="fui-radio-checked"></span>
+          <span class="fui-checkbox-unchecked"></span>
+          <span class="fui-checkbox-checked"></span>
+          <span class="fui-list-thumbnailed"></span>
+          <span class="fui-list-small-thumbnails"></span>
+          <span class="fui-list-numbered"></span>
+          <span class="fui-list-large-thumbnails"></span>
+          <span class="fui-list-columned"></span>
+          <span class="fui-list-bulleted"></span>
+        </div><!-- /.demo-content -->
+      </div><!-- /.demo-icons -->
+
+      <h3 class="demo-panel-title">Social <small>(27)</small></h3>
+      <div class="demo-icons">
+        <div class="demo-content">
+          <span class="fui-facebook"></span>
+          <span class="fui-youtube"></span>
+          <span class="fui-vimeo"></span>
+          <span class="fui-twitter"></span>
+          <span class="fui-stumbleupon"></span>
+          <span class="fui-spotify"></span>
+          <span class="fui-skype"></span>
+          <span class="fui-pinterest"></span>
+          <span class="fui-path"></span>
+          <span class="fui-linkedin"></span>
+          <span class="fui-google-plus"></span>
+          <span class="fui-dribbble"></span>
+          <span class="fui-behance"></span>
+          <span class="fui-yelp"></span>
+          <span class="fui-wordpress"></span>
+          <span class="fui-windows-8"></span>
+          <span class="fui-vine"></span>
+          <span class="fui-tumblr"></span>
+          <span class="fui-paypal"></span>
+          <span class="fui-lastfm"></span>
+          <span class="fui-instagram"></span>
+          <span class="fui-html5"></span>
+          <span class="fui-github"></span>
+          <span class="fui-foursquare"></span>
+          <span class="fui-dropbox"></span>
+          <span class="fui-android"></span>
+          <span class="fui-apple"></span>
+        </div><!-- /.demo-content -->
+      </div><!-- /.demo-icons -->
+
+      <h3 class="demo-panel-title mbl pbl">Samples</h3>
+      <div class="row demo-samples">
+        <div class="col-4">
+          <div class="todo">
+            <div class="todo-search">
+              <input class="todo-search-field" type="search" value="" placeholder="Search" />
+            </div>
+            <ul>
+              <li class="todo-done">
+                <div class="todo-icon fui-user"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Meet <strong>Adrian</strong> at <strong>6pm</strong>
+                  </h4>
+                  Times Square
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-list"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Chat with <strong>V.Kudinov</strong>
+                  </h4>
+                  Skype conference an 9 am
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-eye"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Watch <strong>Iron Man</strong>
+                  </h4>
+                  1998 Broadway
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-time"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                    Fix bug on a <strong>Website</strong>
+                  </h4>
+                  As soon as possible
+                </div>
+              </li>
+            </ul>
+          </div><!-- /.todo -->
+        </div><!-- /.col-4 -->
+
+        <div class="col-8">
+          <video
+            id="my-player"
+            class="video-js"
+            controls
+            preload="auto"
+            poster="docs/assets/images/video/poster.jpg"
+            data-setup='{}'>
+            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.mp4" type="video/mp4"></source>
+            <source src="http://iurevych.github.com/Flat-UI-videos/big_buck_bunny.webm" type="video/webm"></source>
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="http://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+              </a>
+            </p>
+          </video>
+        </div> <!-- /video -->
+      </div>
+
+      <div class="row demo-tiles">
+        <div class="col">
+          <div class="tile">
+            <img src="docs/assets/images/icons/compas.svg" alt="Compas" class="tile-image big-illustration">
+            <h3 class="tile-title">Web Oriented</h3>
+            <p>100% convertable to HTML/CSS layout.</p>
+            <a class="btn btn-primary btn-large btn-block" href="https://designmodo.com/flat">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="tile">
+            <img src="docs/assets/images/icons/loop.svg" alt="Infinity-Loop" class="tile-image">
+            <h3 class="tile-title">Easy to Customize</h3>
+            <p>Vector-based shapes and minimum of layer styles.</p>
+            <a class="btn btn-primary btn-large btn-block" href="https://designmodo.com/flat">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="tile">
+            <img src="docs/assets/images/icons/pencils.svg" alt="Pensils" class="tile-image">
+            <h3 class="tile-title">Color Swatches</h3>
+            <p>Easy to add or change elements. </p>
+            <a class="btn btn-primary btn-large btn-block" href="https://designmodo.com/flat">Get Pro</a>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="tile tile-hot">
+            <img src="docs/assets/images/icons/ribbon.svg" alt="ribbon" class="tile-hot-ribbon">
+            <img src="docs/assets/images/icons/chat.svg" alt="Chat" class="tile-image">
+            <h3 class="tile-title">Free for Share</h3>
+            <p>Your likes, shares and comments helps us.</p>
+            <a class="btn btn-primary btn-large btn-block" href="https://designmodo.com/flat">Get Pro</a>
+          </div>
+
+        </div>
+      </div> <!-- /tiles -->
+
+      <div class="login">
+        <div class="login-screen">
+          <div class="login-icon">
+            <img src="docs/assets/images/login/icon.png" alt="Welcome to Mail App" />
+            <h4>Welcome to <small>Mail App</small></h4>
+          </div>
+
+          <div class="login-form">
+            <div class="form-group">
+              <input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
+              <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+              <label class="login-field-icon fui-lock" for="login-pass"></label>
+            </div>
+
+            <a class="btn btn-primary btn-lg btn-block" href="#">Log in</a>
+            <a class="login-link" href="#">Lost your password?</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-9">
+          <div class="demo-browser">
+            <div class="demo-browser-side">
+              <div class="demo-browser-author"></div>
+              <div class="demo-browser-action">
+                <a class="btn btn-danger btn-lg btn-block" href="http://twitter.com/monstercritic" target="_blank">
+                  <span class="fui-plus"></span>Follow
+                </a>
+              </div>
+              <h5>@monstercritic</h5>
+              <h6>
+                Tourist. Designer. NYC
+                <a href="http://shmidt.in" target="_blank">shmidt.in</a>
+              </h6>
+            </div>
+            <div class="demo-browser-content">
+              <img src="docs/assets/images/demo/browser-pic-1.jpg" alt="" />
+              <img src="docs/assets/images/demo/browser-pic-2.jpg" alt="" />
+              <img src="docs/assets/images/demo/browser-pic-3.jpg" alt="" />
+              <img src="docs/assets/images/demo/browser-pic-4.jpg" alt="" />
+              <img src="docs/assets/images/demo/browser-pic-5.jpg" alt="" />
+              <img src="docs/assets/images/demo/browser-pic-6.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="demo-download">
+            <img src="docs/assets/images/demo/html-icon.png" src="Free PSD" />
+          </div>
+
+          <a href="https://github.com/designmodo/Flat-UI/archive/master.zip" class="btn btn-primary btn-lg btn-block">Download</a>
+
+          <p class="demo-download-text">Your likes, shares and comments make us happy!</p>
+        </div>
+      </div> <!-- /download area -->
+
+    </div> <!-- /container -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-7">
+            <h3 class="footer-title">Subscribe</h3>
+            <p>Do you like this freebie? Want to get more stuff like this?<br/>
+              Subscribe to designmodo news and updates to stay tuned on great designs.<br/>
+              Go to: <a href="https://designmodo.com/flat-free" target="_blank">designmodo.com/flat-free</a>
+            </p>
+
+            <p class="pvl">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://designmodo.com/flat-free/" data-text="Flat UI Free - PSD&amp;amp;HTML User Interface Kit" data-via="designmodo">Tweet</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              <iframe src="http://ghbtns.com/github-btn.html?user=designmodo&repo=Flat-UI&type=watch&count=true" height="20" width="107" frameborder="0" scrolling="0" style="width:105px; height: 20px;" allowTransparency="true"></iframe>
+              <iframe src="http://ghbtns.com/github-btn.html?user=designmodo&repo=Flat-UI&type=fork&count=true" height="20" width="107" frameborder="0" scrolling="0" style="width:105px; height: 20px;" allowTransparency="true"></iframe>
+              <iframe src="http://ghbtns.com/github-btn.html?user=designmodo&type=follow&count=true" height="20" width="195" frameborder="0" scrolling="0" style="width:195px; height: 20px;" allowTransparency="true"></iframe>
+            </p>
+
+            <a class="footer-brand" href="http://designmodo.com" target="_blank">
+              <img src="docs/assets/images/demo/logo.png" alt="Designmodo.com" />
+            </a>
+          </div> <!-- /col-7 -->
+
+          <div class="col-5">
+            <div class="footer-banner">
+              <h3 class="footer-title">Get Flat UI Pro</h3>
+              <ul>
+                <li>Tons of Basic and Custom UI Elements</li>
+                <li>A Lot of Useful Samples</li>
+                <li>More Vector Icons and Glyphs</li>
+                <li>Pro Color Swatches</li>
+                <li>Bootstrap Based HTML/CSS/JS Layout</li>
+              </ul>
+              Go to: <a href="https://designmodo.com/flat" target="_blank">designmodo.com/flat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+    <script src="dist/scripts/flat-ui.js"></script>
+    <script src="docs/assets/js/application.js"></script>
+
+  </body>
+</html>

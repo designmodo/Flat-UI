@@ -1,0 +1,121 @@
+//
+// Palette
+// --------------------------------------------------
+
+.pallete-item {
+  width: 140px;
+  float: left;
+  margin: 0 0 20px 20px;
+}
+.palette {
+  font-size: ceil(($component-font-size-base * 0.933)); // ~14px
+  line-height: 1.214; // ~17px
+  color: $inverse;
+  margin: 0;
+  padding: 15px;
+  text-transform: uppercase;
+
+  dt,
+  dd {
+    line-height: 1.429;
+  }
+  dt {
+    display: block;
+    font-weight: bold;
+    opacity: .8;
+  }
+  dd {
+    font-weight: 300;
+    margin-left: 0;
+    opacity: .8;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+//
+// Pallet grid
+// --------------------------------------------------
+
+.palette-turquoise {
+  background-color: #1abc9c;
+}
+.palette-green-sea {
+  background-color: #16a085;
+}
+.palette-emerald {
+  background-color: #2ecc71;
+}
+.palette-nephritis {
+  background-color: #27ae60;
+}
+.palette-peter-river {
+  background-color: #3498db;
+}
+.palette-belize-hole {
+  background-color: #2980b9;
+}
+.palette-amethyst {
+  background-color: #9b59b6;
+}
+.palette-wisteria {
+  background-color: #8e44ad;
+}
+.palette-wet-asphalt {
+  background-color: #34495e;
+}
+.palette-midnight-blue {
+  background-color: #2c3e50;
+}
+.palette-sun-flower {
+  background-color: #f1c40f;
+}
+.palette-orange {
+  background-color: #f39c12;
+}
+.palette-carrot {
+  background-color: #e67e22;
+}
+.palette-pumpkin {
+  background-color: #d35400;
+}
+.palette-alizarin {
+  background-color: #e74c3c;
+}
+.palette-pomegranate {
+  background-color: #c0392b;
+}
+.palette-clouds {
+  background-color: #ecf0f1;
+}
+.palette-silver {
+  background-color: #bdc3c7;
+}
+.palette-concrete {
+  background-color: #95a5a6;
+}
+.palette-asbestos {
+  background-color: #7f8c8d;
+}
+
+.palette-clouds {
+  color: #bdc3c7;
+}
+
+// Palette paragraph
+.palette-paragraph {
+  color: #7f8c8d;
+  font-size: 12px;
+  line-height: 17px;
+
+  span {
+    color: #bdc3c7;
+  }
+}
+
+// Headline
+.palette-headline {
+  color: #7f8c8d;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: -3px;
+}

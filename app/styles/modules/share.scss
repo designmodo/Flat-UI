@@ -1,0 +1,43 @@
+//
+// Sharing box
+// --------------------------------------------------
+
+// Module color variable
+$share-color: mix($brand-primary, $inverse, 8%);
+
+.share {
+  background-color: $share-color;
+  position: relative;
+  border-radius: $border-radius-large;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+  }
+  li {
+    font-size: $component-font-size-base;
+    line-height: 1.4;
+    padding-top: 11px;
+    @include clearfix();
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  .toggle {
+    float: right;
+    margin: 0;
+  }
+  .btn {
+    @include border-top-radius(0);
+  }
+}
+
+.share-label {
+  float: left;
+  font-size: 15px;
+  line-height: 1.4;
+  padding-top: 5px;
+  width: 50%;
+}

@@ -221,8 +221,8 @@
   }
   > li > a:hover,
   > li > a:focus,
-  .open > a:focus,
-  .open > a:hover {
+  .show > a:focus,
+  .show > a:hover {
     background-color: transparent;
   }
 
@@ -316,7 +316,7 @@
       margin-top: 0;
     }
   }
-  &.open > .dropdown-menu {
+  &.show > .dropdown-menu {
     @media (max-width: $grid-float-breakpoint-max) {
       margin-top: 0 !important;
     }
@@ -328,9 +328,9 @@
   @include border-bottom-radius($border-radius-base);
 }
 
-.navbar-nav > .open > .dropdown-toggle,
-.navbar-nav > .open > .dropdown-toggle:focus,
-.navbar-nav > .open > .dropdown-toggle:hover {
+.navbar-nav > .show > .dropdown-toggle,
+.navbar-nav > .show > .dropdown-toggle:focus,
+.navbar-nav > .show > .dropdown-toggle:hover {
   background-color: transparent;
 }
 
@@ -481,7 +481,7 @@
   .navbar-nav {
 
     // Remove background color from open dropdown
-    > .open > a {
+    > .show > a {
       &,
       &:hover,
       &:focus {
@@ -497,7 +497,7 @@
 
     @media (max-width: $grid-float-breakpoint-max) {
       // Dropdowns get custom display when collapsed
-      .open .dropdown-menu {
+      .show .dropdown-menu {
         > li > a {
           color: $navbar-default-link-color;
           &:hover,
@@ -646,7 +646,7 @@
       }
     }
 
-    > .open > a {
+    > .show > a {
       &,
       &:hover,
       &:focus {
@@ -660,7 +660,7 @@
       }
     }
 
-    > .open {
+    > .show {
       > .dropdown-menu {
         background-color: $navbar-inverse-dropdown-bg;
         padding: 3px 4px;
@@ -702,7 +702,7 @@
          border-left-width: 0;
        }
       // Dropdowns get custom display when collapsed
-      .open .dropdown-menu {
+      .show .dropdown-menu {
         > li > a {
           color: $navbar-inverse-link-color;
           &:hover,
@@ -800,7 +800,7 @@
     }
     &.navbar-inverse .navbar-nav {
       .active > a,
-      .open > a {
+      .show > a {
         box-shadow: inset 0 -2px 0 rgba(black, .15);
       }
     }
