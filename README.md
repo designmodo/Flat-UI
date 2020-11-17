@@ -96,9 +96,9 @@ Startup Framework is based on Bootstrap and help you to create beautiful and res
 
 ## Other Resources:
 
-**[https://designmodo.com/bootstrap-templates/](Bootstrap Templates)**
-**[https://designmodo.com/email-newsletter-templates/](Newsletter Templates)**
-**[https://designmodo.com/static-website-templates/](Website Templates)**
+**[Bootstrap Templates](https://designmodo.com/bootstrap-templates/)**
+**[Newsletter Templates](https://designmodo.com/email-newsletter-templates/)**
+**[Website Templates](https://designmodo.com/static-website-templates/)**
 
 
 ## Useful Links
