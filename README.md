@@ -1,7 +1,7 @@
 
 # [Flat UI Free](https://designmodo.github.io/Flat-UI/)
 
-Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
+Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have re-designed many of its components to look flat in every pixel.
 
 To get started, check out [getting started page](https://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
 
