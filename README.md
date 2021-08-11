@@ -115,6 +115,8 @@ Freebies: <https://designmodo.com/freebies/>
 
 Affiliate Program (earn money): <https://designmodo.com/affiliates/>
 
+Reviews: **[Designmodo reviews](https://www.trustpilot.com/review/designmodo.com)**
+
 **Social Media:**
 
 Twitter: <http://www.twitter.com/designmodo>
