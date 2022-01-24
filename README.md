@@ -104,10 +104,10 @@ Startup Framework is based on Bootstrap and help you to create beautiful and res
 
 ## Designmodo Projects
 
--[Pulsetic.com - Website Monitoring Tool](https://pulsetic.com/)
--[Static.app - Static Website Hosting](https://static.app/)
--[Mailpost.io - Email Marketing Tool](https://mailpost.io/) 
--[Siter.io - No Code Website Builder](https://siter.io/)
+ - [Pulsetic.com - Website Monitoring Tool](https://pulsetic.com/)
+ - [Static.app - Static Website Hosting](https://static.app/)
+ - [Mailpost.io - Email Marketing Tool](https://mailpost.io/)
+ - [Siter.io - No Code Website Builder](https://siter.io/)
 
 ## Useful Links
 
