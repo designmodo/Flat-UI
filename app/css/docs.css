@@ -142,7 +142,7 @@ ol.linenums {
   left: 0;
   font-size: 13px;
   line-height: 13px;
-  color: #c0c1c2;
+  color: rgba(130, 138, 138, 1);
   font-weight: 400;
 }
 .demo-row .demo-text-note {
