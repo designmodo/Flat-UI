@@ -1,7 +1,7 @@
 
 # [Flat UI Free](https://designmodo.github.io/Flat-UI/)
 
-Flat UI is a beautiful theme for [Bootstrap](http://getbootstrap.com). We have redesigned many of its components to look flat in every pixel.
+Flat UI is a beautiful theme for Bootstrap. We have redesigned many of its components to look flat in every pixel.
 
 To get started, check out [getting started page](https://designmodo.github.io/Flat-UI/docs/getting-started.html) or follow instructions below.
 
@@ -98,37 +98,19 @@ Startup Framework is based on Bootstrap and help you to create beautiful and res
 
 **[Bootstrap Templates](https://designmodo.com/bootstrap-templates/)**
 
-**[Newsletter Templates](https://designmodo.com/email-newsletter-templates/)**
+**[Email HTML Templates](https://designmodo.com/email-templates/)**
 
 **[Website Templates](https://designmodo.com/website-templates/)**
 
 ## Designmodo Projects
 
- - [Pulsetic.com - Website Monitoring Tool](https://pulsetic.com/)
+ - [Pulsetic.com - Website Monitoring Tool](https://pulsetic.com/) - Check if website is down https://pulsetic.com/is-website-down/
  - [Static.app - Static Website Hosting](https://static.app/)
  - [Mailpost.io - Email Marketing Tool](https://mailpost.io/)
  - [Siter.io - No Code Website Builder](https://siter.io/)
-
-## Useful Links
-
-More products from Designmodo: <https://designmodo.com/products/>
-
-Designmodo Market: <http://market.designmodo.com/>
-
-Tutorials: <https://designmodo.com/tutorials/>
-
-Freebies: <https://designmodo.com/freebies/>
-
-Affiliate Program (earn money): <https://designmodo.com/affiliates/>
-
-Reviews: **[Designmodo reviews](https://www.trustpilot.com/review/designmodo.com)**
 
 **Social Media:**
 
 Twitter: <http://www.twitter.com/designmodo>
 
 Facebook: <http://www.facebook.com/designmodo>
-
-RSS: <http://feeds.feedburner.com/designmodo>
-
-Google+: <https://www.google.com/+Designmodo>
