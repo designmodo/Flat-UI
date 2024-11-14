@@ -110,7 +110,7 @@
 ## 2.1.2
   * Bootstrap upgraded to v3.0.3;
   * Navbar completely rewriten, added new states (default, inverse, embossed, large, fixed-top, fixed-bottom, static-top), now you can use basic navbar elements: `.navbar-form`, `.navbar-btn`, `.navbar-text`, `.navbar-link`;
-  * Forms: added support for `legend`, `.help-block`, fixed rounded serch form on iOS, fixed desabled input background and opacity, added support for input-groups;
+  * Forms: added support for `legend`, `.help-block`, fixed rounded search form on iOS, fixed disabled input background and opacity, added support for input-groups;
   * Slider: added vertical orientation;
   * Various small bugfixes and improvements.
 
@@ -126,7 +126,7 @@
   * Bootstrap upgraded to v3.0;
   * Added support for better box model;
   * Update html5 video player to version 4.1;
-  * Added components documentation and sturt-up template;
+  * Added components documentation and startup template;
   * Various small bugfixes and improvements.
 
 ## 2.0
