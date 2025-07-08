@@ -106,7 +106,6 @@ Startup Framework is based on Bootstrap and help you to create beautiful and res
 
  - [Pulsetic.com - Website Monitoring Tool](https://pulsetic.com/) - Check if website is down https://pulsetic.com/is-website-down/
  - [Static.app - Static Website Hosting](https://static.app/)
- - [Mailpost.io - Email Marketing Tool](https://mailpost.io/)
  - [Siter.io - No Code Website Builder](https://siter.io/)
 
 **Social Media:**
