@@ -8,8 +8,7 @@ To get started, check out [getting started page](https://designmodo.github.io/Fl
 ## Links:
 
 + [Demo Page](https://designmodo.github.io/Flat-UI/)
-+ [Download PSD](https://designmodo.com/flat-free/) (for designers)
-+ [Flat UI Pro 1.4.0](https://designmodo.com/flat/) (from $39)
++ [Download PSD](https://designmodo.com/flat-free/)
 
 ## Quick start
 
