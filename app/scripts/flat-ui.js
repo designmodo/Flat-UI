@@ -6703,7 +6703,7 @@ var Tooltip = function ($$$1) {
         var attachment = this._getAttachment(placement);
 
         this.addAttachmentClass(attachment);
-        var container = this.config.container === false ? document.body : $$$1(this.config.container);
+        var container = this.config.container === false ? document.body : $$$1(document).find(this.config.container);
         $$$1(tip).data(this.constructor.DATA_KEY, this);
 
         if (!$$$1.contains(this.element.ownerDocument.documentElement, this.tip)) {
